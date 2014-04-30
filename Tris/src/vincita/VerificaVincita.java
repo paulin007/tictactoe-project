@@ -10,9 +10,9 @@ import tris.Casella;
 
 public class VerificaVincita {
 	
-	private ArrayList<Integer> x; 
-	private ArrayList<Integer> o;
-	private ArrayList<Terna> vincitePossibili; // perchè non usare direttamente terneVincite?
+	private ArrayList<Integer> giocatore; 
+	private ArrayList<Integer> computer;
+	private ArrayList<Terna> vincitePossibili; // perchï¿½ non usare direttamente terneVincite?
 	
 	public VerificaVincita() {
 		TerneVincite terneVincite = new TerneVincite();
@@ -26,13 +26,13 @@ public class VerificaVincita {
 	
 	// corretto l'if: aggiunta la condizione caselle.get(i).getSimbolo()!= null
 	public void separaMosse(ArrayList<Casella> caselle){
-		x = new ArrayList<Integer>();
-		o = new ArrayList<Integer>();
+		giocatore = new ArrayList<Integer>();
+		computer = new ArrayList<Integer>();
 		for (int i = 0; i < caselle.size(); i++) {
 			if(caselle.get(i).getSimbolo()!= null && caselle.get(i).getSimbolo().equalsIgnoreCase("g")){
-				x.add(caselle.get(i).getIDcasella());
+				giocatore.add(caselle.get(i).getIDcasella());
 			}else if(caselle.get(i).getSimbolo()!= null && caselle.get(i).getSimbolo().equalsIgnoreCase("c")){
-				o.add(caselle.get(i).getIDcasella());
+				computer.add(caselle.get(i).getIDcasella());
 			}
 		}
 	}
@@ -44,11 +44,11 @@ public class VerificaVincita {
 	public String stabilisciVincitore(ArrayList<Casella> caselle){
 		separaMosse(caselle);
 		String vincitore = null;
-		if(haiVinto(x)){
+		if(haiVinto(giocatore)){
 			vincitore = "Giocatore";
 			return "Ha vinto "+vincitore;
 			
-		}else if(haiVinto(o)==true){
+		}else if(haiVinto(computer)==true){
 			
 			vincitore = "Computer";
 			return "Ha vinto "+vincitore;
@@ -87,27 +87,23 @@ public class VerificaVincita {
 				if(index==3){
 					vittoria = true;
 					System.out.println(vincitePossibili.get(i));
-					break; // aggiunto break, inutile continuare a ciclare se la condizione di vittoria è raggiunta
+					break; // aggiunto break, inutile continuare a ciclare se la condizione di vittoria ï¿½ raggiunta
 				}	
 //			}
 		}	
 		return vittoria;
 				
 	}
-
-	public ArrayList<Integer> getX() {
-		return x;
+	public ArrayList<Integer> getGiocatore() {
+		return giocatore;
 	}
-
-	public void setX(ArrayList<Integer> x) {
-		this.x = x;
+	public void setGiocatore(ArrayList<Integer> giocatore) {
+		this.giocatore = giocatore;
 	}
-
-	public ArrayList<Integer> getO() {
-		return o;
+	public ArrayList<Integer> getComputer() {
+		return computer;
 	}
-
-	public void setO(ArrayList<Integer> o) {
-		this.o = o;
+	public void setComputer(ArrayList<Integer> computer) {
+		this.computer = computer;
 	}
 }
