@@ -7,8 +7,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-
 import javax.swing.JPanel;
+
+import computerIntelligenza.DifficoltàCasuale;
+import computerIntelligenza.ProxyDifficoltà;
+import tris.Casella;
+import tris.TabellaTris;
 
 public class JButtonPanel extends JPanel{
 
@@ -17,11 +21,11 @@ public class JButtonPanel extends JPanel{
 	private ArrayList<JButton> griglia = new ArrayList<>();
 	private Cerchio cerchio = new Cerchio();
 	private Croce croce = new Croce();
+	private TabellaTris tabellaTris = new TabellaTris();
 
 	public JButtonPanel(CheckBoxPanel panel) {
+		tabellaTris.creaTabella();
 		this.panel=panel;
-		
-		
 		setLayout(new GridLayout(3, 3));
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
@@ -30,13 +34,15 @@ public class JButtonPanel extends JPanel{
 	// intelligenza artificiale stupida
 	
 	public void ia(int posizione,String scelta){
-		
-		int x = (int)(Math.random()*9);
-			
-		if(x!= posizione && scelta=="Cerchio")griglia.get(x).setIcon(croce.disegnaCroce());
-		if(x!= posizione && scelta=="Croce")griglia.get(x).setIcon(cerchio.disegnaCerchio());
-
-				
+		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàCasuale());
+		int index = proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
+		if(scelta=="Cerchio"){
+			griglia.get(index).setIcon(croce.disegnaCroce());
+			tabellaTris.getCaselle().get(index).setSimbolo("c");
+		}else{
+			griglia.get(proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris)).setIcon(cerchio.disegnaCerchio());
+			tabellaTris.getCaselle().get(index).setSimbolo("c");
+		}
 	}
 	
 	public void setupInizialeGriglia(){
@@ -47,7 +53,6 @@ public class JButtonPanel extends JPanel{
 			final int j = i;
 			final JButton button = new JButton();
 			button.setBackground(Color.WHITE);
-	
 			griglia.add(button);
 		}
 	}
@@ -58,16 +63,19 @@ public class JButtonPanel extends JPanel{
 		
 		final int j = i;
 		griglia.get(i).addActionListener(new ActionListener() {
-			
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(panel.scelta()=="Cerchio")griglia.get(j).setIcon(cerchio.disegnaCerchio());
-				if(panel.scelta()=="Croce")griglia.get(j).setIcon(croce.disegnaCroce());
-				
-				ia(j,panel.scelta());
-				
+				Casella casellaSelezionata = tabellaTris.getCaselle().get(j);
+				if(panel.scelta()=="Cerchio"&&casellaSelezionata.isVuota()){
+					griglia.get(j).setIcon(cerchio.disegnaCerchio());
+					casellaSelezionata.setSimbolo("g");
+					ia(j,panel.scelta());
+				}
+				if(panel.scelta()=="Croce"&&casellaSelezionata.isVuota()){
+					griglia.get(j).setIcon(croce.disegnaCroce());
+					casellaSelezionata.setSimbolo("g");
+					ia(j,panel.scelta());
+				}
 			}
 		});
 		}

@@ -5,7 +5,10 @@
  */
 package tris;
 
-public class Casella {
+import java.util.Observable;
+
+
+public class Casella extends Observable{
 	
 	private String simbolo;
 	Posizione posizione;
@@ -26,6 +29,7 @@ public class Casella {
 
 	public void setSimbolo(String simbolo) {
 		this.simbolo = simbolo;
+		update();
 	}
 
 	public Posizione getPosizione() {
@@ -44,7 +48,7 @@ public class Casella {
 		IDcasella = iDcasella;
 	}
 	
-	public boolean casellaVuota(){
+	public boolean isVuota(){
 		if(getSimbolo()==null){
 			return true;
 		}else{
@@ -55,5 +59,10 @@ public class Casella {
 	@Override
 	public String toString(){
 		return "Simbolo: "+getSimbolo()+" "+getPosizione()+" IDcasella: "+getIDcasella();
+	}
+	
+	public void update(){
+		setChanged();
+		notifyObservers();
 	}
 }

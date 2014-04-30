@@ -17,7 +17,7 @@ public class Tests03 {
 		tabellaTris.creaTabella();
 		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàCasuale());
 		for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
-			if(tabellaTris.getCaselle().get(i).casellaVuota()){
+			if(tabellaTris.getCaselle().get(i).isVuota()){
 				tabellaTris.getCaselle().get(i).setSimbolo("g");
 				proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
 			}

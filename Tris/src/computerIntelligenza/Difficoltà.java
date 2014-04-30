@@ -7,5 +7,5 @@ public interface Difficoltà {
 	 * Questo metodo permette di generare un mossa da parte del PC
 	 * @param tabellaTris
 	 */
-	public void generaMossa(TabellaTris tabellaTris);
+	public int generaMossa(TabellaTris tabellaTris);
 }

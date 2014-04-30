@@ -6,8 +6,9 @@
 package tris;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class TabellaTris {
+public class TabellaTris  {
 	
 	private ArrayList<Casella> caselle;
 	private static int nRighe = 3;
@@ -35,4 +36,6 @@ public class TabellaTris {
 	public void setCaselle(ArrayList<Casella> caselle) {
 		this.caselle = caselle;
 	}
+	
+	
 }
