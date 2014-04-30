@@ -12,7 +12,8 @@ public class VerificaVincita {
 	
 	private ArrayList<Integer> x; 
 	private ArrayList<Integer> o;
-	private ArrayList<Terna> vincitePossibili;
+	private ArrayList<Terna> vincitePossibili; // perchè non usare direttamente terneVincite?
+	
 	public VerificaVincita() {
 		TerneVincite terneVincite = new TerneVincite();
 		vincitePossibili=terneVincite.getTerneVincenti();
@@ -22,13 +23,15 @@ public class VerificaVincita {
 	 * da quelle occupate dal giocatore
 	 * @param caselle
 	 */
+	
+	// corretto l'if: aggiunta la condizione caselle.get(i).getSimbolo()!= null
 	public void separaMosse(ArrayList<Casella> caselle){
-		x = new ArrayList<>();
-		o = new ArrayList<>();
+		x = new ArrayList<Integer>();
+		o = new ArrayList<Integer>();
 		for (int i = 0; i < caselle.size(); i++) {
-			if(caselle.get(i).getSimbolo().equalsIgnoreCase("g")){
+			if(caselle.get(i).getSimbolo()!= null && caselle.get(i).getSimbolo().equalsIgnoreCase("g")){
 				x.add(caselle.get(i).getIDcasella());
-			}else if(caselle.get(i).getSimbolo().equalsIgnoreCase("c")){
+			}else if(caselle.get(i).getSimbolo()!= null && caselle.get(i).getSimbolo().equalsIgnoreCase("c")){
 				o.add(caselle.get(i).getIDcasella());
 			}
 		}
@@ -43,22 +46,34 @@ public class VerificaVincita {
 		String vincitore = null;
 		if(haiVinto(x)){
 			vincitore = "Giocatore";
-		}else if(haiVinto(o)){
+			return "Ha vinto "+vincitore;
+			
+		}else if(haiVinto(o)==true){
+			
 			vincitore = "Computer";
-		}else{
-			vincitore = "Pareggio";
+			return "Ha vinto "+vincitore;
 		}
-		System.out.println("Ha vinto "+vincitore);
-		return vincitore;
+		else{
+			
+			vincitore = "Pareggio";
+			return vincitore;
+		}
 	}
 	
-	private boolean haiVinto(ArrayList<Integer> mosse){
+	
+	// cambio in public per verificare che funzioni
+	// corretto il ciclo for x.size --> mosse.size
+	public boolean haiVinto(ArrayList<Integer> mosse){
 		boolean vittoria = false;
+		
 		for (int i = 0; i < vincitePossibili.size(); i++) {
-			while(!vittoria){
+			// elimino il while, non serve
+//			while(!vittoria){
 				int index = 0;
-				for (int j = 0; j < x.size(); j++) {
+				
+				for (int j = 0; j < mosse.size(); j++) {
 					if(vincitePossibili.get(i).getX()==mosse.get(j)){
+						
 						index++;
 					}
 					if(vincitePossibili.get(i).getY()==mosse.get(j)){
@@ -68,11 +83,13 @@ public class VerificaVincita {
 						index++;
 					}
 				}
+				
 				if(index==3){
 					vittoria = true;
 					System.out.println(vincitePossibili.get(i));
+					break; // aggiunto break, inutile continuare a ciclare se la condizione di vittoria è raggiunta
 				}	
-			}
+//			}
 		}	
 		return vittoria;
 				
