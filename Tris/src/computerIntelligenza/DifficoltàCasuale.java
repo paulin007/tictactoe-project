@@ -17,8 +17,9 @@ public class DifficoltàCasuale implements Difficoltà {
 		Random random = new Random();
 		boolean finito = false;
 		int k = 0;
-		int numero = -1;
-		while(!finito&&k<9){
+		int numero = -1; 
+		
+		while(!finito&& k<9){
 			k++;
 			numero = random.nextInt(9);
 			if(tabellaTris.getCaselle().get(numero).isVuota()){
@@ -26,6 +27,19 @@ public class DifficoltàCasuale implements Difficoltà {
 				finito = true;
 			}
 		}
+		return numero;
+	}
+	
+	public int generaMossaNew(TabellaTris tabellaTris){
+		
+		int numero = (int)(Math.random()*9);
+			
+			if(tabellaTris.getCaselle().get(numero).isVuota()){
+				tabellaTris.getCaselle().get(numero).setSimbolo(simboloPC);
+				
+			}
+			else generaMossaNew(tabellaTris);
+		
 		return numero;
 	}
 }
