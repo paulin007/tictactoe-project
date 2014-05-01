@@ -14,6 +14,8 @@ import javax.swing.JMenuItem;
 
 import computerIntelligenza.Difficoltà;
 import computerIntelligenza.DifficoltàCasuale;
+import computerIntelligenza.DifficoltàDifficile;
+import computerIntelligenza.DifficoltàSemplice;
 import computerIntelligenza.ProxyDifficoltà;
 
 
@@ -40,6 +42,9 @@ public class UI extends JFrame{
 		JMenuItem difficile = new JMenuItem("Difficile");
 		JMenuItem casuale = new JMenuItem("Casuale");
 		setMenuDifficoltà(casuale,new DifficoltàCasuale());
+		setMenuDifficoltà(semplice, new DifficoltàSemplice());
+		setMenuDifficoltà(medio, new DifficoltàSemplice());
+		setMenuDifficoltà(difficile, new DifficoltàDifficile());
 		menuLivelli.add(semplice);
 		menuLivelli.add(medio);
 		menuLivelli.add(difficile);

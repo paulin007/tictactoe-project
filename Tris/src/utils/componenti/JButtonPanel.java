@@ -38,18 +38,15 @@ public class JButtonPanel extends JPanel{
 		int index = proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
 		if(scelta=="Cerchio"){
 			griglia.get(index).setIcon(croce.disegnaCroce());
-			tabellaTris.getCaselle().get(index).setSimbolo("c");
+			//tabellaTris.getCaselle().get(index).setSimbolo("c");
 		}else{
 			griglia.get(proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris)).setIcon(cerchio.disegnaCerchio());
-			tabellaTris.getCaselle().get(index).setSimbolo("c");
+			//tabellaTris.getCaselle().get(index).setSimbolo("c");
 		}
 	}
 	
 	public void setupInizialeGriglia(){
-		
-		
 		for (int i = 0; i < 9; i++) {
-			
 			final int j = i;
 			final JButton button = new JButton();
 			button.setBackground(Color.WHITE);

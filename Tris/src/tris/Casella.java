@@ -55,6 +55,17 @@ public class Casella extends Observable{
 			return false;
 		}
 	}
+	/**
+	 * Questo metodo permette di stabilire se la casella è occupata dal giocatore
+	 * @return
+	 */
+	public boolean occupataDaGiocatore(){
+		if(!isVuota()&&getSimbolo().equalsIgnoreCase("g")){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	@Override
 	public String toString(){
