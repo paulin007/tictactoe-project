@@ -4,7 +4,10 @@
  */
 package vincita;
 
+import java.awt.Frame;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import tris.Casella;
 
@@ -46,16 +49,19 @@ public class VerificaVincita {
 		String vincitore = null;
 		if(haiVinto(giocatore)){
 			vincitore = "Giocatore";
+			JOptionPane.showMessageDialog(null, "Ha vinto "+vincitore);
 			return "Ha vinto "+vincitore;
 			
 		}else if(haiVinto(computer)==true){
 			
 			vincitore = "Computer";
+			JOptionPane.showMessageDialog(null, "Ha vinto "+vincitore);
 			return "Ha vinto "+vincitore;
 		}
 		else{
 			
 			vincitore = "Pareggio";
+			JOptionPane.showMessageDialog(null, "Pareggio");
 			return vincitore;
 		}
 	}
