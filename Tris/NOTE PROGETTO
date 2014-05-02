@@ -1,3 +1,6 @@
 1) BUG: il livello casuale a volte sovrascrive le caselle del giocatore
 2) TODO: Implementare il cambio di difficoltà per il metodo ui nella classe JButtonPanel
 3) BUG: il livello semplice è da rivedere: a volte il computer non prende una decisione
+4) TODO: Implementare un ShowDialog che mostra il risultato della partita, possibilmente usando i componenti Gestore Vincita
+5) TODO: Testare le classi GestoreVincite e VisualizzatoreRisultato
+6) Implementate le strutture per la creazione delle statistiche. Sono funzionante e testate.
