@@ -89,6 +89,12 @@ public class JButtonPanel extends JPanel{
 				add(griglia.get(i));
 		}
 	}
+	public TabellaTris getTabellaTris() {
+		return tabellaTris;
+	}
+	public void setTabellaTris(TabellaTris tabellaTris) {
+		this.tabellaTris = tabellaTris;
+	}
 		
 	public ArrayList<JButton> getGriglia() {
 		return griglia;

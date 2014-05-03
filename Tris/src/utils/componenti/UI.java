@@ -12,6 +12,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import statistiche.InterpreteStatisticheDefault;
 import computerIntelligenza.Difficoltà;
@@ -76,6 +79,12 @@ public class UI extends JFrame{
 				button = new JButtonPanel(panel);
 				add(button);
 				updateFrame(bar);
+				try {
+					UIManager.setLookAndFeel(new MetalLookAndFeel());
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 
