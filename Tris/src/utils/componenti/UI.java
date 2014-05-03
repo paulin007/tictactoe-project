@@ -29,8 +29,8 @@ public class UI extends JFrame{
 	private JButtonPanel button = new JButtonPanel(panel);
 	private ProxyDifficoltà proxyDifficoltà;
 	
-	public UI(final ProxyDifficoltà proxyDifficoltà) {
-		this.proxyDifficoltà = proxyDifficoltà;
+	public UI() {
+		
 		final JMenuBar bar = new JMenuBar();
 		JMenu menuPartita = new JMenu("Nuova Partita");
 		JMenu menuOpzioni = new JMenu("Opzioni");

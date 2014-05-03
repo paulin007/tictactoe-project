@@ -16,8 +16,8 @@ import tris.TabellaTris;
 
 public class JButtonPanel extends JPanel{
 
-	private CheckBoxPanel panel;
 	private static final long serialVersionUID = 0;
+	private CheckBoxPanel panel;
 	private ArrayList<JButton> griglia = new ArrayList<>();
 	private Cerchio cerchio = new Cerchio();
 	private Croce croce = new Croce();
@@ -33,21 +33,23 @@ public class JButtonPanel extends JPanel{
 	}
 	// intelligenza artificiale stupida
 	
-	public void ia(int posizione,String scelta){
+	public void ia(String scelta){
 		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàCasuale());
 		int index = proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
-		if(scelta=="Cerchio"){
+		
+		if(scelta=="Cerchio" && griglia.get(index).getIcon()==null){
 			griglia.get(index).setIcon(croce.disegnaCroce());
-			//tabellaTris.getCaselle().get(index).setSimbolo("c");
-		}else{
+			
+		}
+		if(scelta=="Croce" && griglia.get(index).getIcon()==null){
 			griglia.get(proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris)).setIcon(cerchio.disegnaCerchio());
-			//tabellaTris.getCaselle().get(index).setSimbolo("c");
+			
 		}
 	}
 	
 	public void setupInizialeGriglia(){
 		for (int i = 0; i < 9; i++) {
-			final int j = i;
+			
 			final JButton button = new JButton();
 			button.setBackground(Color.WHITE);
 			griglia.add(button);
@@ -62,16 +64,18 @@ public class JButtonPanel extends JPanel{
 		griglia.get(i).addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				Casella casellaSelezionata = tabellaTris.getCaselle().get(j);
-				if(panel.scelta()=="Cerchio"&&casellaSelezionata.isVuota()){
+				if(panel.scelta()=="Cerchio"&&casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
 					griglia.get(j).setIcon(cerchio.disegnaCerchio());
 					casellaSelezionata.setSimbolo("g");
-					ia(j,panel.scelta());
+					
+					ia(panel.scelta());
 				}
-				if(panel.scelta()=="Croce"&&casellaSelezionata.isVuota()){
+				if(panel.scelta()=="Croce"&&casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
 					griglia.get(j).setIcon(croce.disegnaCroce());
 					casellaSelezionata.setSimbolo("g");
-					ia(j,panel.scelta());
+					ia(panel.scelta());
 				}
 			}
 		});
