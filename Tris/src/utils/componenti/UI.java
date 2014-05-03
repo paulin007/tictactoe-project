@@ -1,6 +1,4 @@
 package utils.componenti;
-
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -11,7 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -28,19 +25,19 @@ public class UI extends JFrame{
 
 	private static final int DEFAULT_WIDTH=400;
 	private static final int DEFAULT_HEIGHT=400;
-	
 	private static final long serialVersionUID = 0;
 	private CheckBoxPanel panel = new CheckBoxPanel();
 	private JButtonPanel button = new JButtonPanel(panel);
 	private ProxyDifficoltà proxyDifficoltà;
 	
-	public UI() {
+	public UI(ProxyDifficoltà proxyDifficoltà) {
+		this.proxyDifficoltà = proxyDifficoltà;
 		
 		final JMenuBar bar = new JMenuBar();
 		JMenu menuPartita = new JMenu("Nuova Partita");
 		JMenu menuOpzioni = new JMenu("Opzioni");
 		JMenuItem nuovaPartita = new JMenuItem("Inizia");
-		JMenu menuLivelli = new JMenu("Difficolt�");
+		JMenu menuLivelli = new JMenu("Difficoltà");
 		
 		JMenuItem semplice = new JMenuItem("Semplice");
 		JMenuItem medio = new JMenuItem("Medio");
@@ -72,23 +69,21 @@ public class UI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+					
 				setLayout(new BorderLayout());
 				remove(panel);
 				remove(start);
 				remove(pannelloStatistica);
-				button = new JButtonPanel(panel);
-				add(button);
-				updateFrame(bar);
 				try {
 					UIManager.setLookAndFeel(new MetalLookAndFeel());
 				} catch (UnsupportedLookAndFeelException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+				button = new JButtonPanel(panel);
+				add(button);
+				updateFrame(bar);	
 			}
-
-			
 		});
 		
 		nuovaPartita.addActionListener(new ActionListener() {

@@ -5,12 +5,8 @@ import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.TitledBorder;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class CheckBoxPanel extends JPanel{
 	
@@ -20,12 +16,6 @@ public class CheckBoxPanel extends JPanel{
 	
 	public CheckBoxPanel() {
 		
-		try {
-			UIManager.setLookAndFeel(new NimbusLookAndFeel());
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		TitledBorder border = new TitledBorder("Seleziona la figura desiderata");
 		border.setTitleJustification(TitledBorder.CENTER);
 		setLayout(new GridLayout(2, 1));
