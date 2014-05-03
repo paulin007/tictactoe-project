@@ -4,18 +4,15 @@
  */
 package vincita;
 
-import java.awt.Frame;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import tris.Casella;
 
 public class VerificaVincita {
 	
 	private ArrayList<Integer> giocatore; 
 	private ArrayList<Integer> computer;
-	private ArrayList<Terna> vincitePossibili; // perch� non usare direttamente terneVincite?
+	private ArrayList<Terna> vincitePossibili; // perchè non usare direttamente terneVincite?
 	
 	public VerificaVincita() {
 		TerneVincite terneVincite = new TerneVincite();
@@ -49,32 +46,31 @@ public class VerificaVincita {
 		String vincitore = null;
 		if(haiVinto(giocatore)){
 			vincitore = "Giocatore";
-			JOptionPane.showMessageDialog(null, "Ha vinto "+vincitore);
+			
 			return "Ha vinto "+vincitore;
 			
-		}else if(haiVinto(computer)==true){
+		}
+		if(haiVinto(computer)){
 			
 			vincitore = "Computer";
-			JOptionPane.showMessageDialog(null, "Ha vinto "+vincitore);
+		
 			return "Ha vinto "+vincitore;
 		}
-		else{
+		if(haiVinto(computer)== false && haiVinto(giocatore)==false){
 			
 			vincitore = "Pareggio";
-			JOptionPane.showMessageDialog(null, "Pareggio");
+			
 			return vincitore;
 		}
+		return vincitore;
 	}
 	
 	
-	// cambio in public per verificare che funzioni
-	// corretto il ciclo for x.size --> mosse.size
 	public boolean haiVinto(ArrayList<Integer> mosse){
 		boolean vittoria = false;
 		
 		for (int i = 0; i < vincitePossibili.size(); i++) {
-			// elimino il while, non serve
-//			while(!vittoria){
+
 				int index = 0;
 				
 				for (int j = 0; j < mosse.size(); j++) {
@@ -92,14 +88,14 @@ public class VerificaVincita {
 				
 				if(index==3){
 					vittoria = true;
-					System.out.println(vincitePossibili.get(i));
-					break; // aggiunto break, inutile continuare a ciclare se la condizione di vittoria � raggiunta
+					
+					break; 
 				}	
-//			}
 		}	
 		return vittoria;
 				
 	}
+	
 	public ArrayList<Integer> getGiocatore() {
 		return giocatore;
 	}

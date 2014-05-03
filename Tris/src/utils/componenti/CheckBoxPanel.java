@@ -4,26 +4,37 @@ import java.awt.Checkbox;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.TitledBorder;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 public class CheckBoxPanel extends JPanel{
 	
 	private static final long serialVersionUID = 0;
-	private JLabel label = new JLabel("Seleziona la figura desiderata");
 	private Checkbox checkbox1 = new Checkbox("Cerchio");
 	private Checkbox checkbox2 = new Checkbox("Croce");
 	
 	public CheckBoxPanel() {
 		
-
-		setLayout(new GridLayout(3, 1));
-		
+		try {
+			UIManager.setLookAndFeel(new NimbusLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TitledBorder border = new TitledBorder("Seleziona la figura desiderata");
+		border.setTitleJustification(TitledBorder.CENTER);
+		setLayout(new GridLayout(2, 1));
+		setBorder(border);
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		JPanel panel3 = new JPanel();
 		
-		panel1.add(label);
+		
 		panel2.add(checkbox1);
 		panel3.add(checkbox2);
 		
