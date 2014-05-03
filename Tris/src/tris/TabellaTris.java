@@ -6,7 +6,6 @@
 package tris;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 public class TabellaTris  {
 	
@@ -15,7 +14,7 @@ public class TabellaTris  {
 	private static int nColonne = 3;
 	/**
 	 * Questo metodo permette di creare una tabella per il tris,
-	 * formata da un certro numero di {@link Casella}
+	 * formata da un certo numero di {@link Casella}
 	 */
 	public void creaTabella(){
 		caselle = new ArrayList<>();
