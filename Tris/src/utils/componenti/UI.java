@@ -11,7 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
+import statistiche.InterpreteStatisticheDefault;
 import computerIntelligenza.Difficoltà;
 import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.DifficoltàDifficile;
@@ -49,11 +51,20 @@ public class UI extends JFrame{
 		menuLivelli.add(medio);
 		menuLivelli.add(difficile);
 		menuLivelli.add(casuale);
-		
 		JMenuItem item4 = new JMenuItem("Info");
-		JMenuItem item5 = new JMenuItem("Record");
-		
+		JMenuItem record = new JMenuItem("Record");
+		final PannelloStatistica pannelloStatistica = new PannelloStatistica(new InterpreteStatisticheDefault());
 		final JButton start = new JButton("Start");
+		record.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				add(pannelloStatistica);
+				remove(panel);
+				remove(panel);
+				remove(start);
+				updateFrame(bar);
+			}
+		});
 		start.addActionListener(new ActionListener() {
 			
 			@Override
@@ -61,7 +72,7 @@ public class UI extends JFrame{
 				setLayout(new BorderLayout());
 				remove(panel);
 				remove(start);
-				
+				remove(pannelloStatistica);
 				button = new JButtonPanel(panel);
 				add(button);
 				updateFrame(bar);
@@ -78,6 +89,7 @@ public class UI extends JFrame{
 				remove(panel);
 				remove(start);
 				remove(button);
+				remove(pannelloStatistica);
 				panel = new CheckBoxPanel();
 				add(panel);
 				add(start);
@@ -87,7 +99,7 @@ public class UI extends JFrame{
 		menuPartita.add(nuovaPartita);
 		menuPartita.add(menuLivelli);
 		menuOpzioni.add(item4);
-		menuOpzioni.add(item5);
+		menuOpzioni.add(record);
 		setLayout(new GridLayout(1,1));
 		bar.add(menuPartita);
 		bar.add(menuOpzioni);

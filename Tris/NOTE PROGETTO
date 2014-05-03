@@ -4,3 +4,5 @@
 4) TODO: Implementare un ShowDialog che mostra il risultato della partita, possibilmente usando i componenti Gestore Vincita
 5) TODO: Testare le classi GestoreVincite e VisualizzatoreRisultato
 6) Implementate le strutture per la creazione delle statistiche. Sono funzionante e testate.
+7) Entro oggi pomeriggio, volevo fare un po' di refactoring, perchè il codice della parte grafica è un po' complesso al primo 
+colpo
