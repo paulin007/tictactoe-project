@@ -96,7 +96,7 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 			}
 		});
 		
-		setLayout(new GridLayout(3,1));
+//		setLayout(new GridLayout(3,1));
 		return this;
 	}
 }

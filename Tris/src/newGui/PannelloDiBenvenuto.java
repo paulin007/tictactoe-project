@@ -1,18 +1,12 @@
 package newGui;
 
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 public class PannelloDiBenvenuto extends JPanel implements PannelloTris {
-	
-	private String percorsoImmagine = "./src/tris.gif";
 
 	@Override
 	public JPanel creaPannello() {

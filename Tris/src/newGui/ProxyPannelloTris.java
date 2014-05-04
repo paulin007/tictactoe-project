@@ -4,6 +4,8 @@
  */
 package newGui;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 
 public class ProxyPannelloTris extends JPanel implements PannelloTris {
@@ -28,6 +30,7 @@ public class ProxyPannelloTris extends JPanel implements PannelloTris {
 	 */
 	public void update() {
 		removeAll();
+		setLayout(new BorderLayout());
 		add(pannelloTris.creaPannello());
 		updateUI();
 	}
