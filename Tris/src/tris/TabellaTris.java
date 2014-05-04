@@ -35,6 +35,4 @@ public class TabellaTris  {
 	public void setCaselle(ArrayList<Casella> caselle) {
 		this.caselle = caselle;
 	}
-	
-	
 }

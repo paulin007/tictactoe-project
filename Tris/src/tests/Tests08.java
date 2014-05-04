@@ -16,5 +16,4 @@ public class Tests08 {
 			System.out.println(tabellaTris.getCaselle().get(i));
 		}
 	}
-
 }

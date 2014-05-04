@@ -7,6 +7,7 @@ package newGui;
 import javax.swing.JFrame;
 
 import statistiche.InterpreteStatisticheDefault;
+
 import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.ProxyDifficoltà;
 
@@ -14,7 +15,7 @@ public class MainTris {
 	public static void main(String[] args) {
 		InterpreteStatisticheDefault interpreteStatistiche = new InterpreteStatisticheDefault();
 		ProxyPannelloTris pannelloTris = new ProxyPannelloTris();
-		pannelloTris.setPannelloTris(new PannelloStatistica(interpreteStatistiche));
+		pannelloTris.setPannelloTris(new PannelloDiBenvenuto());
 		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàCasuale());
 		MenuTris menuTris = new MenuTris(pannelloTris, proxyDifficoltà);
 		JFrame frame = new JFrame("Tic Tac Toe");

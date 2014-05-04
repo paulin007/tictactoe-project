@@ -4,7 +4,6 @@
  */
 package newGui;
 
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import statistiche.InterpreteStatisticheDefault;
-import utils.componenti.CheckBoxPanel;
+
 import computerIntelligenza.Difficoltà;
 import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.DifficoltàDifficile;

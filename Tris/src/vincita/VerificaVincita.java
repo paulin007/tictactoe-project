@@ -1,11 +1,11 @@
 /**
- * Questa classe ha resposanbilità di stabilire se il giocatore ha vinto
+ * Questa classe ha resposanbilità di stabilire chi è il vincitore
  * @author Giacomo
  */
 package vincita;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+
 import tris.Casella;
 
 public class VerificaVincita {
@@ -13,6 +13,7 @@ public class VerificaVincita {
 	private ArrayList<Integer> giocatore; 
 	private ArrayList<Integer> computer;
 	private ArrayList<Terna> vincitePossibili; // perchè non usare direttamente terneVincite?
+	private String vincitore = null;
 	
 	public VerificaVincita() {
 		TerneVincite terneVincite = new TerneVincite();
@@ -43,7 +44,6 @@ public class VerificaVincita {
 	 */
 	public String stabilisciVincitore(ArrayList<Casella> caselle){
 		separaMosse(caselle);
-		String vincitore = null;
 		if(haiVinto(giocatore)){
 			vincitore = "Giocatore";
 			
@@ -107,5 +107,38 @@ public class VerificaVincita {
 	}
 	public void setComputer(ArrayList<Integer> computer) {
 		this.computer = computer;
+	}
+	/**
+	 * Questo metodo stabilisce se ha vinto il giocatore
+	 * @return
+	 */
+	public boolean haVintoGiocatore(){
+		if(vincitore.equalsIgnoreCase("Giocatore")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * Questo metodo stabilisce se ha vinto il computer
+	 * @return
+	 */
+	public boolean haVintoComputer(){
+		if(vincitore.equalsIgnoreCase("Computer")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * Questo metodo stabilisce se la partita è finita in pareggio
+	 * @return
+	 */
+	public boolean nessunoHaVinto(){
+		if(vincitore.equalsIgnoreCase("Pareggio")){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

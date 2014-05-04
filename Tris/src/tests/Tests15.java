@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 
-import tris.TabellaTris;
 import utils.componenti.CheckBoxPanel;
 import utils.componenti.JButtonPanel;
 import vincita.GestoreVincite;
@@ -22,7 +21,7 @@ public class Tests15 {
 		JButtonPanel panel = new JButtonPanel(boxPanel);
 		
 		VerificaVincita vincita = new VerificaVincita();
-		GestoreVincite gestoreVincite = new GestoreVincite(vincita, panel.getTabellaTris().getCaselle());
+		GestoreVincite gestoreVincite = new GestoreVincite(panel.getTabellaTris().getCaselle());
 		
 		
 		

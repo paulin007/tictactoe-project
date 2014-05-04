@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 import tris.Casella;
 import tris.TabellaTris;
 import utils.componenti.Cerchio;
-import utils.componenti.CheckBoxPanel;
 import utils.componenti.Croce;
+
 import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.ProxyDifficoltà;
 

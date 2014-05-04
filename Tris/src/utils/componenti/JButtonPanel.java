@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import computerIntelligenza.DifficoltàCasuale;
-import computerIntelligenza.ProxyDifficoltà;
 import tris.Casella;
 import tris.TabellaTris;
+import vincita.GestoreVincite;
+
+import computerIntelligenza.DifficoltàCasuale;
+import computerIntelligenza.ProxyDifficoltà;
 
 public class JButtonPanel extends JPanel{
 
@@ -22,6 +24,7 @@ public class JButtonPanel extends JPanel{
 	private Cerchio cerchio = new Cerchio();
 	private Croce croce = new Croce();
 	private TabellaTris tabellaTris = new TabellaTris();
+	private GestoreVincite gestoreVincite;
 
 	public JButtonPanel(CheckBoxPanel panel) {
 		tabellaTris.creaTabella();
@@ -30,6 +33,7 @@ public class JButtonPanel extends JPanel{
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
 		setupPanel();
+		gestoreVincite = new GestoreVincite(tabellaTris.getCaselle());
 	}
 	// intelligenza artificiale stupida
 	
