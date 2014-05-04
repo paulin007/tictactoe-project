@@ -8,4 +8,4 @@ PannelloStatistica Migliorare un po' la grafica TODO
 NEW BUG DA SISTEMA
 Non vengono aggiornate le stastiche, c'è un problema con i metodi che ritornano il risultato di Verifica Vincita
 
-BUG OSCENO!!  il gioco impazzisce letteralmente se viene selezionata croce, e non il cerchio O.o
+BUG OSCENO!!  se inizialmente viene selezionata la croce, le mosse del giocatore vengono contate come se fatte dal computer!!
