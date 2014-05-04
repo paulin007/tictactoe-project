@@ -1,11 +1,15 @@
 1) TODO: Implementare il cambio di difficoltà per il metodo ui nella classe JButtonPanel
 2) TODO: fare in modo che non si possano più effettuare mosse quando vince qualcuno (il problema non si presenta se le caselle sono tutte piene)>>>>>>> .r22
-
-
-PannelloStatistica Migliorare un po' la grafica TODO
-
+3) TODO: Migliorare un po' la grafica di PannelloStatistica 
+4) BUG: se usando il livello semplice occupo una casella che dovrebbe poi occupare il computer, 
+	il computer non cerca un'altra casella libera: 
+	per esempio: 
+	a)clicco sulla casella con id=0
+	b)clicco sulla casella con id=3
+	c)clicco sulla casella con id=2 --> il computer trova la casella con id 3 già occupata e non fa nulla
+5) BUG: il livello medio spesso lancia delle eccezioni
+6) BUG: il livello difficile non funziona, lancia SEMPRE eccezioni
 
 NEW BUG DA SISTEMA
 Non vengono aggiornate le stastiche, c'è un problema con i metodi che ritornano il risultato di Verifica Vincita
 
-BUG OSCENO!!  se inizialmente viene selezionata la croce, il computer fa 2 mosse! RISOLTO
