@@ -1,11 +1,9 @@
 package tests;
 
 import java.awt.GridLayout;
-
 import javax.swing.JFrame;
-
-import utils.componenti.CheckBoxPanel;
-import utils.componenti.JButtonPanel;
+import newGui.PannelloGioco;
+import tris.TabellaTris;
 import vincita.GestoreVincite;
 import vincita.VerificaVincita;
 /**
@@ -17,23 +15,25 @@ public class Tests15 {
 
 	public static void main(String[] args) {
 		
-		CheckBoxPanel boxPanel = new CheckBoxPanel();
-		JButtonPanel panel = new JButtonPanel(boxPanel);
+		TabellaTris tabellaTris = new TabellaTris();
+		tabellaTris.creaTabella();
+		PannelloGioco pannelloGioco = new PannelloGioco(tabellaTris, "Cerchio");
+		
 		
 		VerificaVincita vincita = new VerificaVincita();
-		GestoreVincite gestoreVincite = new GestoreVincite(panel.getTabellaTris().getCaselle());
+		GestoreVincite gestoreVincite = new GestoreVincite(pannelloGioco.getTabellaTris().getCaselle());
 		
 		
 		
 		JFrame frame = new JFrame("Test gestore vincite");
 		frame.setVisible(true);
 		frame.setLocation(300,300);
-		frame.setSize(800, 400);
+		frame.setSize(400, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.setLayout(new GridLayout(1, 2));
-		frame.getContentPane().add(panel);
-		frame.getContentPane().add(boxPanel);
+		frame.getContentPane().add(pannelloGioco.creaPannello());
+		
 		
 		
 	}
