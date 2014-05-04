@@ -55,16 +55,18 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 		public void ia(String scelta){
 			ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàCasuale());
 			int index = proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
+			if(!partitaFinita){
+				if(scelta=="Cerchio" && griglia.get(index).getIcon()==null){
+					griglia.get(index).setIcon(croce.disegnaCroce());
+					
+				}
+				if(scelta=="Croce" && griglia.get(index).getIcon()==null){
+					griglia.get(proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris)).setIcon(cerchio.disegnaCerchio());
+					
+					
+				}
+			}
 			
-			if(scelta=="Cerchio" && griglia.get(index).getIcon()==null){
-				griglia.get(index).setIcon(croce.disegnaCroce());
-				
-			}
-			if(scelta=="Croce" && griglia.get(index).getIcon()==null){
-				griglia.get(proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris)).setIcon(cerchio.disegnaCerchio());
-				
-				
-			}
 		}
 		
 		public void setupInizialeGriglia(){
@@ -106,7 +108,12 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 			});
 			}
 		}
-		
+		public TabellaTris getTabellaTris() {
+			return tabellaTris;
+		}
+		public void setTabellaTris(TabellaTris tabellaTris) {
+			this.tabellaTris = tabellaTris;
+		}
 		
 		public void setupPanel(){
 			
