@@ -58,12 +58,12 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 			if(!partitaFinita){
 				if(scelta=="Cerchio" && griglia.get(index).getIcon()==null){
 					griglia.get(index).setIcon(croce.disegnaCroce());
+					info();
 					
 				}
 				if(scelta=="Croce" && griglia.get(index).getIcon()==null){
-					griglia.get(proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris)).setIcon(cerchio.disegnaCerchio());
-					
-					
+					griglia.get(index).setIcon(cerchio.disegnaCerchio());
+					info();
 				}
 			}
 			
@@ -119,6 +119,11 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 			
 			for (int i = 0; i < griglia.size(); i++) {
 					add(griglia.get(i));
+			}
+		}
+		public void info(){
+			for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
+				System.out.println(tabellaTris.getCaselle().get(i));
 			}
 		}
 			

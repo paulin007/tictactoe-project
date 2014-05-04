@@ -11,7 +11,7 @@ import java.util.Observable;
 public class Casella extends Observable{
 	
 	private String simbolo;
-	Posizione posizione;
+	private Posizione posizione;
 	private int IDcasella;
 	
 	public Casella(Posizione posizione, int numero) {
@@ -49,7 +49,10 @@ public class Casella extends Observable{
 	}
 	
 	public boolean isVuota(){
-		boolean vuota = getSimbolo()==null;
+		boolean vuota=false;
+		
+		if(simbolo==null) vuota=true;
+		
 		return vuota;
 	}
 	/**
