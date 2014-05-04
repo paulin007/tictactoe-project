@@ -28,6 +28,7 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 	private JLabel label = new JLabel("Seleziona la figura desiderata");
 	private Checkbox checkbox1 = new Checkbox("Cerchio");
 	private Checkbox checkbox2 = new Checkbox("Croce");
+	private final JButton start = new JButton("Start");
 	private ProxyPannelloTris pannelloTris;
 	
 	
@@ -57,7 +58,7 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 		JPanel panel2 = new JPanel();
 		JPanel panel3 = new JPanel();
 		JPanel panel4 = new JPanel();
-		final JButton start = new JButton("Start");
+		
 		panel1.add(label);
 		panel2.add(checkbox1);
 		panel3.add(checkbox2);
@@ -74,7 +75,6 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 			public void itemStateChanged(ItemEvent arg0) {
 				
 				checkbox2.setState(false);
-//				checkbox2.setEnabled(false);
 			}
 		});
 		
@@ -82,9 +82,7 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 			
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
-				checkbox1.setState(false);
-//				checkbox1.setEnabled(false);
-				
+				checkbox1.setState(false);	
 			}
 		});
 	
@@ -96,8 +94,6 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 				pannelloTris.setPannelloTris(new PannelloGioco(new TabellaTris(),scelta()));
 				
 			}
-
-			
 		});
 		
 		setLayout(new GridLayout(3,1));

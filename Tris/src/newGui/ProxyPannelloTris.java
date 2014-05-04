@@ -21,14 +21,14 @@ public class ProxyPannelloTris extends JPanel implements PannelloTris {
 	
 	@Override
 	public JPanel creaPannello() {
-		return getPannelloTris().creaPannello();
+		return pannelloTris.creaPannello();
 	}
 	/**
 	 * Questo metodo permette di aggiornare il pannello, ogni qualvolta cambia il pannello richiesto
 	 */
 	public void update() {
 		removeAll();
-		add(getPannelloTris().creaPannello());
+		add(pannelloTris.creaPannello());
 		updateUI();
 	}
 }

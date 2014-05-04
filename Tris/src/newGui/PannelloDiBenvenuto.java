@@ -1,8 +1,12 @@
 package newGui;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -12,16 +16,25 @@ public class PannelloDiBenvenuto extends JPanel implements PannelloTris {
 
 	@Override
 	public JPanel creaPannello() {
-		JPanel scritta = new JPanel();
-		JPanel immagine = new JPanel();
-		setLayout(new GridLayout(2, 1));
-		JTextArea area = new JTextArea();
-		area.setText("Benvenuto nel gioco di Tris ! ");
-		area.setEditable(false);
-		scritta.add(area);
-		ImageIcon icon = new ImageIcon(percorsoImmagine);
-		add(scritta);
-		add(immagine);
+		
+	
+		java.net.URL imgUrl = getClass().getResource("tris.gif");
+		ImageIcon image = new ImageIcon(imgUrl);
+		
+		JLabel label = new JLabel(image);
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new FlowLayout());
+		panel1.add(new JLabel("Benvenuto nel gioco di Tris ! "));
+		
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new FlowLayout());
+		panel2.add(label);
+		
+		JPanel contenitore = new JPanel();
+		contenitore.setLayout(new BoxLayout(contenitore, BoxLayout.Y_AXIS));
+		contenitore.add(panel1);
+		contenitore.add(panel2);
+		add(contenitore);
 		return this;
 	}
 }
