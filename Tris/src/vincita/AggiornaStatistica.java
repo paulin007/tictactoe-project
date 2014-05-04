@@ -19,7 +19,8 @@ public class AggiornaStatistica implements Observer {
 	private Statistica statistica;
 	private GestoreVincite gestoreVincite;
 	
-	public AggiornaStatistica() {
+	public AggiornaStatistica(GestoreVincite gestoreVincite) {
+		this.gestoreVincite = gestoreVincite;
 		gestoreVincite.addObserver(this);
 	}
 	
@@ -61,6 +62,6 @@ public class AggiornaStatistica implements Observer {
 	 * Questo metodo aggiorna il file delle statistiche
 	 */
 	private void aggiornaFile(){
-		FileOutput.creaFile(statistica.toString(), percorsoFile);
+		FileOutput.creaFile(statistica.sintetico(), percorsoFile);
 	}
 }

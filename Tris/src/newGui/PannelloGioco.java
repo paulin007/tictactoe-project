@@ -15,9 +15,7 @@ import javax.swing.JPanel;
 
 import tris.Casella;
 import tris.TabellaTris;
-import utils.componenti.Cerchio;
-import utils.componenti.Croce;
-
+import vincita.GestoreVincite;
 import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.ProxyDifficoltà;
 
@@ -29,14 +27,15 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 	private Cerchio cerchio = new Cerchio();
 	private Croce croce = new Croce();
 	private String scelta;
-	
-
+	private GestoreVincite gestoreVincite;
+	private boolean partitaFinita;
 	
 	
 	public PannelloGioco(TabellaTris tabellaTris,String scelta) {
 		super();
 		this.tabellaTris = tabellaTris;
 		this.scelta = scelta;
+		
 	}
 
 	@Override
@@ -44,6 +43,7 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 		tabellaTris = new TabellaTris();
 		tabellaTris.creaTabella();
 		setLayout(new GridLayout(3, 3));
+		gestoreVincite = new GestoreVincite(tabellaTris.getCaselle());
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
 		setupPanel();
@@ -63,6 +63,7 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 			if(scelta=="Croce" && griglia.get(index).getIcon()==null){
 				griglia.get(proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris)).setIcon(cerchio.disegnaCerchio());
 				
+				
 			}
 		}
 		
@@ -76,25 +77,30 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 		}
 		public void setupActionListenerGriglia(){
 			
-			
 			for (int i = 0; i < griglia.size(); i++) {
 			
 			final int j = i;
 			griglia.get(i).addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
 					Casella casellaSelezionata = tabellaTris.getCaselle().get(j);
 					if(scelta=="Cerchio"&&casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
+						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
+						if(!partitaFinita){
 						griglia.get(j).setIcon(cerchio.disegnaCerchio());
 						casellaSelezionata.setSimbolo("g");
-						
+						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
 						ia(scelta);
+						}
 					}
 					if(scelta=="Croce"&&casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
+						if(!partitaFinita){
 						griglia.get(j).setIcon(croce.disegnaCroce());
+						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
 						casellaSelezionata.setSimbolo("g");
+						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
 						ia(scelta);
+						}
 					}
 				}
 			});

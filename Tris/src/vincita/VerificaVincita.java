@@ -46,22 +46,18 @@ public class VerificaVincita {
 		separaMosse(caselle);
 		if(haiVinto(giocatore)){
 			vincitore = "Giocatore";
-			
 			return "Ha vinto "+vincitore;
 			
 		}
 		if(haiVinto(computer)){
-			
 			vincitore = "Computer";
-		
 			return "Ha vinto "+vincitore;
 		}
 		if(haiVinto(computer)== false && haiVinto(giocatore)==false){
-			
 			vincitore = "Pareggio";
-			
 			return vincitore;
 		}
+		System.out.println(vincitore);
 		return vincitore;
 	}
 	
@@ -136,6 +132,17 @@ public class VerificaVincita {
 	 */
 	public boolean nessunoHaVinto(){
 		if(vincitore.equalsIgnoreCase("Pareggio")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * Questo metodo permette di stabilire se la partita è finita;
+	 * @return
+	 */
+	public boolean partitaFinita(){
+		if(vincitore!=null && !nessunoHaVinto()){
 			return true;
 		}else{
 			return false;

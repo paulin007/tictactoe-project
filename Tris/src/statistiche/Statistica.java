@@ -53,7 +53,7 @@ public class Statistica {
 	 * Questo metodo permette di aggionrare il numero di sconfitte facilmente
 	 */
 	public void aggiornaSconfitte(){
-		setPareggi(getPareggi()+1);
+		setSconfitte(getSconfitte()+1);
 	}
 	/**
 	 * Questo meto permette di calcolare il numero totale di partite che sono state fatte dal giocatore

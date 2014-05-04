@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import newGui.Cerchio;
+import newGui.Croce;
 import tris.Casella;
 import tris.TabellaTris;
 import vincita.GestoreVincite;
-
 import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.ProxyDifficoltà;
 

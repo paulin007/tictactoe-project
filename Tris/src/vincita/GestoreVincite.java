@@ -12,12 +12,14 @@ public class GestoreVincite extends Observable  implements Observer {
 	
 	private VerificaVincita verificaVincita = new VerificaVincita();
 	private ArrayList<Casella> caselle;
+	private AggiornaStatistica aggiornaStatistica;
 	boolean mostratoRisultato = false;
 	
 	
  	public GestoreVincite(ArrayList<Casella> caselle) {
 		super();
 		this.caselle=caselle;
+		aggiornaStatistica = new AggiornaStatistica(this);
 		impostaObserver(caselle);
 	}
 	
@@ -36,6 +38,7 @@ public class GestoreVincite extends Observable  implements Observer {
 			if((verificaVincita.haiVinto(verificaVincita.getComputer())== true || verificaVincita.haiVinto(verificaVincita.getGiocatore())== true) && !mostratoRisultato){
 				JOptionPane.showMessageDialog(null, verificaVincita.stabilisciVincitore(caselle));
 				mostratoRisultato = true;
+				update();
 			}
 		}
 	}
@@ -56,6 +59,4 @@ public class GestoreVincite extends Observable  implements Observer {
 	public void setVerificaVincita(VerificaVincita verificaVincita) {
 		this.verificaVincita = verificaVincita;
 	}
-	
-	
 }

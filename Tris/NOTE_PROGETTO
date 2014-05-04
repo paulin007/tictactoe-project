@@ -18,10 +18,13 @@ Vengono aggiornate le statistiche
 
 COSE DA FARE
 DEBUG
-Sistemare il fatto che viene mostrato il risultato e poi il computer fa la mossa
-Impedire la possibilità di far fare all'utente una mossa
+Sistemare il fatto che viene mostrato il risultato e poi il computer fa la mossa FATTO
+Impedire la possibilità di far fare all'utente una mossa FATTO
 MIGLIORIE
-PannelloDiBenvenuto Inserire immagine
-PannelloStatistica Migliorare un po' la grafica
-Implementare la stessa struttura del pacchetto utils.componenti in newGui
+PannelloDiBenvenuto Inserire immagine FATTO
+PannelloStatistica Migliorare un po' la grafica TODO
+Implementare la stessa struttura del pacchetto utils.componenti in newGui FATTO
+
+NEW BUG DA SISTEMA
+Non vengono aggiornate le stastiche, c'è un problema con i metodi che ritornano il risultato di Verifica Vincita
 

@@ -1,5 +1,7 @@
 package computerIntelligenza;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import tris.Casella;
@@ -7,6 +9,7 @@ import tris.TabellaTris;
 
 public class DifficoltàDifficile implements Difficoltà {
 	private static String simboloPC = "c";
+	HashMap<ArrayList<Casella>, Integer> schema = new HashMap<>();
 	@Override
 	public int generaMossa(TabellaTris tabellaTris) {
 		int mossa = -1;
@@ -30,5 +33,8 @@ public class DifficoltàDifficile implements Difficoltà {
 		}
 		tabellaTris.getCaselle().get(mossa).setSimbolo(simboloPC);
 		return mossa;
+	}
+	private void creaSchema(){
+		
 	}
 }
