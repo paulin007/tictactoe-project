@@ -60,6 +60,26 @@ public class Casella extends Observable{
 		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase("g");
 		return occupata;
 	}
+	/**
+	 * Questo metodo permette di stabilire se la casella è occupata dal computer
+	 * @return
+	 */
+	public boolean occupataDaComputer(){
+		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase("c");
+		return occupata;
+	}
+	/**
+	 * Questo metodo permette di stabilire se due caselle sono consecutive
+	 * @param casella2
+	 * @return
+	 */
+	public boolean casellaConsecutiva(Casella casella2){
+		if(getIDcasella()==casella2.getIDcasella()+1){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	@Override
 	public String toString(){
