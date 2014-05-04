@@ -39,7 +39,16 @@ public class GestoreVincite extends Observable  implements Observer {
 				JOptionPane.showMessageDialog(null, verificaVincita.stabilisciVincitore(caselle));
 				mostratoRisultato = true;
 				update();
+				System.out.println(verificaVincita.getComputer().size()+" "+verificaVincita.getComputer().size());
 			}
+			if((verificaVincita.getComputer().size()==4) && (verificaVincita.getGiocatore().size()==5) && (verificaVincita.haiVinto(verificaVincita.getComputer())== false && verificaVincita.haiVinto(verificaVincita.getGiocatore())== false)){
+				JOptionPane.showMessageDialog(null, verificaVincita.stabilisciVincitore(caselle));
+				mostratoRisultato = true;
+				update();
+			}
+			
+			
+			
 		}
 	}
 	@Override
