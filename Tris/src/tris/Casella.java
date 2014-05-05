@@ -72,12 +72,12 @@ public class Casella extends Observable{
 		return occupata;
 	}
 	/**
-	 * Questo metodo permette di stabilire se due caselle sono consecutive
+	 * Questo metodo permette di stabilire se due caselle sono consecutive e occupate dal Giocatore
 	 * @param casella2
 	 * @return
 	 */
-	public boolean casellaConsecutiva(Casella casella2){
-		if(getIDcasella()==casella2.getIDcasella()+1){
+	public boolean casellaConsecutivaG(Casella casella2){
+		if(getIDcasella()==casella2.getIDcasella()+1&&(occupataDaComputer()&&casella2.occupataDaComputer())){
 			return true;
 		}else{
 			return false;
@@ -92,5 +92,12 @@ public class Casella extends Observable{
 	public void update(){
 		setChanged();
 		notifyObservers();
+	}
+	public boolean possibileMossa(Casella casella2,Casella casellaSuccessiva){
+		if(occupataDaComputer()&&casella2.occupataDaComputer()&&casellaSuccessiva.isVuota()){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
