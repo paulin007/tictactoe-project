@@ -1,9 +1,10 @@
+package tris;
 /**
  * Questa classe astrae sul concetto di casella, che rappresenta il luogo che 
  * contiene un simbolo x oppure o
  * @author Giacomo
  */
-package tris;
+
 
 import java.util.Observable;
 
@@ -77,8 +78,12 @@ public class Casella extends Observable{
 	 * @return
 	 */
 	public boolean casellaConsecutivaG(Casella casella2){
-		boolean casellaConsecutivaOccupata = getIDcasella()==casella2.getIDcasella()+1&&(occupataDaComputer()&&casella2.occupataDaComputer());
-		return casellaConsecutivaOccupata;
+		
+		if(occupataDaGiocatore() &&casella2.occupataDaGiocatore()){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
@@ -91,7 +96,10 @@ public class Casella extends Observable{
 		notifyObservers();
 	}
 	public boolean possibileMossa(Casella casella2,Casella casellaSuccessiva){
-		boolean possibileMossa = occupataDaComputer()&&casella2.occupataDaComputer()&&casellaSuccessiva.isVuota();
-		return possibileMossa;
+		if(occupataDaComputer()&&casella2.occupataDaComputer()&&casellaSuccessiva.isVuota()){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
