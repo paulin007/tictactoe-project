@@ -1,11 +1,13 @@
 package newGui;
 
 import java.awt.FlowLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class PannelloDiBenvenuto extends JPanel implements PannelloTris {
 
 	@Override

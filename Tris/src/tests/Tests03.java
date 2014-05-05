@@ -3,14 +3,15 @@
  * {@link ProxyDifficoltà} e {@link DifficoltàCasuale}, per verificare il corretto
  * inserimento dei simboli all'interno dellla {@link TabellaTris}
  * @author Giacomo
+ * 
+ * UPDATE = Il test viene rimosso in quanto rimosse le classi su cui lavorava.
  */
 package tests;
 
+/*
 import tris.TabellaTris;
 import vincita.VerificaVincita;
-import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.ProxyDifficoltà;
-
 public class Tests03 {
 	public static void main(String[] args) {
 		TabellaTris tabellaTris = new TabellaTris();
@@ -29,3 +30,4 @@ public class Tests03 {
 		System.out.println(verificaVincita.stabilisciVincitore(tabellaTris.getCaselle()));
 	}
 }
+*/

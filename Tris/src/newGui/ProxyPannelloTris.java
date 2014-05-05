@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class ProxyPannelloTris extends JPanel implements PannelloTris {
 	
 	private PannelloTris pannelloTris;

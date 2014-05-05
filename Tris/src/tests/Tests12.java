@@ -1,5 +1,9 @@
-package tests;
+/**
+ * UPDATE: Il test viene rimosso perché lavora su classi non più esistenti.
+ */
 
+package tests;
+/*
 import tris.TabellaTris;
 
 import computerIntelligenza.DifficoltàCasuale;
@@ -26,3 +30,4 @@ public class Tests12 {
 		}
 	}
 }
+*/

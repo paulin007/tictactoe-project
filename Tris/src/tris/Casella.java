@@ -77,11 +77,8 @@ public class Casella extends Observable{
 	 * @return
 	 */
 	public boolean casellaConsecutivaG(Casella casella2){
-		if(getIDcasella()==casella2.getIDcasella()+1&&(occupataDaComputer()&&casella2.occupataDaComputer())){
-			return true;
-		}else{
-			return false;
-		}
+		boolean casellaConsecutivaOccupata = getIDcasella()==casella2.getIDcasella()+1&&(occupataDaComputer()&&casella2.occupataDaComputer());
+		return casellaConsecutivaOccupata;
 	}
 
 	@Override
@@ -94,10 +91,7 @@ public class Casella extends Observable{
 		notifyObservers();
 	}
 	public boolean possibileMossa(Casella casella2,Casella casellaSuccessiva){
-		if(occupataDaComputer()&&casella2.occupataDaComputer()&&casellaSuccessiva.isVuota()){
-			return true;
-		}else{
-			return false;
-		}
+		boolean possibileMossa = occupataDaComputer()&&casella2.occupataDaComputer()&&casellaSuccessiva.isVuota();
+		return possibileMossa;
 	}
 }

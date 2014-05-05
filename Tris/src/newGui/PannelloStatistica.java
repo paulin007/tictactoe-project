@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import statistiche.CaricamentoFile;
 import statistiche.InterpreteStatistiche;
 
+@SuppressWarnings("serial")
 public class PannelloStatistica extends JPanel implements PannelloTris {
 	
 	private JTextArea area = new JTextArea();

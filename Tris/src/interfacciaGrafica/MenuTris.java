@@ -12,12 +12,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import statistiche.InterpreteStatisticheDefault;
-
 import computerIntelligenza.Difficoltà;
 import computerIntelligenza.DifficoltàDifficile;
 import computerIntelligenza.DifficoltàNonImplementata;
 import computerIntelligenza.ProxyDifficoltà;
 
+@SuppressWarnings("serial")
 public class MenuTris extends JMenuBar {
 	
 	
