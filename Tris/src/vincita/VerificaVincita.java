@@ -64,32 +64,25 @@ public class VerificaVincita {
 	
 	public boolean haiVinto(ArrayList<Integer> mosse){
 		boolean vittoria = false;
-		
 		for (int i = 0; i < vincitePossibili.size(); i++) {
-
-				int index = 0;
-				
-				for (int j = 0; j < mosse.size(); j++) {
-					if(vincitePossibili.get(i).getX()==mosse.get(j)){
-						
-						index++;
-					}
-					if(vincitePossibili.get(i).getY()==mosse.get(j)){
-						index++;
-					}
-					if(vincitePossibili.get(i).getZ()==mosse.get(j)){
-						index++;
-					}
+			int index = 0;
+			for (int j = 0; j < mosse.size(); j++) {
+				if(vincitePossibili.get(i).getX()==mosse.get(j)){
+					index++;
 				}
-				
-				if(index==3){
-					vittoria = true;
-					
-					break; 
-				}	
+				if(vincitePossibili.get(i).getY()==mosse.get(j)){
+					index++;
+				}
+				if(vincitePossibili.get(i).getZ()==mosse.get(j)){
+					index++;
+				}
+			}
+			if(index==3){
+				vittoria = true;
+				break; 
+			}	
 		}	
 		return vittoria;
-				
 	}
 	
 	public ArrayList<Integer> getGiocatore() {

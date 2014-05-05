@@ -1,8 +1,11 @@
 package tests;
 
+import interfacciaGrafica.PannelloGioco;
+
 import java.awt.GridLayout;
+
 import javax.swing.JFrame;
-import newGui.PannelloGioco;
+
 import tris.TabellaTris;
 import vincita.GestoreVincite;
 import vincita.VerificaVincita;

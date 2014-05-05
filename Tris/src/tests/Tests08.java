@@ -1,6 +1,6 @@
 package tests;
 
-import computerIntelligenza.DifficoltàSemplice;
+import computerIntelligenza.DifficoltàNonImplementata;
 import computerIntelligenza.ProxyDifficoltà;
 import tris.TabellaTris;
 
@@ -9,7 +9,7 @@ public class Tests08 {
 		TabellaTris tabellaTris = new TabellaTris();
 		tabellaTris.creaTabella();
 		tabellaTris.getCaselle().get(8).setSimbolo("g");
-		ProxyDifficoltà difficoltà = new ProxyDifficoltà(new DifficoltàSemplice());
+		ProxyDifficoltà difficoltà = new ProxyDifficoltà(new DifficoltàNonImplementata());
 		
 		System.out.println(difficoltà.getDifficoltà().generaMossa(tabellaTris));
 		for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {

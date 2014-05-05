@@ -1,15 +1,25 @@
-1) TODO: Implementare il cambio di difficoltà per il metodo ui nella classe JButtonPanel
-2) TODO: fare in modo che non si possano più effettuare mosse quando vince qualcuno (il problema non si presenta se le caselle sono tutte piene)>>>>>>> .r22
-3) TODO: Migliorare un po' la grafica di PannelloStatistica 
-4) BUG: se usando il livello semplice occupo una casella che dovrebbe poi occupare il computer, 
-	il computer non cerca un'altra casella libera: 
-	per esempio: 
-	a)clicco sulla casella con id=0
-	b)clicco sulla casella con id=3
-	c)clicco sulla casella con id=2 --> il computer trova la casella con id 3 già occupata e non fa nulla
-5) BUG: il livello medio spesso lancia delle eccezioni
-6) BUG: il livello difficile non funziona, lancia SEMPRE eccezioni
+I livelli implementati sono:
 
-NEW BUG DA SISTEMA
-Non vengono aggiornate le stastiche, c'è un problema con i metodi che ritornano il risultato di Verifica Vincita
+Semplice: imposta una casella random, purchè sia vuota
+Medio: Cerca di difendersi e mette una casella random
+Difficile: Cerca di difendersi e cerca di piazzare una buona mossa
+
+ULTIME COSE DA FARE
+
+TODO: Migliorare un po' la grafica di PannelloStatistica 
+BUG: il livello medio spesso lancia delle eccezioni (occorre integrare qualche metodi di DifficoltàDifficile
+in quello medio
+TODO: Verificare il corretto funzionamento dell'aggiornamento delle statistiche
+
+TODO REFACTORING GENERALE
+
+TODO DESIGN PATTERN
+Secondo me si possono inserire qualche Mediator, sopratutto per quanto riguarda la parte grafica, in modo
+da poter correttamente cambiare il livello di difficoltà
+Ci potrebbe essere anche un AbstractFactory nella gestione del Menu, per tutti gli oggetti che vengono creati
+
+
+
+
+
 

@@ -6,14 +6,14 @@ package tests;
 /*
 import tris.TabellaTris;
 
-import computerIntelligenza.DifficoltàCasuale;
+import computerIntelligenza.DifficoltàSemplice;
 
 public class Tests12 {
 
 	public static void main(String[] args) {
 		TabellaTris tabellaTris = new TabellaTris();
 
-		DifficoltàCasuale casuale = new DifficoltàCasuale();
+		DifficoltàSemplice casuale = new DifficoltàSemplice();
 		tabellaTris.creaTabella();
 		tabellaTris.getCaselle().get(0).setSimbolo("g");
 		tabellaTris.getCaselle().get(2).setSimbolo("g");

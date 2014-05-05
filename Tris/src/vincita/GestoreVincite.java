@@ -45,10 +45,8 @@ public class GestoreVincite extends Observable  implements Observer {
 				JOptionPane.showMessageDialog(null, verificaVincita.stabilisciVincitore(caselle));
 				mostratoRisultato = true;
 				update();
+				
 			}
-			
-			
-			
 		}
 	}
 	@Override
