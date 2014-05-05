@@ -16,7 +16,8 @@ import javax.swing.JPanel;
 import tris.Casella;
 import tris.TabellaTris;
 import vincita.GestoreVincite;
-import computerIntelligenza.DifficoltàCasuale;
+
+import computerIntelligenza.DifficoltàDifficile;
 import computerIntelligenza.ProxyDifficoltà;
 
 public class PannelloGioco extends JPanel implements PannelloTris {
@@ -29,7 +30,6 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 	private String scelta;
 	private GestoreVincite gestoreVincite;
 	private boolean partitaFinita;
-	
 	
 	public PannelloGioco(TabellaTris tabellaTris,String scelta) {
 		super();
@@ -50,20 +50,17 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 		return this;
 	}
 	
-	// intelligenza artificiale stupida
-	
-		public void ia(String scelta){
-			ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàCasuale());
-			int index = proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
-			if(!partitaFinita){
-				if(scelta=="Cerchio" && griglia.get(index).getIcon()==null){
-					griglia.get(index).setIcon(croce.disegnaCroce());
-					info();
-					
-				}
-				if(scelta=="Croce" && griglia.get(index).getIcon()==null){
-					griglia.get(index).setIcon(cerchio.disegnaCerchio());
-					info();
+	public void ia(String scelta){
+		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàDifficile());
+		int index = proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
+		if(!partitaFinita){
+			if(scelta=="Cerchio" && griglia.get(index).getIcon()==null){
+				griglia.get(index).setIcon(croce.disegnaCroce());
+				info();
+			}
+			if(scelta=="Croce" && griglia.get(index).getIcon()==null){
+				griglia.get(index).setIcon(cerchio.disegnaCerchio());
+				info();
 				}
 			}
 			
@@ -121,6 +118,7 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 					add(griglia.get(i));
 			}
 		}
+// DEBUG	
 		public void info(){
 			for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
 				System.out.println(tabellaTris.getCaselle().get(i));
@@ -134,5 +132,4 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 		public void setGriglia(ArrayList<JButton> griglia) {
 			this.griglia = griglia;
 		}
-
 }

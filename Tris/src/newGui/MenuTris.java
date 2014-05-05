@@ -6,19 +6,24 @@ package newGui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
 import statistiche.InterpreteStatisticheDefault;
+
 import computerIntelligenza.Difficoltà;
-import computerIntelligenza.DifficoltàCasuale;
 import computerIntelligenza.DifficoltàDifficile;
-import computerIntelligenza.DifficoltàSemplice;
+import computerIntelligenza.DifficoltàNonImplementata;
 import computerIntelligenza.ProxyDifficoltà;
 
 public class MenuTris extends JMenuBar {
 	
+	
+	
 	public MenuTris(final ProxyPannelloTris proxyPannelloTris, ProxyDifficoltà proxyDifficoltà) {
+		
 		final JMenuBar bar = new JMenuBar();
 		
 		JMenu menuPartita = new JMenu("Nuova Partita");
@@ -29,14 +34,13 @@ public class MenuTris extends JMenuBar {
 		JMenuItem semplice = new JMenuItem("Semplice");
 		JMenuItem medio = new JMenuItem("Medio");
 		JMenuItem difficile = new JMenuItem("Difficile");
-		JMenuItem casuale = new JMenuItem("Casuale");
 		JMenuItem info = new JMenuItem("Info");
 		
 		
 		menuLivelli.add(semplice);
 		menuLivelli.add(medio);
 		menuLivelli.add(difficile);
-		menuLivelli.add(casuale);
+		
 		
 		
 		JMenuItem record = new JMenuItem("Record");
@@ -57,9 +61,8 @@ public class MenuTris extends JMenuBar {
 			}
 		});
 		
-		setMenuDifficoltà(casuale,new DifficoltàCasuale(),proxyDifficoltà);
-		setMenuDifficoltà(semplice, new DifficoltàSemplice(),proxyDifficoltà);
-		setMenuDifficoltà(medio, new DifficoltàSemplice(),proxyDifficoltà);
+		setMenuDifficoltà(semplice, new DifficoltàNonImplementata(),proxyDifficoltà);
+		setMenuDifficoltà(medio, new DifficoltàNonImplementata(),proxyDifficoltà);
 		setMenuDifficoltà(difficile, new DifficoltàDifficile(),proxyDifficoltà);
 		
 		

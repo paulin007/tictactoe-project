@@ -6,14 +6,14 @@ package newGui;
 
 import javax.swing.JFrame;
 
-import computerIntelligenza.DifficoltàCasuale;
+import computerIntelligenza.DifficoltàSemplice;
 import computerIntelligenza.ProxyDifficoltà;
 
 public class MainTris {
 	public static void main(String[] args) {
 		ProxyPannelloTris pannelloTris = new ProxyPannelloTris();
 		pannelloTris.setPannelloTris(new PannelloDiBenvenuto());
-		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàCasuale());
+		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàSemplice());
 		MenuTris menuTris = new MenuTris(pannelloTris, proxyDifficoltà);
 		JFrame frame = new JFrame("Tic Tac Toe");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
