@@ -18,16 +18,17 @@ public class AggiornaStatistica implements Observer {
 	private static String percorsoFile = "./src/StatisticaProva.txt";
 	private Statistica statistica;
 	private GestoreVincite gestoreVincite;
+	private CaricamentoFile caricamentoFile = new CaricamentoFile();
 	
 	public AggiornaStatistica(GestoreVincite gestoreVincite) {
 		this.gestoreVincite = gestoreVincite;
 		gestoreVincite.addObserver(this);
+		
+		caricamentoFile.setNomeFile(percorsoFile);
 	}
 	
 	private void caricaStatistica(){
-		CaricamentoFile caricamentoFile;
-		caricamentoFile = new CaricamentoFile();
-		caricamentoFile.setNomeFile(percorsoFile);
+		
 		InterpreteStatisticheDefault interpreteStatisticheDefault = new InterpreteStatisticheDefault();
 		interpreteStatisticheDefault.statisticheDaFile(caricamentoFile.getList().get(0));
 		statistica = interpreteStatisticheDefault.getStatistica();
@@ -44,9 +45,11 @@ public class AggiornaStatistica implements Observer {
 	 * Questo metodo aggiorna le statistiche, a secondo di come è finita la partita
 	 */
 	private void aggiornaStatistiche(){
+		
 		boolean vincitaComputer = gestoreVincite.getVerificaVincita().haVintoComputer();
-		boolean vincitaGiocatore = gestoreVincite.getVerificaVincita().haVintoComputer();
+		boolean vincitaGiocatore = gestoreVincite.getVerificaVincita().haVintoGiocatore();
 		boolean nessunoHaVinto = gestoreVincite.getVerificaVincita().nessunoHaVinto();
+		
 		if(vincitaComputer){
 			statistica.aggiornaSconfitte();;
 		}
@@ -55,7 +58,7 @@ public class AggiornaStatistica implements Observer {
 		}
 		
 		if(nessunoHaVinto){
-			statistica.getPareggi();
+			statistica.aggiornaPareggi();
 		}
 	}
 	/**
