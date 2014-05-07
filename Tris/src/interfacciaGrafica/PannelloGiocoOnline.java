@@ -5,6 +5,7 @@
 package interfacciaGrafica;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import tris.Casella;
 import tris.TabellaTris;
@@ -30,6 +32,9 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 	private boolean partitaFinita;
 	private GestoreVincite gestoreVincite;
 	private boolean mioTurno;
+	JPanel turno = new JPanel();
+	JPanel gioco = new JPanel();
+	JTextArea area = new JTextArea("Mio turno");
 	
 	public PannelloGiocoOnline(TabellaTris tabellaTris,String scelta) {
 		super();
@@ -40,16 +45,28 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 			tabellaTris.getCaselle().get(i).addObserver(this);
 		}
 		mioTurno = true;
-		setLayout(new GridLayout(3, 3));
+		
+		gioco.setLayout(new GridLayout(3, 3));
+		add(turno);
+		add(gioco);
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
 		setupPanel();
+		
 	}
 
 	@Override
 	public JPanel creaPannello() {
 		//tabellaTris = new TabellaTris();
 		//tabellaTris.creaTabella();
+		
+		area.setFont(new Font("Verdana",Font.PLAIN,20));
+		if(mioTurno){
+			area.setForeground(Color.GREEN);
+		}else{
+			area.setForeground(Color.RED);
+		}
+		turno.add(area);
 		creaGrafica(tabellaTris);
 		return this;
 	}
@@ -105,7 +122,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 		public void setupPanel(){
 			
 			for (int i = 0; i < griglia.size(); i++) {
-					add(griglia.get(i));
+					gioco.add(griglia.get(i));
 			}
 		}
 		@Override
