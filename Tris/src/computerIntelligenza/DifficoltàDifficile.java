@@ -1,12 +1,16 @@
+/**
+ * Questa classe ha la reponsabilità di gestire la creazione di una massa, con un livello di difficoltà
+ * difficile
+ * @author Giacomo
+ */
 package computerIntelligenza;
-
 
 import java.util.Random;
 
 import tris.Casella;
 import tris.TabellaTris;
 
-public class DifficoltàDifficile implements Difficoltà {
+public class DifficoltàDifficile implements Difficoltà  {
 	private static String simboloPC = "c";
 	private int mossa;
 	@Override
@@ -23,10 +27,8 @@ public class DifficoltàDifficile implements Difficoltà {
 			}
 		}
 
-		
-		
-		if(possibileScacco(tabellaTris)){
-			mossa = difenditi();
+		if(tabellaTris.possibileScacco()){
+			mossa = tabellaTris.getMossa();
 			
 		}
 		
@@ -42,7 +44,7 @@ public class DifficoltàDifficile implements Difficoltà {
 	
 	/*
 	 *  i metodi mosseVerticali/orizzontali/diagonali verificano che se due
-	 *  caselle sono occupate dal pc, allora se la terza casella è libera la occupa per vincere
+	 *  caselle sono occupate dal pc, allora se la terza casella Ã¨ libera la occupa per vincere
 	 */
 	
 	
@@ -134,165 +136,5 @@ public class DifficoltàDifficile implements Difficoltà {
 			}
 		}
 		
-	}
-	private boolean possibileScacco(TabellaTris tabellaTris){
-		  boolean possibileScacco = false;
-		  //scacco Orizzontale primi due
-		  for (int i = 0; i < 3; i++) {
-		   Casella casellaA = tabellaTris.getCaselle().get(0+3*i);
-		   Casella casellaB = tabellaTris.getCaselle().get(1+3*i);
-		   if(casellaA.casellaConsecutivaG(casellaB)){
-		    possibileScacco = true;
-		    if(tabellaTris.getCaselle().get((2+3*i)).isVuota()){
-		    	mossa = 2+3*i; //riempie le caselle 2-5-8
-		    	System.out.println("scacco Orizzontale primi due"+mossa);
-		    }
-		   
-		    
-		    break;
-		   }
-		  }
-		  // scacco Orizzontale ultimi due
-		  for (int i = 0; i < 3; i++) {
-		   Casella casellaA = tabellaTris.getCaselle().get(1+3*i);
-		   Casella casellaB = tabellaTris.getCaselle().get(2+3*i);
-		   if(casellaA.casellaConsecutivaG(casellaB)){
-		    possibileScacco = true;
-		    if(tabellaTris.getCaselle().get((3*i)).isVuota()){
-		    	mossa = 3*i; //riempie le caselle 0-3-6 
-		    	System.out.println("scacco Orizzontale ultimi due"+mossa);
-		    }
-		    
-		    
-		    break;
-		   }
-		  }
-		  // scacco Verticale primi due
-		  for (int i = 0; i < 3; i++) {
-		   Casella casellaA = tabellaTris.getCaselle().get(i);
-		   Casella casellaB = tabellaTris.getCaselle().get(i+3);
-		   if(casellaA.casellaConsecutivaG(casellaB)){
-		    possibileScacco = true;
-		    if(tabellaTris.getCaselle().get((i+6)).isVuota()){
-		    	 mossa = i+6; //riempie le caselle 6-7-8
-		    	 System.out.println("scacco Verticale primi due"+mossa);
-		    }
-		   
-		    
-		    break;
-		   }
-		  }
-		  // scacco Verticale ultimi due
-		  for (int i = 3; i < 6; i++) {
-		   Casella casellaA = tabellaTris.getCaselle().get(i);
-		   Casella casellaB = tabellaTris.getCaselle().get(i+3);
-		   if(casellaA.occupataDaGiocatore()&&casellaB.occupataDaGiocatore()){
-		    possibileScacco = true;
-		    
-		    if(tabellaTris.getCaselle().get((i-3)).isVuota()){
-		    	 mossa = i-3; //riempie le caselle 0-1-2
-		    	 System.out.println("scacco Verticale ultimi due"+mossa);
-		    }
-		   
-		   
-		    break;
-		   }
-		  }
-		  // scacco orizzontale in mezzo
-		  for (int i = 0; i < 3; i++) {
-		   Casella casellaA = tabellaTris.getCaselle().get(3*i);
-		   Casella casellaB = tabellaTris.getCaselle().get(3*i+2);
-		   if(casellaA.occupataDaGiocatore()&&casellaB.occupataDaGiocatore()){
-		    possibileScacco = true;
-		    if(tabellaTris.getCaselle().get((3*i+1)).isVuota()){
-		    	mossa = 3*i+1; //riempie le caselle 1-4-7
-		    	System.out.println("scacco orizzontale in mezzo"+mossa);
-		    }
-		    
-		   
-		    break;
-		   }
-		  }
-		  // scacco verticale in mezzo
-		  for (int i = 0; i < 3; i++) {
-		   Casella casellaA = tabellaTris.getCaselle().get(i);
-		   Casella casellaB = tabellaTris.getCaselle().get(6+i);
-		   if(casellaA.occupataDaGiocatore()&&casellaB.occupataDaGiocatore()){
-		    possibileScacco = true;
-		    if(tabellaTris.getCaselle().get((3+i)).isVuota()){
-		    	mossa = 3+i; //riempie le caselle 3-4-5
-		    	 System.out.println("scacco verticale in mezzo"+mossa);
-		    }
-		    
-		   
-		    break;
-		   }
-		  }
-		  // scacco in diagonale
-		  Casella casella0 = tabellaTris.getCaselle().get(0);
-		  Casella casella2 = tabellaTris.getCaselle().get(2);
-		  Casella casella4 = tabellaTris.getCaselle().get(4);
-		  Casella casella6 = tabellaTris.getCaselle().get(6);
-		  Casella casella8 = tabellaTris.getCaselle().get(8);
-		  if(casella0.occupataDaGiocatore()&&casella4.occupataDaGiocatore()){
-		    possibileScacco = true;
-		  
-		    if(tabellaTris.getCaselle().get(8).isVuota()){
-		    	 mossa = 8;
-		    	 System.out.println("scacco in diagonale"+mossa);
-		    }
-		   
-		    
-		  }
-		  if(casella2.occupataDaGiocatore()&&casella4.occupataDaGiocatore()){
-		   possibileScacco = true;
-		   if(tabellaTris.getCaselle().get(6).isVuota()){
-		    	 mossa = 6;
-		    	 System.out.println("scacco in diagonale"+mossa);
-		    }
-		
-		  
-		  }
-		  if(casella4.occupataDaGiocatore()&&casella8.occupataDaGiocatore()){
-		   possibileScacco = true;
-		   if(tabellaTris.getCaselle().get(0).isVuota()){
-		    	 mossa = 0;
-		    	 System.out.println("scacco in diagonale"+mossa);
-		    }
-		  
-		   
-		  }
-		  if(casella6.occupataDaGiocatore()&&casella4.occupataDaGiocatore()){
-		   possibileScacco = true;
-		   if(tabellaTris.getCaselle().get(2).isVuota()){
-		    	 mossa = 2;
-		    	 System.out.println("scacco in diagonale"+mossa);
-		    }
-		   
-		  
-		  }
-		  if(casella0.occupataDaGiocatore()&&casella8.occupataDaGiocatore()){
-		   possibileScacco = true;
-		   if(tabellaTris.getCaselle().get(4).isVuota()){
-		    	 mossa = 4;
-		    	 System.out.println("scacco in diagonale"+mossa);
-		    }
-		  
-		  
-		  }
-		  if(casella2.occupataDaGiocatore()&&casella6.occupataDaGiocatore()){
-		   possibileScacco = true;
-		   if(tabellaTris.getCaselle().get(4).isVuota()){
-		    	 mossa = 4;
-		    	 System.out.println("scacco in diagonale"+mossa);
-		    }
-		  }
-		 
-		  return possibileScacco;
-		 }
-	
-	
-	private int difenditi(){
-		return mossa;
 	}
 }
