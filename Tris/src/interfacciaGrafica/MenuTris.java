@@ -12,6 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import statistiche.InterpreteStatisticheDefault;
+
 import computerIntelligenza.Difficoltà;
 import computerIntelligenza.DifficoltàDifficile;
 import computerIntelligenza.DifficoltàNonImplementata;
@@ -25,6 +26,7 @@ public class MenuTris extends JMenuBar {
 	public MenuTris(final ProxyPannelloTris proxyPannelloTris, ProxyDifficoltà proxyDifficoltà) {
 		
 		final JMenuBar bar = new JMenuBar();
+		
 		
 		JMenu menuPartita = new JMenu("Nuova Partita");
 		JMenu menuOpzioni = new JMenu("Opzioni");
