@@ -22,7 +22,7 @@ public class TabellaTris  {
 		int k=0;
 		for (int i = 1; i <= nRighe; i++) {
 			for (int j = 1; j <= nColonne; j++) {
-				Casella casella = new Casella(new Posizione(i, j),k);
+				Casella casella = new Casella(k);
 				caselle.add(casella);
 				k++;
 			}
@@ -203,5 +203,4 @@ public class TabellaTris  {
 	public void setMossa(int mossa) {
 		this.mossa = mossa;
 	}
-	
 }

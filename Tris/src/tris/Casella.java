@@ -12,13 +12,9 @@ import java.util.Observable;
 public class Casella extends Observable{
 	
 	private String simbolo;
-	private Posizione posizione;
 	private int IDcasella;
 	
-	public Casella(Posizione posizione, int numero) {
-		this.posizione = posizione;
-		this.IDcasella = numero;
-	}
+
 	
 	public Casella(int IDcasella) {
 		this.IDcasella=IDcasella;
@@ -33,14 +29,6 @@ public class Casella extends Observable{
 		update();
 	}
 
-	public Posizione getPosizione() {
-		return posizione;
-	}
-
-	public void setPosizione(Posizione posizione) {
-		this.posizione = posizione;
-	}
-	
 	public int getIDcasella() {
 		return IDcasella;
 	}
@@ -48,13 +36,51 @@ public class Casella extends Observable{
 	public void setIDcasella(int iDcasella) {
 		IDcasella = iDcasella;
 	}
-	
+	/**
+	 * Questo metodo permette di stabilire se una casella è vuota
+	 * @return
+	 */
 	public boolean isVuota(){
 		boolean vuota=false;
 		
 		if(simbolo==null) vuota=true;
 		
 		return vuota;
+	}
+	/**
+	 * Questo metodo permette di stabilire se una casella è occupata da G1
+	 * @return
+	 */
+	public boolean occupataDaG1(){
+		if(getSimbolo().equalsIgnoreCase(Simbolo.simboloG1)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * Questo metodo permette di stabilire se una casella è occupata da G2
+	 * @return
+	 */
+	public boolean occupataDaG2(){
+		if(getSimbolo().equalsIgnoreCase(Simbolo.simboloG2)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * Questo metodo permette di stabilire se una casella è occupata da un generico
+	 * {@link Simbolo}
+	 * @param simbolo
+	 * @return
+	 */
+	public boolean occupataDaSimbolo(Simbolo simbolo){
+		if(getSimbolo().equalsIgnoreCase(simbolo.toString())){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	/**
 	 * Questo metodo permette di stabilire se la casella è occupata dal giocatore
@@ -88,13 +114,20 @@ public class Casella extends Observable{
 
 	@Override
 	public String toString(){
-		return "Simbolo: "+getSimbolo()+" "+getPosizione()+" IDcasella: "+getIDcasella();
+		return "Simbolo: "+getSimbolo()+" IDcasella: "+getIDcasella();
 	}
 	
 	public void update(){
 		setChanged();
 		notifyObservers();
 	}
+	/**
+	 * Questo metod permette di verificare se due caselle sono occupate dal computer e una terza
+	 * casella è libera
+	 * @param casella2
+	 * @param casellaSuccessiva
+	 * @return
+	 */
 	public boolean possibileMossa(Casella casella2,Casella casellaSuccessiva){
 		if(occupataDaComputer()&&casella2.occupataDaComputer()&&casellaSuccessiva.isVuota()){
 			return true;
