@@ -9,18 +9,16 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import tris.Casella;
 import tris.TabellaTris;
-import vincita.GestoreVincite;
-import computerIntelligenza.DifficoltàDifficile;
-import computerIntelligenza.DifficoltàMedia;
-import computerIntelligenza.ProxyDifficoltà;
 
-public class PannelloGiocoOnline extends JPanel implements PannelloTris {
+public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observer {
 	
 	private TabellaTris tabellaTris;
 	private static final long serialVersionUID = 0;
@@ -28,13 +26,15 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 	private Cerchio cerchio = new Cerchio();
 	private Croce croce = new Croce();
 	private String scelta;
-	private GestoreVincite gestoreVincite;
 	private boolean partitaFinita;
 	
 	public PannelloGiocoOnline(TabellaTris tabellaTris,String scelta) {
 		super();
 		this.tabellaTris = tabellaTris;
 		this.scelta = scelta;
+		for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
+			tabellaTris.getCaselle().get(i).addObserver(this);
+		}
 		setLayout(new GridLayout(3, 3));
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
@@ -102,5 +102,8 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 					add(griglia.get(i));
 			}
 		}
-
+		@Override
+		public void update(Observable o, Object arg) {
+			creaPannello();
+		}
 }
