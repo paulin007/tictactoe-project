@@ -46,22 +46,17 @@ public class PannelloStatistica extends JPanel implements PannelloTris {
 		JLabel labelVittorie = new JLabel("Vittorie: "+interpreteStatistiche.getStatistica().getVittorie());
 		labelVittorie.setFont(font);
 		JPanel vittorie = new JPanel();
-		SpringLayout layout = new SpringLayout();
-		vittorie.setLayout(layout);
-		SpringLayout.Constraints  labelCons = layout.getConstraints(labelVittorie);
+		
+		vittorie.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
 		vittorie.setBackground(new Color(153,203,255));
-		labelCons.setX(Spring.constant(190));
-        labelCons.setY(Spring.constant(40));
-		vittorie.add(labelVittorie,BorderLayout.CENTER);
+		vittorie.add(labelVittorie);
 		
 		
 		JLabel labelPareggi = new JLabel("Pareggi: "+interpreteStatistiche.getStatistica().getPareggi());
 		labelPareggi.setFont(font);
 		JPanel pareggi = new JPanel();
-		
+		pareggi.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
 		pareggi.setBackground(new Color(153,203,255));
-		
-		
 		pareggi.add(labelPareggi);
 		
 		
@@ -69,7 +64,7 @@ public class PannelloStatistica extends JPanel implements PannelloTris {
 		labelSconfitte.setFont(font);
 		JPanel sconfitte = new JPanel();
 		sconfitte.setBackground(new Color(153,203,255));
-		sconfitte.setLayout(new FlowLayout());
+		sconfitte.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		sconfitte.add(labelSconfitte);
 		
 		setLayout(new GridLayout(3, 1));

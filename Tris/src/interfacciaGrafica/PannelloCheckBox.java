@@ -11,6 +11,10 @@ import interfacciaGrafica.ProxyPannelloTris;
 
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +24,8 @@ import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Spring;
+import javax.swing.SpringLayout;
 
 import tris.TabellaTris;
 
@@ -54,16 +60,26 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 	@Override
 	public JPanel creaPannello() {
 		setLayout(new GridLayout(4, 1));
+		Font font = new Font("Verdana", Font.BOLD, 16);
 		
 		JPanel panel1 = new JPanel();
+		panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
+		
 		JPanel panel2 = new JPanel();
 		JPanel panel3 = new JPanel();
 		JPanel panel4 = new JPanel();
 		
+		label.setFont(font);
 		panel1.add(label);
+		panel1.setBackground(new Color(153,203,255));
 		panel2.add(checkbox1);
+		panel2.setBackground(new Color(153,203,255));
 		panel3.add(checkbox2);
+		panel3.setBackground(new Color(153,203,255));
+		start.setBackground(Color.WHITE);
+		start.setPreferredSize(new Dimension(80, 50));
 		panel4.add(start);
+		panel4.setBackground(new Color(153,203,255));
 		
 		add(panel1);
 		add(panel2);
