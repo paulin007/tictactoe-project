@@ -6,7 +6,7 @@ public class Partita {
 	private String giocatore1;												// Il primo giocatore, avvia la partita
 	private String giocatore2;												// Il secondo giocatore, si aggiunge alla partita
 	private char[] celle = {' ',' ',' ',' ',' ',' ',' ',' ',' '};			// Celle disponibili
-	boolean conclusa = false;												// Se la partita si è già conclusa
+	boolean conclusa = false;												// Se la partita si ï¿½ giï¿½ conclusa
 	private int id;
 	
 	public Partita(int id, String giocatore1, String giocatore2){
@@ -30,6 +30,22 @@ public class Partita {
 
 	public void setGiocatore2(String giocatore2) {
 		this.giocatore2 = giocatore2;
+	}
+
+	public boolean isConclusa() {
+		return conclusa;
+	}
+
+	public void setConclusa(boolean conclusa) {
+		this.conclusa = conclusa;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

@@ -9,7 +9,7 @@ public class Sender {
 		
 		clients.send("nuova partita	pippo	pluto");
 		
-		clients.send("test");
+		clients.send("collegati a	pippo	pluto");
 		
 //		System.out.println(clients.nuovaPartita("1", "2"));
 		
