@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import tris.Casella;
 import tris.TabellaTris;
+import vincita.GestoreVincite;
 
 public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observer {
 	
@@ -27,14 +28,18 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 	private Croce croce = new Croce();
 	private String scelta;
 	private boolean partitaFinita;
+	private GestoreVincite gestoreVincite;
+	private boolean mioTurno;
 	
 	public PannelloGiocoOnline(TabellaTris tabellaTris,String scelta) {
 		super();
 		this.tabellaTris = tabellaTris;
+		gestoreVincite = new GestoreVincite(tabellaTris.getCaselle());
 		this.scelta = scelta;
 		for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
 			tabellaTris.getCaselle().get(i).addObserver(this);
 		}
+		mioTurno = true;
 		setLayout(new GridLayout(3, 3));
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
@@ -45,7 +50,6 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 	public JPanel creaPannello() {
 		//tabellaTris = new TabellaTris();
 		//tabellaTris.creaTabella();
-		
 		creaGrafica(tabellaTris);
 		return this;
 	}
@@ -64,7 +68,6 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 			for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
 				if(tabellaTris.getCaselle().get(i).occupataDaComputer()){
 					griglia.get(i).setIcon(cerchio.disegnaCerchio());
-					
 				}
 			}
 		}
@@ -77,25 +80,28 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					Casella casellaSelezionata = tabellaTris.getCaselle().get(j);
-					if(scelta.equalsIgnoreCase("cerchio")&&casellaSelezionata.isVuota()){
+					if(scelta.equalsIgnoreCase("cerchio")&&casellaSelezionata.isVuota()&&mioTurno){
 						if(!partitaFinita){
 						griglia.get(j).setIcon(cerchio.disegnaCerchio());
 						
+						gestoreVincite.getVerificaVincita();
 						casellaSelezionata.setSimbolo("g");
+						
+						
 						}
 					}
-					if(scelta.equalsIgnoreCase("croce")&&casellaSelezionata.isVuota()){
+					if(scelta.equalsIgnoreCase("croce")&&casellaSelezionata.isVuota()&&mioTurno){
 						 if(!partitaFinita){
 						griglia.get(j).setIcon(croce.disegnaCroce());
+						gestoreVincite.getVerificaVincita();
 						casellaSelezionata.setSimbolo("g");
+						
 					}
 					}
 				}
 			});
 			}
 		}
-		
-		
 		public void setupPanel(){
 			
 			for (int i = 0; i < griglia.size(); i++) {
@@ -104,6 +110,11 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 		}
 		@Override
 		public void update(Observable o, Object arg) {
+			if(mioTurno){
+				mioTurno = false;
+			}else{
+				mioTurno = true;
+			}
 			creaPannello();
 		}
 }

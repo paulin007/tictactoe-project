@@ -1,6 +1,5 @@
 package rete;
 
-import java.util.ArrayList;
 
 public interface InterpretePacchettoRete {
 	/**
@@ -13,7 +12,7 @@ public interface InterpretePacchettoRete {
 	 *  contenute nel pacchetto
 	 * @return
 	 */
-	public ArrayList<Integer> getMossePacchetto();
+	public int getUltimaMossaPacchetto();
 	/**
 	 * Questo metodo permette di recuperare il risultato che è presente nel pacchetto
 	 * @return
