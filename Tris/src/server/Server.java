@@ -50,22 +50,7 @@ public class Server {
 					nuovaPartita(output, s);
 				}
 				else if(operazione.equalsIgnoreCase("collegati a")){
-					String giocatore1 = s.nextToken(); 
-					String giocatore2 = s.nextToken(); 
-					boolean partitaEsistente = false;
-					for (int i = 0; i < partite.size(); i++) {
-						if(partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)&&
-								partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2)&&
-									partite.get(i).isConclusa()==false){
-							output.println("Sta restituendoti: "+partite.get(i).getId());
-							System.out.println("Restituito a "+giocatore2+" l'id della partita con "+giocatore1);
-							partitaEsistente = true;
-						}
-						if(!partitaEsistente){
-							output.println("partita non esistente	"+giocatore1+"	"+giocatore2);		//TODO estrai
-							System.out.println("Tentata connessione a partita non esistente.");
-						}
-					} 
+					collegamento(output, s); 
 				}
 
 
@@ -84,6 +69,25 @@ public class Server {
 			} catch (IOException ioEx) {
 				System.out.println("Unable to disconnect!");
 				System.exit(1);
+			}
+		}
+	}
+
+	private static void collegamento(PrintWriter output, StringTokenizer s) {
+		String giocatore1 = s.nextToken(); 
+		String giocatore2 = s.nextToken(); 
+		boolean partitaEsistente = false;
+		for (int i = 0; i < partite.size(); i++) {
+			if(partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)&&
+					partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2)&&
+						partite.get(i).isConclusa()==false){
+				output.println("Sta restituendoti: "+partite.get(i).getId());
+				System.out.println("Restituito a "+giocatore2+" l'id della partita con "+giocatore1);
+				partitaEsistente = true;
+			}
+			if(!partitaEsistente){
+				output.println("partita non esistente	"+giocatore1+"	"+giocatore2);		//TODO estrai
+				System.out.println("Tentata connessione a partita non esistente.");
 			}
 		}
 	}
