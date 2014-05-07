@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Server {
+	
 	private static ServerSocket servSock;
 	private static final int PORT = 45454;
 	private static Scanner input;
@@ -20,7 +21,7 @@ public class Server {
 		try {
 			servSock = new ServerSocket(PORT); // Step 1.
 		} catch (IOException ioEx) {
-			System.out.println("Unable to attach to port!");
+			System.out.println("Impossibile aprire la porta. Controlla il firewall!");
 			System.exit(1);
 		}
 		do {
@@ -39,30 +40,27 @@ public class Server {
 
 			int numMessages = 0;
 
-			String message = input.nextLine(); 
-			
+			String message = input.nextLine();
+
 			StringTokenizer s = new StringTokenizer(message, "	");
-			
-			if(s.countTokens()==3){
-				
+
+			if (s.countTokens() == 3) {
+
 				String operazione = s.nextToken();
-				if (operazione.equalsIgnoreCase("nuova partita")){
+				if (operazione.equalsIgnoreCase("nuova partita")) {
 					nuovaPartita(output, s);
-				}/*else if(operazione.equalsIgnoreCase("collegati a")){
-					String giocatore1 = s.nextToken();
-					String giocatore2 = s.nextToken();
-					for (int i = 0; i < partite.size(); i++) {
-						if(partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)&&
-								partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2))
-							out.
-					}
-				}*/
-				
-				
-				//TODO HashMap
-				
-				
-				
+				}/*
+				 * else if(operazione.equalsIgnoreCase("collegati a")){ String
+				 * giocatore1 = s.nextToken(); String giocatore2 =
+				 * s.nextToken(); for (int i = 0; i < partite.size(); i++) {
+				 * if(partite
+				 * .get(i).getGiocatore1().equalsIgnoreCase(giocatore1)&&
+				 * partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2))
+				 * out. } }
+				 */
+
+				// TODO HashMap
+
 			}
 			System.out.println("Message received.");
 			numMessages++;
@@ -84,15 +82,16 @@ public class Server {
 	private static void nuovaPartita(PrintWriter output, StringTokenizer s) {
 		String giocatore1 = s.nextToken();
 		String giocatore2 = s.nextToken();
-		
+
 		partitaIndex++;
-		
-		Partita partitaCreata = new Partita(partitaIndex,giocatore1, giocatore2);
+
+		Partita partitaCreata = new Partita(partitaIndex, giocatore1,
+				giocatore2);
 		partite.add(partitaCreata);
-		
-		System.out.println("Iniziato una nuova partita: id="+partitaIndex+" \n"
-				+ " Giocatore1= "+giocatore1+"\n"
-						+ "Giocatore2= "+giocatore2);
+
+		System.out.println("Iniziato una nuova partita: id=" + partitaIndex
+				+ " \n" + " Giocatore1= " + giocatore1 + "\n" + "Giocatore2= "
+				+ giocatore2);
 
 		output.println(partitaIndex);
 	}
