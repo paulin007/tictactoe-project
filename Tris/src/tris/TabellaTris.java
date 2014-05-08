@@ -47,7 +47,7 @@ public class TabellaTris  {
 		  for (int i = 0; i < 3; i++) {
 		   Casella casellaA = getCaselle().get(0+3*i);
 		   Casella casellaB = getCaselle().get(1+3*i);
-		   if(casellaA.casellaConsecutivaG(casellaB)){
+		   if(casellaA.casellaConsecutivaG1(casellaB)){
 		    possibileScacco = true;
 		    if(getCaselle().get((2+3*i)).isVuota()){
 		    	mossa = 2+3*i; //riempie le caselle 2-5-8
@@ -62,14 +62,12 @@ public class TabellaTris  {
 		  for (int i = 0; i < 3; i++) {
 		   Casella casellaA = getCaselle().get(1+3*i);
 		   Casella casellaB = getCaselle().get(2+3*i);
-		   if(casellaA.casellaConsecutivaG(casellaB)){
+		   if(casellaA.casellaConsecutivaG1(casellaB)){
 		    possibileScacco = true;
 		    if(getCaselle().get((3*i)).isVuota()){
 		    	mossa = 3*i; //riempie le caselle 0-3-6 
 		    	System.out.println("scacco Orizzontale ultimi due"+mossa);
 		    }
-		    
-		    
 		    break;
 		   }
 		  }
@@ -77,7 +75,7 @@ public class TabellaTris  {
 		  for (int i = 0; i < 3; i++) {
 		   Casella casellaA = getCaselle().get(i);
 		   Casella casellaB = getCaselle().get(i+3);
-		   if(casellaA.casellaConsecutivaG(casellaB)){
+		   if(casellaA.casellaConsecutivaG1(casellaB)){
 		    possibileScacco = true;
 		    if(getCaselle().get((i+6)).isVuota()){
 		    	 mossa = i+6; //riempie le caselle 6-7-8
@@ -92,7 +90,7 @@ public class TabellaTris  {
 		  for (int i = 3; i < 6; i++) {
 		   Casella casellaA = getCaselle().get(i);
 		   Casella casellaB = getCaselle().get(i+3);
-		   if(casellaA.occupataDaGiocatore()&&casellaB.occupataDaGiocatore()){
+		   if(casellaA.occupataDaG1()&&casellaB.occupataDaG1()){
 		    possibileScacco = true;
 		    
 		    if(getCaselle().get((i-3)).isVuota()){
@@ -108,7 +106,7 @@ public class TabellaTris  {
 		  for (int i = 0; i < 3; i++) {
 		   Casella casellaA = getCaselle().get(3*i);
 		   Casella casellaB = getCaselle().get(3*i+2);
-		   if(casellaA.occupataDaGiocatore()&&casellaB.occupataDaGiocatore()){
+		   if(casellaA.occupataDaG1()&&casellaB.occupataDaG1()){
 		    possibileScacco = true;
 		    if(getCaselle().get((3*i+1)).isVuota()){
 		    	mossa = 3*i+1; //riempie le caselle 1-4-7
@@ -123,7 +121,7 @@ public class TabellaTris  {
 		  for (int i = 0; i < 3; i++) {
 		   Casella casellaA = getCaselle().get(i);
 		   Casella casellaB = getCaselle().get(6+i);
-		   if(casellaA.occupataDaGiocatore()&&casellaB.occupataDaGiocatore()){
+		   if(casellaA.occupataDaG1()&&casellaB.occupataDaG1()){
 		    possibileScacco = true;
 		    if(getCaselle().get((3+i)).isVuota()){
 		    	mossa = 3+i; //riempie le caselle 3-4-5
@@ -140,7 +138,7 @@ public class TabellaTris  {
 		  Casella casella4 = getCaselle().get(4);
 		  Casella casella6 = getCaselle().get(6);
 		  Casella casella8 = getCaselle().get(8);
-		  if(casella0.occupataDaGiocatore()&&casella4.occupataDaGiocatore()){
+		  if(casella0.occupataDaG1()&&casella4.occupataDaG1()){
 		    possibileScacco = true;
 		  
 		    if(getCaselle().get(8).isVuota()){
@@ -150,7 +148,7 @@ public class TabellaTris  {
 		   
 		    
 		  }
-		  if(casella2.occupataDaGiocatore()&&casella4.occupataDaGiocatore()){
+		  if(casella2.occupataDaG1()&&casella4.occupataDaG1()){
 		   possibileScacco = true;
 		   if(getCaselle().get(6).isVuota()){
 		    	 mossa = 6;
@@ -159,7 +157,7 @@ public class TabellaTris  {
 		
 		  
 		  }
-		  if(casella4.occupataDaGiocatore()&&casella8.occupataDaGiocatore()){
+		  if(casella4.occupataDaG1()&&casella8.occupataDaG1()){
 		   possibileScacco = true;
 		   if(getCaselle().get(0).isVuota()){
 		    	 mossa = 0;
@@ -168,7 +166,7 @@ public class TabellaTris  {
 		  
 		   
 		  }
-		  if(casella6.occupataDaGiocatore()&&casella4.occupataDaGiocatore()){
+		  if(casella6.occupataDaG1()&&casella4.occupataDaG1()){
 		   possibileScacco = true;
 		   if(getCaselle().get(2).isVuota()){
 		    	 mossa = 2;
@@ -177,7 +175,7 @@ public class TabellaTris  {
 		   
 		  
 		  }
-		  if(casella0.occupataDaGiocatore()&&casella8.occupataDaGiocatore()){
+		  if(casella0.occupataDaG1()&&casella8.occupataDaG1()){
 		   possibileScacco = true;
 		   if(getCaselle().get(4).isVuota()){
 		    	 mossa = 4;
@@ -186,7 +184,7 @@ public class TabellaTris  {
 		  
 		  
 		  }
-		 if(casella2.occupataDaGiocatore()&&casella6.occupataDaGiocatore()){
+		 if(casella2.occupataDaG1()&&casella6.occupataDaG1()){
 		   possibileScacco = true;
 		   if(getCaselle().get(4).isVuota()){
 		    	 mossa = 4;

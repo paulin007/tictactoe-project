@@ -52,22 +52,16 @@ public class Casella extends Observable{
 	 * @return
 	 */
 	public boolean occupataDaG1(){
-		if(getSimbolo().equalsIgnoreCase(Simbolo.simboloG1)){
-			return true;
-		}else{
-			return false;
-		}
+		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase(Simbolo.simboloG1);
+		return occupata;
 	}
 	/**
 	 * Questo metodo permette di stabilire se una casella è occupata da G2
 	 * @return
 	 */
 	public boolean occupataDaG2(){
-		if(getSimbolo().equalsIgnoreCase(Simbolo.simboloG2)){
-			return true;
-		}else{
-			return false;
-		}
+		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase(Simbolo.simboloG2);
+		return occupata;
 	}
 	/**
 	 * Questo metodo permette di stabilire se una casella è occupata da un generico
@@ -83,56 +77,38 @@ public class Casella extends Observable{
 		}
 	}
 	/**
-	 * Questo metodo permette di stabilire se la casella è occupata dal giocatore
-	 * @return
-	 */
-	public boolean occupataDaGiocatore(){
-		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase("g");
-		return occupata;
-	}
-	/**
-	 * Questo metodo permette di stabilire se la casella è occupata dal computer
-	 * @return
-	 */
-	public boolean occupataDaComputer(){
-		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase("c");
-		return occupata;
-	}
-	/**
 	 * Questo metodo permette di stabilire se due caselle sono consecutive e occupate dal Giocatore
 	 * @param casella2
 	 * @return
 	 */
-	public boolean casellaConsecutivaG(Casella casella2){
-		
-		if(occupataDaGiocatore() &&casella2.occupataDaGiocatore()){
+	public boolean casellaConsecutivaG1(Casella casella2){
+		if(occupataDaG1() &&casella2.occupataDaG1()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * Questo metodo permette di verificare se due caselle sono occupate da G2 e una terza
+	 * casella è libera
+	 * @param casella2
+	 * @param casellaSuccessiva
+	 * @return
+	 */
+	public boolean possibileMossaG2(Casella casella2,Casella casellaSuccessiva){
+		if(occupataDaG2()&&casella2.occupataDaG2()&&casellaSuccessiva.isVuota()){
 			return true;
 		}else{
 			return false;
 		}
 	}
 
-	@Override
-	public String toString(){
-		return "Simbolo: "+getSimbolo()+" IDcasella: "+getIDcasella();
-	}
-	
 	public void update(){
 		setChanged();
 		notifyObservers();
 	}
-	/**
-	 * Questo metod permette di verificare se due caselle sono occupate dal computer e una terza
-	 * casella è libera
-	 * @param casella2
-	 * @param casellaSuccessiva
-	 * @return
-	 */
-	public boolean possibileMossa(Casella casella2,Casella casellaSuccessiva){
-		if(occupataDaComputer()&&casella2.occupataDaComputer()&&casellaSuccessiva.isVuota()){
-			return true;
-		}else{
-			return false;
-		}
+	@Override
+	public String toString(){
+		return "Simbolo: "+getSimbolo()+" IDcasella: "+getIDcasella();
 	}
 }

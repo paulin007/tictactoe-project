@@ -11,5 +11,4 @@ public interface Algoritmo {
 	 * @return
 	 */
 	public String execute(String mossa);
-
 }
