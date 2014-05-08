@@ -60,6 +60,7 @@ public class PannelloStatistica extends JPanel implements PannelloTris {
 		pareggi.add(labelPareggi);
 		
 		
+		
 		JLabel labelSconfitte = new JLabel("Sconfitte: "+interpreteStatistiche.getStatistica().getSconfitte());
 		labelSconfitte.setFont(font);
 		JPanel sconfitte = new JPanel();

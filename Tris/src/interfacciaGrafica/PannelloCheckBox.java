@@ -5,10 +5,6 @@
  */
 package interfacciaGrafica;
 
-import interfacciaGrafica.PannelloGioco;
-import interfacciaGrafica.PannelloTris;
-import interfacciaGrafica.ProxyPannelloTris;
-
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.Color;
@@ -24,8 +20,6 @@ import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Spring;
-import javax.swing.SpringLayout;
 
 import tris.TabellaTris;
 
@@ -85,7 +79,6 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 		add(panel2);
 		add(panel3);
 		add(panel4);
-		
 		checkbox1.addItemListener(new ItemListener() {
 			
 			@Override
@@ -104,11 +97,12 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 		});
 	
 		start.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(scelta()!=null){
 				setLayout(new BorderLayout());
 				pannelloTris.setPannelloTris(new PannelloGioco(new TabellaTris(),scelta()));
+				}
 				
 			}
 		});
