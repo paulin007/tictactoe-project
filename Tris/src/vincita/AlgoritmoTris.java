@@ -1,15 +1,14 @@
 /**
  * Questa classe ha resposanbilità di stabilire chi è il vincitore
- * @author Giacomo
+ * @author Giacomo Bellazzi
  */
 package vincita;
 
 import java.util.ArrayList;
 
 import tris.Casella;
-import tris.Simbolo;
 
-public class AlgoritmoTris {
+public class AlgoritmoTris implements IAlgoritmo {
 	
 	private ArrayList<Integer> giocatore1; 
 	private ArrayList<Integer> giocatore2;
