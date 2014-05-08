@@ -88,6 +88,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 				}
 			}
 		}
+		
 		public void setupActionListenerGriglia(){
 			
 			for (int i = 0; i < griglia.size(); i++) {
@@ -102,7 +103,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 						griglia.get(j).setIcon(cerchio.disegnaCerchio());
 						
 						gestoreVincite.getVerificaVincita();
-						casellaSelezionata.setSimbolo("g");
+						casellaSelezionata.setSimbolo("g");		//TODO sistemare simbolo
 						
 						
 						}
@@ -111,7 +112,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris, Observe
 						 if(!partitaFinita){
 						griglia.get(j).setIcon(croce.disegnaCroce());
 						gestoreVincite.getVerificaVincita();
-						casellaSelezionata.setSimbolo("g");
+						casellaSelezionata.setSimbolo("g");			//TODO sistemare simbolo
 						
 					}
 					}

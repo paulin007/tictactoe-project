@@ -3,6 +3,7 @@ package computerIntelligenza;
 import java.util.Random;
 
 import tris.Casella;
+import tris.Simbolo;
 import tris.TabellaTris;
 
 public class DifficoltàNonImplementata implements Difficoltà {
@@ -36,7 +37,7 @@ public class DifficoltàNonImplementata implements Difficoltà {
 				}
 			}
 		}
-		tabellaTris.getCaselle().get(mossa).setSimbolo(simboloPC);
+		tabellaTris.getCaselle().get(mossa).setSimbolo(Simbolo.simboloG2);
 		return mossa;
 	}
 }

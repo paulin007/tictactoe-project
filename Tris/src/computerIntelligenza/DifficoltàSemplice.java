@@ -7,6 +7,7 @@ package computerIntelligenza;
 
 import java.util.Random;
 
+import tris.Simbolo;
 import tris.TabellaTris;
 
 public class DifficoltàSemplice implements Difficoltà {
@@ -23,7 +24,7 @@ public class DifficoltàSemplice implements Difficoltà {
 			k++;
 			numero = random.nextInt(9);
 			if(tabellaTris.getCaselle().get(numero).isVuota()){
-				tabellaTris.getCaselle().get(numero).setSimbolo(simboloPC);
+				tabellaTris.getCaselle().get(numero).setSimbolo(Simbolo.simboloG2);
 				finito = true;
 			}
 		}
@@ -35,7 +36,7 @@ public class DifficoltàSemplice implements Difficoltà {
 		int numero = (int)(Math.random()*9);
 			
 			if(tabellaTris.getCaselle().get(numero).isVuota()){
-				tabellaTris.getCaselle().get(numero).setSimbolo(simboloPC);
+				tabellaTris.getCaselle().get(numero).setSimbolo(Simbolo.simboloG2);
 				
 			}
 			else generaMossaNew(tabellaTris);

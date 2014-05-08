@@ -10,7 +10,7 @@ import tris.Casella;
 
 public class GestoreVincite extends Observable  implements Observer {
 	
-	private VerificaVincita verificaVincita = new VerificaVincita();
+	private AlgoritmoTris verificaVincita = new AlgoritmoTris();
 	private ArrayList<Casella> caselle;
 	private AggiornaStatistica aggiornaStatistica;
 	boolean mostratoRisultato = false;
@@ -35,13 +35,13 @@ public class GestoreVincite extends Observable  implements Observer {
 	public void qualcunoHavinto(ArrayList<Casella> caselle){
 		if(verificaVincita.stabilisciVincitore(caselle)!=null){
 			verificaVincita.separaMosse(caselle);
-			if((verificaVincita.haiVinto(verificaVincita.getComputer())== true || verificaVincita.haiVinto(verificaVincita.getGiocatore())== true) && !mostratoRisultato){
+			if((verificaVincita.haiVinto(verificaVincita.getGiocatore2())== true || verificaVincita.haiVinto(verificaVincita.getGiocatore1())== true) && !mostratoRisultato){
 				JOptionPane.showMessageDialog(null, verificaVincita.stabilisciVincitore(caselle));
 				mostratoRisultato = true;
 				update();
-				System.out.println(verificaVincita.getComputer().size()+" "+verificaVincita.getComputer().size());
+				System.out.println(verificaVincita.getGiocatore2().size()+" "+verificaVincita.getGiocatore2().size());
 			}
-			if((verificaVincita.getComputer().size()==4) && (verificaVincita.getGiocatore().size()==5) && (verificaVincita.haiVinto(verificaVincita.getComputer())== false && verificaVincita.haiVinto(verificaVincita.getGiocatore())== false)){
+			if((verificaVincita.getGiocatore2().size()==4) && (verificaVincita.getGiocatore1().size()==5) && (verificaVincita.haiVinto(verificaVincita.getGiocatore2())== false && verificaVincita.haiVinto(verificaVincita.getGiocatore1())== false)){
 				JOptionPane.showMessageDialog(null, verificaVincita.stabilisciVincitore(caselle));
 				mostratoRisultato = true;
 				update();
@@ -59,11 +59,11 @@ public class GestoreVincite extends Observable  implements Observer {
 		notifyObservers();
 	}
 
-	public VerificaVincita getVerificaVincita() {
+	public AlgoritmoTris getVerificaVincita() {
 		return verificaVincita;
 	}
 
-	public void setVerificaVincita(VerificaVincita verificaVincita) {
+	public void setVerificaVincita(AlgoritmoTris verificaVincita) {
 		this.verificaVincita = verificaVincita;
 	}
 }

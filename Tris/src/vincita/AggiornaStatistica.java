@@ -46,8 +46,8 @@ public class AggiornaStatistica implements Observer {
 	 */
 	private void aggiornaStatistiche(){
 		
-		boolean vincitaComputer = gestoreVincite.getVerificaVincita().haVintoComputer();
-		boolean vincitaGiocatore = gestoreVincite.getVerificaVincita().haVintoGiocatore();
+		boolean vincitaComputer = gestoreVincite.getVerificaVincita().haVintoG2();
+		boolean vincitaGiocatore = gestoreVincite.getVerificaVincita().haVintoG1();
 		boolean nessunoHaVinto = gestoreVincite.getVerificaVincita().nessunoHaVinto();
 		
 		if(vincitaComputer){

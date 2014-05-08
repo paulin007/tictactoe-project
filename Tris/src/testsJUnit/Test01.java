@@ -1,10 +1,12 @@
 package testsJUnit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import tris.Simbolo;
 import tris.TabellaTris;
+
 import computerIntelligenza.DifficoltàDifficile;
 
 /**
@@ -24,8 +26,8 @@ public class Test01 {
 		
 		tabellaTris.creaTabella();
 		
-		tabellaTris.getCaselle().get(0).setSimbolo("g");
-		tabellaTris.getCaselle().get(1).setSimbolo("g");
+		tabellaTris.getCaselle().get(0).setSimbolo(Simbolo.simboloG1);
+		tabellaTris.getCaselle().get(1).setSimbolo(Simbolo.simboloG1);
 		
 		assertTrue(difficile.generaMossa(tabellaTris)==2);	
 	}
@@ -35,10 +37,10 @@ public class Test01 {
 		
 		tabellaTris.creaTabella();
 		
-		tabellaTris.getCaselle().get(0).setSimbolo("c");
-		tabellaTris.getCaselle().get(1).setSimbolo("c");
-		tabellaTris.getCaselle().get(3).setSimbolo("g");
-		tabellaTris.getCaselle().get(4).setSimbolo("g");
+		tabellaTris.getCaselle().get(0).setSimbolo(Simbolo.simboloG2);
+		tabellaTris.getCaselle().get(1).setSimbolo(Simbolo.simboloG2);
+		tabellaTris.getCaselle().get(3).setSimbolo(Simbolo.simboloG1);
+		tabellaTris.getCaselle().get(4).setSimbolo(Simbolo.simboloG1);
 			
 		assertTrue(difficile.generaMossa(tabellaTris)==2);	
 	}

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import tris.Casella;
+import tris.Simbolo;
 import tris.TabellaTris;
 import vincita.GestoreVincite;
 
@@ -87,7 +88,7 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
 						if(!partitaFinita){
 						griglia.get(j).setIcon(cerchio.disegnaCerchio());
-						casellaSelezionata.setSimbolo("g");
+						casellaSelezionata.setSimbolo(Simbolo.simboloG1);
 						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
 						ia(scelta);
 						}
@@ -96,7 +97,7 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 						if(!partitaFinita){
 						griglia.get(j).setIcon(croce.disegnaCroce());
 						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
-						casellaSelezionata.setSimbolo("g");
+						casellaSelezionata.setSimbolo(Simbolo.simboloG1);
 						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
 						ia(scelta);
 						}

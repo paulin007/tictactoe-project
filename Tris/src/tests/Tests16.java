@@ -1,8 +1,9 @@
 package tests;
 
+import tris.Simbolo;
 import tris.TabellaTris;
+import vincita.AlgoritmoTris;
 import vincita.GestoreVincite;
-import vincita.VerificaVincita;
 
 public class Tests16 {
 	public static void main(String[] args) {
@@ -11,11 +12,11 @@ public class Tests16 {
 		
 		
 		for (int i = 0; i < 4; i++) {
-			caselle.getCaselle().get(i).setSimbolo("g");
+			caselle.getCaselle().get(i).setSimbolo(Simbolo.simboloG1);
 		}
 		GestoreVincite gestoreVincite = new GestoreVincite(caselle.getCaselle());
 		gestoreVincite.qualcunoHavinto(caselle.getCaselle());
-		VerificaVincita verificaVincita = new VerificaVincita();
+		AlgoritmoTris verificaVincita = new AlgoritmoTris();
 		verificaVincita.stabilisciVincitore(caselle.getCaselle());
 		
 	}

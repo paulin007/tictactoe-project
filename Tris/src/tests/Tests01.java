@@ -6,6 +6,7 @@
  */
 package tests;
 
+import tris.Simbolo;
 import tris.TabellaTris;
 
 public class Tests01 {
@@ -24,10 +25,10 @@ public class Tests01 {
 
 	private static void inserisciSimbolo(TabellaTris tabellaTris) {
 		for (int i = 0; i <=5; i++) {
-			tabellaTris.getCaselle().get(i).setSimbolo("g");
+			tabellaTris.getCaselle().get(i).setSimbolo(Simbolo.simboloG1);
 		}
 		for (int i = 6; i <9; i++) {
-			tabellaTris.getCaselle().get(i).setSimbolo("c");
+			tabellaTris.getCaselle().get(i).setSimbolo(Simbolo.simboloG2);
 		}
 	}
 }

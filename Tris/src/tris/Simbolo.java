@@ -13,10 +13,6 @@ public class Simbolo {
 		super();
 		this.simbolo = simbolo;
 	}
-	
-	public Simbolo() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getSimbolo() {
 		return simbolo;

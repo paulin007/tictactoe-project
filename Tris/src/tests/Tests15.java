@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 import tris.TabellaTris;
 import vincita.GestoreVincite;
-import vincita.VerificaVincita;
+import vincita.AlgoritmoTris;
 /**
  * Testo la funzionalità della classe GestoreVincite
  * @author Dario
@@ -23,7 +23,7 @@ public class Tests15 {
 		PannelloGioco pannelloGioco = new PannelloGioco(tabellaTris, "Cerchio");
 		
 		
-		VerificaVincita vincita = new VerificaVincita();
+		AlgoritmoTris vincita = new AlgoritmoTris();
 		GestoreVincite gestoreVincite = new GestoreVincite(pannelloGioco.getTabellaTris().getCaselle());
 		
 		

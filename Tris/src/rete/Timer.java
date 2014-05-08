@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.TimerTask;
 
+import tris.Simbolo;
 import tris.TabellaTris;
 
 public class Timer implements Observer {
@@ -30,7 +31,7 @@ public class Timer implements Observer {
 				String pacchetto = "Mossa	1	";
 				pacchetto+=index;
 				pacchettoRete.interpretaPacchetto(pacchetto);
-				tabellaTris.getCaselle().get(pacchettoRete.getUltimaMossaPacchetto()).setSimbolo("c");
+				tabellaTris.getCaselle().get(pacchettoRete.getUltimaMossaPacchetto()).setSimbolo(Simbolo.simboloG2);
 			}
 		};
 		timer.schedule(task, delay);

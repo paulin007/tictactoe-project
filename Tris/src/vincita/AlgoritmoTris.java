@@ -7,15 +7,16 @@ package vincita;
 import java.util.ArrayList;
 
 import tris.Casella;
+import tris.Simbolo;
 
-public class VerificaVincita {
+public class AlgoritmoTris {
 	
-	private ArrayList<Integer> giocatore; 
-	private ArrayList<Integer> computer;
+	private ArrayList<Integer> giocatore1; 
+	private ArrayList<Integer> giocatore2;
 	private ArrayList<Terna> vincitePossibili; // perchè non usare direttamente terneVincite?
 	private String vincitore = null;
 	
-	public VerificaVincita() {
+	public AlgoritmoTris() {
 		TerneVincite terneVincite = new TerneVincite();
 		vincitePossibili=terneVincite.getTerneVincenti();
 	}
@@ -27,13 +28,13 @@ public class VerificaVincita {
 	
 	// corretto l'if: aggiunta la condizione caselle.get(i).getSimbolo()!= null
 	public void separaMosse(ArrayList<Casella> caselle){
-		giocatore = new ArrayList<Integer>();
-		computer = new ArrayList<Integer>();
+		giocatore1 = new ArrayList<Integer>();
+		giocatore2 = new ArrayList<Integer>();
 		for (int i = 0; i < caselle.size(); i++) {
-			if(caselle.get(i).getSimbolo()!= null && caselle.get(i).getSimbolo().equalsIgnoreCase("g")){
-				giocatore.add(caselle.get(i).getIDcasella());
-			}else if(caselle.get(i).getSimbolo()!= null && caselle.get(i).getSimbolo().equalsIgnoreCase("c")){
-				computer.add(caselle.get(i).getIDcasella());
+			if(caselle.get(i).getSimbolo()!= null && caselle.get(i).occupataDaG1()){
+				giocatore1.add(caselle.get(i).getIDcasella());
+			}else if(caselle.get(i).getSimbolo()!= null && caselle.get(i).occupataDaG2()){
+				giocatore2.add(caselle.get(i).getIDcasella());
 			}
 		}
 	}
@@ -44,16 +45,16 @@ public class VerificaVincita {
 	 */
 	public String stabilisciVincitore(ArrayList<Casella> caselle){
 		separaMosse(caselle);
-		if(haiVinto(giocatore)){
-			vincitore = "Giocatore";
+		if(haiVinto(giocatore1)){
+			vincitore = "Giocatore1";
 			return "Ha vinto "+vincitore;
 			
 		}
-		if(haiVinto(computer)){
-			vincitore = "Computer";
+		if(haiVinto(giocatore2)){
+			vincitore = "Giocatore2";
 			return "Ha vinto "+vincitore;
 		}
-		if(haiVinto(computer)== false && haiVinto(giocatore)==false){
+		if(haiVinto(giocatore2)== false && haiVinto(giocatore1)==false){
 			vincitore = "Pareggio";
 			return vincitore;
 		}
@@ -61,9 +62,13 @@ public class VerificaVincita {
 		return vincitore;
 	}
 	
-	
+	/**
+	 * Determina se all'interno di una lista di mosse
+	 * vi è una combinazione vincente
+	 * @param mosse
+	 * @return
+	 */
 	public boolean haiVinto(ArrayList<Integer> mosse){
-		boolean vittoria = false;
 		for (int i = 0; i < vincitePossibili.size(); i++) {
 			int index = 0;
 			for (int j = 0; j < mosse.size(); j++) {
@@ -78,42 +83,42 @@ public class VerificaVincita {
 				}
 			}
 			if(index==3){
-				vittoria = true;
-				break; 
+				return true;
 			}	
 		}	
-		return vittoria;
+		return false;
 	}
 	
-	public ArrayList<Integer> getGiocatore() {
-		return giocatore;
+	public ArrayList<Integer> getGiocatore1() {
+		return giocatore1;
 	}
-	public void setGiocatore(ArrayList<Integer> giocatore) {
-		this.giocatore = giocatore;
+	public void setGiocatore1(ArrayList<Integer> giocatore1) {
+		this.giocatore1 = giocatore1;
 	}
-	public ArrayList<Integer> getComputer() {
-		return computer;
+	
+	public ArrayList<Integer> getGiocatore2() {
+		return giocatore2;
 	}
-	public void setComputer(ArrayList<Integer> computer) {
-		this.computer = computer;
+	public void setGiocatore2(ArrayList<Integer> giocatore2) {
+		this.giocatore2 = giocatore2;
 	}
 	/**
-	 * Questo metodo stabilisce se ha vinto il giocatore
+	 * Questo metodo stabilisce se ha vinto il giocatore1
 	 * @return
 	 */
-	public boolean haVintoGiocatore(){
-		if(vincitore.equalsIgnoreCase("Giocatore")){
+	public boolean haVintoG1(){
+		if(vincitore.equalsIgnoreCase("Giocatore1")){
 			return true;
 		}else{
 			return false;
 		}
 	}
 	/**
-	 * Questo metodo stabilisce se ha vinto il computer
+	 * Questo metodo stabilisce se ha vinto il giocatore2
 	 * @return
 	 */
-	public boolean haVintoComputer(){
-		if(vincitore.equalsIgnoreCase("Computer")){
+	public boolean haVintoG2(){
+		if(vincitore.equalsIgnoreCase("Giocatore2")){
 			return true;
 		}else{
 			return false;

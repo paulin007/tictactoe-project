@@ -4,8 +4,10 @@
  */
 package tests;
 
+import tris.Simbolo;
 import tris.TabellaTris;
-import vincita.VerificaVincita;
+import vincita.AlgoritmoTris;
+
 import computerIntelligenza.DifficoltàNonImplementata;
 import computerIntelligenza.ProxyDifficoltà;
 public class Tests09 {
@@ -15,14 +17,14 @@ public class Tests09 {
 		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàNonImplementata());
 		for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
 			if(tabellaTris.getCaselle().get(i).isVuota()){
-				tabellaTris.getCaselle().get(i).setSimbolo("g");
+				tabellaTris.getCaselle().get(i).setSimbolo(Simbolo.simboloG1);
 				proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
 			}
 		}
 		for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
 			System.out.println(tabellaTris.getCaselle().get(i));
 		}
-		VerificaVincita verificaVincita = new VerificaVincita();
+		AlgoritmoTris verificaVincita = new AlgoritmoTris();
 		System.out.println(verificaVincita.stabilisciVincitore(tabellaTris.getCaselle()));
 	}
 }

@@ -8,8 +8,8 @@ import interfacciaGrafica.PannelloGiocoOnline;
 
 import javax.swing.JFrame;
 
-import rete.GestorePartita;
 import rete.InterpretePacchettoDefault;
+import tris.Simbolo;
 import tris.TabellaTris;
 
 public class Tests18 {
@@ -20,7 +20,7 @@ public class Tests18 {
 		tabellaTris.creaTabella();
 		String scelta = "croce";
 		pacchettoDefault.interpretaPacchetto(pacchetto1);
-		tabellaTris.getCaselle().get(pacchettoDefault.getUltimaMossaPacchetto()).setSimbolo("c");
+		tabellaTris.getCaselle().get(pacchettoDefault.getUltimaMossaPacchetto()).setSimbolo(Simbolo.simboloG2);
 		
 		PannelloGiocoOnline giocoOnline = new PannelloGiocoOnline(tabellaTris, scelta);
 //		
@@ -32,6 +32,6 @@ public class Tests18 {
 		frame.setSize(400, 400);
 		frame.getContentPane().add(giocoOnline.creaPannello());
 		frame.setVisible(true);
-		tabellaTris.getCaselle().get(0).setSimbolo("c");
+		tabellaTris.getCaselle().get(0).setSimbolo(Simbolo.simboloG2);
 	}
 }

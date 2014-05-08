@@ -1,7 +1,8 @@
 package tests;
 
+import tris.Simbolo;
 import tris.TabellaTris;
-import vincita.VerificaVincita;
+import vincita.AlgoritmoTris;
 /**
  * Questo test verifica la vittoria da parte del giocatore
  * @author Dario
@@ -13,16 +14,16 @@ public class Tests06 {
 		
 		TabellaTris tabellaTris = new TabellaTris();
 		tabellaTris.creaTabella();
-		tabellaTris.getCaselle().get(1).setSimbolo("c");
-		tabellaTris.getCaselle().get(2).setSimbolo("c");
-		tabellaTris.getCaselle().get(3).setSimbolo("c");
+		tabellaTris.getCaselle().get(1).setSimbolo(Simbolo.simboloG2);
+		tabellaTris.getCaselle().get(2).setSimbolo(Simbolo.simboloG2);
+		tabellaTris.getCaselle().get(3).setSimbolo(Simbolo.simboloG2);
 		
-		tabellaTris.getCaselle().get(0).setSimbolo("g");
-		tabellaTris.getCaselle().get(4).setSimbolo("g");
-		tabellaTris.getCaselle().get(8).setSimbolo("g");
+		tabellaTris.getCaselle().get(0).setSimbolo(Simbolo.simboloG1);
+		tabellaTris.getCaselle().get(4).setSimbolo(Simbolo.simboloG1);
+		tabellaTris.getCaselle().get(8).setSimbolo(Simbolo.simboloG1);
 		
 		
-		VerificaVincita verificaVincita = new VerificaVincita();
+		AlgoritmoTris verificaVincita = new AlgoritmoTris();
 		
 		System.out.println(verificaVincita.stabilisciVincitore(tabellaTris.getCaselle()));
 	}

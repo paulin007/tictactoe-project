@@ -1,14 +1,16 @@
 package tests;
 
+import tris.Simbolo;
+import tris.TabellaTris;
+
 import computerIntelligenza.DifficoltàNonImplementata;
 import computerIntelligenza.ProxyDifficoltà;
-import tris.TabellaTris;
 
 public class Tests08 {
 	public static void main(String[] args) {
 		TabellaTris tabellaTris = new TabellaTris();
 		tabellaTris.creaTabella();
-		tabellaTris.getCaselle().get(8).setSimbolo("g");
+		tabellaTris.getCaselle().get(8).setSimbolo(Simbolo.simboloG1);
 		ProxyDifficoltà difficoltà = new ProxyDifficoltà(new DifficoltàNonImplementata());
 		
 		System.out.println(difficoltà.getDifficoltà().generaMossa(tabellaTris));
