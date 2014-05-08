@@ -18,10 +18,8 @@ public class MainTris {
 		pannelloTris.setPannelloTris(new PannelloDiBenvenuto());
 		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàSemplice());
 		MenuTris menuTris = new MenuTris(pannelloTris, proxyDifficoltà);
-		
 		JFrame frame = new JFrame("Tic Tac Toe");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("tris.png")));
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 		frame.add(pannelloTris);

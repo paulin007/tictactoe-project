@@ -62,7 +62,6 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 		JPanel panel2 = new JPanel();
 		JPanel panel3 = new JPanel();
 		JPanel panel4 = new JPanel();
-		
 		label.setFont(font);
 		panel1.add(label);
 		panel1.setBackground(new Color(153,203,255));

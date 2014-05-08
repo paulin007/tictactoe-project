@@ -9,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -16,27 +18,37 @@ import javax.swing.JPanel;
 import tris.Casella;
 import tris.Simbolo;
 import tris.TabellaTris;
-import vincita.GestoreVincite;
-
+import vincita.AlgoritmoTris;
 import computerIntelligenza.DifficoltàDifficile;
 import computerIntelligenza.ProxyDifficoltà;
 
-public class PannelloGioco extends JPanel implements PannelloTris {
+public class PannelloGioco extends JPanel implements PannelloTris,Observer {
 	
 	private TabellaTris tabellaTris;
 	private static final long serialVersionUID = 0;
 	private ArrayList<JButton> griglia = new ArrayList<>();
-	private Cerchio cerchio = new Cerchio();
-	private Croce croce = new Croce();
-	private String scelta;
-	private GestoreVincite gestoreVincite;
+	private Icona iconaMia;
+	private Icona iconaAvversario;
+	private AlgoritmoTris algoritmoTris = new AlgoritmoTris();
 	private boolean partitaFinita;
 	
 	public PannelloGioco(TabellaTris tabellaTris,String scelta) {
 		super();
 		this.tabellaTris = tabellaTris;
-		this.scelta = scelta;
+		algoritmoTris.addObserver(this);
+		impostaIcone(scelta);
 		
+	}
+
+	private void impostaIcone(String scelta) {
+		if(scelta.equalsIgnoreCase("Croce")){
+			iconaMia = new Croce();
+			iconaAvversario = new Cerchio();
+		}
+		if(scelta.equalsIgnoreCase("Cerchio")){
+			iconaMia = new Cerchio();
+			iconaAvversario = new Croce();
+		}
 	}
 
 	@Override
@@ -44,28 +56,20 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 		tabellaTris = new TabellaTris();
 		tabellaTris.creaTabella();
 		setLayout(new GridLayout(3, 3));
-		gestoreVincite = new GestoreVincite(tabellaTris.getCaselle());
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
 		setupPanel();
 		return this;
 	}
 	
-	public void ia(String scelta){
+	public void ia(){
 		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàDifficile());
 		int index = proxyDifficoltà.getDifficoltà().generaMossa(tabellaTris);
 		if(!partitaFinita){
-			if(scelta=="Cerchio" && griglia.get(index).getIcon()==null){
-				griglia.get(index).setIcon(croce.disegnaCroce());
-				info();
-			}
-			if(scelta=="Croce" && griglia.get(index).getIcon()==null){
-				griglia.get(index).setIcon(cerchio.disegnaCerchio());
-				info();
-				}
-			}
-			
+			griglia.get(index).setIcon(iconaAvversario.disegna());
+			algoritmoTris.stabilisciVincitore(tabellaTris.getCaselle());
 		}
+	}
 		
 		public void setupInizialeGriglia(){
 			for (int i = 0; i < 9; i++) {
@@ -84,25 +88,18 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					Casella casellaSelezionata = tabellaTris.getCaselle().get(j);
-					if(scelta=="Cerchio"&&casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
-						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
+					if(casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
 						if(!partitaFinita){
-						griglia.get(j).setIcon(cerchio.disegnaCerchio());
+						griglia.get(j).setIcon(iconaMia.disegna());
+						partitaFinita = algoritmoTris.partitaFinita();
 						casellaSelezionata.setSimbolo(Simbolo.simboloG1);
-						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
-						ia(scelta);
-						}
-					}
-					if(scelta=="Croce"&&casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
-						if(!partitaFinita){
-						griglia.get(j).setIcon(croce.disegnaCroce());
-						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
-						casellaSelezionata.setSimbolo(Simbolo.simboloG1);
-						partitaFinita = gestoreVincite.getVerificaVincita().partitaFinita();
-						ia(scelta);
+						algoritmoTris.stabilisciVincitore(tabellaTris.getCaselle());
+						partitaFinita = algoritmoTris.partitaFinita();
+						ia();
 						}
 					}
 				}
+				
 			});
 			}
 		}
@@ -119,18 +116,11 @@ public class PannelloGioco extends JPanel implements PannelloTris {
 					add(griglia.get(i));
 			}
 		}
-// DEBUG	
-		public void info(){
-			for (int i = 0; i < tabellaTris.getCaselle().size(); i++) {
-				System.out.println(tabellaTris.getCaselle().get(i));
-			}
-		}
+		@Override
+		public void update(Observable o, Object arg) {
+			System.out.println("sono stato notificato");
+			partitaFinita = true;
+			algoritmoTris.getRisultato();
 			
-		public ArrayList<JButton> getGriglia() {
-			return griglia;
-		}
-
-		public void setGriglia(ArrayList<JButton> griglia) {
-			this.griglia = griglia;
 		}
 }

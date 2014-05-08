@@ -6,9 +6,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-public class Croce {
+public class Croce implements Icona {
 
-	public ImageIcon disegnaCroce(){
+	public ImageIcon disegna(){
 		
 		BufferedImage img = new BufferedImage(200,200, BufferedImage.TYPE_INT_RGB );
 		
