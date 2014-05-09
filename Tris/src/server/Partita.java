@@ -1,13 +1,17 @@
 package server;
 
+import tris.TabellaTris;
+
 
 public class Partita {
 	
 	private String giocatore1;												// Il primo giocatore, avvia la partita
 	private String giocatore2;												// Il secondo giocatore, si aggiunge alla partita
-	private char[] celle = {' ',' ',' ',' ',' ',' ',' ',' ',' '};			// Celle disponibili
+	private TabellaTris celle = new TabellaTris();							// Celle disponibili
 	boolean conclusa = false;												// Se la partita si � gi� conclusa
+	String risultato = "";
 	private int id;
+	
 	
 	public Partita(int id, String giocatore1, String giocatore2){
 		this.giocatore1 = giocatore1;
@@ -46,6 +50,22 @@ public class Partita {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public TabellaTris getCelle() {
+		return celle;
+	}
+
+	public void setCelle(TabellaTris celle) {
+		this.celle = celle;
+	}
+
+	public String getRisultato() {
+		return risultato;
+	}
+
+	public void setRisultato(String risultato) {
+		this.risultato = risultato;
 	}
 
 

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import tris.Algoritmo;
+
 public class Server {
 
 	private static ServerSocket servSock;
@@ -15,7 +17,8 @@ public class Server {
 	private static Scanner input;
 	private static int partitaIndex = 0;
 	private static ArrayList<Partita> partite = new ArrayList<Partita>();
-
+	private static Algoritmo algoritmo = new Algoritmo();
+	
 	public static void main(String[] args) {
 		System.out.println("Opening port...\n");
 		try {
@@ -48,9 +51,24 @@ public class Server {
 				String operazione = s.nextToken();
 				if (operazione.equalsIgnoreCase("nuova partita")) {
 					nuovaPartita(output, s);
-				}
-				else if(operazione.equalsIgnoreCase("collegati a")){
+				}else if(operazione.equalsIgnoreCase("collegati a")){
 					collegamento(output, s); 
+				}else if(operazione.equalsIgnoreCase("mossa")){
+					int idPartita = Integer.parseInt(s.nextToken());
+					int mossa = Integer.parseInt(s.nextToken());
+					for (int i = 0; i < partite.size(); i++) {
+						if(partite.get(i).getId()==idPartita)
+							//algoritmo.execute()
+							System.out.println();
+							
+							
+							
+							
+							
+					}//TODO Mettere l'algoritmo
+					
+					
+					
 				}
 
 
