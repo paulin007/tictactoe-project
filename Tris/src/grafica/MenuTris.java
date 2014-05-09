@@ -2,7 +2,7 @@
  * Questa classe ha la reposanbilità di gestire il menu dell'applicazione Tris
  * @author Giacomo
  */
-package copyNew;
+package grafica;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,13 +14,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import tris.TabellaTris;
-import vincita.AlgoritmoTris;
-import computerIntelligenza.Difficoltà;
-import computerIntelligenza.DifficoltàDifficile;
-import computerIntelligenza.DifficoltàMedia;
-import computerIntelligenza.DifficoltàSemplice;
-import computerIntelligenza.ProxyDifficoltà;
+import tris.computerIntelligenza.Difficoltà;
+import tris.computerIntelligenza.DifficoltàDifficile;
+import tris.computerIntelligenza.DifficoltàMedia;
+import tris.computerIntelligenza.DifficoltàSemplice;
 
 @SuppressWarnings("serial")
 public class MenuTris extends JMenuBar {
@@ -30,9 +27,18 @@ public class MenuTris extends JMenuBar {
 	public MenuTris(final ControllerTris controllerTris) {
 		
 		final JMenuBar bar = new JMenuBar();
-		JMenu menuPartita = new JMenu("Nuova Partita");
+		JMenu menuPartita = new JMenu("Partita OFFLINE");
 		JMenu menuOpzioni = new JMenu("Opzioni");
 		JMenu menuLivelli = new JMenu("Difficoltà");
+		JMenu menuOnline = new JMenu("Partita ONLINE");
+		JMenuItem startGiocatori = new JMenuItem("Lista Giocatori");
+		menuOnline.add(startGiocatori);
+		startGiocatori.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controllerTris.setPannelloGiocatori();
+				}
+		});
 		JMenuItem semplice = new JMenuItem("Semplice");
 		semplice.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK ));
 		JMenuItem medio = new JMenuItem("Medio");
@@ -71,6 +77,7 @@ public class MenuTris extends JMenuBar {
 		bar.add(menuPartita);
 		bar.add(menuOpzioni);
 		add(menuPartita);
+		add(menuOnline);
 		add(menuOpzioni);
 	}
 	

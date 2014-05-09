@@ -3,7 +3,7 @@
  * l'utente
  * @author Giacomo
  */
-package copyNew;
+package grafica;
 
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
@@ -20,8 +20,6 @@ import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import tris.TabellaTris;
 
 public class PannelloCheckBox extends JPanel implements PannelloTris{
 	

@@ -2,7 +2,7 @@
  * Questa classe permette di cambiare a run time, i vari tipi di {@link PannelloTris}
  * @author Giacomo
  */
-package copyNew;
+package grafica;
 
 import java.awt.BorderLayout;
 

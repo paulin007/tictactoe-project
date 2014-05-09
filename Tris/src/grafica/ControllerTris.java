@@ -1,8 +1,14 @@
-package copyNew;
+/**
+ * Questa classe ha la responsabilità di gestire le richieste effettuate dall'utente,
+ * attraverso l'interfaccia grafica
+ * @author Giacomo
+ */
+package grafica;
+import rete.Client;
 import tris.TabellaTris;
-import vincita.AlgoritmoTris;
-import computerIntelligenza.DifficoltàSemplice;
-import computerIntelligenza.ProxyDifficoltà;
+import tris.computerIntelligenza.DifficoltàSemplice;
+import tris.computerIntelligenza.ProxyDifficoltà;
+import tris.vincita.AlgoritmoTris;
 
 public class ControllerTris {
 
@@ -11,6 +17,9 @@ public class ControllerTris {
 	private PannelloCheckBox pannelloCheckBox;
 	private TabellaTris tabellaTris;
 	private AlgoritmoTris algoritmoTris;
+	private PannelloGiocatori pannelloGiocatori;
+	private PannelloGiocoOnline pannelloGiocoOnline;
+	private Client client = new Client();
 	
 	
 	public ControllerTris(ProxyDifficoltà proxyDifficolta,
@@ -64,11 +73,27 @@ public class ControllerTris {
 		proxyPannelloTris.setPannelloTris(pannelloCheckBox);
 	}
 	
+	public void setPannelloGiocatori(){
+		pannelloGiocatori = new PannelloGiocatori(this);
+		proxyPannelloTris.setPannelloTris(pannelloGiocatori);
+	}
+	
 	public void setPannelloGioco(){
 		PannelloGioco pannelloGioco = new PannelloGioco(this);
 		proxyPannelloTris.setPannelloTris(pannelloGioco);
 	}
 	
+	public void setPannelloGiocoOnline(){
+		pannelloGiocoOnline = new PannelloGiocoOnline(this);
+		proxyPannelloTris.setPannelloTris(pannelloGiocoOnline);
+	}
+	
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 	public void resetController(){
 		setProxyDifficolta(new ProxyDifficoltà(new DifficoltàSemplice()));
 		setTabellaTris(new TabellaTris());

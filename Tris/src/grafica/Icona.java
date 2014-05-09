@@ -1,4 +1,4 @@
-package copyNew;
+package grafica;
 
 import javax.swing.ImageIcon;
 

@@ -2,7 +2,7 @@
  * Questa classe ha la responsabilità di gestire il pannello di gioco
  * @author Giacomo
  */
-package copyNew;
+package grafica;
 
 
 import java.awt.Color;
@@ -12,8 +12,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import tris.Casella;
 import tris.Simbolo;
 import tris.TabellaTris;

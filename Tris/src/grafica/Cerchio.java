@@ -1,4 +1,4 @@
-package copyNew;
+package grafica;
 
 import java.awt.Color;
 import java.awt.Graphics;
