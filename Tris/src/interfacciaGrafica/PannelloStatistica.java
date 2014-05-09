@@ -5,7 +5,6 @@
 package interfacciaGrafica;
 
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,9 +12,6 @@ import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.Spring;
-import javax.swing.SpringLayout;
 
 import statistiche.CaricamentoFile;
 import statistiche.InterpreteStatistiche;
@@ -23,7 +19,6 @@ import statistiche.InterpreteStatistiche;
 @SuppressWarnings("serial")
 public class PannelloStatistica extends JPanel implements PannelloTris {
 	
-	private JTextArea area = new JTextArea();
 	private CaricamentoFile caricamentoFile;
 	private static String percorsoFile = "./src/StatisticaProva.txt";
 	private InterpreteStatistiche interpreteStatistiche;

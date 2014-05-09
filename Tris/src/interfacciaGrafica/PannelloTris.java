@@ -12,5 +12,4 @@ public interface PannelloTris {
 	 * @return
 	 */
 	public JPanel creaPannello();
-
 }
