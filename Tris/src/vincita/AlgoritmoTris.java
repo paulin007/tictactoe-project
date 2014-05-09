@@ -5,15 +5,18 @@
 package vincita;
 
 import java.util.ArrayList;
+import java.util.Observable;
+
+import javax.swing.JOptionPane;
 
 import tris.Casella;
 
-public class AlgoritmoTris implements IAlgoritmo {
+public class AlgoritmoTris extends Observable implements IAlgoritmo {
 	
 	private ArrayList<Integer> giocatore1; 
 	private ArrayList<Integer> giocatore2;
 	private ArrayList<Terna> vincitePossibili; // perchè non usare direttamente terneVincite?
-	private String vincitore = null;
+	private String risultato = null;
 	
 	public AlgoritmoTris() {
 		TerneVincite terneVincite = new TerneVincite();
@@ -24,8 +27,6 @@ public class AlgoritmoTris implements IAlgoritmo {
 	 * da quelle occupate dal giocatore
 	 * @param caselle
 	 */
-	
-	// corretto l'if: aggiunta la condizione caselle.get(i).getSimbolo()!= null
 	public void separaMosse(ArrayList<Casella> caselle){
 		giocatore1 = new ArrayList<Integer>();
 		giocatore2 = new ArrayList<Integer>();
@@ -45,20 +46,20 @@ public class AlgoritmoTris implements IAlgoritmo {
 	public String stabilisciVincitore(ArrayList<Casella> caselle){
 		separaMosse(caselle);
 		if(haiVinto(giocatore1)){
-			vincitore = "Giocatore1";
-			return "Ha vinto "+vincitore;
+			setRisultato("Giocatore1");
+			return "Ha vinto "+risultato;
 			
 		}
 		if(haiVinto(giocatore2)){
-			vincitore = "Giocatore2";
-			return "Ha vinto "+vincitore;
+			setRisultato("Giocatore2");
+			return "Ha vinto "+risultato;
 		}
-		if(haiVinto(giocatore2)== false && haiVinto(giocatore1)==false){
-			vincitore = "Pareggio";
-			return vincitore;
+		if(haiVinto(giocatore2)== false && haiVinto(giocatore1)==false &&(giocatore1.size()+giocatore2.size()==9)){
+			setRisultato("Pareggio");
+			return risultato;
 		}
-		System.out.println(vincitore);
-		return vincitore;
+		System.out.println(risultato);
+		return risultato;
 	}
 	
 	/**
@@ -91,22 +92,17 @@ public class AlgoritmoTris implements IAlgoritmo {
 	public ArrayList<Integer> getGiocatore1() {
 		return giocatore1;
 	}
-	public void setGiocatore1(ArrayList<Integer> giocatore1) {
-		this.giocatore1 = giocatore1;
-	}
 	
 	public ArrayList<Integer> getGiocatore2() {
 		return giocatore2;
 	}
-	public void setGiocatore2(ArrayList<Integer> giocatore2) {
-		this.giocatore2 = giocatore2;
-	}
+
 	/**
 	 * Questo metodo stabilisce se ha vinto il giocatore1
 	 * @return
 	 */
 	public boolean haVintoG1(){
-		if(vincitore.equalsIgnoreCase("Giocatore1")){
+		if(risultato.equalsIgnoreCase("Giocatore1")){
 			return true;
 		}else{
 			return false;
@@ -117,7 +113,7 @@ public class AlgoritmoTris implements IAlgoritmo {
 	 * @return
 	 */
 	public boolean haVintoG2(){
-		if(vincitore.equalsIgnoreCase("Giocatore2")){
+		if(risultato.equalsIgnoreCase("Giocatore2")){
 			return true;
 		}else{
 			return false;
@@ -128,7 +124,7 @@ public class AlgoritmoTris implements IAlgoritmo {
 	 * @return
 	 */
 	public boolean nessunoHaVinto(){
-		if(vincitore.equalsIgnoreCase("Pareggio")){
+		if(risultato.equalsIgnoreCase("Pareggio")){
 			return true;
 		}else{
 			return false;
@@ -139,10 +135,26 @@ public class AlgoritmoTris implements IAlgoritmo {
 	 * @return
 	 */
 	public boolean partitaFinita(){
-		if(vincitore!=null && !nessunoHaVinto()){
+		if(risultato!=null && !nessunoHaVinto()){
 			return true;
 		}else{
 			return false;
 		}
+	}
+	/**
+	 * Questo metodo permette di restuire il risultato generato dall'algoritmo.
+	 */
+	public String getRisultato() {
+		System.out.println(risultato);
+		JOptionPane.showMessageDialog(null, risultato);
+		return risultato;
+	}
+	public void setRisultato(String risultato){
+		this.risultato=risultato;
+		update();
+	}
+	public void update(){
+		setChanged();
+		notifyObservers();
 	}
 }
