@@ -10,7 +10,7 @@ public class Algoritmo {
 	 * @param mossa
 	 * @return
 	 */
-	public String execute(String mossa){
+	public String execute(String storico,String giocatore,String mossa){
 		return ""+1;
 	}
 }
