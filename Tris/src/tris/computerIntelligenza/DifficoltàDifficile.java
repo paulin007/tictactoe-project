@@ -12,7 +12,6 @@ import tris.Simbolo;
 import tris.TabellaTris;
 
 public class DifficoltàDifficile implements Difficoltà  {
-	private static String simboloPC = "c";
 	private int mossa;
 	@Override
 	public int generaMossa(TabellaTris tabellaTris) {
@@ -32,13 +31,9 @@ public class DifficoltàDifficile implements Difficoltà  {
 			mossa = tabellaTris.getMossa();
 			
 		}
-		
 		mosseVerticali(tabellaTris);
 		mosseDiagonali(tabellaTris);
 		mosseOrizzontali(tabellaTris);
-		
-		
-			
 		tabellaTris.getCaselle().get(mossa).setSimbolo(Simbolo.simboloG2);
 		return mossa;
 	}
@@ -54,7 +49,7 @@ public class DifficoltàDifficile implements Difficoltà  {
 			Casella casella1 = tabellaTris.getCaselle().get(i);
 			Casella casella2 = tabellaTris.getCaselle().get(i+3);
 			Casella casella3 = tabellaTris.getCaselle().get(i+6);
-			if(casella1.possibileMossa(casella2, casella3)){
+			if(casella1.possibileMossaG2(casella2, casella3)){
 				mossa = i+6;
 				System.out.println("Attacco verticale"+mossa);
 				break;
@@ -64,7 +59,7 @@ public class DifficoltàDifficile implements Difficoltà  {
 			Casella casella1 = tabellaTris.getCaselle().get(i);
 			Casella casella2 = tabellaTris.getCaselle().get(i+3);
 			Casella casella3 = tabellaTris.getCaselle().get(i-3);
-			if(casella1.possibileMossa(casella2, casella3)){
+			if(casella1.possibileMossaG2(casella2, casella3)){
 				mossa =  i-3;
 				System.out.println("Attacco verticale"+mossa);
 				break;
@@ -79,27 +74,27 @@ public class DifficoltàDifficile implements Difficoltà  {
 		Casella casella6 = tabellaTris.getCaselle().get(6);
 		Casella casella8 = tabellaTris.getCaselle().get(8);
 		
-		if(casella0.possibileMossa(casella4, casella8)){
+		if(casella0.possibileMossaG2(casella4, casella8)){
 			mossa = 8;
 			System.out.println("Attacco diagonale"+mossa);
 		}
-		if(casella4.possibileMossa(casella8, casella0)){
+		if(casella4.possibileMossaG2(casella8, casella0)){
 			mossa = 0;
 			System.out.println("Attacco diagonale"+mossa);
 		}
-		if(casella2.possibileMossa(casella4, casella6)){
+		if(casella2.possibileMossaG2(casella4, casella6)){
 			mossa = 6;
 			System.out.println("Attacco diagonale"+mossa);
 		}
-		if(casella4.possibileMossa(casella6, casella2)){
+		if(casella4.possibileMossaG2(casella6, casella2)){
 			mossa = 2;
 			System.out.println("Attacco diagonale"+mossa);
 		}
-		if(casella0.possibileMossa(casella8, casella4)){
+		if(casella0.possibileMossaG2(casella8, casella4)){
 			mossa = 4;
 			System.out.println("Attacco diagonale"+mossa);
 		}
-		if(casella2.possibileMossa(casella6, casella4)){
+		if(casella2.possibileMossaG2(casella6, casella4)){
 			mossa = 4;
 			System.out.println("Attacco diagonale"+mossa);
 		}
@@ -110,7 +105,7 @@ public class DifficoltàDifficile implements Difficoltà  {
 			Casella casella1 = tabellaTris.getCaselle().get(0+3*i);
 			Casella casella2 = tabellaTris.getCaselle().get(1+3*i);
 			Casella casella3 = tabellaTris.getCaselle().get(2+3*i);
-			if(casella1.possibileMossa(casella2, casella3)){
+			if(casella1.possibileMossaG2(casella2, casella3)){
 				mossa = 2+3*i;
 				System.out.println("Attacco orizzontale" +mossa);
 				break;
@@ -120,7 +115,7 @@ public class DifficoltàDifficile implements Difficoltà  {
 			Casella casella1 = tabellaTris.getCaselle().get(1+3*i);
 			Casella casella2 = tabellaTris.getCaselle().get(2+3*i);
 			Casella casella3 = tabellaTris.getCaselle().get(3*i);
-			if(casella1.possibileMossa(casella2, casella3)){
+			if(casella1.possibileMossaG2(casella2, casella3)){
 				mossa = 3*i;
 				System.out.println("Attacco orizzontale" +mossa);
 				break;
@@ -130,7 +125,7 @@ public class DifficoltàDifficile implements Difficoltà  {
 			Casella casella1 = tabellaTris.getCaselle().get(3*i);
 			Casella casella2 = tabellaTris.getCaselle().get(2+3*i);
 			Casella casella3 = tabellaTris.getCaselle().get(1+3*i);
-			if(casella1.possibileMossa(casella2, casella3)){
+			if(casella1.possibileMossaG2(casella2, casella3)){
 				mossa = 1+3*i;
 				System.out.println("Attacco orizzontale" +mossa);
 				break;
