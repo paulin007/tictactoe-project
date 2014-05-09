@@ -17,8 +17,10 @@ import javax.swing.KeyStroke;
 import statistiche.InterpreteStatisticheDefault;
 import tris.computerIntelligenza.Difficoltà;
 import tris.computerIntelligenza.DifficoltàDifficile;
-import tris.computerIntelligenza.DifficoltàNonImplementata;
+import tris.computerIntelligenza.DifficoltàMedia;
+import tris.computerIntelligenza.DifficoltàSemplice;
 import tris.computerIntelligenza.ProxyDifficoltà;
+
 
 @SuppressWarnings("serial")
 public class MenuTris extends JMenuBar {
@@ -58,8 +60,8 @@ public class MenuTris extends JMenuBar {
 				proxyPannelloTris.setPannelloTris(new PannelloCheckBox(proxyPannelloTris));
 			}
 		});
-		setMenuDifficoltà(semplice, new DifficoltàNonImplementata(),proxyDifficoltà);
-		setMenuDifficoltà(medio, new DifficoltàNonImplementata(),proxyDifficoltà);
+		setMenuDifficoltà(semplice, new DifficoltàSemplice(),proxyDifficoltà);
+		setMenuDifficoltà(medio, new DifficoltàMedia(),proxyDifficoltà);
 		setMenuDifficoltà(difficile, new DifficoltàDifficile(),proxyDifficoltà);
 		menuPartita.add(nuovaPartita);
 		menuPartita.add(menuLivelli);
