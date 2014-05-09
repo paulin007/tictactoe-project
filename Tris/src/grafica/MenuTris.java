@@ -32,6 +32,7 @@ public class MenuTris extends JMenuBar {
 		JMenu menuLivelli = new JMenu("Difficoltà");
 		JMenu menuOnline = new JMenu("Partita ONLINE");
 		JMenuItem startGiocatori = new JMenuItem("Lista Giocatori");
+		startGiocatori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G,InputEvent.CTRL_MASK ));
 		menuOnline.add(startGiocatori);
 		startGiocatori.addActionListener(new ActionListener() {
 			@Override

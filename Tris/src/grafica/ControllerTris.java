@@ -5,6 +5,7 @@
  */
 package grafica;
 import rete.Client;
+import tris.Simbolo;
 import tris.TabellaTris;
 import tris.computerIntelligenza.DifficoltàSemplice;
 import tris.computerIntelligenza.ProxyDifficoltà;
@@ -83,11 +84,14 @@ public class ControllerTris {
 		proxyPannelloTris.setPannelloTris(pannelloGioco);
 	}
 	
-	public void setPannelloGiocoOnline(){
-		pannelloGiocoOnline = new PannelloGiocoOnline(this);
+	public void setPannelloGiocoOnline(String simbolo,String icona){
+		pannelloGiocoOnline = new PannelloGiocoOnline(this,simbolo,icona);
 		proxyPannelloTris.setPannelloTris(pannelloGiocoOnline);
 	}
 	
+	public PannelloGiocatori getPannelloGiocatori() {
+		return pannelloGiocatori;
+	}
 	public Client getClient() {
 		return client;
 	}

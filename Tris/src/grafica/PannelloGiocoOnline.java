@@ -10,16 +10,19 @@ import java.util.StringTokenizer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import tris.Simbolo;
+
 public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 	
 	private ArrayList<JButton> griglia = new ArrayList<>();
-	private Icona iconaMia = new Croce();
-	private Icona iconaAvversario = new Cerchio();
+	private Icona iconaMia;
+	private Icona iconaAvversario;
 	private ControllerTris controllerTris;
 	private static int numeroCaselle = 9;
-	private String mioSimbolo =  "G1";
-	private String simboloAvversario = "G2";
+	private String mioSimbolo;
+	private String simboloAvversario;
 	private String messaggio = "Mossa	"+mioSimbolo+"	";
+	private boolean mioTurno;
 	
 	public PannelloGiocoOnline() {
 		setupInizialeGriglia();
@@ -28,9 +31,12 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 		setupAction();
 	}
 	
-	public PannelloGiocoOnline(ControllerTris controllerTris) {
+	public PannelloGiocoOnline(ControllerTris controllerTris,String mioSimbolo,String iconaMia) {
 		super();
 		this.controllerTris = controllerTris;
+		this.mioSimbolo = mioSimbolo;
+		setIcona(iconaMia);
+		setSimboloAvversario();
 		setupInizialeGriglia();
 		setLayout(new GridLayout(3, 3));
 		setupPanel();
@@ -54,6 +60,8 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 			}
 			index++;
 		}
+		int sommaCaselle = caselleMie.size()+caselleAvversario.size();
+		isMioTurno(sommaCaselle);
 		for (int i = 0; i < caselleMie.size(); i++) {
 			griglia.get(caselleMie.get(i)).setIcon(iconaMia.disegna());
 		}
@@ -93,8 +101,46 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 				});
 		}
 	}
+	/**
+	 * Questo metodo permette di stabilire i simboli che sono usati nel Tris
+	 */
+	private void setSimboloAvversario(){
+		if(mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)){
+			simboloAvversario = Simbolo.simboloG2;
+		}
+		if(mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)){
+			simboloAvversario = Simbolo.simboloG1;
+		}
+	}
 	@Override
 	public JPanel creaPannello() {
 		return this;
+	}
+	/**
+	 * Questo metodo permette di stabilire a chi tocca giocare
+	 * @param sommaCaselle
+	 * @return
+	 */
+	private boolean isMioTurno(int sommaCaselle){
+		boolean state = false;
+		if(mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)&&sommaCaselle%2==0){
+			//somma caselle pari;
+			state = true;
+		}
+		if(mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)&&sommaCaselle%2==1){
+			//somma caselle dispari
+			state = false;
+		}
+		return state;
+	}
+	private void setIcona(String iconaMia){
+		if(iconaMia.equalsIgnoreCase("Croce")){
+			this.iconaMia = new Croce();
+			this.iconaAvversario = new Cerchio();
+		}
+		if(iconaMia.equalsIgnoreCase("Cerchio")){
+			this.iconaMia = new Cerchio();
+			this.iconaAvversario = new Croce();
+		}
 	}
 }
