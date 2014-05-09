@@ -30,10 +30,21 @@ public class MenuTris extends JMenuBar {
 	public MenuTris(final ProxyPannelloTris proxyPannelloTris, ProxyDifficoltà proxyDifficoltà) {
 		
 		final JMenuBar bar = new JMenuBar();
-		JMenu menuPartita = new JMenu("Nuova Partita");
+		JMenu menuPartita = new JMenu("Partita OFFLINE");
 		JMenu menuOpzioni = new JMenu("Opzioni");
 		JMenu menuLivelli = new JMenu("Difficoltà");
 		JMenuItem semplice = new JMenuItem("Semplice");
+		JMenu menuOnline = new JMenu("Partita ONLINE");
+		JMenuItem startGiocatori = new JMenuItem("Lista Giocatori");
+		menuOnline.add(startGiocatori);
+		startGiocatori.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				proxyPannelloTris.setPannelloTris(new PannelloGiocatori());
+				
+			}
+		});
+		startGiocatori.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G,InputEvent.CTRL_MASK ));
 		semplice.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK ));
 		JMenuItem medio = new JMenuItem("Medio");
 		medio.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,InputEvent.CTRL_MASK ));
@@ -71,8 +82,11 @@ public class MenuTris extends JMenuBar {
 		bar.add(menuPartita);
 		bar.add(menuOpzioni);
 		add(menuPartita);
+		add(menuOnline);
 		add(menuOpzioni);
 	}
+	
+	
 	
 	private void setMenuDifficoltà(JMenuItem difficoltà, final Difficoltà livello, final ProxyDifficoltà proxyDifficoltà) {
 		difficoltà.addActionListener(new ActionListener() {

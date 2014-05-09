@@ -1,5 +1,7 @@
 package interfacciaGrafica;
 
+import interfacciaGrafica.rete.Client;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -8,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,7 +22,11 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	private static final long serialVersionUID = 0;
 	private String G1;
 	private String G2;
+
 	
+	
+	
+
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Koukou","Paulin","Andrea" };
 
 	@Override
@@ -60,7 +67,6 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		button.setFont(font);
 		button.setPreferredSize(new Dimension(130, 50));
 		button.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(((String)comboBox1.getSelectedItem()).contentEquals(((String) comboBox2.getSelectedItem()))){
