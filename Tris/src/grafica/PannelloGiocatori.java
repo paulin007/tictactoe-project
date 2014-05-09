@@ -1,3 +1,6 @@
+/**
+ * Questa classe ha la responsabilità di gestire il pannello contente la lista di gicatori, con cui giocare a Tris
+ */
 package grafica;
 
 import java.awt.Color;
@@ -26,7 +29,9 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Koukou","Paulin","Andrea" };
 	private ControllerTris controllerTris;
 	private String iconaScelta;
-	
+	final JComboBox<String> comboBox1 = new JComboBox<>(nomiGiocatori);
+	final JComboBox<String> comboBox2 = new JComboBox<>(nomiGiocatori);
+	final JComboBox<String> comboBox3 = new JComboBox<>(simboli);
 	public PannelloGiocatori(ControllerTris controllerTris) {
 		super();
 		this.controllerTris = controllerTris;
@@ -49,13 +54,13 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		JPanel panel2 = new JPanel();
 		setPanel(panel2, labelAvversario);
 
-		final JComboBox<String> comboBox1 = new JComboBox<>(nomiGiocatori);
+		
 		comboBox1.setSelectedIndex(6);
 		
-		final JComboBox<String> comboBox2 = new JComboBox<>(nomiGiocatori);
+		
         comboBox2.setSelectedIndex(6);
 
-        final JComboBox<String> comboBox3 = new JComboBox<>(simboli);
+        
 		comboBox2.setSelectedIndex(1);
 
 		JPanel pannelloGiocatore = new JPanel();
@@ -78,17 +83,11 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		nuovaPartita.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(((String)comboBox1.getSelectedItem()).contentEquals(((String) comboBox2.getSelectedItem()))){
-					JOptionPane.showMessageDialog(null, "Selezionare Nomi Diversi !!");
-				}
-				else {
-					G1=(String)comboBox1.getSelectedItem();
-					G2=(String)comboBox2.getSelectedItem();
-					setIconaScelta(comboBox3.getSelectedItem().toString());
-					controllerTris.setPannelloGiocoOnline(Simbolo.simboloG1, iconaScelta);
-				}
+				impostaPartitaOnline(Simbolo.simboloG1);
 				System.out.println(G1+" "+(String) comboBox3.getSelectedItem()+"\n"+G2);
 			}
+
+			
 		});
 		
 		JButton riprendiPartita = new JButton("Riprendi");
@@ -100,8 +99,8 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				setIconaScelta(comboBox3.getSelectedItem().toString());
-				controllerTris.setPannelloGiocoOnline(Simbolo.simboloG2, iconaScelta);
+				impostaPartitaOnline(Simbolo.simboloG2);
+				controllerTris.getClient().nuovaPartita(G1, G2);
 				System.out.println("Implementare metodi");
 			}
 		});
@@ -125,6 +124,22 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		
 		
 		return this;
+	}
+	/**
+	 * Questo metodo serve per impostare il tipo di partita Online
+	 * @param simbolo
+	 */
+	private void impostaPartitaOnline(String simbolo) {
+		if(((String)comboBox1.getSelectedItem()).contentEquals(((String) comboBox2.getSelectedItem()))){
+			JOptionPane.showMessageDialog(null, "Selezionare Nomi Diversi !!");
+		}
+		else {
+			G1=(String)comboBox1.getSelectedItem();
+			G2=(String)comboBox2.getSelectedItem();
+			setIconaScelta(comboBox3.getSelectedItem().toString());
+			controllerTris.setPannelloGiocoOnline(Simbolo.simboloG1, iconaScelta);
+			//controllerTris.getClient().nuovaPartita(G1, G2);
+		}
 	}
 
 	private void setPanel(JPanel panel, Component component){

@@ -1,3 +1,6 @@
+/**
+ * Questa classe ha la responsabilità di gestire l'interfaccia grafica del gioco del Tris, che si sviluppa Online
+ */
 package grafica;
 
 import java.awt.Color;
@@ -42,7 +45,10 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 		setupPanel();
 		setupAction();
 	}
-	
+	/**
+	 * Questo metodo permette di interpretare una stringa contente le mosse della partita e stampare a video
+	 * @param partita
+	 */
 	public void disegnaTris(String partita){
 		// inCorso G1 X G2 G1 G1 G2 G2 X X;
 		StringTokenizer stringTokenizer = new StringTokenizer(partita);
@@ -71,13 +77,13 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 		setupPanel();
 	}
 	
-	public void setupPanel(){
+	private void setupPanel(){
 		for (int i = 0; i < griglia.size(); i++) {
 				add(griglia.get(i));
 		}
 	}
 	
-	public void setupInizialeGriglia(){
+	private void setupInizialeGriglia(){
 		for (int i = 0; i < 9; i++) {
 			
 			final JButton button = new JButton();
@@ -85,9 +91,10 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 			griglia.add(button);
 		}
 	}
-	
-	
-	public void setupAction(){
+	/**
+	 * Questo metodo crea l'azione di aver premuto un {@link JButton}
+	 */
+	private void setupAction(){
 		for (int i = 0; i <numeroCaselle; i++) {
 			final int index = i;
 					griglia.get(i).addActionListener(new ActionListener() {
@@ -133,6 +140,10 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 		}
 		return state;
 	}
+	/**
+	 * Questo metodo permette di impostare il tipo di icona che viene mostrata a video
+	 * @param iconaMia
+	 */
 	private void setIcona(String iconaMia){
 		if(iconaMia.equalsIgnoreCase("Croce")){
 			this.iconaMia = new Croce();

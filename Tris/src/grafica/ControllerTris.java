@@ -68,22 +68,33 @@ public class ControllerTris {
 	public void setAlgoritmoTris(AlgoritmoTris algoritmoTris) {
 		this.algoritmoTris = algoritmoTris;
 	}
-	
+	/**
+	 * Questo metodo permette di impostare il pannello di decisione dell'icona e dell'avvio della partita
+	 * contro il computer
+	 */
 	public void setPannelloCheckBox(){
 		pannelloCheckBox = new PannelloCheckBox(this);
 		proxyPannelloTris.setPannelloTris(pannelloCheckBox);
 	}
-	
+	/**
+	 * Questo metodo permette di impostare il pannello contente la lista di giocatori
+	 */
 	public void setPannelloGiocatori(){
 		pannelloGiocatori = new PannelloGiocatori(this);
 		proxyPannelloTris.setPannelloTris(pannelloGiocatori);
 	}
-	
+	/**
+	 * Questo metodo permette di impostare il pannello di gioco contro il Computer
+	 */
 	public void setPannelloGioco(){
 		PannelloGioco pannelloGioco = new PannelloGioco(this);
 		proxyPannelloTris.setPannelloTris(pannelloGioco);
 	}
-	
+	/**
+	 * Questo metodo permette di impostare il pannelo di gioco online
+	 * @param simbolo
+	 * @param icona
+	 */
 	public void setPannelloGiocoOnline(String simbolo,String icona){
 		pannelloGiocoOnline = new PannelloGiocoOnline(this,simbolo,icona);
 		proxyPannelloTris.setPannelloTris(pannelloGiocoOnline);
