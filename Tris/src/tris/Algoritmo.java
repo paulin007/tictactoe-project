@@ -3,6 +3,8 @@
  */
 package tris;
 
+import server.Partita;
+
 public class Algoritmo {
 	/**
 	 * Questo metodo è in grado di poter inviare un comando e ritornare una stringa,
@@ -10,7 +12,7 @@ public class Algoritmo {
 	 * @param mossa
 	 * @return
 	 */
-	public String execute(String storico,String giocatore,String mossa){
+	public String execute(Partita partita,String giocatore,String mossa){
 		return ""+1;
 	}
 }
