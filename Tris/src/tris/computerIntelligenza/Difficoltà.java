@@ -1,4 +1,4 @@
-package computerIntelligenza;
+package tris.computerIntelligenza;
 
 import tris.TabellaTris;
 

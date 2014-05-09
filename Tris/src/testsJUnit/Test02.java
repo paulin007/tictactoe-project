@@ -8,7 +8,7 @@ import java.util.Collections;
 import org.junit.Test;
 
 import tris.TabellaTris;
-import vincita.AlgoritmoTris;
+import tris.vincita.AlgoritmoTris;
 
 /**
  * Test sui metodi della classe {@link AlgoritmoTris}

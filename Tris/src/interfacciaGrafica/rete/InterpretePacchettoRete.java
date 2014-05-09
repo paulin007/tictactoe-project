@@ -1,4 +1,4 @@
-package rete;
+package interfacciaGrafica.rete;
 
 
 public interface InterpretePacchettoRete {

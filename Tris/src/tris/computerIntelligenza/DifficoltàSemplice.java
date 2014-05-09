@@ -3,7 +3,7 @@
  * PC, in modo causale
  * @author Giacomo
  */
-package computerIntelligenza;
+package tris.computerIntelligenza;
 
 import java.util.Random;
 

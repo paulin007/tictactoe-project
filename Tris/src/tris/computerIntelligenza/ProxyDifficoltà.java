@@ -3,7 +3,7 @@
  * la gestione a runtime del tipo di difficoltà che l'utente vuole
  * @author Giacomo
  */
-package computerIntelligenza;
+package tris.computerIntelligenza;
 
 public class ProxyDifficoltà {
 	

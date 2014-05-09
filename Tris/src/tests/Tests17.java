@@ -4,7 +4,7 @@
  */
 package tests;
 
-import rete.InterpretePacchettoDefault;
+import interfacciaGrafica.rete.InterpretePacchettoDefault;
 
 public class Tests17 {
 	public static void main(String[] args) {

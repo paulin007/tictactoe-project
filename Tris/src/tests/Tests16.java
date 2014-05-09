@@ -2,8 +2,8 @@ package tests;
 
 import tris.Simbolo;
 import tris.TabellaTris;
-import vincita.AlgoritmoTris;
-import vincita.GestoreVincite;
+import tris.vincita.AlgoritmoTris;
+import tris.vincita.GestoreVincite;
 
 public class Tests16 {
 	public static void main(String[] args) {

@@ -6,8 +6,7 @@ import org.junit.Test;
 
 import tris.Simbolo;
 import tris.TabellaTris;
-
-import computerIntelligenza.DifficoltàDifficile;
+import tris.computerIntelligenza.DifficoltàDifficile;
 
 /**
  * Testo la funzionalità del metodo generaMossa nella classe

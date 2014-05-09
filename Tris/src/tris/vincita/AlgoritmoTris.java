@@ -2,7 +2,7 @@
  * Questa classe ha resposanbilità di stabilire chi è il vincitore
  * @author Giacomo Bellazzi
  */
-package vincita;
+package tris.vincita;
 
 import java.util.ArrayList;
 import java.util.Observable;

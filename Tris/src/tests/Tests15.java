@@ -7,8 +7,8 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 
 import tris.TabellaTris;
-import vincita.GestoreVincite;
-import vincita.AlgoritmoTris;
+import tris.vincita.AlgoritmoTris;
+import tris.vincita.GestoreVincite;
 /**
  * Testo la funzionalità della classe GestoreVincite
  * @author Dario

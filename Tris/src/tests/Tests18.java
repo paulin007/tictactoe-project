@@ -5,10 +5,10 @@
 package tests;
 
 import interfacciaGrafica.PannelloGiocoOnline;
+import interfacciaGrafica.rete.InterpretePacchettoDefault;
 
 import javax.swing.JFrame;
 
-import rete.InterpretePacchettoDefault;
 import tris.Simbolo;
 import tris.TabellaTris;
 

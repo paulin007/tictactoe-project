@@ -8,8 +8,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import computerIntelligenza.DifficoltàSemplice;
-import computerIntelligenza.ProxyDifficoltà;
+import tris.computerIntelligenza.DifficoltàSemplice;
+import tris.computerIntelligenza.ProxyDifficoltà;
 
 
 public class MainTris {

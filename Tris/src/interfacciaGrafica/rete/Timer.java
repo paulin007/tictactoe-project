@@ -1,4 +1,4 @@
-package rete;
+package interfacciaGrafica.rete;
 
 import java.util.Observable;
 import java.util.Observer;

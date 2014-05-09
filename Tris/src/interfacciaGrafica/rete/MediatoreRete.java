@@ -2,7 +2,7 @@
  * Questa classe astrae sul concetto di invio e ricezione di messaggi dalla rete, che servono
  * per interagire tra i dispositivi
  */
-package rete;
+package interfacciaGrafica.rete;
 
 public interface MediatoreRete {
 	/**

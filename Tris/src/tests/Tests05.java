@@ -2,7 +2,7 @@ package tests;
 
 import tris.Simbolo;
 import tris.TabellaTris;
-import vincita.AlgoritmoTris;
+import tris.vincita.AlgoritmoTris;
 /**
  * Questo test verifica la condizione di pareggio
  * @author Dario

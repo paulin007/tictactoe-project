@@ -1,4 +1,4 @@
-package vincita;
+package tris.vincita;
 
 import java.util.ArrayList;
 import java.util.Observable;

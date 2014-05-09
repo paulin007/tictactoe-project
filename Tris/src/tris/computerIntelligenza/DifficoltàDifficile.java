@@ -3,7 +3,7 @@
  * difficile
  * @author Giacomo
  */
-package computerIntelligenza;
+package tris.computerIntelligenza;
 
 import java.util.Random;
 

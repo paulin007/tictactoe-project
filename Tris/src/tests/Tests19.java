@@ -5,10 +5,10 @@
 package tests;
 
 import interfacciaGrafica.PannelloGiocoOnline;
+import interfacciaGrafica.rete.InterpretePacchettoDefault;
 
 import javax.swing.JFrame;
 
-import rete.InterpretePacchettoDefault;
 import tris.TabellaTris;
 
 public class Tests19 {
@@ -16,7 +16,7 @@ public class Tests19 {
 		TabellaTris tabellaTris = new TabellaTris();
 		tabellaTris.creaTabella();
 		InterpretePacchettoDefault pacchettoDefault = new InterpretePacchettoDefault();
-		rete.Timer timer = new rete.Timer(tabellaTris,pacchettoDefault);
+		interfacciaGrafica.rete.Timer timer = new interfacciaGrafica.rete.Timer(tabellaTris,pacchettoDefault);
 		//timer.timerMossa();
 		String scelta = "croce";
 		PannelloGiocoOnline giocoOnline = new PannelloGiocoOnline(tabellaTris, scelta);

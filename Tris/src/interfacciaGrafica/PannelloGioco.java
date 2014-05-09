@@ -18,9 +18,9 @@ import javax.swing.JPanel;
 import tris.Casella;
 import tris.Simbolo;
 import tris.TabellaTris;
-import vincita.AlgoritmoTris;
-import computerIntelligenza.DifficoltàDifficile;
-import computerIntelligenza.ProxyDifficoltà;
+import tris.computerIntelligenza.DifficoltàDifficile;
+import tris.computerIntelligenza.ProxyDifficoltà;
+import tris.vincita.AlgoritmoTris;
 
 public class PannelloGioco extends JPanel implements PannelloTris,Observer {
 	

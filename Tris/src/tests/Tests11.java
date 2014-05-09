@@ -6,10 +6,9 @@ package tests;
 
 import tris.Simbolo;
 import tris.TabellaTris;
-import vincita.AlgoritmoTris;
-
-import computerIntelligenza.DifficoltàDifficile;
-import computerIntelligenza.ProxyDifficoltà;
+import tris.computerIntelligenza.DifficoltàDifficile;
+import tris.computerIntelligenza.ProxyDifficoltà;
+import tris.vincita.AlgoritmoTris;
 public class Tests11 {
 	public static void main(String[] args) {
 		TabellaTris tabellaTris = new TabellaTris();

@@ -2,7 +2,7 @@
  * Questa classe astrae sul concetto di terna, la quale contiene 3 numeri
  * @author Giacomo
  */
-package vincita;
+package tris.vincita;
 
 public class Terna {
 	

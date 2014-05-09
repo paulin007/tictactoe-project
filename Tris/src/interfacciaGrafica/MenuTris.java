@@ -15,10 +15,10 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import statistiche.InterpreteStatisticheDefault;
-import computerIntelligenza.Difficoltà;
-import computerIntelligenza.DifficoltàDifficile;
-import computerIntelligenza.DifficoltàNonImplementata;
-import computerIntelligenza.ProxyDifficoltà;
+import tris.computerIntelligenza.Difficoltà;
+import tris.computerIntelligenza.DifficoltàDifficile;
+import tris.computerIntelligenza.DifficoltàNonImplementata;
+import tris.computerIntelligenza.ProxyDifficoltà;
 
 @SuppressWarnings("serial")
 public class MenuTris extends JMenuBar {

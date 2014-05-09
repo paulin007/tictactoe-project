@@ -3,7 +3,7 @@
  * una partita sia stata conclusa
  * @author Giacomo
  */
-package vincita;
+package tris.vincita;
 
 import java.util.Observable;
 import java.util.Observer;

@@ -1,7 +1,7 @@
 /**
  * Questa classe ha la reponsabilità di contenere le terne
  */
-package vincita;
+package tris.vincita;
 
 import java.util.ArrayList;
 

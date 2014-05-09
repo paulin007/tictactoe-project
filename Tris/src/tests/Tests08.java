@@ -2,9 +2,8 @@ package tests;
 
 import tris.Simbolo;
 import tris.TabellaTris;
-
-import computerIntelligenza.DifficoltàNonImplementata;
-import computerIntelligenza.ProxyDifficoltà;
+import tris.computerIntelligenza.DifficoltàNonImplementata;
+import tris.computerIntelligenza.ProxyDifficoltà;
 
 public class Tests08 {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package rete;
+package interfacciaGrafica.rete;
 
 import java.io.IOException;
 import java.io.PrintWriter;
