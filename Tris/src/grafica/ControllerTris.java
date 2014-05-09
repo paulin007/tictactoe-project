@@ -22,7 +22,6 @@ public class ControllerTris {
 	private PannelloGiocoOnline pannelloGiocoOnline;
 	private Client client = new Client();
 	
-	
 	public ControllerTris(ProxyDifficoltà proxyDifficolta,
 			ProxyPannelloTris proxyPannelloTris, TabellaTris tabellaTris,
 			AlgoritmoTris algoritmoTris) {

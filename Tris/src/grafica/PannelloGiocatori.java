@@ -84,6 +84,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				impostaPartitaOnline(Simbolo.simboloG1);
+				controllerTris.getClient().send("nuova partita	"+G1+"	"+G2);
 				System.out.println(G1+" "+(String) comboBox3.getSelectedItem()+"\n"+G2);
 			}
 
@@ -100,7 +101,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				impostaPartitaOnline(Simbolo.simboloG2);
-				controllerTris.getClient().nuovaPartita(G1, G2);
+				controllerTris.getClient().send("collegati a	"+G1+"	"+G2);
 				System.out.println("Implementare metodi");
 			}
 		});
@@ -138,7 +139,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			G2=(String)comboBox2.getSelectedItem();
 			setIconaScelta(comboBox3.getSelectedItem().toString());
 			controllerTris.setPannelloGiocoOnline(Simbolo.simboloG1, iconaScelta);
-			//controllerTris.getClient().nuovaPartita(G1, G2);
+			
 		}
 	}
 
