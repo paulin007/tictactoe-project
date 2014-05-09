@@ -20,4 +20,7 @@ public interface IAlgoritmo {
 	 */
 	public String stabilisciVincitore(ArrayList<Casella> caselle);
 	
+	public String getRisultato();
+	
+	public boolean partitaFinita();
 }

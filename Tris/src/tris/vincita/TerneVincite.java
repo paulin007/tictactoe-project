@@ -1,5 +1,6 @@
 /**
- * Questa classe ha la reponsabilità di contenere le terne
+ * Questa classe ha la reponsabilità di contenere le terne vincenti,
+ * per il gioco del tris
  */
 package tris.vincita;
 

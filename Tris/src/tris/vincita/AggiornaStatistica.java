@@ -17,13 +17,12 @@ public class AggiornaStatistica implements Observer {
 	
 	private static String percorsoFile = "./src/StatisticaProva.txt";
 	private Statistica statistica;
-	private GestoreVincite gestoreVincite;
+	private AlgoritmoTris algoritmoTris;
 	private CaricamentoFile caricamentoFile = new CaricamentoFile();
 	
-	public AggiornaStatistica(GestoreVincite gestoreVincite) {
-		this.gestoreVincite = gestoreVincite;
-		gestoreVincite.addObserver(this);
-		
+	public AggiornaStatistica(AlgoritmoTris algoritmoTris){
+		this.algoritmoTris = algoritmoTris;
+		algoritmoTris.addObserver(this);
 		caricamentoFile.setNomeFile(percorsoFile);
 	}
 	
@@ -36,6 +35,7 @@ public class AggiornaStatistica implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("Sono stato notificato");
 		caricaStatistica();
 		aggiornaStatistiche();
 		aggiornaFile();
@@ -46,15 +46,18 @@ public class AggiornaStatistica implements Observer {
 	 */
 	private void aggiornaStatistiche(){
 		
-		boolean vincitaComputer = gestoreVincite.getVerificaVincita().haVintoG2();
-		boolean vincitaGiocatore = gestoreVincite.getVerificaVincita().haVintoG1();
-		boolean nessunoHaVinto = gestoreVincite.getVerificaVincita().nessunoHaVinto();
+		boolean vincitaG1 = algoritmoTris.haVintoG1();
+		System.out.println(algoritmoTris.haVintoG1());
+		boolean vincitaG2 = algoritmoTris.haVintoG1();
+		System.out.println(algoritmoTris.haVintoG2());
+		System.out.println(algoritmoTris.nessunoHaVinto());
+		boolean nessunoHaVinto = algoritmoTris.nessunoHaVinto();
 		
-		if(vincitaComputer){
-			statistica.aggiornaSconfitte();;
-		}
-		if(vincitaGiocatore){
+		if(vincitaG1){
 			statistica.aggiornaVittorie();
+		}
+		if(vincitaG2){
+			statistica.aggiornaSconfitte();
 		}
 		
 		if(nessunoHaVinto){
