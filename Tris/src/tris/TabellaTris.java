@@ -201,4 +201,12 @@ public class TabellaTris  {
 	public void setMossa(int mossa) {
 		this.mossa = mossa;
 	}
+	@Override
+	public String toString(){
+		String partita="";
+		for (int i = 0; i < getCaselle().size(); i++) {
+			partita+=" "+getCaselle().get(i).getSimbolo();
+		}
+		return partita;
+	}
 }

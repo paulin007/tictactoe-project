@@ -43,7 +43,7 @@ public class Casella extends Observable{
 	public boolean isVuota(){
 		boolean vuota=false;
 		
-		if(simbolo==null) vuota=true;
+		if(simbolo==null||Simbolo.casellaVuota.equalsIgnoreCase(simbolo)) vuota=true;
 		
 		return vuota;
 	}

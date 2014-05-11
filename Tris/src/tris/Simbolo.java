@@ -8,6 +8,7 @@ public class Simbolo {
 	
 	public static String simboloG1 = "G1";
 	public static String simboloG2 = "G2";
+	public static String casellaVuota = "V";
 	private String simbolo;
 	public Simbolo(String simbolo) {
 		super();

@@ -16,6 +16,7 @@ public class Partita {
 	public Partita(int id, String giocatore1, String giocatore2){
 		this.giocatore1 = giocatore1;
 		this.giocatore2 = giocatore2;
+		celle.creaTabella();
 		this.id = id;
 		
 	}
@@ -68,7 +69,8 @@ public class Partita {
 		this.risultato = risultato;
 	}
 
-
-	
-	
+	@Override
+	public String toString(){
+		return "Partita "+id+" "+getRisultato()+getCelle().toString();
+	}
 }
