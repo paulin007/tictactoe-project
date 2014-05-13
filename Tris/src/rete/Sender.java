@@ -7,9 +7,11 @@ public class Sender {
 	
 		Client clients = new Client();
 		
-		clients.send("nuova partita	pippo	pluto");
+		System.out.println(clients.send("nuova partita	pippo	pluto"));
 		
-		clients.send("collegati a	pippo	pluto");
+		System.out.println(clients.send("collegati a	pippo	pluto"));
+		
+		System.out.println(clients.send("mossa	0	G1	7"));
 		
 //		System.out.println(clients.nuovaPartita("1", "2"));
 		

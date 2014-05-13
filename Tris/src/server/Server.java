@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import tris.Algoritmo;
-
 public class Server {
 
 	private static ServerSocket servSock;
@@ -17,12 +15,12 @@ public class Server {
 	private static Scanner input;
 	private static int partitaIndex = 0;
 	private static ArrayList<Partita> partite = new ArrayList<Partita>();
-	private static Algoritmo algoritmo = new Algoritmo();
-	
+
 	public static void main(String[] args) {
-		System.out.println("Opening port...\n");
+
+		System.out.println("Apertura porta: " + PORT + "\n");
 		try {
-			servSock = new ServerSocket(PORT); // Step 1.
+			servSock = new ServerSocket(PORT);
 		} catch (IOException ioEx) {
 			System.out.println("Impossibile aprire la porta. Controlla il firewall!");
 			System.exit(1);
@@ -37,44 +35,28 @@ public class Server {
 
 		try {
 			link = servSock.accept();
+			
+			System.out.println("Connessione ricevuta.");
 
 			input = new Scanner(link.getInputStream());
 			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
 
 			String message = input.nextLine();
 
-			//TODO Change StringTokenizer in XML format
+			// TODO Change StringTokenizer in XML format
 			StringTokenizer s = new StringTokenizer(message, "	");
 
-			if (s.countTokens() == 3) {
-
-				String operazione = s.nextToken();
-				if (operazione.equalsIgnoreCase("nuova partita")) {
-					nuovaPartita(output, s);
-				}else if(operazione.equalsIgnoreCase("collegati a")){
-					collegamento(output, s); 
-				}else if(operazione.equalsIgnoreCase("mossa")){
-					int idPartita = Integer.parseInt(s.nextToken());
-					int mossa = Integer.parseInt(s.nextToken());
-					for (int i = 0; i < partite.size(); i++) {
-						if(partite.get(i).getId()==idPartita)
-							//algoritmo.execute()
-							System.out.println();
-							
-							
-							
-							
-							
-					}//TODO Mettere l'algoritmo
-					
-					
-					
-				}
-
-
-				// TODO HashMap
-
+			String operazione = s.nextToken();
+			if (operazione.equalsIgnoreCase("nuova partita")) {
+				nuovaPartita(output, s);
+			} else if (operazione.equalsIgnoreCase("collegati a")) {
+				collegamento(output, s);
+			} else if (operazione.equalsIgnoreCase("mossa")) {
+				inviamossa(output, s);
 			}
+
+			// TODO HashMap
+
 			System.out.println("Message received.");
 		} catch (IOException ioEx) {
 			ioEx.printStackTrace();
@@ -91,21 +73,43 @@ public class Server {
 		}
 	}
 
+	private static void inviamossa(PrintWriter output, StringTokenizer s) {
+		int idPartita = Integer.parseInt(s.nextToken());
+		String giocatore = s.nextToken();
+		int mossa = Integer.parseInt(s.nextToken());
+		for (int i = 0; i < partite.size(); i++) {
+
+			System.out.println("Id partita: " + partite.get(i).getId()+ "\nIdMandato: " + idPartita+"\nI: "+i);
+			if (partite.get(i).getId() == idPartita) {
+
+				System.out.println(idPartita + " - " + giocatore
+						+ " - " + mossa);
+				output.println("SUCA");
+			}
+
+		}
+	}
+
 	private static void collegamento(PrintWriter output, StringTokenizer s) {
-		String giocatore1 = s.nextToken(); 
-		String giocatore2 = s.nextToken(); 
+		String giocatore1 = s.nextToken();
+		String giocatore2 = s.nextToken();
 		boolean partitaEsistente = false;
 		for (int i = 0; i < partite.size(); i++) {
-			if(partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)&&
-					partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2)&&
-						partite.get(i).isConclusa()==false){
-				output.println("Sta restituendoti: "+partite.get(i).getId());
-				System.out.println("Restituito a "+giocatore2+" l'id della partita con "+giocatore1);
+			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
+					&& partite.get(i).getGiocatore2()
+					.equalsIgnoreCase(giocatore2)
+					&& partite.get(i).isConclusa() == false) {
+				output.println("Sta restituendoti: " + partite.get(i).getId());
+				System.out.println("Restituito a " + giocatore2
+						+ " l'id della partita con " + giocatore1 + ": "
+						+ partite.get(i).getId());
 				partitaEsistente = true;
 			}
-			if(!partitaEsistente){
-				output.println("partita non esistente	"+giocatore1+"	"+giocatore2);		//TODO estrai
-				System.out.println("Tentata connessione a partita non esistente.");
+			if (!partitaEsistente) {
+				output.println("partita non esistente	" + giocatore1 + "	"
+						+ giocatore2); // TODO estrai
+				System.out
+				.println("Tentata connessione a partita non esistente.");
 			}
 		}
 	}
@@ -113,8 +117,6 @@ public class Server {
 	private static void nuovaPartita(PrintWriter output, StringTokenizer s) {
 		String giocatore1 = s.nextToken();
 		String giocatore2 = s.nextToken();
-
-		partitaIndex++;
 
 		Partita partitaCreata = new Partita(partitaIndex, giocatore1,
 				giocatore2);
@@ -125,5 +127,7 @@ public class Server {
 				+ giocatore2);
 
 		output.println(partitaIndex);
+		partitaIndex++;
+
 	}
 }
