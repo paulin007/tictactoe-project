@@ -22,9 +22,9 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 	private Icona iconaAvversario;
 	private ControllerTris controllerTris;
 	private static int numeroCaselle = 9;
-	private String mioSimbolo;
+	private String mioSimbolo = "G1";
 	private String simboloAvversario;
-	private String messaggio = "Mossa	"+mioSimbolo+"	";
+	private String messaggio = "Mossa	0	"+mioSimbolo+"	";
 	private boolean mioTurno;
 	
 	public PannelloGiocoOnline() {
@@ -101,8 +101,9 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							if(griglia.get(index).getIcon()==null){
-							griglia.get(index).setIcon(iconaMia.disegna());
-							controllerTris.getClient().send(messaggio+index);
+								if(controllerTris.getClient().send(messaggio+index))
+										griglia.get(index).setIcon(iconaMia.disegna());
+							
 							}	
 						}
 				});

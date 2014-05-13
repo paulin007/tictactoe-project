@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import tris.Algoritmo;
+
 public class Server {
 
 	private static ServerSocket servSock;
@@ -15,6 +17,7 @@ public class Server {
 	private static Scanner input;
 	private static int partitaIndex = 0;
 	private static ArrayList<Partita> partite = new ArrayList<Partita>();
+	
 
 	public static void main(String[] args) {
 
@@ -65,7 +68,7 @@ public class Server {
 		finally {
 			try {
 				System.out.println("\n* Closing connection... *");
-				link.close(); // Step 5.
+				link.close(); 
 			} catch (IOException ioEx) {
 				System.out.println("Unable to disconnect!");
 				System.exit(1);
@@ -76,15 +79,17 @@ public class Server {
 	private static void inviamossa(PrintWriter output, StringTokenizer s) {
 		int idPartita = Integer.parseInt(s.nextToken());
 		String giocatore = s.nextToken();
-		int mossa = Integer.parseInt(s.nextToken());
+		String mossa = s.nextToken();
 		for (int i = 0; i < partite.size(); i++) {
-
-			System.out.println("Id partita: " + partite.get(i).getId()+ "\nIdMandato: " + idPartita+"\nI: "+i);
 			if (partite.get(i).getId() == idPartita) {
+					Algoritmo algoritmo = new Algoritmo();
 
-				System.out.println(idPartita + " - " + giocatore
-						+ " - " + mossa);
-				output.println("SUCA");
+					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
+						output.println(algoritmo.execute(partite.get(i), giocatore, mossa));
+					else
+						output.println(false);
+					partite.get(i).setUltimoGiocatore(giocatore);
+
 			}
 
 		}

@@ -37,6 +37,9 @@ public class Client {
 			output.println(message); // Step 3.
 			response = input.nextLine(); // Step 3.
 			System.err.println("\nSERVER> " + response);
+			if(response.equalsIgnoreCase("false"))
+				return false;
+			input.close();
 
 		} catch (IOException ioEx) {
 			ioEx.printStackTrace();
