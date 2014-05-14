@@ -84,8 +84,8 @@ public class ControllerTris {
 	 * @param simbolo
 	 * @param icona
 	 */
-	public void setPannelloGiocoOnline(String simbolo,String icona){
-		proxyPannelloTris.setPannelloTris(new PannelloGiocoOnline(this,simbolo,icona));
+	public void setPannelloGiocoOnline(String simbolo,String icona,String ID){
+		proxyPannelloTris.setPannelloTris(new PannelloGiocoOnline(this,simbolo,icona,ID));
 	}
 	
 	public Client getClient() {

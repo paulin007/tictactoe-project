@@ -4,80 +4,83 @@
 package grafica;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.StringTokenizer;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import rete.InterpreteMessaggio;
 import rete.TimerPannello;
 import tris.Simbolo;
 
 public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer {
 	
 	private ArrayList<JButton> griglia = new ArrayList<>();
+	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	private Icona iconaMia;
 	private Icona iconaAvversario;
 	private ControllerTris controllerTris;
 	private static int numeroCaselle = 9;
+	private JLabel label = new JLabel("Mio turno");
 	private String mioSimbolo;
 	private String simboloAvversario;
-	private String IDpartita = "0";
-	private String messaggio = "Mossa	"+IDpartita+"	"+mioSimbolo+"	";
-	private boolean mioTurno;
+	private String IDpartita;
+	private String messaggioMossa = "Mossa	";
+	private String ultimaMossa;
+	private boolean mioTurno = false;
+	private boolean risultatoMostrato = false;
 	String messaggioRicevuto ="";
 	
-	public PannelloGiocoOnline() {
-		setupInizialeGriglia();
-		setLayout(new GridLayout(3, 3));
-		setupPanel();
-		setupAction();
-	}
-	
-	public PannelloGiocoOnline(ControllerTris controllerTris,String mioSimbolo,String iconaMia) {
+
+	public PannelloGiocoOnline(ControllerTris controllerTris,String mioSimbolo,String iconaMia,String IDpartita) {
 		super();
 		this.controllerTris = controllerTris;
 		this.mioSimbolo = mioSimbolo;
+		this.IDpartita = IDpartita;
 		setIcona(iconaMia);
 		setSimboloAvversario();
+		setupTurnoInziale();
 		setupInizialeGriglia();
-		setLayout(new GridLayout(3, 3));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setupPanel();
 		setupAction();
 		TimerPannello timerPannello = new TimerPannello();
 		timerPannello.addObserver(this);
-		System.out.println(mioSimbolo);
-		System.out.println(simboloAvversario);
+		System.out.println(IDpartita);
+		messaggioMossa +=this.IDpartita+"	"+mioSimbolo+"	";
 	}
 	/**
 	 * Questo metodo permette di interpretare una stringa contente le mosse della partita e stampare a video
 	 * @param partita
 	 */
-	public void disegnaTris(String partita){
+	public void disegnaTris(){
 		// inCorso G1 X G2 G1 G1 G2 G2 X X;
-		StringTokenizer stringTokenizer = new StringTokenizer(partita);
 		ArrayList<Integer> caselleMie = new ArrayList<>();
 		ArrayList<Integer> caselleAvversario = new ArrayList<>();
-		String statoPartita = stringTokenizer.nextToken();
-		int index = 0;
-		while(stringTokenizer.hasMoreTokens()){
-			String simbolo = stringTokenizer.nextToken();
+		for (int i = 0; i < interpreteMessaggio.getCaselle().size(); i++) {
+			String simbolo = interpreteMessaggio.getCaselle().get(i);
 			if(simbolo.equalsIgnoreCase(mioSimbolo)){
-				caselleMie.add(index);
+				caselleMie.add(i);
 			}
 			if(simbolo.equalsIgnoreCase(simboloAvversario)){
-				caselleAvversario.add(index);
+				caselleAvversario.add(i);
 			}
-			index++;
 		}
-		int sommaCaselle = caselleMie.size()+caselleAvversario.size();
-		isMioTurno(sommaCaselle);
+		isMioTurno(interpreteMessaggio.getUltimoGiocatore());
+		System.out.println(interpreteMessaggio.getUltimoGiocatore());
+//		int sommaCaselle = caselleMie.size()+caselleAvversario.size();
+//		isMioTurno(sommaCaselle);
 		for (int i = 0; i < caselleMie.size(); i++) {
 			griglia.get(caselleMie.get(i)).setIcon(iconaMia.disegna());
 		}
@@ -87,15 +90,34 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		setupPanel();
 	}
 	
-	private void setupPanel(){
+private void setupPanel(){
+		
+		JPanel pannelloTesto = new JPanel();
+		pannelloTesto.setLayout(new FlowLayout(FlowLayout.CENTER,0,15));
+		Font font = new Font("Verdana", Font.BOLD, 16);
+		
+		label.setFont(font);
+		
+		label.setPreferredSize(new Dimension(85,20));
+		
+		pannelloTesto.add(label);
+		pannelloTesto.setPreferredSize(new Dimension(400,50));
+		
+		add(pannelloTesto);
+		
+		JPanel pannelloGriglia = new JPanel();
+		pannelloGriglia.setPreferredSize(new Dimension(400,350));
+		pannelloGriglia.setLayout(new GridLayout(3, 3));
+		
 		for (int i = 0; i < griglia.size(); i++) {
-				add(griglia.get(i));
+			pannelloGriglia.add(griglia.get(i));
 		}
+		
+		add(pannelloGriglia);
 	}
 	
 	private void setupInizialeGriglia(){
 		for (int i = 0; i < 9; i++) {
-			
 			final JButton button = new JButton();
 			button.setBackground(Color.WHITE);
 			griglia.add(button);
@@ -111,14 +133,10 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							if(griglia.get(index).getIcon()==null){
-
-								messaggioRicevuto=controllerTris.getClient().send(messaggio+index);
-								System.out.println(messaggioRicevuto);
-
-								controllerTris.getClient().send(messaggio+index);
-
-										griglia.get(index).setIcon(iconaMia.disegna());
-							
+								ultimaMossa = messaggioMossa+index;
+								System.out.println(ultimaMossa);
+								controllerTris.getClient().send(ultimaMossa);
+								griglia.get(index).setIcon(iconaMia.disegna());
 							}	
 						}
 				});
@@ -144,17 +162,14 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	 * @param sommaCaselle
 	 * @return
 	 */
-	private boolean isMioTurno(int sommaCaselle){
-		boolean state = false;
-		if(mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)&&sommaCaselle%2==0){
-			//somma caselle pari;
-			state = true;
+	private void isMioTurno(String ultimoGiocatore){
+		if(!mioSimbolo.equalsIgnoreCase(ultimoGiocatore)){
+			label.setForeground(Color.GREEN);
+			mioTurno = true;
+		}else{
+			label.setForeground(Color.RED);
+			mioTurno = false;
 		}
-		if(mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)&&sommaCaselle%2==1){
-			//somma caselle dispari
-			state = false;
-		}
-		return state;
 	}
 	/**
 	 * Questo metodo permette di impostare il tipo di icona che viene mostrata a video
@@ -172,11 +187,29 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		disegnaTris("inCorso G1 X G2 G1 G1 G2 G2 X X");
-		mostraRisultato("Giocatore1");
+		interpreteMessaggio.interpreta(controllerTris.getClient().send(ultimaMossa));
+		//interpreteMessaggio.interpreta("Partita	0	Giocatore1	G1 G2 null G1 null null G1 G2 G1 G1");
+		disegnaTris();
+		if(!risultatoMostrato){
+			mostraRisultato();
+			risultatoMostrato = true;
+		}
+		creaPannello();
 	}
-	private void mostraRisultato(String stato){
-		String risultato = "";
+	private void setupTurnoInziale(){
+		if(Simbolo.simboloG1.equalsIgnoreCase(mioSimbolo)){
+			mioTurno = true;
+			label.setForeground(Color.GREEN);
+		}else{
+			mioTurno = false;
+			label.setForeground(Color.RED);
+		}
+	}
+	/**
+	 * Questo metodo permette di mostrare a video, il risultato della partita
+	 */
+	private void mostraRisultato(){
+		String risultato = interpreteMessaggio.getStatoPartita();
 		if(risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)||
 				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)){
 			risultato = "Hai vinto !";

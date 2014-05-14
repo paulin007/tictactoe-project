@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import rete.InterpreteMessaggio;
 import tris.Simbolo;
 
 public class PannelloGiocatori extends JPanel implements PannelloTris{
@@ -32,6 +33,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	final JComboBox<String> comboBox1 = new JComboBox<>(nomiGiocatori);
 	final JComboBox<String> comboBox2 = new JComboBox<>(nomiGiocatori);
 	final JComboBox<String> comboBox3 = new JComboBox<>(simboli);
+	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	public PannelloGiocatori(ControllerTris controllerTris) {
 		super();
 		this.controllerTris = controllerTris;
@@ -83,12 +85,9 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		nuovaPartita.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				interpreteMessaggio.interpreta(controllerTris.getClient().send("nuova partita	"+G1+"	"+G2));
 				impostaPartitaOnline(Simbolo.simboloG1);
-				controllerTris.getClient().send("nuova partita	"+G1+"	"+G2);
-				System.out.println(G1+" "+(String) comboBox3.getSelectedItem()+"\n"+G2);
 			}
-
-			
 		});
 		
 		JButton riprendiPartita = new JButton("Riprendi");
@@ -99,10 +98,9 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
+				interpreteMessaggio.interpreta(controllerTris.getClient().send("collegati a	"+G2+"	"+G1));
 				impostaPartitaOnline(Simbolo.simboloG2);
-				controllerTris.getClient().send("collegati a	"+G1+"	"+G2);
-				System.out.println("Implementare metodi");
+				
 			}
 		});
 		
@@ -138,7 +136,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			G1=(String)comboBox1.getSelectedItem();
 			G2=(String)comboBox2.getSelectedItem();
 			setIconaScelta(comboBox3.getSelectedItem().toString());
-			controllerTris.setPannelloGiocoOnline(Simbolo.simboloG1, iconaScelta);
+			controllerTris.setPannelloGiocoOnline(Simbolo.simboloG1, iconaScelta,interpreteMessaggio.getIDpartita());
 			
 		}
 	}
