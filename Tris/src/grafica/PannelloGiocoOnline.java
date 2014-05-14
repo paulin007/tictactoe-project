@@ -101,7 +101,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							if(griglia.get(index).getIcon()==null){
-								if(controllerTris.getClient().send(messaggio+index))
+								controllerTris.getClient().send(messaggio+index);
 										griglia.get(index).setIcon(iconaMia.disegna());
 							
 							}	

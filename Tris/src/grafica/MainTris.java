@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-import statistiche.InterpreteStatisticheDefault;
 import tris.TabellaTris;
 import tris.computerIntelligenza.DifficoltàSemplice;
 import tris.computerIntelligenza.ProxyDifficoltà;
@@ -21,7 +20,6 @@ public class MainTris {
 		ProxyPannelloTris pannelloTris = new ProxyPannelloTris();
 		pannelloTris.setPannelloTris(new PannelloDiBenvenuto());
 		ProxyDifficoltà proxyDifficoltà = new ProxyDifficoltà(new DifficoltàSemplice());
-		PannelloStatistica pannelloStatistica = new PannelloStatistica(new InterpreteStatisticheDefault());
 		TabellaTris tabellaTris = new TabellaTris();
 		tabellaTris.creaTabella();
 		AlgoritmoTris algoritmoTris = new AlgoritmoTris();

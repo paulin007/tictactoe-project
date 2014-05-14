@@ -28,7 +28,6 @@ public class MenuTris extends JMenuBar {
 		
 		final JMenuBar bar = new JMenuBar();
 		JMenu menuPartita = new JMenu("Partita OFFLINE");
-		JMenu menuOpzioni = new JMenu("Opzioni");
 		JMenu menuLivelli = new JMenu("Difficoltà");
 		JMenu menuOnline = new JMenu("Partita ONLINE");
 		JMenuItem startGiocatori = new JMenuItem("Lista Giocatori");
@@ -46,19 +45,12 @@ public class MenuTris extends JMenuBar {
 		medio.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,InputEvent.CTRL_MASK ));
 		JMenuItem difficile = new JMenuItem("Difficile");
 		difficile.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,InputEvent.CTRL_MASK ));
-		JMenuItem info = new JMenuItem("Info");
+
 		menuLivelli.add(semplice);
 		menuLivelli.add(medio);
 		menuLivelli.add(difficile);
-		JMenuItem record = new JMenuItem("Record");
-		record.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,InputEvent.CTRL_MASK ));
-		record.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-//				proxyPannelloTris.setPannelloTris(new PannelloStatistica(new InterpreteStatisticheDefault()));
-//				controllerTris.setPannelloStatistica();
-			}
-		});
+
+		
 		JMenuItem nuovaPartita = new JMenuItem("Inizia");
 		nuovaPartita.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,InputEvent.CTRL_MASK ));
 		nuovaPartita.addActionListener(new ActionListener() {
@@ -73,13 +65,9 @@ public class MenuTris extends JMenuBar {
 		setMenuDifficoltà(difficile, new DifficoltàDifficile(),controllerTris);
 		menuPartita.add(nuovaPartita);
 		menuPartita.add(menuLivelli);
-		menuOpzioni.add(info);
-		menuOpzioni.add(record);
 		bar.add(menuPartita);
-		bar.add(menuOpzioni);
 		add(menuPartita);
 		add(menuOnline);
-		add(menuOpzioni);
 	}
 	
 	private void setMenuDifficoltà(JMenuItem difficoltà, final Difficoltà livello, final ControllerTris controllerTris) {
