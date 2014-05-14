@@ -73,7 +73,7 @@ public class Partita {
 
 	@Override
 	public String toString(){
-		return "Partita "+id+" "+getRisultato()+"	"+getCelle().toString();
+		return "Partita	"+id+"	"+getRisultato()+"	"+getUltimoGiocatore()+"	"+getCelle().toString();
 	}
 
 	public String getUltimoGiocatore() {
