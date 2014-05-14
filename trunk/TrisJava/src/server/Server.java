@@ -56,6 +56,8 @@ public class Server {
 				collegamento(output, s);
 			} else if (operazione.equalsIgnoreCase("mossa")) {
 				inviamossa(output, s);
+			} else if(operazione.equalsIgnoreCase("update")){
+				inviaAggiornamento(output,s);
 			}
 
 			// TODO HashMap
@@ -135,5 +137,13 @@ public class Server {
 		output.println(partite.get(partitaIndex));
 		partitaIndex++;
 
+	}
+	private static void inviaAggiornamento(PrintWriter output,StringTokenizer s){
+		int idPartita = Integer.parseInt(s.nextToken());
+		for (int i = 0; i < partite.size(); i++) {
+			if (partite.get(i).getId() == idPartita) {
+					output.println(partite.get(i));
+			}
+		}
 	}
 }

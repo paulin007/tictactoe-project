@@ -40,7 +40,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private String ultimaMossa;
 	private boolean mioTurno = false;
 	private boolean risultatoMostrato = false;
-	String messaggioRicevuto ="";
+	//String messaggioRicevuto ="";
 	
 
 	public PannelloGiocoOnline(ControllerTris controllerTris,String mioSimbolo,String iconaMia,String IDpartita) {
@@ -57,11 +57,11 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		setupAction();
 		TimerPannello timerPannello = new TimerPannello();
 		timerPannello.addObserver(this);
-		System.out.println(IDpartita);
+		System.out.println(iconaMia);
 		messaggioMossa +=this.IDpartita+"	"+mioSimbolo+"	";
 	}
 	/**
-	 * Questo metodo permette di interpretare una stringa contente le mosse della partita e stampare a video
+	 * Questo metodo permette di mostrare a video, quello che viene interpretato
 	 * @param partita
 	 */
 	public void disegnaTris(){
@@ -87,10 +87,9 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		for (int i = 0; i < caselleAvversario.size(); i++) {
 			griglia.get(caselleAvversario.get(i)).setIcon(iconaAvversario.disegna());
 		}
-		setupPanel();
 	}
 	
-private void setupPanel(){
+		private void setupPanel(){
 		
 		JPanel pannelloTesto = new JPanel();
 		pannelloTesto.setLayout(new FlowLayout(FlowLayout.CENTER,0,15));
@@ -187,21 +186,24 @@ private void setupPanel(){
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		interpreteMessaggio.interpreta(controllerTris.getClient().send(ultimaMossa));
-		//interpreteMessaggio.interpreta("Partita	0	Giocatore1	G1 G2 null G1 null null G1 G2 G1 G1");
+		interpreteMessaggio.interpreta(controllerTris.getClient().send("Update	"+IDpartita));
 		disegnaTris();
+		mostraRisultato();
 		if(!risultatoMostrato){
 			mostraRisultato();
 			risultatoMostrato = true;
 		}
 		creaPannello();
 	}
+	/**
+	 * Questo metodo permette di impostare il colore del label del turno iniziale
+	 */
 	private void setupTurnoInziale(){
 		if(Simbolo.simboloG1.equalsIgnoreCase(mioSimbolo)){
-			mioTurno = true;
+			this.mioTurno = true;
 			label.setForeground(Color.GREEN);
 		}else{
-			mioTurno = false;
+			this.mioTurno = false;
 			label.setForeground(Color.RED);
 		}
 	}

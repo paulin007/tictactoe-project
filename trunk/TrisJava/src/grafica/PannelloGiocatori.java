@@ -100,7 +100,6 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			public void actionPerformed(ActionEvent arg0) {
 				interpreteMessaggio.interpreta(controllerTris.getClient().send("collegati a	"+G2+"	"+G1));
 				impostaPartitaOnline(Simbolo.simboloG2);
-				
 			}
 		});
 		
@@ -136,7 +135,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			G1=(String)comboBox1.getSelectedItem();
 			G2=(String)comboBox2.getSelectedItem();
 			setIconaScelta(comboBox3.getSelectedItem().toString());
-			controllerTris.setPannelloGiocoOnline(Simbolo.simboloG1, iconaScelta,interpreteMessaggio.getIDpartita());
+			controllerTris.setPannelloGiocoOnline(simbolo, iconaScelta,interpreteMessaggio.getIDpartita());
 			
 		}
 	}

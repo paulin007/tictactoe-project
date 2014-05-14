@@ -14,6 +14,7 @@ public class Client {
 	public Client() {
 		try {
 			host = InetAddress.getLocalHost();
+			
 		} catch (UnknownHostException uhEx) {
 			System.out.println("Host ID not found!");
 			System.exit(1);
