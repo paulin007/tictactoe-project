@@ -9,7 +9,7 @@ public class Partita {
 	private String giocatore2;												// Il secondo giocatore, si aggiunge alla partita
 	private TabellaTris celle = new TabellaTris();							// Celle disponibili
 	boolean conclusa = false;												// Se la partita si � gi� conclusa
-	String risultato = "";
+	String risultato = "inCorso";
 	private int id;
 	private String ultimoGiocatore;
 	
@@ -73,7 +73,7 @@ public class Partita {
 
 	@Override
 	public String toString(){
-		return "Partita "+id+" "+getRisultato()+getCelle().toString();
+		return "Partita "+id+" "+getRisultato()+"	"+getCelle().toString();
 	}
 
 	public String getUltimoGiocatore() {

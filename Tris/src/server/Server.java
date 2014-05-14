@@ -85,9 +85,10 @@ public class Server {
 					Algoritmo algoritmo = new Algoritmo();
 
 					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
-						output.println(algoritmo.execute(partite.get(i), giocatore, mossa));
-					else
-						output.println(false);
+						algoritmo.execute(partite.get(i), giocatore, mossa);
+
+					output.println(partite.get(i));
+
 					partite.get(i).setUltimoGiocatore(giocatore);
 
 			}
@@ -104,7 +105,8 @@ public class Server {
 					&& partite.get(i).getGiocatore2()
 					.equalsIgnoreCase(giocatore2)
 					&& partite.get(i).isConclusa() == false) {
-				output.println("Sta restituendoti: " + partite.get(i).getId());
+					output.println(partite.get(i));
+
 				System.out.println("Restituito a " + giocatore2
 						+ " l'id della partita con " + giocatore1 + ": "
 						+ partite.get(i).getId());
@@ -113,8 +115,7 @@ public class Server {
 			if (!partitaEsistente) {
 				output.println("partita non esistente	" + giocatore1 + "	"
 						+ giocatore2); // TODO estrai
-				System.out
-				.println("Tentata connessione a partita non esistente.");
+				System.out.println("Tentata connessione a partita non esistente.");
 			}
 		}
 	}
@@ -131,7 +132,7 @@ public class Server {
 				+ " \n" + "Giocatore1= " + giocatore1 + "\n" + "Giocatore2= "
 				+ giocatore2);
 
-		output.println(partitaIndex);
+		output.println(partite.get(partitaIndex));
 		partitaIndex++;
 
 	}

@@ -13,6 +13,7 @@ public class TestsAlgoritmo {
 		System.out.println(algoritmo.execute(partita, Simbolo.simboloG1, "2"));//verifico errore
 		System.out.println(algoritmo.execute(partita, Simbolo.simboloG1, "5"));
 		System.out.println(algoritmo.execute(partita, Simbolo.simboloG2, "3"));
+		System.out.println(partita);
 		System.out.println(algoritmo.execute(partita, Simbolo.simboloG1, "8"));
 		System.out.println(partita);
 	}

@@ -21,7 +21,7 @@ public class Client {
 	}
 
 
-	public boolean send(String messaggio) {
+	public String send(String messaggio) {
 		Socket link = null; // Step 1.
 
 		try {
@@ -37,9 +37,8 @@ public class Client {
 			output.println(message); // Step 3.
 			response = input.nextLine(); // Step 3.
 			System.err.println("\nSERVER> " + response);
-			if(response.equalsIgnoreCase("false"))
-				return false;
 			input.close();
+			return response;
 
 		} catch (IOException ioEx) {
 			ioEx.printStackTrace();
@@ -54,6 +53,6 @@ public class Client {
 				System.exit(1);
 			}
 		}
-		return true;
+		return "true";
 	}
 }

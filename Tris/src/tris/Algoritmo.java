@@ -37,7 +37,7 @@ public class Algoritmo {
 		}
 		stabilisciSituazione(partita.getCelle().getCaselle());
 		partita.setRisultato(situazione);
-		return situazione;
+		return partita.toString();
 	}
 	
 	/**
