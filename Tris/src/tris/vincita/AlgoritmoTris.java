@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import tris.Casella;
 
-public class AlgoritmoTris extends Observable implements IAlgoritmo {
+public class AlgoritmoTris extends Observable {
 	
 	private ArrayList<Integer> giocatore1; 
 	private ArrayList<Integer> giocatore2;

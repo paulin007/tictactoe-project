@@ -5,7 +5,6 @@
  */
 package grafica;
 import rete.Client;
-import tris.Simbolo;
 import tris.TabellaTris;
 import tris.computerIntelligenza.DifficoltàSemplice;
 import tris.computerIntelligenza.ProxyDifficoltà;
@@ -15,11 +14,9 @@ public class ControllerTris {
 
 	private ProxyDifficoltà proxyDifficolta;
 	private ProxyPannelloTris proxyPannelloTris;
-	private PannelloCheckBox pannelloCheckBox;
 	private TabellaTris tabellaTris;
 	private AlgoritmoTris algoritmoTris;
-	private PannelloGiocatori pannelloGiocatori;
-	private PannelloGiocoOnline pannelloGiocoOnline;
+	private String scelta;
 	private Client client = new Client();
 	
 	public ControllerTris(ProxyDifficoltà proxyDifficolta,
@@ -31,11 +28,7 @@ public class ControllerTris {
 		this.tabellaTris = tabellaTris;
 		this.algoritmoTris = algoritmoTris;
 	}
-	public PannelloCheckBox getPannelloCheckBox() {
-		return pannelloCheckBox;
-	}
 
-	
 	public ProxyPannelloTris getProxyPannelloTris() {
 		return proxyPannelloTris;
 	}
@@ -72,22 +65,19 @@ public class ControllerTris {
 	 * contro il computer
 	 */
 	public void setPannelloCheckBox(){
-		pannelloCheckBox = new PannelloCheckBox(this);
-		proxyPannelloTris.setPannelloTris(pannelloCheckBox);
+		proxyPannelloTris.setPannelloTris(new PannelloCheckBox(this));
 	}
 	/**
 	 * Questo metodo permette di impostare il pannello contente la lista di giocatori
 	 */
 	public void setPannelloGiocatori(){
-		pannelloGiocatori = new PannelloGiocatori(this);
-		proxyPannelloTris.setPannelloTris(pannelloGiocatori);
+		proxyPannelloTris.setPannelloTris(new PannelloGiocatori(this));
 	}
 	/**
 	 * Questo metodo permette di impostare il pannello di gioco contro il Computer
 	 */
 	public void setPannelloGioco(){
-		PannelloGioco pannelloGioco = new PannelloGioco(this);
-		proxyPannelloTris.setPannelloTris(pannelloGioco);
+		proxyPannelloTris.setPannelloTris(new PannelloGioco(this, scelta));
 	}
 	/**
 	 * Questo metodo permette di impostare il pannelo di gioco online
@@ -95,13 +85,9 @@ public class ControllerTris {
 	 * @param icona
 	 */
 	public void setPannelloGiocoOnline(String simbolo,String icona){
-		pannelloGiocoOnline = new PannelloGiocoOnline(this,simbolo,icona);
-		proxyPannelloTris.setPannelloTris(pannelloGiocoOnline);
+		proxyPannelloTris.setPannelloTris(new PannelloGiocoOnline(this,simbolo,icona));
 	}
 	
-	public PannelloGiocatori getPannelloGiocatori() {
-		return pannelloGiocatori;
-	}
 	public Client getClient() {
 		return client;
 	}
@@ -112,5 +98,9 @@ public class ControllerTris {
 		setProxyDifficolta(new ProxyDifficoltà(new DifficoltàSemplice()));
 		setTabellaTris(new TabellaTris());
 		setAlgoritmoTris(new AlgoritmoTris());
+	}
+	
+	public void setScelta(String scelta) {
+		this.scelta = scelta;
 	}
 }

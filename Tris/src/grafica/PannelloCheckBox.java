@@ -101,7 +101,7 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 				if(scelta()!=null){
 				setLayout(new BorderLayout());
 
-				
+				controller.setScelta(scelta());
 				controller.setPannelloGioco();				
 				}
 				

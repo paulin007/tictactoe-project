@@ -30,11 +30,11 @@ public class PannelloGioco extends JPanel implements PannelloTris,Observer {
 	private boolean partitaFinita;
 
 	
-	public PannelloGioco(ControllerTris controllerTris) {
+	public PannelloGioco(ControllerTris controllerTris, String scelta) {
 		super();
 		this.controllerTris = controllerTris;
 		
-		String miaScelta = controllerTris.getPannelloCheckBox().scelta();
+		String miaScelta = scelta;
 		controllerTris.getAlgoritmoTris().addObserver(this);
 		impostaIcone(miaScelta);
 	}

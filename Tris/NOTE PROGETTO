@@ -1,8 +1,0 @@
-1) TODO: Implementare il cambio di difficoltà per il metodo ui nella classe JButtonPanel
-2) BUG: il livello semplice è da rivedere: a volte il computer non prende una decisione
-3) TODO: Testare le classi GestoreVincite e VisualizzatoreRisultato --> OK
-4) Implementate le strutture per la creazione delle statistiche. Sono funzionante e testate.
-5) Entro oggi pomeriggio, volevo fare un po' di refactoring, perchè il codice della parte grafica è un po' complesso al primo colpo
-6) Il BUG della sovrascrittura sembra risolto
-7) Implementata la JOptionPane dentro GestoreVincite
-8) TODO: fare in modo che non si possano più effettuare mosse quando vince qualcuno (il problema non si presenta se le caselle sono tutte piene)
