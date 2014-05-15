@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+html {
+	background-color: #FFFFFF;
+}
+
+body {
+}
+
+.title {
+	width: 30%;
+	height: 30%;
+	font-family: TicTacToe;
+	font-size: 150%;
+	background-color: red;
+}
+
+.header {
+	margin: auto;
+	width: 70%;
+}
+
+.center {
+	margin: auto;
+	width: 70%;
+}
+
+.levelDiv {
+	margin: auto;
+	width: 30%;
+}
+
+.logo {
+	width: 70%;
+	height: 70%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#levelFieldset {
+	border: none;
+	font-family: dosis;
+}
+
+table {
+	margin-left:auto; 
+    margin-right:auto;
+	border: 2px solid black;
+	border-collapse: collapse;
+}
+
+td {
+	width: 55px;
+	height: 55px;
+	text-align: center;
+	border: 1px solid black;
+}
+
+.box {
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 0px;
+}
