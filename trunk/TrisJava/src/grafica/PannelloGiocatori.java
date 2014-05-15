@@ -27,7 +27,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	private String G1;
 	private String G2;
 	private String[] simboli = {"Cerchio","Croce"};
-	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Koukou","Paulin","Andrea" };
+	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Kokou","Paulin","Andrea" };
 	private ControllerTris controllerTris;
 	private String iconaScelta;
 	final JComboBox<String> comboBox1 = new JComboBox<>(nomiGiocatori);

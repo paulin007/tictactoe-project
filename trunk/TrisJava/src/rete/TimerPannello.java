@@ -6,8 +6,8 @@ import java.util.TimerTask;
 
 public class TimerPannello extends Observable {
 	
-	private static long delayStart = 5000;
-	private static long delay = 5000;
+	private static long delayStart = 3000;
+	private static long delay = 2000;
 	
 	public TimerPannello() {
 		update();

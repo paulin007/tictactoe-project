@@ -32,7 +32,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private Icona iconaAvversario;
 	private ControllerTris controllerTris;
 	private static int numeroCaselle = 9;
-	private JLabel label = new JLabel("Mio turno");
+	private JLabel label = new JLabel("Tuo turno");
 	private String mioSimbolo;
 	private String simboloAvversario;
 	private String IDpartita;
@@ -41,6 +41,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private boolean mioTurno = false;
 	private boolean mostrato = false;
 	private int mossa = 0;
+	private boolean aggiorna = true;
 	//String messaggioRicevuto ="";
 	
 
@@ -80,8 +81,6 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		}
 		isMioTurno(interpreteMessaggio.getUltimoGiocatore());
 		System.out.println(interpreteMessaggio.getUltimoGiocatore());
-//		int sommaCaselle = caselleMie.size()+caselleAvversario.size();
-//		isMioTurno(sommaCaselle);
 		for (int i = 0; i < caselleMie.size(); i++) {
 			griglia.get(caselleMie.get(i)).setIcon(iconaMia.disegna());
 		}
@@ -95,16 +94,10 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		JPanel pannelloTesto = new JPanel();
 		pannelloTesto.setLayout(new FlowLayout(FlowLayout.CENTER,0,15));
 		Font font = new Font("Verdana", Font.BOLD, 16);
-		
 		label.setFont(font);
-		
-		label.setPreferredSize(new Dimension(85,20));
-		
 		pannelloTesto.add(label);
 		pannelloTesto.setPreferredSize(new Dimension(400,50));
-		
 		add(pannelloTesto);
-		
 		JPanel pannelloGriglia = new JPanel();
 		pannelloGriglia.setPreferredSize(new Dimension(400,350));
 		pannelloGriglia.setLayout(new GridLayout(3, 3));
@@ -132,7 +125,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 					griglia.get(i).addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(griglia.get(index).getIcon()==null&&mossa==0){
+							if(griglia.get(index).getIcon()==null&&mossa==0&&mostrato==false){
 								ultimaMossa = messaggioMossa+index;
 								System.out.println(ultimaMossa);
 								controllerTris.getClient().send(ultimaMossa);
@@ -189,10 +182,12 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		interpreteMessaggio.interpreta(controllerTris.getClient().send("Update	"+IDpartita));
-		disegnaTris();
-		mostraRisultato();
-		creaPannello();
+		if(aggiorna){
+			interpreteMessaggio.interpreta(controllerTris.getClient().send("Update	"+IDpartita));
+			disegnaTris();
+			mostraRisultato();
+			creaPannello();
+		}	
 	}
 	/**
 	 * Questo metodo permette di impostare il colore del label del turno iniziale
@@ -215,16 +210,20 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 			risultato = "Hai vinto !";
 			JOptionPane.showMessageDialog(null, risultato);
 			mostrato = true;
+			aggiorna = false;
 		}
 		if(hoPerso(risultato)&&mostrato==false){
 			risultato = "Hai perso !";
 			JOptionPane.showMessageDialog(null, risultato);
 			mostrato = true;
+			aggiorna = false;
 		}
 		if(pareggio(risultato)&&mostrato==false){
 			risultato = "La partita è finita in pareggio";
 			JOptionPane.showMessageDialog(null, risultato);
 			mostrato = true;
+			aggiorna = false;
+			
 		}
 	}
 	private boolean pareggio(String risultato) {

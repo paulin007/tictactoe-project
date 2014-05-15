@@ -106,7 +106,7 @@ public class Server {
 			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
 					&& partite.get(i).getGiocatore2()
 					.equalsIgnoreCase(giocatore2)
-					&& partite.get(i).isConclusa() == false) {
+					&& partite.get(i).getRisultato().equalsIgnoreCase("inCorso")) {
 					output.println(partite.get(i));
 
 				System.out.println("Restituito a " + giocatore2
@@ -114,13 +114,13 @@ public class Server {
 						+ partite.get(i).getId());
 				partitaEsistente = true;
 			}
+		}	
 			if (!partitaEsistente) {
 				output.println("partita non esistente	" + giocatore1 + "	"
 						+ giocatore2); // TODO estrai
 				System.out.println("Tentata connessione a partita non esistente.");
 			}
 		}
-	}
 
 	private static void nuovaPartita(PrintWriter output, StringTokenizer s) {
 		String giocatore1 = s.nextToken();
