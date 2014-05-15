@@ -34,6 +34,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	final JComboBox<String> comboBox2 = new JComboBox<>(nomiGiocatori);
 	final JComboBox<String> comboBox3 = new JComboBox<>(simboli);
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
+	
 	public PannelloGiocatori(ControllerTris controllerTris) {
 		super();
 		this.controllerTris = controllerTris;
@@ -55,14 +56,11 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	
 		JPanel panel2 = new JPanel();
 		setPanel(panel2, labelAvversario);
-
 		
 		comboBox1.setSelectedIndex(6);
 		
-		
         comboBox2.setSelectedIndex(6);
 
-        
 		comboBox2.setSelectedIndex(1);
 
 		JPanel pannelloGiocatore = new JPanel();

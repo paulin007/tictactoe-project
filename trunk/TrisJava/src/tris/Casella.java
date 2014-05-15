@@ -14,8 +14,6 @@ public class Casella extends Observable{
 	private String simbolo;
 	private int IDcasella;
 	
-
-	
 	public Casella(int IDcasella) {
 		this.IDcasella=IDcasella;
 	}
@@ -69,13 +67,14 @@ public class Casella extends Observable{
 	 * @param simbolo
 	 * @return
 	 */
-	public boolean occupataDaSimbolo(Simbolo simbolo){
-		if(getSimbolo().equalsIgnoreCase(simbolo.toString())){
-			return true;
-		}else{
-			return false;
-		}
-	}
+	//TODO QUESTO METODO NON E' USATO DA ALCUNA PARTE!!!
+//	public boolean occupataDaSimbolo(Simbolo simbolo){
+//		if(getSimbolo().equalsIgnoreCase(simbolo.toString())){
+//			return true;
+//		}else{
+//			return false;
+//		}
+//	}
 	/**
 	 * Questo metodo permette di stabilire se due caselle sono consecutive e occupate dal Giocatore
 	 * @param casella2
@@ -107,6 +106,7 @@ public class Casella extends Observable{
 		setChanged();
 		notifyObservers();
 	}
+	
 	@Override
 	public String toString(){
 		return "Simbolo: "+getSimbolo()+" IDcasella: "+getIDcasella();

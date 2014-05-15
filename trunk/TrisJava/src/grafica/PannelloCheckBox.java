@@ -40,12 +40,16 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 	 * Questo metodo permette di stabilire la scelta fatta dall'utente, sul simbolo da usare
 	 * @return
 	 */
-	public String scelta(){
+	public String sceltaSimbolo(){
 		
 		String scelta=null;
 	
-		if(checkbox1.getState()==true )scelta="Cerchio";
-		if(checkbox2.getState()==true )scelta="Croce";
+		if(checkbox1.getState()){
+			scelta="Cerchio";
+		}
+		if(checkbox2.getState()){
+			scelta="Croce";
+		}
 		
 		return scelta;
 	}
@@ -98,10 +102,10 @@ public class PannelloCheckBox extends JPanel implements PannelloTris{
 		start.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(scelta()!=null){
+				if(sceltaSimbolo()!=null){
 				setLayout(new BorderLayout());
 
-				controller.setScelta(scelta());
+				controller.setScelta(sceltaSimbolo());
 				controller.setPannelloGioco();				
 				}
 				

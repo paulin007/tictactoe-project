@@ -3,7 +3,7 @@ package rete;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
-
+//TODO inserire javadoc
 public class TimerPannello extends Observable {
 	
 	private static long delayStart = 3000;

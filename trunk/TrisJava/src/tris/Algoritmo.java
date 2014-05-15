@@ -15,8 +15,6 @@ public class Algoritmo {
 	private ArrayList<Terna> vincitePossibili;
 	private String situazione = "inCorso";
 	
-	
-	
 	public Algoritmo() {
 		super();
 		TerneVincite terneVincite = new TerneVincite();

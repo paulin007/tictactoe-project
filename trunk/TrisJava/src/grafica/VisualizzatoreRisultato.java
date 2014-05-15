@@ -1,0 +1,49 @@
+package grafica;
+
+import javax.swing.JOptionPane;
+
+import rete.InterpreteMessaggio;
+import tris.Simbolo;
+
+
+//TODO responsabilità di visualizzare il risultato
+public class VisualizzatoreRisultato {
+	//TODO JAVADOC
+	public void mostraRisultato(InterpreteMessaggio interpreteMessaggio, String mioSimbolo, boolean aggiorna, boolean mostrato){
+		String risultato = interpreteMessaggio.getStatoPartita();
+		if(hoVinto(risultato, mioSimbolo)&&mostrato==false){
+			risultato = "Hai vinto !";
+			JOptionPane.showMessageDialog(null, risultato);
+			mostrato = true;
+			aggiorna = false;
+		}
+		if(hoPerso(risultato, mioSimbolo)&&mostrato==false){
+			risultato = "Hai perso !";
+			JOptionPane.showMessageDialog(null, risultato);
+			mostrato = true;
+			aggiorna = false;
+		}
+		if(pareggio(risultato)&&mostrato==false){
+			risultato = "La partita è finita in pareggio";
+			JOptionPane.showMessageDialog(null, risultato);
+			mostrato = true;
+			aggiorna = false;
+			
+		}
+	}
+	
+	private boolean hoVinto(String risultato, String mioSimbolo) {
+		return risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)||
+				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2);
+	}
+	
+	private boolean hoPerso(String risultato, String mioSimbolo) {
+		return risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)||
+				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1);
+	}
+	
+	private boolean pareggio(String risultato) {
+		return risultato.equalsIgnoreCase("Pareggio");
+	}
+	
+}

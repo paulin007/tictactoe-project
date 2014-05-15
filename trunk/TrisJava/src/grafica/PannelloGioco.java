@@ -24,69 +24,76 @@ public class PannelloGioco extends JPanel implements PannelloTris,Observer {
 	
 	private static final long serialVersionUID = 0;
 	private ArrayList<JButton> griglia = new ArrayList<>();
-	private Icona iconaMia;
-	private Icona iconaAvversario;
+	//	private Icona iconaMia;
+	//	private Icona iconaAvversario;
+	private Icona[] icone = new Icona[2];	//icone[0]=iconaMia		icone[1]=iconaAvversario
 	private ControllerTris controllerTris;
 	private boolean partitaFinita;
 
-	
+
 	public PannelloGioco(ControllerTris controllerTris, String scelta) {
 		super();
 		this.controllerTris = controllerTris;
-		
+
 		String miaScelta = scelta;
 		controllerTris.getAlgoritmoTris().addObserver(this);
 		impostaIcone(miaScelta);
 	}
-	
+
 	private void impostaIcone(String scelta) {
 		if(scelta.equalsIgnoreCase("Croce")){
-			iconaMia = new Croce();
-			iconaAvversario = new Cerchio();
+			icone[0] = new Croce();
+			icone[1] = new Cerchio();
 		}
 		if(scelta.equalsIgnoreCase("Cerchio")){
-			iconaMia = new Cerchio();
-			iconaAvversario = new Croce();
+			icone[0] = new Cerchio();
+			icone[1] = new Croce();
 		}
 	}
 
 	@Override
 	public JPanel creaPannello() {
-		
+
 		controllerTris.getTabellaTris().creaTabella();
 		setLayout(new GridLayout(3, 3));
+		setupGiocoIniziale();
+		return this;
+	}
+
+	private void setupGiocoIniziale() {
 		setupInizialeGriglia();
 		setupActionListenerGriglia();
 		setupPanel();
-		return this;
 	}
-	
-	public void ia(){
+
+	//TODO inserire JAVADOC metodo che stabilisce la mossa del computer 
+	public void contromossaComputer(){
 		TabellaTris tabellaTris = controllerTris.getTabellaTris();
-		
-		
+
 		if(!partitaFinita){
 			int index = controllerTris.getProxyDifficolta().getDifficoltà().generaMossa(tabellaTris);
-			griglia.get(index).setIcon(iconaAvversario.disegna());
+			griglia.get(index).setIcon(icone[1].disegna());
 			controllerTris.getAlgoritmoTris().stabilisciVincitore(tabellaTris.getCaselle());
 			partitaFinita = controllerTris.getAlgoritmoTris().partitaFinita();
-			
+
 		}
-		
+
 	}
-		
-		public void setupInizialeGriglia(){
-			for (int i = 0; i < 9; i++) {
-				final JButton button = new JButton();
-				button.setBackground(Color.WHITE);
-				griglia.add(button);
-			}
+
+	//TODO inserire JAVADOC
+	public void setupInizialeGriglia(){
+		for (int i = 0; i < 9; i++) {
+			final JButton button = new JButton();
+			button.setBackground(Color.WHITE);
+			griglia.add(button);
 		}
-		
-		public void setupActionListenerGriglia(){
-			final TabellaTris tabellaTris = controllerTris.getTabellaTris();
-			for (int i = 0; i < griglia.size(); i++) {
-			
+	}
+
+	//TODO inserire JAVADOC
+	public void setupActionListenerGriglia(){
+		final TabellaTris tabellaTris = controllerTris.getTabellaTris();
+		for (int i = 0; i < griglia.size(); i++) {
+
 			final int j = i;
 			griglia.get(i).addActionListener(new ActionListener() {
 				@Override
@@ -94,33 +101,35 @@ public class PannelloGioco extends JPanel implements PannelloTris,Observer {
 					Casella casellaSelezionata = tabellaTris.getCaselle().get(j);
 					if(casellaSelezionata.isVuota() && griglia.get(j).getIcon()==null){
 						if(!partitaFinita){
-						griglia.get(j).setIcon(iconaMia.disegna());
-						casellaSelezionata.setSimbolo(Simbolo.simboloG1);
-						controllerTris.getAlgoritmoTris().stabilisciVincitore(tabellaTris.getCaselle());
-						
-						partitaFinita = controllerTris.getAlgoritmoTris().partitaFinita();
-						
-						ia();
-						
+							griglia.get(j).setIcon(icone[0].disegna());
+							casellaSelezionata.setSimbolo(Simbolo.simboloG1);
+							controllerTris.getAlgoritmoTris().stabilisciVincitore(tabellaTris.getCaselle());
+
+							partitaFinita = controllerTris.getAlgoritmoTris().partitaFinita();
+
+							contromossaComputer();
+
 						}
 					}
 				}
-				});
-			}
+			});
 		}
-		
-		
-		public void setupPanel(){
-			
-			for (int i = 0; i < griglia.size(); i++) {
-					add(griglia.get(i));
-			}
-		}
+	}
 
 
-		@Override
-		public void update(Observable o, Object arg) {
-			partitaFinita = true;
-			controllerTris.getAlgoritmoTris().getRisultato();
+	//TODO inserire JAVADOC
+	public void setupPanel(){
+
+		for (int i = 0; i < griglia.size(); i++) {
+			add(griglia.get(i));
 		}
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		partitaFinita = true;
+		controllerTris.getAlgoritmoTris().getRisultato();
+	}
+	
 }

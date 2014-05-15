@@ -91,9 +91,12 @@ public class ControllerTris {
 	public Client getClient() {
 		return client;
 	}
+	
 	public void setClient(Client client) {
 		this.client = client;
 	}
+	
+	//TODO javadoc
 	public void resetController(){
 		setProxyDifficolta(new ProxyDifficoltà(new DifficoltàSemplice()));
 		setTabellaTris(new TabellaTris());

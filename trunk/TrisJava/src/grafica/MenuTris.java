@@ -22,8 +22,6 @@ import tris.computerIntelligenza.DifficoltàSemplice;
 @SuppressWarnings("serial")
 public class MenuTris extends JMenuBar {
 	
-	
-	
 	public MenuTris(final ControllerTris controllerTris) {
 		
 		final JMenuBar bar = new JMenuBar();

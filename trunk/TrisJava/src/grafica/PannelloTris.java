@@ -7,6 +7,7 @@ package grafica;
 import javax.swing.JPanel;
 
 public interface PannelloTris {
+	
 	/**
 	 * Questo metodo permette di creare un pannello e recuperarlo
 	 * @return

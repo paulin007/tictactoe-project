@@ -11,6 +11,10 @@ public class TerneVincite {
 	private ArrayList<Terna> terneVincenti;
 	
 	public TerneVincite() {
+		aggiungiTerne();
+	}
+	
+	private void aggiungiTerne() {
 		terneVincenti = new ArrayList<>();
 		// Vittorie Orizzontali
 		terneVincenti.add(new Terna(0, 1, 2));
@@ -24,6 +28,7 @@ public class TerneVincite {
 		terneVincenti.add(new Terna(0, 4, 8));
 		terneVincenti.add(new Terna(2, 4, 6));
 	}
+	
 	public ArrayList<Terna> getTerneVincenti() {
 		return terneVincenti;
 	}

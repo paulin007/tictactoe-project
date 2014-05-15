@@ -2,7 +2,7 @@ package rete;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-
+//TODO responsabilit di interpretare un messaggio e restituire i dati della partita
 public class InterpreteMessaggio {
 	
 	private String tipoMessaggio;
@@ -11,6 +11,7 @@ public class InterpreteMessaggio {
 	private String ultimoGiocatore;
 	private ArrayList<String> caselle;
 	
+	//TODO javadoc
 	public void interpreta(String messaggio){
 		StringTokenizer stringTokenizer = new StringTokenizer(messaggio);
 		tipoMessaggio = stringTokenizer.nextToken();

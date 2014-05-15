@@ -1,5 +1,6 @@
 package rete;
 
+//TODO inserire JAVADOC
 public class GestorePartita {
 	
 	private boolean turnoG1;

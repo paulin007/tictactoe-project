@@ -24,4 +24,6 @@ public class Cerchio implements Icona{
 		ImageIcon icon = new ImageIcon( img );
 		return icon;
 	}
+	
+	
 }

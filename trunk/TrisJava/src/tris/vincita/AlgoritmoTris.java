@@ -15,7 +15,7 @@ public class AlgoritmoTris extends Observable {
 	
 	private ArrayList<Integer> giocatore1; 
 	private ArrayList<Integer> giocatore2;
-	private ArrayList<Terna> vincitePossibili; // perchè non usare direttamente terneVincite?
+	private ArrayList<Terna> vincitePossibili; //TODO perchè non usare direttamente terneVincite?
 	private String risultato = null;
 	
 	public AlgoritmoTris() {
