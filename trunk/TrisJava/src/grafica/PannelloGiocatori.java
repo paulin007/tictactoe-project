@@ -98,7 +98,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				interpreteMessaggio.interpreta(controllerTris.getClient().send("collegati a	"+G2+"	"+G1));
+				interpreteMessaggio.interpreta(controllerTris.getClient().send("collegati a	"+G1+"	"+G2));
 				impostaPartitaOnline(Simbolo.simboloG2);
 			}
 		});

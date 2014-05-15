@@ -39,7 +39,8 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private String messaggioMossa = "Mossa	";
 	private String ultimaMossa;
 	private boolean mioTurno = false;
-	private boolean risultatoMostrato = false;
+	private boolean mostrato = false;
+	private int mossa = 0;
 	//String messaggioRicevuto ="";
 	
 
@@ -131,11 +132,12 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 					griglia.get(i).addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							if(griglia.get(index).getIcon()==null){
+							if(griglia.get(index).getIcon()==null&&mossa==0){
 								ultimaMossa = messaggioMossa+index;
 								System.out.println(ultimaMossa);
 								controllerTris.getClient().send(ultimaMossa);
 								griglia.get(index).setIcon(iconaMia.disegna());
+								mossa++;
 							}	
 						}
 				});
@@ -165,6 +167,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		if(!mioSimbolo.equalsIgnoreCase(ultimoGiocatore)){
 			label.setForeground(Color.GREEN);
 			mioTurno = true;
+			mossa=0;
 		}else{
 			label.setForeground(Color.RED);
 			mioTurno = false;
@@ -189,10 +192,6 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		interpreteMessaggio.interpreta(controllerTris.getClient().send("Update	"+IDpartita));
 		disegnaTris();
 		mostraRisultato();
-		if(!risultatoMostrato){
-			mostraRisultato();
-			risultatoMostrato = true;
-		}
 		creaPannello();
 	}
 	/**
@@ -212,19 +211,31 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	 */
 	private void mostraRisultato(){
 		String risultato = interpreteMessaggio.getStatoPartita();
-		if(risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)||
-				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)){
+		if(hoVinto(risultato)&&mostrato==false){
 			risultato = "Hai vinto !";
 			JOptionPane.showMessageDialog(null, risultato);
+			mostrato = true;
 		}
-		if(risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)||
-				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)){
+		if(hoPerso(risultato)&&mostrato==false){
 			risultato = "Hai perso !";
 			JOptionPane.showMessageDialog(null, risultato);
+			mostrato = true;
 		}
-		if(risultato.equalsIgnoreCase("Pareggio")){
+		if(pareggio(risultato)&&mostrato==false){
 			risultato = "La partita è finita in pareggio";
 			JOptionPane.showMessageDialog(null, risultato);
+			mostrato = true;
 		}
+	}
+	private boolean pareggio(String risultato) {
+		return risultato.equalsIgnoreCase("Pareggio");
+	}
+	private boolean hoPerso(String risultato) {
+		return risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)||
+				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1);
+	}
+	private boolean hoVinto(String risultato) {
+		return risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)||
+				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2);
 	}
 }
