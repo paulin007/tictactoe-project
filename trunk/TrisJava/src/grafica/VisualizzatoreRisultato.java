@@ -4,11 +4,21 @@ import javax.swing.JOptionPane;
 
 import rete.InterpreteMessaggio;
 import tris.Simbolo;
-
-
-//TODO responsabilità di visualizzare il risultato
+/**
+ * Questa classe ha la responsabilità di elaborare un messaggio per fornire l'esito di una partita
+ * 
+ * @author Kokou Adjignon
+ */
 public class VisualizzatoreRisultato {
-	//TODO JAVADOC
+	
+	/**
+	 * Dato l'esito di una partita sceglie il messaggio giusto da mostrare
+	 * 
+	 * @param interpreteMessaggio
+	 * @param mioSimbolo
+	 * @param aggiorna
+	 * @param mostrato
+	 */
 	public void mostraRisultato(InterpreteMessaggio interpreteMessaggio, String mioSimbolo, boolean aggiorna, boolean mostrato){
 		String risultato = interpreteMessaggio.getStatoPartita();
 		if(hoVinto(risultato, mioSimbolo)&&mostrato==false){

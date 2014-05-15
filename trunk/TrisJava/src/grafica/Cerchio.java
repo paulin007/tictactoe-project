@@ -5,7 +5,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Disegna una delle due icone usate durante un partita
+ * 
+ * @author Kokou Adjignon
+ */
 public class Cerchio implements Icona{
 
 

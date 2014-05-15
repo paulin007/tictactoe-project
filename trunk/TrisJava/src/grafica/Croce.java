@@ -5,9 +5,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Disegna una delle due icone usate durante un partita
+ * 
+ * @author Kokou Adjignon
+ */
 public class Croce implements Icona {
 
+	@Override
 	public ImageIcon disegna(){
 		
 		BufferedImage img = new BufferedImage(200,200, BufferedImage.TYPE_INT_RGB );

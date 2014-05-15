@@ -6,7 +6,11 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
-
+/**
+ * In questa classe si apre un socket che communica con il server
+ * 
+ * @author Kokou Adjignon
+ */
 public class Client {
 	private static InetAddress host;
 	private static final int PORT = 45454;
@@ -21,7 +25,12 @@ public class Client {
 		}
 	}
 
-
+	/**
+	 * data una richiesta elabora la risposta.
+	 * 
+	 * @param messaggio
+	 * @return response
+	 */
 	public String send(String messaggio) {
 		Socket link = null; // Step 1.
 

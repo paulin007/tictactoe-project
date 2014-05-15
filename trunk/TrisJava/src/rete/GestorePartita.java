@@ -1,6 +1,9 @@
 package rete;
-
-//TODO inserire JAVADOC
+/**
+ * gestisce i turni durante una partita
+ * 
+ * @author Kokou Adjignon
+ */
 public class GestorePartita {
 	
 	private boolean turnoG1;
@@ -17,7 +20,9 @@ public class GestorePartita {
 	public boolean toccaGiocatore2(){
 		return turnoG2;
 	}
-
+	/**
+	 * aggiorna i turni durante una partita.
+	 */
 	public void aggiornaTurno(){
 		if(toccaGiocatore1()){
 			turnoG1=false;

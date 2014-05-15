@@ -96,7 +96,9 @@ public class ControllerTris {
 		this.client = client;
 	}
 	
-	//TODO javadoc
+	/**
+	 * Reimposta le difficoltà, l'algoritmo e la tabella tris per il giocoOffline
+	 */
 	public void resetController(){
 		setProxyDifficolta(new ProxyDifficoltà(new DifficoltàSemplice()));
 		setTabellaTris(new TabellaTris());

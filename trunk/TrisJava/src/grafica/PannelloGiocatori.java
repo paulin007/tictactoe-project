@@ -30,9 +30,9 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Kokou","Paulin","Andrea" };
 	private ControllerTris controllerTris;
 	private String iconaScelta;
-	final JComboBox<String> comboBox1 = new JComboBox<>(nomiGiocatori);
-	final JComboBox<String> comboBox2 = new JComboBox<>(nomiGiocatori);
-	final JComboBox<String> comboBox3 = new JComboBox<>(simboli);
+	final JComboBox comboBox1 = new JComboBox(nomiGiocatori);
+	final JComboBox comboBox2 = new JComboBox(nomiGiocatori);
+	final JComboBox comboBox3 = new JComboBox(simboli);
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	
 	public PannelloGiocatori(ControllerTris controllerTris) {
