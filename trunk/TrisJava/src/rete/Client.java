@@ -1,68 +1,56 @@
 package rete;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
+import java.net.URI;
+import java.util.concurrent.TimeUnit;
+
+import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
+import org.eclipse.jetty.websocket.client.WebSocketClient;
+
+import server.SimpleEchoSocket;
+ 
 /**
- * In questa classe si apre un socket che communica con il server
+ * Client da utilizzare per collegarsi al socket.
  * 
- * @author Kokou Adjignon
+ * @author Andrea Gallo
  */
 public class Client {
-	private static InetAddress host;
-	private static final int PORT = 45454;
+ 
+	String destUri = "ws://localhost:45454";
+    WebSocketClient client = new WebSocketClient();
+    SimpleEchoSocket socket = new SimpleEchoSocket();
 
-	public Client() {
-		try {
-			host = InetAddress.getLocalHost();
-			
-		} catch (UnknownHostException uhEx) {
-			System.out.println("Host ID not found!");
-			System.exit(1);
-		}
-	}
 
-	/**
-	 * data una richiesta elabora la risposta.
-	 * 
-	 * @param messaggio
-	 * @return response
-	 */
+    /**
+     * 
+     * Metodo per inviare un messaggio generico al server.
+     * 
+     * @param messaggio Un messaggio di tipo String che viene interpretato all'interno dell'operazione ed eseguito dall'{@link Algoritmo}
+     * @return Risultato fornito dall'Algoritmo.
+     * 
+     *
+     */
 	public String send(String messaggio) {
-		Socket link = null; // Step 1.
-
 		try {
-			link = new Socket(host, PORT); // Step 1.
+            client.start();
+            URI echoUri = new URI(destUri);
+            ClientUpgradeRequest request = new ClientUpgradeRequest();
+           // client.connect(socket, echoUri, request);
+            System.out.printf("Connecting to : %s%n", echoUri);
+            socket.onMessage(messaggio);
+            socket.awaitClose(5, TimeUnit.SECONDS);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        } finally {
+            try {
+                client.stop();
+                return "fatto";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-			Scanner input = new Scanner(link.getInputStream());// Step 2.
-
-			PrintWriter output = new PrintWriter(link.getOutputStream(), true);// Step
-
-			String message, response;
-
-			message = messaggio;
-			output.println(message); // Step 3.
-			response = input.nextLine(); // Step 3.
-			System.err.println("\nSERVER> " + response);
-			input.close();
-			return response;
-
-		} catch (IOException ioEx) {
-			ioEx.printStackTrace();
-		}
-
-		finally {
-			try {
-				System.out.println("\n* Closing connection... *");
-				link.close(); // Step 4.
-			} catch (IOException ioEx) {
-				System.out.println("Unable to disconnect!");
-				System.exit(1);
-			}
-		}
-		return "true";
+        }
+		return "nonfatto";
+		
+		//TODO fix returns
 	}
 }
