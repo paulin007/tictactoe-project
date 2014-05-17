@@ -13,6 +13,8 @@ public class TabellaTris  {
 	private static int nRighe = 3;
 	private static int nColonne = 3;
 
+	//TODO SI PUO INSERIRE IL METODO creaTabella nel costruttore
+	
 	/**
 	 * Questo metodo permette di creare una tabella per il tris,
 	 * formata da un certo numero di {@link Casella}

@@ -15,6 +15,7 @@ import tris.vincita.AlgoritmoTris;
 
 
 public class MainTris {
+	
 	public MainTris() {
 	
 		ProxyPannelloTris pannelloTris = new ProxyPannelloTris();
@@ -34,7 +35,9 @@ public class MainTris {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	
 	public static void main(String[] args) {
 		MainTris mainTris = new MainTris();
 	}
+	
 }

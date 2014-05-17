@@ -29,7 +29,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 //	private Icona iconaMia;
 //	private Icona iconaAvversario;
-	private Icona[] icone;	//icone[0]=iconaMia		icone[1]=iconaAvversario
+	private Icona[] icone = new Icona[2];	//icone[0]=iconaMia		icone[1]=iconaAvversario
 	private ControllerTris controllerTris;
 	private static int numeroCaselle = 9;
 	private JLabel label = new JLabel("Tuo turno");
