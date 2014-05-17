@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 
-import server.SimpleEchoSocket;
+import server.MyWebSocketHandler;
  
 /**
  * Client da utilizzare per collegarsi al socket.
@@ -17,8 +17,11 @@ public class Client {
  
 	String destUri = "ws://localhost:45454";
     WebSocketClient client = new WebSocketClient();
-    SimpleEchoSocket socket = new SimpleEchoSocket();
+    MyWebSocketHandler socket = new MyWebSocketHandler();
 
+    public Client(){
+    	
+    }
 
     /**
      * 
@@ -34,8 +37,7 @@ public class Client {
             client.start();
             URI echoUri = new URI(destUri);
             ClientUpgradeRequest request = new ClientUpgradeRequest();
-           // client.connect(socket, echoUri, request);
-            System.out.printf("Connecting to : %s%n", echoUri);
+            //client.connect(socket, echoUri, request);
             socket.onMessage(messaggio);
             socket.awaitClose(5, TimeUnit.SECONDS);
         } catch (Throwable t) {

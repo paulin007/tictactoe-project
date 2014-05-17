@@ -22,7 +22,7 @@ import tris.Algoritmo;
  * Basic Echo Client Socket
  */
 @WebSocket(maxTextMessageSize = 64 * 1024)
-public class SimpleEchoSocket {
+public class MyWebSocketHandler {
  
 	private static int partitaIndex = 0;
 	private static ArrayList<Partita> partite = new ArrayList<Partita>();
@@ -31,7 +31,7 @@ public class SimpleEchoSocket {
     @SuppressWarnings("unused")
     private Session session;
  
-    public SimpleEchoSocket() {
+    public MyWebSocketHandler() {
         this.closeLatch = new CountDownLatch(1);
     }
  
@@ -63,7 +63,7 @@ public class SimpleEchoSocket {
     }
  
     @OnWebSocketMessage
-    public String onMessage(String msg) {
+    public void onMessage(String msg) {
     	
     	System.err.println("<------------ "+msg+" -------------->");
 		String message = msg;
@@ -88,7 +88,6 @@ public class SimpleEchoSocket {
 		} else if(operazione.equalsIgnoreCase("update")){
 			inviaAggiornamento(output,s);
 		}
-		return "TEST WEBSOCKET OK";
 
     }
     

@@ -1,0 +1,13 @@
+Per aggiungere le librerie necessarie al server:
+
+- 	Dopo aver fatto l'update vi comparirà il package ServerLibraries.websocket.
+	Contiene tutte le librerie da importare.
+	
+1.	Tasto destro sul progetto 
+2.	Properties (O Alt+Enter)
+3.	Selezionare Java Build Path
+4.	Libraries
+5.	Add Externals Jar
+6.	Inserite tutte le librerie contenute in ServerLibraries.websocket
+
+Per eseguire il server
