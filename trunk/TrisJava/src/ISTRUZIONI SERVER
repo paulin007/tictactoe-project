@@ -23,5 +23,6 @@ Per lavorare col server:
 -	Per creare una nuova partita fare una send di "nuova partita	giocatore1	giocatore2"
 -	Per collegarsi ad una partita fare una send di "collegati a	giocatore1	giocatore2"
 -	Per fare una mossa fare una send di "mossa	idpartita	giocatorechefalamossa	mossanumerica"
+-	Per controllare aggiornamenti fare una send di "update	idpartita"
 
 Il formato Javascript è lo stesso ma al posto delle tabulazioni utilizzare il carattere /

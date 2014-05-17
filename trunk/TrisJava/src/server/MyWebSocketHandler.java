@@ -153,6 +153,7 @@ public class MyWebSocketHandler {
 		return "-1";
 	}
 	
+	@SuppressWarnings("static-access")
 	public void setPartite(ArrayList<Partita> partite){
 		this.partite = partite;
 	}

@@ -25,6 +25,12 @@ import tris.Simbolo;
 
 public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	private ArrayList<JButton> griglia = new ArrayList<>();
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 //	private Icona iconaMia;
@@ -38,6 +44,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private String IDpartita;
 	private String messaggioMossa = "Mossa	";
 	private String ultimaMossa;
+	@SuppressWarnings("unused")
 	private boolean mioTurno = false;
 	private boolean mostrato = false;
 	private int mossa = 0;

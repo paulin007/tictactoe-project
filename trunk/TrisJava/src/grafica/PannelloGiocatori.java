@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import rete.InterpreteMessaggio;
 import tris.Simbolo;
 
+@SuppressWarnings("rawtypes")	
+
 public class PannelloGiocatori extends JPanel implements PannelloTris{
 
 	private static final long serialVersionUID = 0;
@@ -30,8 +32,11 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Kokou","Paulin","Andrea" };
 	private ControllerTris controllerTris;
 	private String iconaScelta;
+	@SuppressWarnings("unchecked")
 	final JComboBox comboBox1 = new JComboBox(nomiGiocatori);
+	@SuppressWarnings("unchecked")
 	final JComboBox comboBox2 = new JComboBox(nomiGiocatori);
+	@SuppressWarnings("unchecked")
 	final JComboBox comboBox3 = new JComboBox(simboli);
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	

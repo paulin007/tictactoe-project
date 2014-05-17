@@ -37,6 +37,7 @@ public class MainTris {
 	}
 	
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		MainTris mainTris = new MainTris();
 	}
 	
