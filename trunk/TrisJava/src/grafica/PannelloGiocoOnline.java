@@ -188,6 +188,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 			this.icone[1] = new Cerchio();
 		}
 		if(iconaMia.equalsIgnoreCase("Cerchio")){
+
 			this.icone[0] = new Cerchio();
 			this.icone[1] = new Croce();
 		}

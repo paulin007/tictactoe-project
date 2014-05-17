@@ -83,6 +83,8 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		nuovaPartita.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				G1 = (String) comboBox1.getSelectedItem();
+				G2 = (String) comboBox2.getSelectedItem();
 				interpreteMessaggio.interpreta(controllerTris.getClient().send("nuova partita	"+G1+"	"+G2));
 				impostaPartitaOnline(Simbolo.simboloG1);
 			}

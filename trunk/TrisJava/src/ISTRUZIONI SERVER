@@ -10,4 +10,10 @@ Per aggiungere le librerie necessarie al server:
 5.	Add Externals Jar
 6.	Inserite tutte le librerie contenute in ServerLibraries.websocket
 
-Per eseguire il server
+Per eseguire il server far partire il main di WebSocketTest
+
+Per collegarsi al server:
+
+-	JavaScript: collegarsi via websocket all'indirizzo ws://localhost:45454
+
+-	Java: Istanziare la classe Client
