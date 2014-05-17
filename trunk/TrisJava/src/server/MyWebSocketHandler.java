@@ -104,8 +104,12 @@ public class MyWebSocketHandler {
 
 	private static String collegamento(StringTokenizer s) {
 		String giocatore1 = s.nextToken();
+		System.out.println(giocatore1);
 		String giocatore2 = s.nextToken();
+		System.out.println(giocatore2);
 		for (int i = 0; i < partite.size(); i++) {
+			System.out.println("GIOCATORE1: "+partite.get(i).getGiocatore1());
+			System.out.println("GIOCATORE2: "+partite.get(i).getGiocatore2());
 			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
 					&& partite.get(i).getGiocatore2()
 							.equalsIgnoreCase(giocatore2)

@@ -114,7 +114,9 @@ public class WebSocketTest {
 
 	private static void collegamento(PrintWriter output, StringTokenizer s) {
 		String giocatore1 = s.nextToken();
+		System.out.println(giocatore1);
 		String giocatore2 = s.nextToken();
+		System.out.println();
 		boolean partitaEsistente = false;
 		for (int i = 0; i < partite.size(); i++) {
 			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
@@ -133,6 +135,7 @@ public class WebSocketTest {
 				output.println("partita non esistente	" + giocatore1 + "	"
 						+ giocatore2); // TODO estrai
 				System.out.println("Tentata connessione a partita non esistente.");
+				System.out.println(s.toString());
 			}
 		}
 
