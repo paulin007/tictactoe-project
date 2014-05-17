@@ -44,7 +44,7 @@
 			<br />
 			<div class="settings">
 				<div class="wrapper">
-					<button class="button" onclick="sendMessage()">
+					<button class="button" onclick="sendNewMatch()">
 						Inizia partita
 					</button>
 					<br />
@@ -54,7 +54,7 @@
 				<div id="foo">
 					<br />
 					Scegli giocatore 1:
-					<select name="scelta1">
+					<select name="scelta1" id="player1name">
 						<option>Giacomo</option>
 						<option>Dario</option>
 						<option>Marco</option>
@@ -65,7 +65,7 @@
 					</select>
 					<br />
 					Scegli giocatore 2:
-					<select name="scelta2">
+					<select name="scelta2" id="player2name">
 						<option>Giacomo</option>
 						<option>Dario</option>
 						<option>Marco</option>
@@ -79,6 +79,7 @@
 					<button class="button" onclick="connetti()">
 						Collegati
 					</button>
+					<textarea id="logArea" rows="10" cols="50"></textarea>
 					</div>
 				</div>
 			</div>
