@@ -9,6 +9,8 @@
 		<link href="./css/main.css" rel="stylesheet" type="text/css">
 		<link href="./css/customFonts.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="./js/client.js"></script>
+		<script type="text/javascript" src="./js/graphics.js"></script>
+
 		<!-- Date: 2014-04-29 -->
 	</head>
 	<body>
@@ -40,27 +42,45 @@
 			</table>
 			<br />
 			<br />
-			<div class="levelDiv">
-				<form action="" id="levelForm">
-					<fieldset id="levelFieldset">
-						<legend>
-							Scegli la difficoltà:
-						</legend>
-						<input type="radio" name="levelRadio" checked value="0" style="vertical-align: middle; margin-top: -1px" onclick="getDifficolta()"/>
-						Facile
-						<br/>
-						<input type="radio" name="levelRadio" value="1" style="vertical-align: middle; margin-top: -1px" onclick="getDifficolta()"/>
-						Medio
-						<br/>
-						<input type="radio" name="levelRadio" value="2" style="vertical-align: middle; margin-top: -1px" onclick="getDifficolta()"/>
-						Difficile
-						<br />
-						<br />
-						<button onclick="sendMessage()">
-							Nuova partita
-						</button>
-					</fieldset>
-				</form>
+			<div class="settings">
+				<div class="wrapper">
+					<button class="button" onclick="sendMessage()">
+						Inizia partita
+					</button>
+					<br />
+					<br />
+					<br />
+				<a href="#" onclick="toggle_visibility('foo');">Clicca qui per modificare le impostazioni</a>
+				<div id="foo">
+					<br />
+					Scegli giocatore 1:
+					<select name="scelta1">
+						<option>Giacomo</option>
+						<option>Dario</option>
+						<option>Marco</option>
+						<option>Santo</option>
+						<option>Kokou</option>
+						<option>Paulin</option>
+						<option>Andrea</option>
+					</select>
+					<br />
+					Scegli giocatore 2:
+					<select name="scelta2">
+						<option>Giacomo</option>
+						<option>Dario</option>
+						<option>Marco</option>
+						<option>Santo</option>
+						<option>Kokou</option>
+						<option>Paulin</option>
+						<option>Andrea</option>
+					</select>
+					<br />
+					<br />
+					<button class="button" onclick="connetti()">
+						Collegati
+					</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

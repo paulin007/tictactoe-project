@@ -25,9 +25,10 @@ body {
 	width: 70%;
 }
 
-.levelDiv {
+.settings {
 	margin: auto;
 	width: 30%;
+	font-family: dosis;
 }
 
 .logo {
@@ -38,9 +39,13 @@ body {
 	margin-right: auto;
 }
 
-#levelFieldset {
-	border: none;
-	font-family: dosis;
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute:
+    top: 50%;
 }
 
 table {
