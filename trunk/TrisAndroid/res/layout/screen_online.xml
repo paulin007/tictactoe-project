@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearlayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#009999"
     android:orientation="vertical" >
 
     <TableLayout
@@ -101,56 +103,60 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
-        android:text="@string/info"
+        android:text="@string/insert_name"
         android:textSize="25sp" />
 
     <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal" >
-
-            <TextView
-                android:id="@+id/human1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/human1" />
-
-            <TextView
-                android:id="@+id/humanCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
-
-            <TextView
-                android:id="@+id/ties"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/ties" />
-
-            <TextView
-                android:id="@+id/tiesCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp" />
-
-            <TextView
-                android:id="@+id/player2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/player2" />
-
-            <TextView
-                android:id="@+id/androidCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
+        
+        
     </TableLayout>
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <EditText
+         android:id="@+id/name_player1"    
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_player1"
+        android:inputType="textPersonName" />
+        
+        <TextView
+        android:id="@+id/vs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#FF0000"
+        android:text="@string/vs"
+        android:textSize="25sp" />
+        
+         <EditText
+        android:id="@+id/name_player2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/name_player2"
+        android:inputType="textPersonName" />
+        
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRow6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ToggleButton
+            android:id="@+id/togglebutton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textOff="Start "
+            android:textOn="Stop "
+            android:textSize="24sp" />
+        
+    </TableRow>
 
 </LinearLayout>

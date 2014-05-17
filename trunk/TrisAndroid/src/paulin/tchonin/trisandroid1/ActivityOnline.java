@@ -6,47 +6,54 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
-
-
 import rete.InterpreteMessaggio;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class ActivityOnline extends Activity{
 	
-	private String message="nuova partita	Paulin	Andrea";
+	private String message;
 	private String response;
 	private Button mBoardButtons[];
 	private TicTacToeOnline mGameOnline;
-	private boolean Player1First = true;
+	private boolean turnPlayer1 = true;
+	private boolean turnPlayer2 = false;
+
 	private boolean mGameOver = false;
 	
 	
 
 	private TextView mInfoTextView;
-	private TextView mHumanCount;
-	private TextView mTieCount;
-	private TextView mAndroidCount;
 	
-	private int mHumanCounter = 0;
-	private int mTieCounter = 0;
-	private int mAndroidCounter = 0;
-
+	EditText editText1 = null;
+	EditText editText2 = null;
+	String namePlayer1;
+	String namePlayer2;
+	
 	
 
-	public void onCreate(Bundle savedInstanceState) {
+
+	
+	
+
+public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_online);
-		//new send().execute();
+		
 		
 		
 		mBoardButtons = new Button[mGameOnline.getBOARD_SIZE()];
@@ -61,29 +68,27 @@ public class ActivityOnline extends Activity{
 		mBoardButtons[8] = (Button) findViewById(R.id.nine);
 
 		mInfoTextView = (TextView) findViewById(R.id.information);
-		mHumanCount = (TextView) findViewById(R.id.humanCount);
-		mTieCount = (TextView) findViewById(R.id.tiesCount);
-		mAndroidCount = (TextView) findViewById(R.id.androidCount);
-
-		mHumanCount.setText(Integer.toString(mHumanCounter));
-		mTieCount.setText(Integer.toString(mTieCounter));
-		mAndroidCount.setText(Integer.toString(mAndroidCounter));
-
+		editText1 = (EditText)findViewById(R.id.name_player1);
+		editText2 = (EditText)findViewById(R.id.name_player2);
+		
+		editText1.addTextChangedListener(textWatcher);
+		editText2.addTextChangedListener(textWatcher);
+		
 		mGameOnline = new TicTacToeOnline();
-
-		startNewGameOnline();
+		
+		ToggleButton();
+		
+		
 		
 		
 	}
 	
 	
-	private class send extends AsyncTask<Void, Void, String > {
+private class send extends AsyncTask<Void, Void, String > {
 		
 		private  InetAddress host;
 		private static final int PORT = 45454;
 		
-		//String messaggio="nuova partita	Paulin	Andrea" ;
-
 		@Override
 		protected String doInBackground(Void... params) {
 		
@@ -96,19 +101,18 @@ public class ActivityOnline extends Activity{
 
 				PrintWriter output = new PrintWriter(link.getOutputStream(), true);// Step
 
-				//String message, response;
-
-				// message = messaggio;
+		
 				output.println(message); // Step 3.
 				response = input.nextLine(); // Step 3.
 				//System.err.println("\nSERVER> " + response);
 				input.close();
-				Log.e("Paulin", response);
+				Log.e("Paulin 104", response);
 				
-				
+				/*
 				InterpreteMessaggio interprete = new InterpreteMessaggio();
 				interprete.interpreta(response);
 				Log.e("Paulin", interprete.getStatoPartita());
+				*/
 				return response;
 				
 
@@ -118,13 +122,10 @@ public class ActivityOnline extends Activity{
 
 			finally {
 				try {
-					//Log.e("Paulin", "\n* Closing connection... *");
-					//System.out.println("\n* Closing connection... *");
+
 					link.close(); // Step 4.
 				} catch (IOException ioEx) {
-					//Log.e("Paulin","Unable to disconnect!");
-					//System.out.println("Unable to disconnect!");
-					//System.exit(1);
+					
 				}
 			}
 			Log.e("Paulin", "true");
@@ -133,7 +134,7 @@ public class ActivityOnline extends Activity{
 
 		@Override
 		protected void onPostExecute(String result) {
-			//mTextView.setText(result);
+			
 		}
 	
 	}
@@ -152,8 +153,10 @@ private void startNewGameOnline() {
 		mBoardButtons[i].setOnClickListener(new ButtonClickListener(i));
 
 	}
+	mInfoTextView.setText(R.string.player1);
 
-	if (Player1First) {
+/*
+	if (turnPlayer1) {
 		// inizia il giocatore 1
 		//TODO al posto di player1 stampare il nome del giocatore
 		mInfoTextView.setText(R.string.player1);
@@ -169,9 +172,9 @@ private void startNewGameOnline() {
 		setMoveOnline(mGameOnline.PLAYER2, move);
 		// la prossima volta che parte il gioco, toccherà al giocatore di
 		// giocare
-		Player1First = true;
+		turnPlayer1 = true;
 	}
-
+*/
 	mGameOver = false;
 
 }
@@ -193,10 +196,6 @@ private void setMoveOnline(char player, int location) {
 
 public boolean onCreateOptionsMenu(Menu menu) {
 
-	/*
-	 * MenuInflater inflater = getMenuInflater();
-	 * inflater.inflate(R.menu.game_menu, menu);
-	 */
 	getMenuInflater().inflate(R.menu.gam_menu_online, menu);
 	return true;
 }
@@ -219,29 +218,31 @@ private class ButtonClickListener implements View.OnClickListener {
 
 	public ButtonClickListener(int location) {
 		this.location = location;
-		Log.e("Paulin", "1");
+		
 	}
 
 	public void onClick(View view) {
 		if (!mGameOver) {
 			
 			if (mBoardButtons[location].isEnabled()) {
-				
-					
-				  if(Player1First){
+						
+				  if(turnPlayer1){
 					setMoveOnline(mGameOnline.PLAYER1, location);
-					Player1First=false;
+					//TODO mandare la mossa al server
+					turnPlayer1=false;
+					
 				  }
+				   // TODO da eliminare
 					int winner = mGameOnline.checkForWinner();
 
 					if (winner == 0) {
 						mInfoTextView.setText(R.string.turn_player2);
-						// TODO inviare la mossa al server e ricevere quella del server2
+						// TODO  ricevere la mossa del server2
 						int move = mGameOnline.getPlayer2Move();
 						// finché non gioca il player2 il player1 non può piu giocare
-						if(false){
+						if(turnPlayer2){
 							setMoveOnline(mGameOnline.PLAYER2, move);
-							Player1First = true;
+							turnPlayer1 = true;
 						}
 						
 						winner = mGameOnline.checkForWinner();
@@ -252,24 +253,22 @@ private class ButtonClickListener implements View.OnClickListener {
 					}
 					else if (winner == 1) {
 						mInfoTextView.setText(R.string.result_tie);
-						mTieCounter++;
-						mTieCount.setText(Integer.toString(mTieCounter));
+						//mTieCounter++;
+						//mTieCount.setText(Integer.toString(mTieCounter));
 						mGameOver = true;
 					} else if (winner == 2) {
 						mInfoTextView.setText(R.string.result_player1_wins);
-						mHumanCounter++;
-						mHumanCount
-								.setText(Integer.toString(mHumanCounter));
+						//mHumanCounter++;
+						//mHumanCount.setText(Integer.toString(mHumanCounter));
 						mGameOver = true;
 					} else {
 						mInfoTextView.setText(R.string.result_player2_wins);
-						mAndroidCounter++;
-						mAndroidCount.setText(Integer
-								.toString(mAndroidCounter));
+						//mAndroidCounter++;
+						//mAndroidCount.setText(Integer.toString(mAndroidCounter));
 						mGameOver = true;
 					}
 
-					// fine online
+					
 				
 			}
 
@@ -278,4 +277,78 @@ private class ButtonClickListener implements View.OnClickListener {
 }
 
 
+     // for ToggleButton
+
+private void ToggleButton(){
+	
+	
+	final ToggleButton button = (ToggleButton) findViewById(R.id.togglebutton);
+	button.setOnClickListener(new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			if (button.isChecked()) {
+				// recuperiamo il nome del giocatore 1
+				namePlayer1 = editText1.getText().toString();
+				// recuperiamo quello del giocatore 2
+				namePlayer2 = editText2.getText().toString();
+				
+				
+				//controlli sui nomi
+				if(namePlayer1.equals("") || namePlayer2.equals("")){
+					Toast.makeText(ActivityOnline.this, R.string.verify, Toast.LENGTH_SHORT).show();
+				 
+				}else{
+					// invio il messaggio al server
+					message = "nuova partita	";
+					message +=namePlayer1;
+					message +="	";
+					message +=namePlayer2;
+					new send().execute();
+					
+					
+					Log.e("Paulin 294", namePlayer1);
+					Log.e("Paulin 295", namePlayer2);
+
+					
+					//mettre le toast ici 
+					
+					
+                    
+					turnPlayer1 = true;
+					startNewGameOnline();										
+				}
+				
+				
+                
+				
+			} else {
+				// on n'a pas encore appuyer : stop
+				
+				turnPlayer1=false;
+				
+				
+				
+				
+			}
+		}
+	});
+	
+}
+
+             //for edittext per vedere quando l'utilisatore scrive nell'edittext
+	private TextWatcher textWatcher = new TextWatcher() {
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+		int count) {
+		//result.setText(defaut);
+		}
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		}
+		@Override
+		public void afterTextChanged(Editable s) {
+		}
+		};
+
+	
 }
