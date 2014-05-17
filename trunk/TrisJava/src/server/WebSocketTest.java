@@ -22,6 +22,7 @@ public class WebSocketTest {
 	private static Scanner input;
 	private static int partitaIndex = 0;
 	private static ArrayList<Partita> partite = new ArrayList<Partita>();
+	private static MyWebSocketHandler handler = new MyWebSocketHandler(); 
 
 	   public static void main(String[] args) throws Exception {
 	        Server server = new Server(45454);
@@ -32,6 +33,7 @@ public class WebSocketTest {
 	            }
 	        };
 	        server.setHandler(wsHandler);
+	        handler.setPartite(partite);
 	        server.start();
 	        
 			System.out.println("Apertura porta: " + PORT + "\n");

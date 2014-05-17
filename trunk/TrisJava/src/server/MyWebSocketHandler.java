@@ -23,7 +23,7 @@ import tris.Algoritmo;
 public class MyWebSocketHandler {
 
 	private static int partitaIndex = 0;
-	private static ArrayList<Partita> partite = new ArrayList<Partita>();
+	private static ArrayList<Partita> partite;
 	private final CountDownLatch closeLatch;
 
 	private Session session;
@@ -151,6 +151,10 @@ public class MyWebSocketHandler {
 			}
 		}
 		return "-1";
+	}
+	
+	public void setPartite(ArrayList<Partita> partite){
+		this.partite = partite;
 	}
 
 }
