@@ -25,10 +25,10 @@ public class WebSocketTest {
 
 	public static void main(String[] args) throws Exception {
 		
-		caricaHashMap("nuova partita".toLowerCase(), new ServizioNuovaPartita());
-		caricaHashMap("collegati a".toLowerCase(), new ServizioCollegamento());
-		caricaHashMap("mossa".toLowerCase(), new ServizioInviaMossa());
-		caricaHashMap("update".toLowerCase(), new ServizioAggiornamento());
+		caricaHashMap("nuova partita", new ServizioNuovaPartita());
+		caricaHashMap("collegati a", new ServizioCollegamento());
+		caricaHashMap("mossa", new ServizioInviaMossa());
+		caricaHashMap("update", new ServizioAggiornamento());
 		
 		Server server = new Server(45454);
 		WebSocketHandler wsHandler = new WebSocketHandler() {
@@ -88,20 +88,20 @@ public class WebSocketTest {
 				output.println(mappaServizi.get(operazione.toLowerCase()).effettuaServizio(s, partite));
 
 			}
+			else
+				output.println("Operazione Sconosciuta");
 
-			// TODO HashMap
-
-			System.out.println("Message received.");
+			System.out.println("Messaggio ricevuto");
 		} catch (IOException ioEx) {
 			ioEx.printStackTrace();
 		}
 
 		finally {
 			try {
-				System.out.println("\n* Closing connection... *");
+				System.out.println("\n* Chiusura in corso... *");
 				link.close(); 
 			} catch (IOException ioEx) {
-				System.out.println("Unable to disconnect!");
+				System.out.println("Impossibile disconnettersi!");
 				System.exit(1);
 			}
 		}

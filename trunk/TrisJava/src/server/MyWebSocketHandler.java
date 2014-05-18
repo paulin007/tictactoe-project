@@ -50,8 +50,6 @@ public class MyWebSocketHandler {
 	@OnWebSocketConnect
 	public void onConnect(Session session) {
 		this.session = session;
-		System.out.println("OUT: "+session.getUpgradeRequest().getHeaders().keySet());
-		System.out.println("OUT2: "+session.getUpgradeRequest().getHeader("Origin"));
 	
 	}
 
@@ -59,7 +57,6 @@ public class MyWebSocketHandler {
 	public void onMessage(String msg) throws InterruptedException,
 			ExecutionException, TimeoutException {
 
-		System.err.println("<------------ " + msg + " -------------->");
 		String message = msg;
 
 		// TODO Change StringTokenizer in XML format
@@ -69,7 +66,7 @@ public class MyWebSocketHandler {
 		String risultato = "Operazione inesistente";
 		
 		if(mappaServizi.containsKey(operazione.toLowerCase())){
-			mappaServizi.get(operazione.toLowerCase()).effettuaServizio(s, partite);
+			risultato = mappaServizi.get(operazione.toLowerCase()).effettuaServizio(s, partite);
 
 		}
 
