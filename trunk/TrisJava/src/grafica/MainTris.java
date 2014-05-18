@@ -13,7 +13,6 @@ import tris.computerIntelligenza.DifficoltàSemplice;
 import tris.computerIntelligenza.ProxyDifficoltà;
 import tris.vincita.AlgoritmoTris;
 
-
 public class MainTris {
 	
 	public MainTris() {
@@ -34,6 +33,7 @@ public class MainTris {
 		frame.setJMenuBar(menuTris);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	
 	}
 	
 	public static void main(String[] args) {

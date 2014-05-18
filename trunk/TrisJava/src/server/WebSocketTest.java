@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -12,68 +13,80 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
-import server.MyWebSocketHandler;
-import tris.Algoritmo;
-
 public class WebSocketTest {
 	
 	private static ServerSocket servSock;
 	private static final int PORT = 45444;
 	private static Scanner input;
-	private static int partitaIndex = 0;
+//	private static int partitaIndex = 0;
 	private static ArrayList<Partita> partite = new ArrayList<Partita>();
 	private static MyWebSocketHandler handler = new MyWebSocketHandler(); 
+	private static HashMap<String, IServizio> mappaServizi = new HashMap<>();
 
-	   public static void main(String[] args) throws Exception {
-	        Server server = new Server(45454);
-	        WebSocketHandler wsHandler = new WebSocketHandler() {
-	            @Override
-	            public void configure(WebSocketServletFactory factory) {
-	                factory.register(MyWebSocketHandler.class);
-	            }
-	        };
-	        server.setHandler(wsHandler);
-	        handler.setPartite(partite);
-	        server.start();
-	        
-			System.out.println("Apertura porta: " + PORT + "\n");
-			try {
-				servSock = new ServerSocket(PORT);
-			} catch (IOException ioEx) {
-				System.out.println("Impossibile aprire la porta. Controlla il firewall!");
-				System.exit(1);
+	public static void main(String[] args) throws Exception {
+		
+		caricaHashMap("nuova partita".toLowerCase(), new ServizioNuovaPartita());
+		caricaHashMap("collegati a".toLowerCase(), new ServizioCollegamento());
+		caricaHashMap("mossa".toLowerCase(), new ServizioInviaMossa());
+		caricaHashMap("update".toLowerCase(), new ServizioAggiornamento());
+		
+		Server server = new Server(45454);
+		WebSocketHandler wsHandler = new WebSocketHandler() {
+			@Override
+			public void configure(WebSocketServletFactory factory) {
+				factory.register(MyWebSocketHandler.class);
 			}
-			do {
-				handleClient();
-			} while (true);
-	        
-    }	private static void handleClient() {
-		Socket link = null;
+		};
+		
+		server.setHandler(wsHandler);
+		handler.setPartite(partite);
+		server.start();
 
+		System.out.println("Apertura porta: " + PORT + "\n");
+		try {
+			servSock = new ServerSocket(PORT);
+		} catch (IOException ioEx) {
+			System.out.println("Impossibile aprire la porta. Controlla il firewall!");
+			System.exit(1);
+		}
+		do {
+			gestoreClient();
+		} while (true);
+
+	}
+	
+	private static void gestoreClient() {
+
+		Socket link = null;
 		try {
 			link = servSock.accept();
-			
-			System.out.println("Connessione ricevuta.");
 
+			System.out.println("Connessione ricevuta.");
+			
 			input = new Scanner(link.getInputStream());
 			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
 
 			String message = input.nextLine();
-			
-			System.out.println(message);
 
+			System.out.println(message);	
+			
 			// TODO Change StringTokenizer in XML format
 			StringTokenizer s = new StringTokenizer(message, "/	");
 
 			String operazione = s.nextToken();
-			if (operazione.equalsIgnoreCase("nuova partita")) {
-				nuovaPartita(output, s);
-			} else if (operazione.equalsIgnoreCase("collegati a")) {
-				collegamento(output, s);
-			} else if (operazione.equalsIgnoreCase("mossa")) {
-				inviamossa(output, s);
-			} else if(operazione.equalsIgnoreCase("update")){
-				inviaAggiornamento(output,s);
+//			if (operazione.equalsIgnoreCase("nuova partita")) {
+//				nuovaPartita(output, s);
+//			} else if (operazione.equalsIgnoreCase("collegati a")) {
+//				collegamento(output, s);
+//			} else if (operazione.equalsIgnoreCase("mossa")) {
+//				inviamossa(output, s);
+//			} else if(operazione.equalsIgnoreCase("update")){
+//				inviaAggiornamento(output,s);
+//			}
+			
+			if(mappaServizi.containsKey(operazione.toLowerCase())){
+				output.println(mappaServizi.get(operazione.toLowerCase()).effettuaServizio(s, partite));
+
 			}
 
 			// TODO HashMap
@@ -92,77 +105,12 @@ public class WebSocketTest {
 				System.exit(1);
 			}
 		}
+		
 	}
-
-	private static void inviamossa(PrintWriter output, StringTokenizer s) {
-		int idPartita = Integer.parseInt(s.nextToken());
-		String giocatore = s.nextToken();
-		String mossa = s.nextToken();
-		for (int i = 0; i < partite.size(); i++) {
-			if (partite.get(i).getId() == idPartita) {
-					Algoritmo algoritmo = new Algoritmo();
-
-					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
-						algoritmo.execute(partite.get(i), giocatore, mossa);
-
-					output.println(partite.get(i));
-
-					partite.get(i).setUltimoGiocatore(giocatore);
-
-			}
-
-		}
-	}
-
-	private static void collegamento(PrintWriter output, StringTokenizer s) {
-		String giocatore1 = s.nextToken();
-		System.out.println(giocatore1);
-		String giocatore2 = s.nextToken();
-		System.out.println();
-		boolean partitaEsistente = false;
-		for (int i = 0; i < partite.size(); i++) {
-			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
-					&& partite.get(i).getGiocatore2()
-					.equalsIgnoreCase(giocatore2)
-					&& partite.get(i).getRisultato().equalsIgnoreCase("inCorso")) {
-					output.println(partite.get(i));
-
-				System.out.println("Restituito a " + giocatore2
-						+ " l'id della partita con " + giocatore1 + ": "
-						+ partite.get(i).getId());
-				partitaEsistente = true;
-			}
-		}	
-			if (!partitaEsistente) {
-				output.println("partita non esistente	" + giocatore1 + "	"
-						+ giocatore2); // TODO estrai
-				System.out.println("Tentata connessione a partita non esistente.");
-				System.out.println(s.toString());
-			}
-		}
-
-	private static void nuovaPartita(PrintWriter output, StringTokenizer s) {
-		String giocatore1 = s.nextToken();
-		String giocatore2 = s.nextToken();
-
-		Partita partitaCreata = new Partita(partitaIndex, giocatore1,
-				giocatore2);
-		partite.add(partitaCreata);
-
-		System.out.println("Iniziato una nuova partita: id=" + partitaIndex
-				+ " \n" + "Giocatore1= " + giocatore1 + "\n" + "Giocatore2= "
-				+ giocatore2);
-
-		output.println(partite.get(partitaIndex));
-		partitaIndex++;
-
-	}
-	private static void inviaAggiornamento(PrintWriter output,StringTokenizer s){
-		int idPartita = Integer.parseInt(s.nextToken());
-		for (int i = 0; i < partite.size(); i++) {
-			if (partite.get(i).getId() == idPartita) {
-					output.println(partite.get(i));
-			}
-		}
-	}
+    
+    public static void caricaHashMap(String nomeServizio, IServizio servizio){
+    	
+    	mappaServizi.put(nomeServizio, servizio);	
+    }
+    
 }
