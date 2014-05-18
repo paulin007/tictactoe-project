@@ -24,19 +24,19 @@
 			<table>
 				<table>
 					<tr>
-						<td><a href="#" onClick="clic(1,1)"><img class="box" name="m11" src="./img/blankpage.jpg" alt="m11"/></a></td>
-						<td><a href="#" onClick="clic(1,2)"><img class="box" name="m12" src="./img/blankpage.jpg" alt="m12"/></a></td>
-						<td><a href="#" onClick="clic(1,3)"><img class="box" name="m13" src="./img/blankpage.jpg" alt="m13"/></a></td>
+						<td><a href="#" onClick="clicCasella(0)"><img class="box" name="m11" src="./img/blankpage.jpg" alt="m11"/></a></td>
+						<td><a href="#" onClick="clicCasella(1)"><img class="box" name="m12" src="./img/blankpage.jpg" alt="m12"/></a></td>
+						<td><a href="#" onClick="clicCasella(2)"><img class="box" name="m13" src="./img/blankpage.jpg" alt="m13"/></a></td>
 					</tr>
 					<tr>
-						<td><a href="#" onClick="clic(2,1)"><img class="box" name="m21" src="./img/blankpage.jpg" alt="m21"/></a></td>
-						<td><a href="#" onClick="clic(2,2)"><img class="box" name="m22" src="./img/blankpage.jpg" alt="m22"/></a></td>
-						<td><a href="#" onClick="clic(2,3)"><img class="box" name="m23" src="./img/blankpage.jpg" alt="m23"/></a></td>
+						<td><a href="#" onClick="clicCasella(3)"><img class="box" name="m21" src="./img/blankpage.jpg" alt="m21"/></a></td>
+						<td><a href="#" onClick="clicCasella(4)"><img class="box" name="m22" src="./img/blankpage.jpg" alt="m22"/></a></td>
+						<td><a href="#" onClick="clicCasella(5)"><img class="box" name="m23" src="./img/blankpage.jpg" alt="m23"/></a></td>
 					</tr>
 					<tr>
-						<td><a href="#" onClick="clic(3,1)"><img class="box" name="m31" src="./img/blankpage.jpg" alt="31"/></a></td>
-						<td><a href="#" onClick="clic(3,2)"><img class="box" name="m32" src="./img/blankpage.jpg" alt="32"/></a></td>
-						<td><a href="#" onClick="clic(3,3)"><img class="box" name="m33" src="./img/blankpage.jpg" alt="33"/></a></td>
+						<td><a href="#" onClick="clicCasella(6)"><img class="box" name="m31" src="./img/blankpage.jpg" alt="31"/></a></td>
+						<td><a href="#" onClick="clicCasella(7)"><img class="box" name="m32" src="./img/blankpage.jpg" alt="32"/></a></td>
+						<td><a href="#" onClick="clicCasella(8)"><img class="box" name="m33" src="./img/blankpage.jpg" alt="33"/></a></td>
 					</tr>
 				</table>
 			</table>
@@ -45,7 +45,11 @@
 			<div class="settings">
 				<div class="wrapper">
 					<button class="button" onclick="sendNewMatch()">
-						Inizia partita
+						Nuova partita
+					</button>
+					<br />
+					<button class="button" onclick="connectToMatch()">
+						Partita esistente
 					</button>
 					<br />
 					<br />
@@ -76,8 +80,11 @@
 					</select>
 					<br />
 					<br />
-					<button class="button" onclick="connetti()">
+					<button class="button" onclick="createConnection()">
 						Collegati
+					</button>
+					<button class="button" onclick="test()">
+						Test
 					</button>
 					<textarea id="logArea" rows="10" cols="50"></textarea>
 					</div>

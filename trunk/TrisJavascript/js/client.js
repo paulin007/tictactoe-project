@@ -9,8 +9,8 @@ var firstPlayerName;
 var secondPlayerName;
 var idPartita;
 
-function connetti() {
-	webSocket = new WebSocket("ws://localhost:45454/");
+function createConnection() {
+	webSocket = new WebSocket("ws://localhost:45454");
 
 	webSocket.onopen = function(message) {
 		processOpen(message);
@@ -23,23 +23,67 @@ function connetti() {
 	webSocket.onclose = function(message) {
 		processClose(message);
 	};
-}
 
-function processMessage(message) {
-	idPartita = message.data.split("	",2)[1];
-	document.getElementById("logArea").value += "idPartita: " + idPartita + "\n";
-}
-
-function processOpen(message) {
-	//alert("connessione al server");
+	webSocket.onerror = function(message) {
+		processError(message);
+	};
 };
 
-function processClose(message) {
-	webSocket.send("client disconnesso");
+String.prototype.beginsWith = function (string) {
+    return(this.indexOf(string) === 0);
+};
+
+function test(){
+	//webSocket.send("mossa/0/Giacomo/1");
+	alert(idPartita);
+}
+
+function clicCasella(numero){
+	string = "mossa/"+idPartita+"/"+getFirstPlayerName()+"/"+numero;
+	alert(string);
+	webSocket.send(string);
+}
+
+function getFirstPlayerName() {
+	firstPlayerName = document.getElementById('player1name').options[document.getElementById('player1name').selectedIndex].text;
+	return firstPlayerName;
+};
+
+function getSecondPlayerName() {
+	secondPlayerName = document.getElementById('player2name').options[document.getElementById('player2name').selectedIndex].text;
+	return secondPlayerName;
 };
 
 function sendNewMatch() {
-	firstPlayerName = document.getElementById('player1name').options[document.getElementById('player1name').selectedIndex].text;
-	secondPlayerName = document.getElementById('player2name').options[document.getElementById('player2name').selectedIndex].text;
-	webSocket.send("nuova partita/" + firstPlayerName + "/" + secondPlayerName);
+	webSocket.send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName());
+	//alert(idPartita);
 };
+
+function connectToMatch() {
+	webSocket.send("collegati a/" + getFirstPlayerName() + "/" + getSecondPlayerName());
+};
+
+function processOpen(message) {
+	document.getElementById("logArea").value += "** Connessione al server **"+"\n";
+};
+
+function processMessage(message) {
+	//idPartita = parseInt(message.data.split("	",2)[1]);
+	// alert(message.data);
+	// document.getElementById("logArea").value += "** ID Partita: " + idPartita + "**"+"\n";
+	//return idPartita;
+	if (message.data.beginsWith("Partita")) {
+		idPartita=message.data.split("	",2)[1];
+	}else{
+		document.getElementById("logArea").value += message.data;
+	}
+};
+
+function processClose(message) {
+	webSocket.send("** Client disconnesso **"+"\n");
+};
+
+function processError(message) {
+	document.getElementById("logArea").value += "** Errore" + "**"+"\n";
+};
+
