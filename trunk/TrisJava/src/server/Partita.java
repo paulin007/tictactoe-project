@@ -11,13 +11,11 @@ public class Partita {
 	boolean conclusa = false;												// Se la partita si � gi� conclusa
 	String risultato = "inCorso";
 	private int id;
-	private String ultimoGiocatore;
-	
+	private String ultimoGiocatore = "G2";
 	
 	public Partita(int id, String giocatore1, String giocatore2){
 		this.giocatore1 = giocatore1;
 		this.giocatore2 = giocatore2;
-		this.setUltimoGiocatore(giocatore2);
 		celle.creaTabella();
 		this.id = id;
 		
