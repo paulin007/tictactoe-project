@@ -9,7 +9,8 @@ import java.util.Scanner;
 /**
  * In questa classe si apre un socket che communica con il server
  * 
- * @author Kokou Adjignon
+ * @author Andrea Gallo
+ * 
  */
 public class Client {
 	private static InetAddress host;

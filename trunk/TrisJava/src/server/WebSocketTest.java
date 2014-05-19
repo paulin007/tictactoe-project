@@ -13,6 +13,14 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
+/**
+ * 
+ * Server di base. Apre un {@Socket} su cui elabora le richieste di Java e Android
+ * ed un {@WebSocket} su cui elabora le richieste di Javascript.
+ * 
+ * @author Andrea Gallo 
+ *
+ */
 public class WebSocketTest {
 	
 	private static ServerSocket servSock;
