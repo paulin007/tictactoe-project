@@ -7,7 +7,11 @@
 var webSocket;
 var firstPlayerName;
 var secondPlayerName;
-var idPartita;
+var matchID;
+var matchStatus;
+var nextPlayer;
+var moves = new Array(9);
+var myTurn = false;
 
 function createConnection() {
 	webSocket = new WebSocket("ws://localhost:45454");
@@ -29,18 +33,24 @@ function createConnection() {
 	};
 };
 
-String.prototype.beginsWith = function (string) {
-    return(this.indexOf(string) === 0);
-};
+// String.prototype.beginsWith = function(string) {
+// return (this.indexOf(string) === 0);
+// };
 
-function test(){
-	//webSocket.send("mossa/0/Giacomo/1");
-	alert(idPartita);
+function clicCasella(id) {
+	if (moves[id] == "null" && myTurn) {
+		myTurn = false;
+		document.getElementById(id).src = './img/X.png';
+		string = "mossa/" + matchID + "/" + getFirstPlayerName() + "/" + id;
+		webSocket.send(string);
+		setInterval(function() {
+			requestUpdate();
+		}, 5000);
+	};
 }
 
-function clicCasella(numero){
-	string = "mossa/"+idPartita+"/"+getFirstPlayerName()+"/"+numero;
-	alert(string);
+function requestUpdate() {
+	string = "update/" + matchID;
 	webSocket.send(string);
 }
 
@@ -55,35 +65,39 @@ function getSecondPlayerName() {
 };
 
 function sendNewMatch() {
+	myTurn = true;
 	webSocket.send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName());
-	//alert(idPartita);
 };
 
 function connectToMatch() {
+	myTurn = false;
 	webSocket.send("collegati a/" + getFirstPlayerName() + "/" + getSecondPlayerName());
+	setInterval(function() {
+		requestUpdate();
+	}, 5000);
 };
 
 function processOpen(message) {
-	document.getElementById("logArea").value += "** Connessione al server **"+"\n";
+	document.getElementById("logArea").value += "** Connessione al server **" + "\n";
 };
 
 function processMessage(message) {
-	//idPartita = parseInt(message.data.split("	",2)[1]);
-	// alert(message.data);
-	// document.getElementById("logArea").value += "** ID Partita: " + idPartita + "**"+"\n";
-	//return idPartita;
-	if (message.data.beginsWith("Partita")) {
-		idPartita=message.data.split("	",2)[1];
-	}else{
-		document.getElementById("logArea").value += message.data;
-	}
+	matchID = message.data.split("	",13)[1];
+	matchStatus = message.data.split("	",13)[2];
+	nextPlayer = message.data.split("	",13)[3];
+	for (var i = 0; i < moves.length; i++) {
+		moves[i] = message.data.split(" ",13)[i + 1];
+	};
+	// for (var i = 0; i < moves.length; i++) {
+		// document.getElementById("logArea").value += "Mossa: " + moves[i] + "\n";
+	// };
 };
 
 function processClose(message) {
-	webSocket.send("** Client disconnesso **"+"\n");
+	webSocket.send("** Client disconnesso **" + "\n");
 };
 
 function processError(message) {
-	document.getElementById("logArea").value += "** Errore" + "**"+"\n";
+	document.getElementById("logArea").value += "** Errore" + "**" + "\n";
 };
 
