@@ -14,9 +14,8 @@ public class ServizioCollegamento implements IServizio {
 		System.out.println();
 		for (int i = 0; i < partite.size(); i++) {
 			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
-					&& partite.get(i).getGiocatore2()
-					.equalsIgnoreCase(giocatore2)
-					&& partite.get(i).getRisultato().equalsIgnoreCase("inCorso")) {
+					&& partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2)
+						&& partite.get(i).getRisultato().equalsIgnoreCase("inCorso")) {
 
 				System.out.println("Restituito a " + giocatore2
 						+ " l'id della partita con " + giocatore1 + ": "

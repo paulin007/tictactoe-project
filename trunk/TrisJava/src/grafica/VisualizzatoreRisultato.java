@@ -11,6 +11,8 @@ import tris.Simbolo;
  */
 public class VisualizzatoreRisultato {
 	
+	private boolean aggiorna=true;
+	private boolean mostrato = false;
 	/**
 	 * Dato l'esito di una partita sceglie il messaggio giusto da mostrare
 	 * 
@@ -19,7 +21,7 @@ public class VisualizzatoreRisultato {
 	 * @param aggiorna
 	 * @param mostrato
 	 */
-	public void mostraRisultato(InterpreteMessaggio interpreteMessaggio, String mioSimbolo, boolean aggiorna, boolean mostrato){
+	public void mostraRisultato(InterpreteMessaggio interpreteMessaggio, String mioSimbolo){
 		String risultato = interpreteMessaggio.getStatoPartita();
 		if(hoVinto(risultato, mioSimbolo)&&mostrato==false){
 			risultato = "Hai vinto !";
@@ -54,6 +56,14 @@ public class VisualizzatoreRisultato {
 	
 	private boolean pareggio(String risultato) {
 		return risultato.equalsIgnoreCase("Pareggio");
+	}
+	
+	public void setAggiorna(boolean aggiorna) {
+		this.aggiorna = aggiorna;
+	}
+	
+	public boolean isAggiorna() {
+		return aggiorna;
 	}
 	
 }

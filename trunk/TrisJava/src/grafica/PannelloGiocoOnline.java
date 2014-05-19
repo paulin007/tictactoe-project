@@ -46,9 +46,9 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private String ultimaMossa;
 	@SuppressWarnings("unused")
 	private boolean mioTurno = false;
-	private boolean mostrato = false;
+//	private boolean mostrato = false;
 	private int mossa = 0;
-	private boolean aggiorna = true;
+	//private boolean aggiorna = true;
 	private VisualizzatoreRisultato visualizzatore = new VisualizzatoreRisultato();
 	//String messaggioRicevuto ="";
 	
@@ -140,7 +140,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 			griglia.get(i).addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if(griglia.get(index).getIcon()==null && mossa==0 && mostrato==false){
+					if(griglia.get(index).getIcon()==null && mossa==0 && visualizzatore.isAggiorna()){
 						ultimaMossa = messaggioMossa+index;
 						System.out.println(ultimaMossa);
 						controllerTris.getClient().send(ultimaMossa);
@@ -202,10 +202,10 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		if(aggiorna){
+		if(visualizzatore.isAggiorna()){
 			interpreteMessaggio.interpreta(controllerTris.getClient().send("Update	"+IDpartita));
 			disegnaTris();
-			visualizzatore.mostraRisultato(interpreteMessaggio, mioSimbolo, aggiorna, mostrato);
+			visualizzatore.mostraRisultato(interpreteMessaggio, mioSimbolo);
 			creaPannello();
 		}	
 	}
