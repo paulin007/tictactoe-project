@@ -1,8 +1,5 @@
 package paulin.tchonin.trisandroid1;
 
-import java.util.Random;
-
-import rete.Client;
 
 public class TicTacToeOnline {
 
@@ -15,7 +12,6 @@ public class TicTacToeOnline {
 
 
 
-	// private Client client = new Client() ;
 	
 	
 	
@@ -43,7 +39,9 @@ public class TicTacToeOnline {
 		}
 	}
 
-
+	public void setMove(char player, int location) {
+		mBoard[location] = player;
+	}
 	
 
 	 /*
@@ -79,15 +77,59 @@ public class TicTacToeOnline {
 	 *  ritorna 3 = vince android
 	 *  ritorna 2 = vince l'umano.
 	 *  ritorna 1 = pareggio
-	 *  ritorna 0 = c'è ancora una casella vuota 
+	 *  ritorna 0 = c'ï¿½ ancora una casella vuota 
 	 */
 
 	// non mi server 
 	public int checkForWinner() {
 		//ricerca di un vincitore orizzontale
+		//ricerca di un vincitore orizzontale
+		for (int i = 0; i <= 6; i += 3) {
+			if (mBoard[i] == PLAYER1     && 
+				mBoard[i + 1] == PLAYER1 && 
+				mBoard[i + 2] == PLAYER1)
+				return 2;
+			if (mBoard[i] == PLAYER2     && 
+				mBoard[i + 1] == PLAYER2 && 
+				mBoard[i + 2] == PLAYER2)
+				return 3;
+		}
+        // ricerca di un vincitore horizzontale
+		for (int i = 0; i <= 2; i++) {
+			if (mBoard[i] == PLAYER1     && 
+				mBoard[i + 3] == PLAYER1 &&
+				mBoard[i + 6] == PLAYER1)
+				return 2;
+			if (mBoard[i] == PLAYER2     &&
+				mBoard[i + 3] == PLAYER2 &&
+				mBoard[i + 6] == PLAYER2)
+				return 3;
+		}
 		
+		// ricerca di un vincitore diagonale
+		if ((mBoard[0] == PLAYER1 &&
+			mBoard[4] == PLAYER1  && 
+			mBoard[8] == PLAYER1) ||
+			mBoard[2] == PLAYER1  && 
+			mBoard[4] == PLAYER1  &&
+			mBoard[6] == PLAYER1)
+			return 2;
+		if ((mBoard[0] == PLAYER2 &&
+			 mBoard[4] == PLAYER2 && 
+			 mBoard[8] == PLAYER2)||
+			 mBoard[2] == PLAYER2 &&
+			 mBoard[4] == PLAYER2 &&
+			 mBoard[6] == PLAYER2)
+			return 3;
 
-		return 0;
+		for (int i = 0; i < getBOARD_SIZE(); i++) {
+			if (mBoard[i] != PLAYER1 && 
+				mBoard[i] != PLAYER2)
+				return 0;
+		}
+
+		return 1;		
+
 	}
 
 }
