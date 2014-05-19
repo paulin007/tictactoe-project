@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -36,7 +37,9 @@ public class ActivityOnline extends Activity {
 	private boolean turnPlayer1 = false;
 	private boolean turnPlayer2 = false;
 	private String tipo;
-	Timer timer = new Timer();
+	private boolean aspetto = true;
+	private Timer timer = new Timer();
+	private int winner;
 
 	private boolean mGameOver = false;
 
@@ -54,9 +57,8 @@ public class ActivityOnline extends Activity {
 	EditText editText2 = null;
 	String namePlayer1;
 	String namePlayer2;
-	String realUltimo1="G1";
-	String realUltimo2="G2";
-	private int i;
+	String realUltimo1 = "G1";
+	String realUltimo2 = "G2";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,7 +81,6 @@ public class ActivityOnline extends Activity {
 
 		editText1.addTextChangedListener(textWatcher);
 		editText2.addTextChangedListener(textWatcher);
-		
 
 		mGameOnline = new TicTacToeOnline();
 
@@ -92,7 +93,6 @@ public class ActivityOnline extends Activity {
 
 		private InetAddress host;
 		private static final int PORT = 45444;
-	
 
 		@Override
 		protected String doInBackground(Void... params) {
@@ -106,14 +106,13 @@ public class ActivityOnline extends Activity {
 
 				PrintWriter output = new PrintWriter(link.getOutputStream(),
 						true);// Step
-                Log.e("Paulin send message", message);
+				Log.e("Paulin send message", message);
 				output.println(message);// Step 3.
-				
+
 				response = input.nextLine(); // Step 3.
 				// System.err.println("\nSERVER> " + response);
 				input.close();
 				Log.e("Paulin send response", response);
-
 
 				return response;
 
@@ -150,71 +149,23 @@ public class ActivityOnline extends Activity {
 				tipo = "update";
 				new send().execute();
 
-			}else if(tipo.equals("mossa2")){
-				
+			} else if (tipo.equals("mossa2")) {
+
 			} else if (tipo.equals("collegamento")) {
 				message = "update	" + IDpartita;
 				tipo = "update2";
 				new send().execute();
 
 			} else if (tipo.equals("update")) {
+                 
+				  aggiorna();
+				  aspetto=false;
 				
-				
-//				do{
-//					new send().execute();
-//				}while(ultimoGiocatore == "G1");
-				//new send().execute();
-				
-				TimerTask  timerTask = new TimerTask() {
-					
-					@Override
-					public void run() {
-						new  send().execute();
-					   Log.e("Paulin timer", "timer");	
-					}
-				};
-				
-				timer.schedule(timerTask, 3000, 2000);
-				
-				//aggiornaTabella();
-				// TODO mettere un timer di giacomo 
-				/*
-				try {
-					Log.e("Paulin prima", "dentro wait");
-					wait(3000);
-					Log.e("Paulin dopo", "dentro wait");
-					new send().execute();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				*/
 				aggiornaTabella();
-				
-				/*
-				do {
-                    
-					new send().execute();
-				} while (ultimoGiocatore == realUltimo1);
-              */
-				//aggiornaTabella();
+
 				turnPlayer1 = true;
 			} else if (tipo.equals("update2")) {
-				aggiornaTabella();
-				// TODO mettere un timer
-				if(ultimoGiocatore == namePlayer1){
-					turnPlayer2 = true;
-					mInfoTextView.setText(R.string.turn_player2);
-				}else{
-					do {
-
-						new send().execute();
-					} while (ultimoGiocatore == namePlayer2);
-					
-				}
 				
-				aggiornaTabella();
-				//turnPlayer2 = true;
 
 			}
 
@@ -292,26 +243,23 @@ public class ActivityOnline extends Activity {
 				if (mBoardButtons[location].isEnabled()) {
 
 					if (turnPlayer1) {
-                    //i= location;
+						// i= location;
 						setMoveOnline(mGameOnline.PLAYER1, location);
 						// TODO mandare la mossa al server
-						message = "mossa	" + IDpartita + "	G1"+"	"+location;
+						message = "mossa	" + IDpartita + "	G1" + "	" + location;
 						new send().execute();
 						Log.e("Paulin onclick", message);
-						
+
 						tipo = "mossa";
 						mInfoTextView.setText(R.string.turn_player2);
 
-						// Log.e("Paulin message mossa", message);
 						
-						// Log.e("Paulin onclick", "mossa envoyer");
-						// aggiornaTabella();
 
 						turnPlayer1 = true;
-						//turnPlayer2 = true;
+						// turnPlayer2 = true;
 
 					} else {
-
+                          // turn player2
 						// message="mossa	"+IDpartita+"	"+namePlayer2+"	"+location;
 						// new send().execute();
 
@@ -323,11 +271,11 @@ public class ActivityOnline extends Activity {
 
 					if (turnPlayer2) {
 						message = "mossa	" + IDpartita + "	G2" + location;
-						//tipo = "mossa";
+						// tipo = "mossa";
 						mInfoTextView.setText(R.string.turn_player1);
 
 						// Log.e("Paulin message mossa", message);
-						//new send().execute();
+						// new send().execute();
 						// Log.e("Paulin onclick", "mossa envoyer");
 						// aggiornaTabella();
 
@@ -362,27 +310,27 @@ public class ActivityOnline extends Activity {
 								Toast.LENGTH_SHORT).show();
 
 					} else {
-						// invio il messaggio al server
+						// 
 						message = "nuova partita	" + namePlayer1 + "	"
 								+ namePlayer2;
 						tipo = "nuova";
-						
-						// i=0;
+
+					
 						new send().execute();
 
-						// aspettiamo che finisce il metodo send
+						
 
 						turnPlayer1 = true;
-						//turnPlayer2 = false;
+						// turnPlayer2 = false;
 						startNewGameOnline();
 					}
 
 				} else {
 					// on n'a pas encore appuyer : stop
 					// TODO fermare il gioco
-					//turnPlayer1 = false;
-					//turnPlayer2 = false;
-					//ultimoGiocatore = "G2";
+					// turnPlayer1 = false;
+					// turnPlayer2 = false;
+					// ultimoGiocatore = "G2";
 
 				}
 			}
@@ -422,8 +370,8 @@ public class ActivityOnline extends Activity {
 	private void aggiornaTabella() {
 
 		for (int i = 0; i < caselle.size(); i++) {
-			
-			//TODO 
+
+			// TODO
 			if (caselle.get(i).equals("G1")) {
 
 				setMoveOnline(mGameOnline.PLAYER1, i);
@@ -433,7 +381,7 @@ public class ActivityOnline extends Activity {
 
 		}
 
-		int winner = mGameOnline.checkForWinner();
+	   winner = mGameOnline.checkForWinner();
 
 		if (winner == 0) {
 			// mInfoTextView.setText(R.string.turn_player2);
@@ -488,5 +436,26 @@ public class ActivityOnline extends Activity {
 	};
 
 	// aspettiamo che finisce il metodo send
+
+	private void aggiorna() {
+		if (aspetto) {
+			TimerTask timerTask = new TimerTask() {
+
+				@Override
+				public void run() {
+					new send().execute();
+					Log.e("Paulin timer", "timer");
+				}
+			};
+
+			timer.schedule(timerTask, 3000, 2000);
+		}
+		
+		if(winner == 1 || winner == 2 || winner==3){
+			timer.cancel();
+		}
+		
+		
+	}
 
 }
