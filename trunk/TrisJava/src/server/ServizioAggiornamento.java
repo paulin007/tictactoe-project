@@ -2,7 +2,9 @@ package server;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-
+/**
+ * Questa classe, quando viene chiamato ha la responsabilità di fornire lo stato della partita
+ */
 public class ServizioAggiornamento implements IServizio {
 
 	@Override

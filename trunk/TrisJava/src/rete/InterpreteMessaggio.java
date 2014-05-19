@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 /**
  * questa classe ha la responsabilità di interpretare il messaggio ricevuto dal server
- * 
- * @author Kokou Adjignon
  */
 public class InterpreteMessaggio {
 	

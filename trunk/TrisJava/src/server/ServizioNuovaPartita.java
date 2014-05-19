@@ -2,7 +2,9 @@ package server;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-
+/**
+ * Questa classe ha la responsabilità di avviare una nuova partita
+ */
 public class ServizioNuovaPartita implements IServizio {
 
 	private static int partitaIndex = 0;

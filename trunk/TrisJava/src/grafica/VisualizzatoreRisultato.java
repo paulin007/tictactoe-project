@@ -6,8 +6,6 @@ import rete.InterpreteMessaggio;
 import tris.Simbolo;
 /**
  * Questa classe ha la responsabilità di elaborare un messaggio per fornire l'esito di una partita
- * 
- * @author Kokou Adjignon
  */
 public class VisualizzatoreRisultato {
 	

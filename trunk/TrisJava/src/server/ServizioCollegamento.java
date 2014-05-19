@@ -2,7 +2,9 @@ package server;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-
+/**
+ *Questa classe ha la responsabilità di collegare un giocatore ad un altro
+ */
 public class ServizioCollegamento implements IServizio {
 
 	@Override

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import tris.Algoritmo;
-
+/**
+ *Questa classe ha la responsabilità di inviare la mossa effettuata
+ */
 public class ServizioInviaMossa implements IServizio {
 
 	@Override

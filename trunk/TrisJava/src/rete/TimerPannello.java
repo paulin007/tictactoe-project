@@ -5,8 +5,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 /**
  * Gestisce la durata di un turno
- * 
- * @author Kokou Adjignon
  */
 public class TimerPannello extends Observable {
 	

@@ -12,7 +12,9 @@ import java.util.StringTokenizer;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
-
+/**
+ * Bridge-Server,
+ */
 /**
  * 
  * Server di base. Apre un {@Socket} su cui elabora le richieste di Java e Android
@@ -116,6 +118,11 @@ public class WebSocketTest {
 		
 	}
     
+	/**
+	 * Carica la mappa dei servizi effettuati da parte del server
+	 * @param nomeServizio
+	 * @param servizio
+	 */
     public static void caricaHashMap(String nomeServizio, IServizio servizio){
     	
     	mappaServizi.put(nomeServizio, servizio);	

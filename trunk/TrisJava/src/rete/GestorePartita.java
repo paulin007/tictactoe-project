@@ -1,8 +1,6 @@
 package rete;
 /**
  * gestisce i turni durante una partita
- * 
- * @author Kokou Adjignon
  */
 public class GestorePartita {
 	
