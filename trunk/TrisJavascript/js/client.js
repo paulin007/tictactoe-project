@@ -12,6 +12,8 @@ var matchStatus;
 var nextPlayer;
 var moves = new Array(9);
 var myTurn = false;
+var lastPlayer;
+var myPlayer;
 
 function createConnection() {
 	webSocket = new WebSocket("ws://localhost:45454");
@@ -33,15 +35,15 @@ function createConnection() {
 	};
 };
 
-// String.prototype.beginsWith = function(string) {
-// return (this.indexOf(string) === 0);
-// };
-
-function clicCasella(id) {
-	if (moves[id] == "null" && myTurn) {
-		myTurn = false;
-		document.getElementById(id).src = './img/X.png';
-		string = "mossa/" + matchID + "/" + getFirstPlayerName() + "/" + id;
+function clicBox(id) {
+	document.getElementById("logArea").value += moves[id]+" last:"+lastPlayer+" io:"+myPlayer;
+	//if (moves[id] == "null" && myTurn) {
+		//if (moves[id] == "null") {
+		//myTurn = false;
+		//setX(id);
+		alert(myPlayer+" -- "+lastPlayer);
+		if (myPlayer!=lastPlayer) {
+		string = "mossa/" + matchID + "/"+myPlayer+"/" + id;
 		webSocket.send(string);
 		setInterval(function() {
 			requestUpdate();
@@ -49,8 +51,24 @@ function clicCasella(id) {
 	};
 }
 
+function opponentMove(id) {
+	setO(id);
+	setInterval(function() {
+		requestUpdate();
+	}, 5000);
+}
+
+function setX(id) {
+	document.getElementById(id).src = './img/X.png';
+}
+
+function setO(id) {
+	document.getElementById(id).src = './img/O.png';
+}
+
 function requestUpdate() {
 	string = "update/" + matchID;
+	//alert(string);
 	webSocket.send(string);
 }
 
@@ -65,16 +83,17 @@ function getSecondPlayerName() {
 };
 
 function sendNewMatch() {
-	myTurn = true;
+	myPlayer="G1";
 	webSocket.send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName());
+	document.getElementById("logArea").value += "nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName()+"\n";
 };
 
 function connectToMatch() {
-	myTurn = false;
+	myPlayer="G2";
 	webSocket.send("collegati a/" + getFirstPlayerName() + "/" + getSecondPlayerName());
 	setInterval(function() {
 		requestUpdate();
-	}, 5000);
+	}, 1000);
 };
 
 function processOpen(message) {
@@ -84,14 +103,27 @@ function processOpen(message) {
 function processMessage(message) {
 	matchID = message.data.split("	",13)[1];
 	matchStatus = message.data.split("	",13)[2];
-	nextPlayer = message.data.split("	",13)[3];
+	lastPlayer = message.data.split("	",13)[3];
+	//alert(message.data);
 	for (var i = 0; i < moves.length; i++) {
 		moves[i] = message.data.split(" ",13)[i + 1];
 	};
-	// for (var i = 0; i < moves.length; i++) {
-		// document.getElementById("logArea").value += "Mossa: " + moves[i] + "\n";
-	// };
+	paint(moves);
+	//alert(moves);
+	return lastPlayer;
 };
+
+function paint(moves){
+	for (var i=0; i < moves.length; i++) {
+	  if (moves[i]=="G1") {
+	  	setX(i);
+	  	//myTurn=false;
+	  } else if(moves[i]=="G2"){
+	  	setO(i);
+	  	//myTurn=true;
+	  };
+	};
+}
 
 function processClose(message) {
 	webSocket.send("** Client disconnesso **" + "\n");

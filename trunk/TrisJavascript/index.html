@@ -23,19 +23,19 @@
 			<table>
 				<table>
 					<tr>
-						<td><a href="#"><img class="box" onclick="clicCasella(0)" id="0" src="./img/blankpage.jpg" alt="m0"/></a></td>
-						<td><a href="#"><img class="box" onclick="clicCasella(1)" id="1" src="./img/blankpage.jpg" alt="m1"/></a></td>
-						<td><a href="#"><img class="box" onclick="clicCasella(2)" id="2" src="./img/blankpage.jpg" alt="m2"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(0)" id="0" src="./img/blankpage.jpg" alt="m0"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(1)" id="1" src="./img/blankpage.jpg" alt="m1"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(2)" id="2" src="./img/blankpage.jpg" alt="m2"/></a></td>
 					</tr>
 					<tr>
-						<td><a href="#"><img class="box" onclick="clicCasella(3)" id="3" src="./img/blankpage.jpg" alt="m3"/></a></td>
-						<td><a href="#"><img class="box" onclick="clicCasella(4)" id="4" src="./img/blankpage.jpg" alt="m4"/></a></td>
-						<td><a href="#"><img class="box" onclick="clicCasella(5)" id="5" src="./img/blankpage.jpg" alt="m5"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(3)" id="3" src="./img/blankpage.jpg" alt="m3"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(4)" id="4" src="./img/blankpage.jpg" alt="m4"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(5)" id="5" src="./img/blankpage.jpg" alt="m5"/></a></td>
 					</tr>
 					<tr>
-						<td><a href="#"><img class="box" onclick="clicCasella(6)" id="6" src="./img/blankpage.jpg" alt="m6"/></a></td>
-						<td><a href="#"><img class="box" onclick="clicCasella(7)" id="7" src="./img/blankpage.jpg" alt="m7"/></a></td>
-						<td><a href="#"><img class="box" onclick="clicCasella(8)" id="8" src="./img/blankpage.jpg" alt="m8"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(6)" id="6" src="./img/blankpage.jpg" alt="m6"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(7)" id="7" src="./img/blankpage.jpg" alt="m7"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(8)" id="8" src="./img/blankpage.jpg" alt="m8"/></a></td>
 					</tr>
 				</table>
 			</table>
@@ -53,39 +53,39 @@
 					<br />
 					<br />
 					<br />
-				<a href="#" onclick="toggle_visibility('foo');">Clicca qui per modificare le impostazioni</a>
-				<div id="foo">
-					<br />
-					Scegli giocatore 1:
-					<select name="scelta1" id="player1name">
-						<option>Giacomo</option>
-						<option>Dario</option>
-						<option>Marco</option>
-						<option>Santo</option>
-						<option>Kokou</option>
-						<option>Paulin</option>
-						<option>Andrea</option>
-					</select>
-					<br />
-					Scegli giocatore 2:
-					<select name="scelta2" id="player2name">
-						<option>Giacomo</option>
-						<option>Dario</option>
-						<option>Marco</option>
-						<option>Santo</option>
-						<option>Kokou</option>
-						<option>Paulin</option>
-						<option>Andrea</option>
-					</select>
-					<br />
-					<br />
-					<button class="button" onclick="createConnection()">
-						Collegati
-					</button>
-					<button class="button" onclick="test()">
-						Test
-					</button>
-					<textarea id="logArea" rows="10" cols="50"></textarea>
+					<a href="#" onclick="toggle_visibility('foo');">Clicca qui per modificare le impostazioni</a>
+					<div id="foo">
+						<br />
+						Scegli giocatore 1:
+						<select name="scelta1" id="player1name">
+							<option>Marco</option>
+							<option>Giacomo</option>
+							<option>Dario</option>
+							<option>Santo</option>
+							<option>Andrea</option>
+							<option>Kokou</option>
+							<option>Paulin</option>
+						</select>
+						<br />
+						Scegli giocatore 2:
+						<select name="scelta2" id="player2name">
+							<option>Andrea</option>
+							<option>Dario</option>
+							<option>Giacomo</option>
+							<option>Marco</option>
+							<option>Santo</option>
+							<option>Paulin</option>
+							<option>Kokou</option>
+						</select>
+						<br />
+						<br />
+						<button class="button" onclick="createConnection()">
+							Collegati
+						</button>
+						<button class="button" onclick="test()">
+							Test
+						</button>
+						<textarea id="logArea" rows="10" cols="50"> </textarea>
 					</div>
 				</div>
 			</div>
