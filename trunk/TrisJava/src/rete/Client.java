@@ -8,9 +8,8 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 /**
  * In questa classe si apre un socket che communica con il server
- * 
+ *
  * @author Andrea Gallo
- * 
  */
 public class Client {
 	private static InetAddress host;

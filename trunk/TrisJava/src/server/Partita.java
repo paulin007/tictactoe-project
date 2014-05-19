@@ -1,8 +1,9 @@
 package server;
 
 import tris.TabellaTris;
-
-
+/**
+ * Responsabilità: astrae sul concetto di una partita Tris
+ */
 public class Partita {
 	
 	private String giocatore1;												// Il primo giocatore, avvia la partita
