@@ -88,11 +88,11 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		nuovaPartita.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				G1 = (String) comboBox1.getSelectedItem();
-				G2 = (String) comboBox2.getSelectedItem();
+				selezioneGiocatori();
 				interpreteMessaggio.interpreta(controllerTris.getClient().send("nuova partita	"+G1+"	"+G2));
 				impostaPartitaOnline(Simbolo.simboloG1);
 			}
+
 		});
 		
 		JButton riprendiPartita = new JButton("Riprendi");
@@ -103,7 +103,9 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				selezioneGiocatori();
 				interpreteMessaggio.interpreta(controllerTris.getClient().send("collegati a	"+G1+"	"+G2));
+				System.out.println(interpreteMessaggio.getIDpartita());	//TODO cancellare
 				impostaPartitaOnline(Simbolo.simboloG2);
 			}
 		});
@@ -152,24 +154,13 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		panel.add(component);
 	}
 	
+	private void selezioneGiocatori() {
+		G1 = (String) comboBox1.getSelectedItem();
+		G2 = (String) comboBox2.getSelectedItem();
+	}
 	
 	public void setIconaScelta(String iconaScelta) {
 		this.iconaScelta = iconaScelta;
 	}
 
-	public String getG1() {
-		return G1;
-	}
-
-	public void setG1(String g1) {
-		G1 = g1;
-	}
-
-	public String getG2() {
-		return G2;
-	}
-
-	public void setG2(String g2) {
-		G2 = g2;
-	}
 }
