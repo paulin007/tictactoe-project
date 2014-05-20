@@ -14,7 +14,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,6 +39,7 @@ public class ActivityOnline extends Activity {
 	private boolean aspetto = true;
 	private Timer timer = new Timer();
 	private int winner;
+	private boolean connect = false;
 
 	private boolean mGameOver = false;
 
@@ -49,16 +49,14 @@ public class ActivityOnline extends Activity {
 	private String ultimoGiocatore;
 	private ArrayList<String> caselle;
 
-	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
-
 	private TextView mInfoTextView;
 
 	EditText editText1 = null;
 	EditText editText2 = null;
 	String namePlayer1;
 	String namePlayer2;
-	String realUltimo1 = "G1";
-	String realUltimo2 = "G2";
+	String giocatore1 = "G1";
+	String giocatore2 = "G2";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,8 +82,8 @@ public class ActivityOnline extends Activity {
 
 		mGameOnline = new TicTacToeOnline();
 
-		ToggleButton();
-		ToggleButton2();
+		toggleButtonStar();
+		toggleButtonCollega();
 
 	}
 
@@ -100,7 +98,7 @@ public class ActivityOnline extends Activity {
 			Socket link = null; // Step 1.
 
 			try {
-				link = new Socket("10.65.254.101", PORT); // Step 1.
+				link = new Socket("192.168.0.100", PORT); // Step 1.
 
 				Scanner input = new Scanner(link.getInputStream());// Step 2.
 
@@ -141,7 +139,7 @@ public class ActivityOnline extends Activity {
 			IDpartita = interprete.getIDpartita();
 			statoPartita = interprete.getStatoPartita();
 			ultimoGiocatore = interprete.getUltimoGiocatore();
-
+			caselle = interprete.getCaselle();
 			if (tipo.equals("nuova")) {
 
 			} else if (tipo.equals("mossa")) {
@@ -152,29 +150,25 @@ public class ActivityOnline extends Activity {
 			} else if (tipo.equals("mossa2")) {
 
 			} else if (tipo.equals("collegamento")) {
-				message = "update	" + IDpartita;
-				tipo = "update2";
-				new send().execute();
-
-			} else if (tipo.equals("update")) {
-                 
-				  aggiorna();
-				  aspetto=false;
-				
+				// message = "update	" + IDpartita;
+				// tipo = "update2";
+				// new send().execute();
+				Log.e("Paulin collegamento", response);
 				aggiornaTabella();
 
-				turnPlayer1 = true;
+			} else if (tipo.equals("update")) {
+
+				starTimer();
+				aspetto = false;
+
+				aggiornaTabella();
+
+				// turnPlayer1 = true;
 			} else if (tipo.equals("update2")) {
-				
 
 			}
 
 			Log.e("ultimo giocato", ultimoGiocatore);
-			caselle = interprete.getCaselle();
-			for (int i = 0; i < caselle.size(); i++) {
-				// Log.e("Paulin", caselle.get(i));
-
-			}
 
 		}
 
@@ -189,7 +183,6 @@ public class ActivityOnline extends Activity {
 			mBoardButtons[i].setEnabled(true);
 			mBoardButtons[i].setOnClickListener(new ButtonClickListener(i));
 		}
-		mInfoTextView.setText(R.string.player1);
 
 		mGameOver = false;
 
@@ -253,33 +246,19 @@ public class ActivityOnline extends Activity {
 						tipo = "mossa";
 						mInfoTextView.setText(R.string.turn_player2);
 
-						
-
-						turnPlayer1 = true;
+						turnPlayer1 = false;
 						// turnPlayer2 = true;
 
-					} else {
-                          // turn player2
-						// message="mossa	"+IDpartita+"	"+namePlayer2+"	"+location;
-						// new send().execute();
-
-						// aggiornaTabella();
-						// turnPlayer1=true;
-						// turnPlayer2=false;
 					}
 					// TODO da eliminare
 
-					if (turnPlayer2) {
-						message = "mossa	" + IDpartita + "	G2" + location;
-						// tipo = "mossa";
+					if (turnPlayer2 && connect) {
+						message = "mossa	" + IDpartita + "	G2" + "	" + location;
+						new send().execute();
+						setMoveOnline(mGameOnline.PLAYER2, location);
+						tipo = "mossa";
 						mInfoTextView.setText(R.string.turn_player1);
 
-						// Log.e("Paulin message mossa", message);
-						// new send().execute();
-						// Log.e("Paulin onclick", "mossa envoyer");
-						// aggiornaTabella();
-
-						turnPlayer1 = true;
 						turnPlayer2 = false;
 
 					}
@@ -292,45 +271,36 @@ public class ActivityOnline extends Activity {
 
 	// for ToggleButton 1
 
-	private void ToggleButton() {
+	private void toggleButtonStar() {
 
 		final ToggleButton button = (ToggleButton) findViewById(R.id.togglebutton);
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (button.isChecked()) {
-					// recuperiamo il nome del giocatore 1
+					// recuperiamo i nomi degli giocatori
 					namePlayer1 = editText1.getText().toString();
-					// recuperiamo quello del giocatore 2
 					namePlayer2 = editText2.getText().toString();
 
 					// controlli sui nomi
 					if (namePlayer1.equals("") || namePlayer2.equals("")) {
 						Toast.makeText(ActivityOnline.this, R.string.verify,
 								Toast.LENGTH_SHORT).show();
-
 					} else {
-						// 
 						message = "nuova partita	" + namePlayer1 + "	"
 								+ namePlayer2;
 						tipo = "nuova";
-
-					
 						new send().execute();
-
-						
-
+						mInfoTextView.setText(R.string.player1);
 						turnPlayer1 = true;
-						// turnPlayer2 = false;
 						startNewGameOnline();
 					}
 
 				} else {
 					// on n'a pas encore appuyer : stop
-					// TODO fermare il gioco
-					// turnPlayer1 = false;
-					// turnPlayer2 = false;
-					// ultimoGiocatore = "G2";
+
+					turnPlayer1 = false;
+					timer.cancel();
 
 				}
 			}
@@ -338,29 +308,27 @@ public class ActivityOnline extends Activity {
 
 	}
 
-	private void ToggleButton2() {
+	private void toggleButtonCollega() {
 		final ToggleButton button2 = (ToggleButton) findViewById(R.id.togglebutton2);
 		button2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (button2.isChecked()) {
-					// recuperiamo il nome del giocatore 1
+					// recuperiamo i nomi dei giocatori
 					namePlayer1 = editText1.getText().toString();
-					// recuperiamo quello del giocatore 2
 					namePlayer2 = editText2.getText().toString();
 
 					// invio il messaggio al server
-					message = "collegati a	" + namePlayer1 + "	" + namePlayer2;
+					message = "collegati a	" + namePlayer2 + "	" + namePlayer1;
+					Log.e("pualin collegati a", message);
 					tipo = "collegamento";
 					new send().execute();
-					// startNewGameOnline();
-
-					// aggiornaTabella();
-
-					// turnPlayer2=true;
+					startNewGameOnline();
+					connect = true;
 
 				} else {
 					turnPlayer2 = false;
+					timer.cancel();
 				}
 			}
 		});
@@ -368,12 +336,9 @@ public class ActivityOnline extends Activity {
 	}
 
 	private void aggiornaTabella() {
-
+		Log.e("Prima del for", caselle.toString());
 		for (int i = 0; i < caselle.size(); i++) {
-
-			// TODO
 			if (caselle.get(i).equals("G1")) {
-
 				setMoveOnline(mGameOnline.PLAYER1, i);
 			} else if (caselle.get(i).equals("G2")) {
 				setMoveOnline(mGameOnline.PLAYER2, i);
@@ -381,19 +346,22 @@ public class ActivityOnline extends Activity {
 
 		}
 
-	   winner = mGameOnline.checkForWinner();
+		Log.e("Paulin aggiortabella", "dopo il for");
 
-		if (winner == 0) {
-			// mInfoTextView.setText(R.string.turn_player2);
-
-			if (turnPlayer2) {
-				// setMoveOnline(mGameOnline.PLAYER2, move);
-				// turnPlayer1 = true;
-				// turnPlayer2=false;
-			}
-
-			// winner = mGameOnline.checkForWinner();
+		if (ultimoGiocatore.equals(giocatore2)) {
+			turnPlayer1 = true;
+			mInfoTextView.setText(R.string.turn_player1);
 		}
+		if (ultimoGiocatore.equals(giocatore1)) {
+
+			mInfoTextView.setText(R.string.turn_player2);
+			if (connect) {
+				mInfoTextView.setText(R.string.turn_player1);
+				turnPlayer2 = true;
+			}
+		}
+
+		winner = mGameOnline.checkForWinner();
 
 		if (winner == 0) {
 			// mInfoTextView.setText(R.string.turn_player1);
@@ -413,6 +381,16 @@ public class ActivityOnline extends Activity {
 			turnPlayer1 = false;
 			turnPlayer2 = false;
 			mGameOver = true;
+		}
+
+		if (connect) {
+			if (statoPartita.equalsIgnoreCase("Giocatore2")) {
+				mInfoTextView.setText(R.string.result_player2_wins);
+			}
+
+			if (statoPartita.equalsIgnoreCase("Giocatore1")) {
+				mInfoTextView.setText(R.string.result_player1_wins);
+			}
 		}
 
 	}
@@ -437,7 +415,7 @@ public class ActivityOnline extends Activity {
 
 	// aspettiamo che finisce il metodo send
 
-	private void aggiorna() {
+	private void starTimer() {
 		if (aspetto) {
 			TimerTask timerTask = new TimerTask() {
 
@@ -450,12 +428,11 @@ public class ActivityOnline extends Activity {
 
 			timer.schedule(timerTask, 3000, 2000);
 		}
-		
-		if(winner == 1 || winner == 2 || winner==3){
+
+		if (winner == 1 || winner == 2 || winner == 3) {
 			timer.cancel();
 		}
-		
-		
+
 	}
 
 }
