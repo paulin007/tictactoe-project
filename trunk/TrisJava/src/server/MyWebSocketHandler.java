@@ -58,6 +58,7 @@ public class MyWebSocketHandler {
 			ExecutionException, TimeoutException {
 
 		String message = msg;
+		System.err.println("CLIENT< "+msg);
 
 		// TODO Change StringTokenizer in XML format
 		StringTokenizer s = new StringTokenizer(message, "/");

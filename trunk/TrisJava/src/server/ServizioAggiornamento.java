@@ -12,8 +12,8 @@ public class ServizioAggiornamento implements IServizio {
 		int idPartita = Integer.parseInt(s.nextToken());
 		for (int i = 0; i < partite.size(); i++) {
 			if (partite.get(i).getId() == idPartita) {
-//					output.println(partite.get(i));
-					return partite.get(i).toString();
+				System.out.println("SERVER> "+partite.get(i).toString());
+				return partite.get(i).toString();
 			}
 		}
 		return "-1";

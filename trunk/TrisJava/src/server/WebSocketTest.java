@@ -68,29 +68,19 @@ public class WebSocketTest {
 		Socket link = null;
 		try {
 			link = servSock.accept();
-
-			System.out.println("Connessione ricevuta.");
 			
 			input = new Scanner(link.getInputStream());
 			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
 
 			String message = input.nextLine();
 
-			System.out.println(message);	
+			System.err.println("Client< "+message);	
 			
 			// TODO Change StringTokenizer in XML format
 			StringTokenizer s = new StringTokenizer(message, "/	");
 
 			String operazione = s.nextToken();
-//			if (operazione.equalsIgnoreCase("nuova partita")) {
-//				nuovaPartita(output, s);
-//			} else if (operazione.equalsIgnoreCase("collegati a")) {
-//				collegamento(output, s);
-//			} else if (operazione.equalsIgnoreCase("mossa")) {
-//				inviamossa(output, s);
-//			} else if(operazione.equalsIgnoreCase("update")){
-//				inviaAggiornamento(output,s);
-//			}
+
 			
 			if(mappaServizi.containsKey(operazione.toLowerCase())){
 				output.println(mappaServizi.get(operazione.toLowerCase()).effettuaServizio(s, partite));
@@ -99,14 +89,12 @@ public class WebSocketTest {
 			else
 				output.println("Operazione Sconosciuta");
 
-			System.out.println("Messaggio ricevuto");
 		} catch (IOException ioEx) {
 			ioEx.printStackTrace();
 		}
 
 		finally {
 			try {
-				System.out.println("\n* Chiusura in corso... *");
 				link.close(); 
 			} catch (IOException ioEx) {
 				System.out.println("Impossibile disconnettersi!");

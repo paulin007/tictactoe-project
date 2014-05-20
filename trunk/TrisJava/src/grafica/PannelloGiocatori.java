@@ -105,7 +105,6 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			public void actionPerformed(ActionEvent arg0) {
 				selezioneGiocatori();
 				interpreteMessaggio.interpreta(controllerTris.getClient().send("collegati a	"+G2+"	"+G1));
-				System.out.println(interpreteMessaggio.getIDpartita());	//TODO cancellare
 				impostaPartitaOnline(Simbolo.simboloG2);
 			}
 		});

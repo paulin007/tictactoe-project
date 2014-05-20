@@ -18,9 +18,7 @@ public class ServizioNuovaPartita implements IServizio {
 				giocatore2);
 		partite.add(partitaCreata);
 
-		System.out.println("Iniziato una nuova partita: id=" + partitaIndex
-				+ " \n" + "Giocatore1= " + giocatore1 + "\n" + "Giocatore2= "
-				+ giocatore2);
+		System.out.println("SERVER> "+partite.get(partitaIndex).toString());
 
 		partitaIndex++;
 		

@@ -46,11 +46,8 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 	private String ultimaMossa;
 	@SuppressWarnings("unused")
 	private boolean mioTurno = false;
-//	private boolean mostrato = false;
 	private int mossa = 0;
-	//private boolean aggiorna = true;
 	private VisualizzatoreRisultato visualizzatore = new VisualizzatoreRisultato();
-	//String messaggioRicevuto ="";
 	
 
 	public PannelloGiocoOnline(ControllerTris controllerTris, String mioSimbolo, String iconaMia, String IDpartita) {
@@ -72,7 +69,6 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		setupAction();
 		TimerPannello timerPannello = new TimerPannello();
 		timerPannello.addObserver(this);
-		System.out.println(iconaMia);
 		messaggioMossa +=this.IDpartita+"	"+mioSimbolo+"	";
 	}
 	

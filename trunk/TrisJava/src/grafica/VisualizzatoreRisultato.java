@@ -43,13 +43,13 @@ public class VisualizzatoreRisultato {
 	}
 	
 	private boolean hoVinto(String risultato, String mioSimbolo) {
-		return risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)||
-				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2);
+		return risultato.equalsIgnoreCase(Simbolo.simboloG1)&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1)||
+				risultato.equalsIgnoreCase(Simbolo.simboloG2)&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2);
 	}
 	
 	private boolean hoPerso(String risultato, String mioSimbolo) {
-		return risultato.equalsIgnoreCase("Giocatore1")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)||
-				risultato.equalsIgnoreCase("Giocatore2")&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1);
+		return risultato.equalsIgnoreCase(Simbolo.simboloG1)&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG2)||
+				risultato.equalsIgnoreCase(Simbolo.simboloG2)&&mioSimbolo.equalsIgnoreCase(Simbolo.simboloG1);
 	}
 	
 	private boolean pareggio(String risultato) {

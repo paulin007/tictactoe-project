@@ -35,7 +35,7 @@ public class Client {
 		Socket link = null; // Step 1.
 
 		try {
-			link = new Socket(host, PORT); // Step 1.
+			link = new Socket("192.168.0.101", PORT); // Step 1.
 
 			Scanner input = new Scanner(link.getInputStream());// Step 2.
 
@@ -55,7 +55,6 @@ public class Client {
 
 		finally {
 			try {
-				System.out.println("\n* Closing connection... *");
 				link.close(); // Step 4.
 			} catch (IOException ioEx) {
 				System.out.println("Unable to disconnect!");

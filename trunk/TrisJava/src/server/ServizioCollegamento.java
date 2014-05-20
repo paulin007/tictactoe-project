@@ -11,17 +11,13 @@ public class ServizioCollegamento implements IServizio {
 	public String effettuaServizio(StringTokenizer s, ArrayList<Partita> partite) {
 	
 		String giocatore1 = s.nextToken();
-		System.out.println(giocatore1);
 		String giocatore2 = s.nextToken();
-		System.out.println();
 		for (int i = 0; i < partite.size(); i++) {
 			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
 					&& partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2)
 						&& partite.get(i).getRisultato().equalsIgnoreCase("inCorso")) {
 
-				System.out.println("Restituito a " + giocatore2
-						+ " l'id della partita con " + giocatore1 + ": "
-						+ partite.get(i).getId());
+				System.out.println("SERVER> "+partite.get(i).toString());
 				return partite.get(i).toString();
 				
 			}

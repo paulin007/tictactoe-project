@@ -63,10 +63,10 @@ public class Algoritmo {
 	private void stabilisciSituazione(ArrayList<Casella> caselle){
 		separaMosse(caselle);
 		if(haVinto(giocatore1)){
-			setSituazione("Giocatore1");
+			setSituazione(Simbolo.simboloG1);
 		}
 		if(haVinto(giocatore2)){
-			setSituazione("Giocatore2");
+			setSituazione(Simbolo.simboloG2);
 		}
 		if(haVinto(giocatore2)== false && haVinto(giocatore1)==false &&(giocatore1.size()+giocatore2.size()==9)){
 			setSituazione("Pareggio");

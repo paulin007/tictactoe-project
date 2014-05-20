@@ -22,8 +22,6 @@ public class ServizioInviaMossa implements IServizio {
 					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
 						algoritmo.execute(partite.get(i), giocatore, mossa);
 
-//					output.println(partite.get(i));
-
 					partite.get(i).setUltimoGiocatore(giocatore);
 					
 					return partite.get(i).toString();
