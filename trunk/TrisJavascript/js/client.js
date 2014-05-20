@@ -9,13 +9,15 @@ var firstPlayerName;
 var secondPlayerName;
 var matchID;
 var matchStatus;
-var nextPlayer;
 var moves = new Array(9);
 var myTurn = false;
 var lastPlayer;
 var myPlayer;
+var otherPlayer;
+var matchEnded = false;
 
 function createConnection() {
+	
 	webSocket = new WebSocket("ws://localhost:45454");
 
 	webSocket.onopen = function(message) {
@@ -33,17 +35,12 @@ function createConnection() {
 	webSocket.onerror = function(message) {
 		processError(message);
 	};
+	
 };
 
 function clicBox(id) {
-	document.getElementById("logArea").value += moves[id]+" last:"+lastPlayer+" io:"+myPlayer;
-	//if (moves[id] == "null" && myTurn) {
-		//if (moves[id] == "null") {
-		//myTurn = false;
-		//setX(id);
-		alert(myPlayer+" -- "+lastPlayer);
-		if (myPlayer!=lastPlayer) {
-		string = "mossa/" + matchID + "/"+myPlayer+"/" + id;
+	if (myPlayer != lastPlayer && matchEnded == false) {
+		string = "mossa/" + matchID + "/" + myPlayer + "/" + id;
 		webSocket.send(string);
 		setInterval(function() {
 			requestUpdate();
@@ -67,9 +64,10 @@ function setO(id) {
 }
 
 function requestUpdate() {
-	string = "update/" + matchID;
-	//alert(string);
-	webSocket.send(string);
+	if (matchEnded == false) {
+		string = "update/" + matchID;
+		webSocket.send(string);
+	}
 }
 
 function getFirstPlayerName() {
@@ -83,45 +81,65 @@ function getSecondPlayerName() {
 };
 
 function sendNewMatch() {
-	myPlayer="G1";
+	resetTable();
+	myPlayer = "G1";
+	otherPlayer = "G2";
 	webSocket.send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName());
-	document.getElementById("logArea").value += "nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName()+"\n";
 };
 
 function connectToMatch() {
-	myPlayer="G2";
-	webSocket.send("collegati a/" + getFirstPlayerName() + "/" + getSecondPlayerName());
+	myPlayer = "G2";
+	otherPlayer = "G1";
+	webSocket.send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName());
 	setInterval(function() {
 		requestUpdate();
 	}, 1000);
 };
 
 function processOpen(message) {
-	document.getElementById("logArea").value += "** Connessione al server **" + "\n";
 };
 
 function processMessage(message) {
 	matchID = message.data.split("	",13)[1];
 	matchStatus = message.data.split("	",13)[2];
 	lastPlayer = message.data.split("	",13)[3];
-	//alert(message.data);
 	for (var i = 0; i < moves.length; i++) {
 		moves[i] = message.data.split(" ",13)[i + 1];
 	};
+	checkResult();
 	paint(moves);
-	//alert(moves);
-	return lastPlayer;
+	return lastPlayer, matchStatus;
 };
 
-function paint(moves){
-	for (var i=0; i < moves.length; i++) {
-	  if (moves[i]=="G1") {
-	  	setX(i);
-	  	//myTurn=false;
-	  } else if(moves[i]=="G2"){
-	  	setO(i);
-	  	//myTurn=true;
-	  };
+function paint(moves) {
+	for (var i = 0; i < moves.length; i++) {
+		if (moves[i] == "G1") {
+			setX(i);
+		} else if (moves[i] == "G2") {
+			setO(i);
+		}
+		;
+	};
+}
+
+function checkResult() {
+	if (matchStatus != "inCorso") {
+		if (matchStatus == "Pareggio") {
+			alert("Pareggio!");
+			matchEnded = true;
+		} else if (matchStatus == myPlayer) {
+			alert("Hai vinto!");
+			matchEnded = true;
+		} else if(matchStatus == otherPlayer){
+			alert("Hai perso!");
+			matchEnded = true;
+		}
+	};
+}
+
+function resetTable(){
+	for (var i=0; i < 9; i++) {
+	  document.getElementById(i).src = "./img/blankpage.jpg";
 	};
 }
 
@@ -130,6 +148,5 @@ function processClose(message) {
 };
 
 function processError(message) {
-	document.getElementById("logArea").value += "** Errore" + "**" + "\n";
 };
 
