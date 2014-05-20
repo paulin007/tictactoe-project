@@ -1,9 +1,5 @@
 package grafica;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
 import javax.swing.ImageIcon;
 /**
  * Disegna una delle due icone usate durante un partita
@@ -15,17 +11,10 @@ public class Cerchio implements Icona{
 
 	@Override
 	public ImageIcon disegna() {
-		BufferedImage img = new BufferedImage(200,200, BufferedImage.TYPE_INT_RGB );
 		
-		Graphics g = img.getGraphics();
-			
-		g.setColor( Color.white );
-		g.fillRect(0, 0, img.getHeight(), img.getWidth() );
-				
-		g.setColor( Color.GREEN );
-		g.fillOval(75, 80, 50, 50 );	 
+		java.net.URL imgUrl = getClass().getResource("O.png");
 
-		ImageIcon icon = new ImageIcon( img );
+		ImageIcon icon = new ImageIcon( imgUrl );
 		return icon;
 	}
 	
