@@ -1,0 +1,28 @@
+Per aggiungere le librerie necessarie al server:
+
+- 	Dopo aver fatto l'update vi comparirà il package ServerLibraries.websocket.
+	Contiene tutte le librerie da importare.
+	
+1.	Tasto destro sul progetto 
+2.	Properties (O Alt+Enter)
+3.	Selezionare Java Build Path
+4.	Libraries
+5.	Add Externals Jar
+6.	Inserite tutte le librerie contenute in ServerLibraries.websocket
+
+Per eseguire il server far partire il main di WebSocketTest
+
+Per collegarsi al server:
+
+-	JavaScript: collegarsi via websocket all'indirizzo ws://localhost:45454
+
+-	Java: Istanziare la classe Client
+
+Per lavorare col server:
+
+-	Per creare una nuova partita fare una send di "nuova partita	giocatore1	giocatore2"
+-	Per collegarsi ad una partita fare una send di "collegati a	giocatore1	giocatore2"
+-	Per fare una mossa fare una send di "mossa	idpartita	giocatorechefalamossa	mossanumerica"
+-	Per controllare aggiornamenti fare una send di "update	idpartita"
+
+Il formato Javascript è lo stesso ma al posto delle tabulazioni utilizzare il carattere /
