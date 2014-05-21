@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>TicTacToe</title>
+		<meta name="author" content="Marco Vanzulli" />
+		<link href="./css/main.css" rel="stylesheet" type="text/css">
+		<link href="./css/customFonts.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="./js/client.js"></script>
+		<!-- Date: 2014-04-29 -->
+	</head>
+	<body>
+		<br />
+		<div class="header">
+			<img class="logo" src="./img/tictactoe.png" alt="TicTacToe"/>
+		</div>
+		<br />
+		<br />
+		<div class="center">
+			<table>
+				<table>
+					<tr>
+						<td><a href="#"><img class="box" onclick="clicBox(0)" id="0" src="./img/blankpage.jpg" alt="m0"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(1)" id="1" src="./img/blankpage.jpg" alt="m1"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(2)" id="2" src="./img/blankpage.jpg" alt="m2"/></a></td>
+					</tr>
+					<tr>
+						<td><a href="#"><img class="box" onclick="clicBox(3)" id="3" src="./img/blankpage.jpg" alt="m3"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(4)" id="4" src="./img/blankpage.jpg" alt="m4"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(5)" id="5" src="./img/blankpage.jpg" alt="m5"/></a></td>
+					</tr>
+					<tr>
+						<td><a href="#"><img class="box" onclick="clicBox(6)" id="6" src="./img/blankpage.jpg" alt="m6"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(7)" id="7" src="./img/blankpage.jpg" alt="m7"/></a></td>
+						<td><a href="#"><img class="box" onclick="clicBox(8)" id="8" src="./img/blankpage.jpg" alt="m8"/></a></td>
+					</tr>
+				</table>
+			</table>
+			<br />
+			<br />
+			<div class="settings">
+				<div class="wrapper">
+					<a href="#" class="serverButton" onclick="createConnection()">Collegati</a>
+					<br />
+					<br />
+					<a href="#" class="matchButton" onclick="sendNewMatch()">Nuova partita</a>
+					<a href="#" class="matchButton" onclick="connectToMatch()">Partita esistente</a>
+					<br />
+					<br />
+					<br />
+					Scegli giocatore 1:
+					<br />
+					<select name="scelta1" id="player1name">
+						<option>Marco</option>
+						<option>Giacomo</option>
+						<option>Dario</option>
+						<option>Santo</option>
+						<option>Andrea</option>
+						<option>Kokou</option>
+						<option>Paulin</option>
+					</select>
+					<br />
+					<br />
+					Scegli giocatore 2:
+					<br />
+					<select name="scelta2" id="player2name">
+						<option>Andrea</option>
+						<option>Dario</option>
+						<option>Giacomo</option>
+						<option>Marco</option>
+						<option>Santo</option>
+						<option>Paulin</option>
+						<option>Kokou</option>
+					</select>
+					<br />
+					<br />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
