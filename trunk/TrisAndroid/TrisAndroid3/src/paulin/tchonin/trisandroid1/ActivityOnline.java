@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
@@ -30,16 +31,14 @@ import android.widget.ToggleButton;
 public class ActivityOnline extends Activity {
 
 	private String message;
-	private String response;
+	private String response="";
 	private Button mBoardButtons[];
 	private TicTacToeOnline mGameOnline;
-	// private boolean turnPlayer1 = false;
-	// private boolean turnPlayer2 = false;
 	private String tipo;
 	private boolean aspetto = true;
 	private Timer timer = new Timer();
 	private int winner;
-	private boolean connect = false;
+	private boolean collega = false;
 	private boolean mioturno = false;
 
 	private boolean mGameOver = false;
@@ -56,14 +55,25 @@ public class ActivityOnline extends Activity {
 	private EditText editText2 = null;
 	private String namePlayer1;
 	private String namePlayer2;
-	private static String giocatore1 = "G1";
-	private static String giocatore2 = "G2";
+	private static String simboloGiocatore1 = "G1";
+	private static String simboloGiocatore2 = "G2";
 
+	/** Called when the activity is first created. */
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_online);
+		
 
 		mBoardButtons = new Button[mGameOnline.getBOARD_SIZE()];
+		
+		/*
+		 * findViewById permette di usare qua gli identificatori definiti in xml.
+		 * dobbiamo fare il cast però, xk quel metodo ritorna una view.
+		 * sostanzialmente quel metodo permette di trasformare un oggettto che
+		 * non è scritto in java(xml) in un oggetto java reale e concretto
+		 */
+		
 		mBoardButtons[0] = (Button) findViewById(R.id.one);
 		mBoardButtons[1] = (Button) findViewById(R.id.two);
 		mBoardButtons[2] = (Button) findViewById(R.id.three);
@@ -78,9 +88,7 @@ public class ActivityOnline extends Activity {
 		editText1 = (EditText) findViewById(R.id.name_player1);
 		editText2 = (EditText) findViewById(R.id.name_player2);
 
-		editText1.addTextChangedListener(textWatcher);
-		editText2.addTextChangedListener(textWatcher);
-
+		
 		mGameOnline = new TicTacToeOnline();
 
 		toggleButtonStar();
@@ -99,7 +107,7 @@ public class ActivityOnline extends Activity {
 			Socket link = null; // Step 1.
 
 			try {
-				link = new Socket("192.168.0.101", PORT); // Step 1.
+				link = new Socket("10.65.254.101", PORT); // Step 1.
 
 				Scanner input = new Scanner(link.getInputStream());// Step 2.
 
@@ -115,19 +123,25 @@ public class ActivityOnline extends Activity {
 
 				return response;
 
-			} catch (IOException ioEx) {
+			} catch (UnknownHostException exception) {
+				exception.printStackTrace();
+				Log.e("Paulin", "unKnownHos 1");
+			}catch (IOException ioEx) {
 				ioEx.printStackTrace();
+				Log.e("Paulin", "unKnownHos 2");
 			}
 
 			finally {
+				
 				try {
 
 					link.close(); // Step 4.
 				} catch (IOException ioEx) {
-
+					Log.e("Paulin", "unKnownHos 3");
 				}
 			}
 			Log.e("Paulin", "true");
+			Log.e("Paulin", response);
 			return "true";
 		}
 
@@ -135,7 +149,9 @@ public class ActivityOnline extends Activity {
 		protected void onPostExecute(String result) {
 
 			InterpreteMessaggio interprete = new InterpreteMessaggio();
+			//Log.e("Paulin", "interprete");
 			interprete.interpreta(response);
+			//Log.e("Paulin", "interprete 3");
 			tipoMessaggio = interprete.getTipoMessaggio();
 			IDpartita = interprete.getIDpartita();
 			statoPartita = interprete.getStatoPartita();
@@ -189,12 +205,10 @@ public class ActivityOnline extends Activity {
 	private void setMoveOnline(char player, int location) {
 		mGameOnline.setMove(player, location);
 
-		// una volta che � stato giocato una mossa su una casella, facciamo in
-		// modo che ne il giocatore ne android possa giocare in quella posizione
 		mBoardButtons[location].setEnabled(false);
 		mBoardButtons[location].setText(String.valueOf(player));
 
-		// usiamo i colori delle mosse diversi per il player1 e il player2
+		
 		if (player == mGameOnline.PLAYER1)
 			mBoardButtons[location].setTextColor(Color.GREEN);
 		else
@@ -210,7 +224,7 @@ public class ActivityOnline extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.newGame:
-			startNewGameOnline();
+			onCreate(null);
 			break;
 		case R.id.exitGame:
 			ActivityOnline.this.finish();
@@ -233,7 +247,7 @@ public class ActivityOnline extends Activity {
 
 				if (mBoardButtons[location].isEnabled()) {
 
-					if (mioturno && !connect) {
+					if (mioturno && !collega) {
 						message = "mossa	" + IDpartita + "	G1" + "	" + location;
 						new send().execute();
 						tipo = "mossa";
@@ -241,7 +255,7 @@ public class ActivityOnline extends Activity {
 						mioturno = false;
 					}
 
-					if (mioturno && connect) {
+					if (mioturno && collega) {
 						message = "mossa	" + IDpartita + "	G2" + "	" + location;
 						new send().execute();
 						setMoveOnline(mGameOnline.PLAYER2, location);
@@ -280,13 +294,14 @@ public class ActivityOnline extends Activity {
 					}
 
 				} else {
-				        // ha premuto il buttone stop
-                 
+					// ha premuto il buttone stop
+
 					mioturno = false;
-					connect = false;
+					collega = false;
 
 					aspetto = true;
 					timer.cancel();
+					
 
 				}
 			}
@@ -310,13 +325,13 @@ public class ActivityOnline extends Activity {
 					tipo = "mossa";
 					new send().execute();
 					startNewGameOnline();
-					connect = true;
+					collega = true;
 
 				} else {
-					// scollega 
+					// scollega
 					mioturno = false;
 					timer.cancel();
-					connect = false;
+					collega = false;
 					aspetto = true;
 				}
 			}
@@ -325,7 +340,7 @@ public class ActivityOnline extends Activity {
 	}
 
 	private void aggiornaTabella() {
-		Log.e("Prima del for", caselle.toString());
+		
 
 		for (int i = 0; i < caselle.size(); i++) {
 			if (caselle.get(i).equals("G1")) {
@@ -336,33 +351,33 @@ public class ActivityOnline extends Activity {
 
 		}
 
-		Log.e("Paulin aggiortabella", "dopo il for");
+	
 
-		if (ultimoGiocatore.equals(giocatore2)) {
+		if (ultimoGiocatore.equals(simboloGiocatore2)) {
 			mioturno = true;
 			mInfoTextView.setText(R.string.turn_player1);
 
 		}
 
-		if (ultimoGiocatore.equals(giocatore1)) {
+		if (ultimoGiocatore.equals(simboloGiocatore1)) {
 			mioturno = false;
 			mInfoTextView.setText(R.string.turn_player2);
 
 		}
 
-		if (connect && ultimoGiocatore.equals(giocatore2)) {
+		if (collega && ultimoGiocatore.equals(simboloGiocatore2)) {
 			mInfoTextView.setText(R.string.turn_player2);
 			mioturno = false;
 		}
 
-		if (connect && ultimoGiocatore.equals(giocatore1)) {
+		if (collega && ultimoGiocatore.equals(simboloGiocatore1)) {
 			mInfoTextView.setText(R.string.turn_player1);
 			mioturno = true;
 		}
 
 		winner = mGameOnline.checkForWinner();
 
-		if (winner == 0) {	
+		if (winner == 0) {
 		} else if (winner == 1) {
 			mInfoTextView.setText(R.string.result_tie);
 			mGameOver = true;
@@ -376,29 +391,12 @@ public class ActivityOnline extends Activity {
 			mioturno = false;
 			mGameOver = true;
 		}
-		
+
 	}
 
-	// for edittext per vedere quando l'utilisatore scrive nell'edittext
-	private TextWatcher textWatcher = new TextWatcher() {
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before,
-				int count) {
-			// result.setText(defaut);
-		}
+	
 
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count,
-				int after) {
-		}
-
-		@Override
-		public void afterTextChanged(Editable s) {
-		}
-	};
-
-	// aspettiamo che finisce il metodo send
-
+	
 	private void starTimer() {
 		if (aspetto) {
 			TimerTask timerTask = new TimerTask() {
