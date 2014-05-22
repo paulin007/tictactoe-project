@@ -8,7 +8,11 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * Questa classe rappresenta il pannello di benvenuto una volta lanciata
+ * l'applicazione
+ *
+ */
 @SuppressWarnings("serial")
 public class PannelloDiBenvenuto extends JPanel implements PannelloTris {
 

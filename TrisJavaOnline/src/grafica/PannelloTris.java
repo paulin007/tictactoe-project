@@ -1,11 +1,9 @@
-/**
- * Questa classe astrae sul concetto di Pannello che viene utilizzato nell'applicazione Tris
- * @author Giacomo
- */
 package grafica;
 
 import javax.swing.JPanel;
-
+/**
+ * Questa classe astrae sul concetto di Pannello che viene utilizzato nell'applicazione Tris
+ */
 public interface PannelloTris {
 	
 	/**

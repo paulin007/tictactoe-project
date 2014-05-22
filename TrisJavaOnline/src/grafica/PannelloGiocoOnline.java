@@ -1,6 +1,3 @@
-/**
- * Questa classe ha la responsabilitÃ  di gestire l'interfaccia grafica del gioco del Tris, che si sviluppa Online
- */
 package grafica;
 
 import java.awt.Color;
@@ -21,21 +18,18 @@ import javax.swing.JPanel;
 
 import rete.InterpreteMessaggio;
 import rete.TimerPannello;
-import tris.Simbolo;
-
+/**
+ * Questa classe ha la responsabilitÃ  di gestire l'interfaccia grafica del gioco del Tris, che si sviluppa Online
+ */
 public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	
+	private static final long serialVersionUID = 1L;	
 	private ArrayList<JButton> griglia = new ArrayList<>();
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
-//	private Icona iconaMia;
-//	private Icona iconaAvversario;
-	private Icona[] icone = new Icona[2];	//icone[0]=iconaMia		icone[1]=iconaAvversario
+	private Icona[] icone = new Icona[2];
 	private ControllerTris controllerTris;
 	private static int numeroCaselle = 9;
 	private JLabel label = new JLabel("Tuo turno");
@@ -58,7 +52,10 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		setupInizialeGioco(iconaMia);
 	}
 	
-	//TODO inserire commento
+	/**
+	 * Inizializza il gioco
+	 * @param iconaMia
+	 */
 	private void setupInizialeGioco(String iconaMia) {
 		setIcona(iconaMia);
 		setSimboloAvversario();
@@ -72,10 +69,7 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 		messaggioMossa +=this.IDpartita+"	"+mioSimbolo+"	";
 	}
 	
-	/*
-	 * Questo metodo permette di mostrare a video, quello che viene interpretato
-	 * @param partita
-	 */
+	
 	private void disegnaTris(){
 		// inCorso G1 X G2 G1 G1 G2 G2 X X;
 		ArrayList<Integer> caselleMie = new ArrayList<>();
@@ -90,7 +84,6 @@ public class PannelloGiocoOnline extends JPanel implements PannelloTris,Observer
 			}
 		}
 		isMioTurno(interpreteMessaggio.getUltimoGiocatore());
-		//System.out.println(interpreteMessaggio.getUltimoGiocatore());
 		for (int i = 0; i < caselleMie.size(); i++) {
 			griglia.get(caselleMie.get(i)).setIcon(icone[0].disegna());
 		}

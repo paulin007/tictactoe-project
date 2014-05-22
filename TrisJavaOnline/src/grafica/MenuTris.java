@@ -1,7 +1,3 @@
-/**
- * Questa classe ha la reposanbilità di gestire il menu dell'applicazione Tris
- * @author Giacomo
- */
 package grafica;
 
 import java.awt.event.ActionEvent;
@@ -13,7 +9,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-
+/**
+ * Questa classe ha la reposanbilità di gestire il menu dell'applicazione Tris
+ */
 @SuppressWarnings("serial")
 public class MenuTris extends JMenuBar {
 	

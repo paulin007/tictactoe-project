@@ -1,6 +1,3 @@
-/**
- * Questa classe ha la responsabilità di gestire il pannello contente la lista di gicatori, con cui giocare a Tris
- */
 package grafica;
 
 import java.awt.Color;
@@ -19,7 +16,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import rete.InterpreteMessaggio;
-import tris.Simbolo;
+
+/**
+ * Questa classe ha la responsabilità di gestire il pannello contente la lista di gicatori, con cui giocare a Tris
+ */
 
 @SuppressWarnings("rawtypes")	
 
@@ -138,12 +138,16 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			JOptionPane.showMessageDialog(null, "Selezionare Nomi Diversi !!");
 		}
 		else {
-			G1=(String)comboBox1.getSelectedItem();
-			G2=(String)comboBox2.getSelectedItem();
+			selezioneGiocatori();
 			setIconaScelta(comboBox3.getSelectedItem().toString());
 			controllerTris.setPannelloGiocoOnline(simbolo, iconaScelta,interpreteMessaggio.getIDpartita());
 			
 		}
+	}
+	
+	private void selezioneGiocatori() {
+		G1 = (String) comboBox1.getSelectedItem();
+		G2 = (String) comboBox2.getSelectedItem();
 	}
 
 	private void setPanel(JPanel panel, Component component){
@@ -152,12 +156,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 		panel.setBackground(new Color(153,203,255));
 		panel.add(component);
 	}
-	
-	private void selezioneGiocatori() {
-		G1 = (String) comboBox1.getSelectedItem();
-		G2 = (String) comboBox2.getSelectedItem();
-	}
-	
+		
 	public void setIconaScelta(String iconaScelta) {
 		this.iconaScelta = iconaScelta;
 	}

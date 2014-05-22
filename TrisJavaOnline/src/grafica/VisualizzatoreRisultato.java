@@ -3,7 +3,6 @@ package grafica;
 import javax.swing.JOptionPane;
 
 import rete.InterpreteMessaggio;
-import tris.Simbolo;
 /**
  * Questa classe ha la responsabilità di elaborare un messaggio per fornire l'esito di una partita
  */
