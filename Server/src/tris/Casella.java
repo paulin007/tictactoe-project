@@ -1,0 +1,69 @@
+package tris;
+
+import java.util.Observable;
+/**
+ * Questa classe astrae sul concetto di casella, che rappresenta il luogo che 
+ * contiene un simbolo x oppure o
+ * @author Giacomo
+ */
+public class Casella extends Observable{
+	
+	private String simbolo;
+	private int IDcasella;
+	
+	public Casella(int IDcasella) {
+		this.IDcasella=IDcasella;
+	}
+
+	public String getSimbolo() {
+		return simbolo;
+	}
+
+	public void setSimbolo(String simbolo) {
+		this.simbolo = simbolo;
+		update();
+	}
+
+	public int getIDcasella() {
+		return IDcasella;
+	}
+
+	/**
+	 * Questo metodo permette di stabilire se una casella è vuota
+	 * @return
+	 */
+	public boolean isVuota(){
+		boolean vuota=false;
+		
+		if(simbolo==null||Simbolo.casellaVuota.equalsIgnoreCase(simbolo)) vuota=true;
+		
+		return vuota;
+	}
+	/**
+	 * Questo metodo permette di stabilire se una casella è occupata da G1
+	 * @return
+	 */
+	public boolean occupataDaG1(){
+		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase(Simbolo.simboloG1);
+		return occupata;
+	}
+	/**
+	 * Questo metodo permette di stabilire se una casella è occupata da G2
+	 * @return
+	 */
+	public boolean occupataDaG2(){
+		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase(Simbolo.simboloG2);
+		return occupata;
+	}
+
+	public void update(){
+		setChanged();
+		notifyObservers();
+	}
+	
+	@Override
+	public String toString(){
+		return "Simbolo: "+getSimbolo()+" IDcasella: "+getIDcasella();
+	}
+	
+}
