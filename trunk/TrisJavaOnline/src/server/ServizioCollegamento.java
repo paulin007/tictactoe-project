@@ -11,7 +11,7 @@ public class ServizioCollegamento implements IServizio {
 	public String effettuaServizio(StringTokenizer s, ArrayList<Partita> partite) {
 	
 		try {
-		if(s.countTokens()!=3)	throw new Eccezioni("Formato errato",s );
+		if(s.countTokens()!=2)	throw new Eccezioni("Formato errato",s );
 		String giocatore1 = s.nextToken();
 		String giocatore2 = s.nextToken();
 		for (int i = 0; i < partite.size(); i++) {

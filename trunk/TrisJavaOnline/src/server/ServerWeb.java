@@ -83,7 +83,7 @@ public class ServerWeb {
 
 			String operazione = s.nextToken();
 
-			if (mappaServizi.containsKey(operazione))
+			if (!(mappaServizi.containsKey(operazione.toLowerCase())))
 				throw new Eccezioni("Operazione non esistente", s);
 			output.println(mappaServizi.get(operazione.toLowerCase()).effettuaServizio(s, partite));
 
