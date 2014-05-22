@@ -1,7 +1,10 @@
 package grafica;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Un'astrazione sul concetto di Icona
+ *
+ */
 public interface Icona {
 	
 	/**

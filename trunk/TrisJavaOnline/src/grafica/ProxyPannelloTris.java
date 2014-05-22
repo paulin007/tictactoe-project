@@ -1,13 +1,11 @@
-/**
- * Questa classe permette di cambiare a run time, i vari tipi di {@link PannelloTris}
- * @author Giacomo
- */
 package grafica;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
-
+/**
+ * Questa classe permette di cambiare a run time, i vari tipi di {@link PannelloTris}
+ */
 @SuppressWarnings("serial")
 public class ProxyPannelloTris extends JPanel implements PannelloTris {
 	

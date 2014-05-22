@@ -17,14 +17,6 @@ public class ControllerTris {
 
 	}
 
-	public ProxyPannelloTris getProxyPannelloTris() {
-		return proxyPannelloTris;
-	}
-
-	public void setProxyPannelloTris(ProxyPannelloTris proxyPannelloTris) {
-		this.proxyPannelloTris = proxyPannelloTris;
-	}
-
 	/**
 	 * Questo metodo permette di impostare il pannello contente la lista di giocatori
 	 */

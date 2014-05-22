@@ -2,7 +2,7 @@
  * Questa classe astrae sul concetto di simbolo, che viene inserito un Tris
  * 
  */
-package tris;
+package grafica;
 
 public class Simbolo {
 	
@@ -17,10 +17,6 @@ public class Simbolo {
 
 	public String getSimbolo() {
 		return simbolo;
-	}
-
-	public void setSimbolo(String simbolo) {
-		this.simbolo = simbolo;
 	}
 	
 	@Override

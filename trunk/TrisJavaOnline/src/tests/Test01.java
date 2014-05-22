@@ -5,19 +5,15 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import rete.Client;
-import server.ServizioAggiornamento;
-import server.ServizioCollegamento;
-import server.ServizioInviaMossa;
-import server.ServizioNuovaPartita;
 /**
  * Test dei servizi {@link ServizioAggiornamento} {@link ServizioCollegamento} {@link ServizioInviaMossa} {@link ServizioNuovaPartita}
+ * NOTA: Prima di avviare questo test, è necessario lanciare il Server
  * @author Dario
  *
  */
-public class Test04 {
+public class Test01 {
 
 	Client client = new Client();
-	
 	
 	@Test
 	public void test01() {

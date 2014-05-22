@@ -1,51 +1,47 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tris.Casella;
-import tris.Simbolo;
-
+import rete.InterpreteMessaggio;
 /**
- * Test sulle funzionalità della classe {@link Casella}
- * @author Dario
+ *Testa sulle funzionalità della classe {@link InterpreteMessaggio} 
  *
  */
 public class Test02 {
 
-	Casella casella0 = new Casella(0);
-	Casella casella1 = new Casella(1);
-	Casella casella2 = new Casella(2);
-	
+	InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
+	String partita = "0, Dario, Santo";
+
 	public Test02() {
-	
-		casella0.setSimbolo(Simbolo.simboloG1);
+		
+		interpreteMessaggio.interpreta(partita);
 	}
 	
-	/**
-	 * Test sui metodi occupataDaG1, occupataDaG2, isVuota, casellaConsecutivaG1
-	 */
 	@Test
-	public void testCasellaConsecutiva() {
-		
-		
-		casella1.setSimbolo(Simbolo.simboloG1);
-		assertTrue(casella0.occupataDaG1());
-		assertTrue(!casella0.occupataDaG2());
-		assertTrue(!casella0.isVuota());
-		assertTrue(casella0.casellaConsecutivaG1(casella1));	
+	public void test01() {
+		assertTrue(interpreteMessaggio.getTipoMessaggio().contentEquals("Partita"));
 	}
-	/**
-	 * Test sul metodo possibileMossaG2
-	 */
+	
 	@Test
-	public void testPossibileMossaG2(){
-		casella0.setSimbolo(Simbolo.simboloG2);
-		Casella casella1 = new Casella(1);
-		casella1.setSimbolo(Simbolo.simboloG2);
-		
-		assertTrue(casella0.possibileMossaG2(casella1, casella2));
+	public void test02(){
+		assertTrue(interpreteMessaggio.getIDpartita().contentEquals("0"));
 	}
+	@Test
+	public void test03(){
+		assertTrue(interpreteMessaggio.getUltimoGiocatore().contentEquals("G2"));
+	}
+
+	@Test
+	public void test04(){
+		assertTrue(interpreteMessaggio.getStatoPartita().contentEquals("inCorso"));
+	}
+
+	@Test
+	public void test05(){
+		assertTrue(interpreteMessaggio.getCaselle().toString().contentEquals("[null, null, null, null, null, null, null, null, null]"));
+	}
+
 
 }

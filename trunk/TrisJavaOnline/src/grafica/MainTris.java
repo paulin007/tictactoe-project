@@ -1,13 +1,12 @@
-/**
- * Questo main permette di eseguire la parte grafica del gioco del tris
- * @author Giacomo
- */
 package grafica;
 
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-
+/**
+ * Questo main permette di eseguire la parte grafica del gioco del tris
+ * @author Giacomo
+ */
 public class MainTris {
 	
 	public MainTris() {
