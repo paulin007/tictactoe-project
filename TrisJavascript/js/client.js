@@ -9,7 +9,7 @@ var webSocket;
 
 function createConnection() {
 
-	webSocket = new WebSocket("ws://192.168.0.101:45454");
+	webSocket = new WebSocket("ws://localhost:45454");
 
 	webSocket.onopen = function(message) {
 		processOpen(message);
