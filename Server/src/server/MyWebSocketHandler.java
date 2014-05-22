@@ -62,7 +62,7 @@ public class MyWebSocketHandler {
 
 		String operazione = s.nextToken();
 		
-		if (MappaServizi.getMappa().containsKey(operazione))
+		if (!(MappaServizi.getMappa().containsKey(operazione.toLowerCase())))
 
 				throw new EccezioniServer("Operazione non esistente",s);
 
