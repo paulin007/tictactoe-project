@@ -12,7 +12,7 @@ public class ServizioNuovaPartita implements IServizio {
 	@Override
 	public String effettuaServizio(StringTokenizer s, ArrayList<Partita> partite) {
 		try {
-			if(s.countTokens()!=3) throw new Eccezioni("Formato Errato",s);
+			if(s.countTokens()!=2) throw new Eccezioni("Formato Errato",s);
 			
 		String giocatore1 = s.nextToken();
 		String giocatore2 = s.nextToken();

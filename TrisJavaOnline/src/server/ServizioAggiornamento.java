@@ -12,7 +12,7 @@ public class ServizioAggiornamento implements IServizio {
 	@Override
 	public String effettuaServizio(StringTokenizer s, ArrayList<Partita> partite) {
 		try {
-			if (s.countTokens()!=2) throw new Eccezioni("Formato errato",s );
+			if (s.countTokens()!=1) throw new Eccezioni("Formato errato",s );
 			
 			int idPartita = Integer.parseInt(s.nextToken());
 

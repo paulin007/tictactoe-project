@@ -13,7 +13,7 @@ public class ServizioInviaMossa implements IServizio {
 	public String effettuaServizio(StringTokenizer s, ArrayList<Partita> partite) {
 		
 		try{
-			if(s.countTokens()!=4) throw new Eccezioni("Formato Errato",s);
+			if(s.countTokens()!=3) throw new Eccezioni("Formato Errato",s);
 			
 		int idPartita = Integer.parseInt(s.nextToken());
 		String giocatore = s.nextToken();
