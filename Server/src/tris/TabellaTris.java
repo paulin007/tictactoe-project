@@ -5,6 +5,8 @@
  */
 package tris;
 
+import gioco.Casella;
+
 import java.util.ArrayList;
 
 public class TabellaTris  {

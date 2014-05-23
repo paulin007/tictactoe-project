@@ -2,7 +2,7 @@
  * Questa classe astrae sul concetto di simbolo, che viene inserito un Tris
  * 
  */
-package forza4;
+package gioco;
 
 public class Simbolo {
 	

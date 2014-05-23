@@ -1,5 +1,7 @@
 package server;
 
+import gioco.Partita;
+
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.concurrent.CountDownLatch;

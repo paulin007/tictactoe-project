@@ -1,5 +1,7 @@
 package forza4;
 
+import gioco.Partita;
+
 public class AlgoritmoForza4 {
 	
 	private static int nRighe = 6;
@@ -9,7 +11,7 @@ public class AlgoritmoForza4 {
 	public String execute (Partita partita,String giocatore, String mossa){
 		int casella = casellaSuccessivaLibera(partita, Integer.valueOf(mossa));
 		if(mossaValida(partita, casella)){
-			partita.getCelle().getCaselle().get(casella).setSimbolo(giocatore);
+			partita.getTabella().getCaselle().get(casella).setSimbolo(giocatore);
 			if(QuaterneVincenti.isPresenteVittoria(partita, giocatore)){
 				partita.setRisultato(giocatore);
 			}
@@ -34,7 +36,7 @@ public class AlgoritmoForza4 {
 		int posizione = 0; 
 		for (int i = 0; i < nRighe; i++) {
 			posizione = colonna+nColonne*(5-i);
-			if(partita.getCelle().getCaselle().get(posizione).isVuota()){
+			if(partita.getTabella().getCaselle().get(posizione).isVuota()){
 				return posizione;
 			}
 			else{
