@@ -1,6 +1,12 @@
 package server;
 
 import java.util.HashMap;
+
+import servizi.IServizio;
+import servizi.ServizioAggiornamento;
+import servizi.ServizioCollegamento;
+import servizi.ServizioInviaMossa;
+import servizi.ServizioNuovaPartita;
 /**
  * Questa classe contiene una mappa in modo tale da associare ad una
  * Stringa un nuovo {@link IServizio}
