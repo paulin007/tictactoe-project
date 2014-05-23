@@ -2,13 +2,12 @@ package tests;
 
 import static org.junit.Assert.assertTrue;
 import gioco.Casella;
+import gioco.Simbolo;
 
 import org.junit.Test;
 
-import tris.Simbolo;
-
 /**
- * Test sulle funzionalità della classe {@link Casella}
+ * Test sulle funzionalit�� della classe {@link Casella}
  * @author Dario
  *
  */

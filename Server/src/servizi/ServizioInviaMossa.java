@@ -7,9 +7,8 @@ import java.util.StringTokenizer;
 
 import server.EccezioniServer;
 import tris.AlgoritmoTris;
-import tris.Simbolo;
 /**
- *Questa classe ha la responsabilità di effettuare il servizio per inviare la mossa effettuata
+ *Questa classe ha la responsabilit�� di effettuare il servizio per inviare la mossa effettuata
  */
 public class ServizioInviaMossa implements IServizio {
 
@@ -25,18 +24,13 @@ public class ServizioInviaMossa implements IServizio {
 		for (int i = 0; i < partite.size(); i++) {
 			if (partite.get(i).getId() == idPartita) {
 					AlgoritmoTris algoritmo = new AlgoritmoTris();
-
 					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
 						algoritmo.execute(partite.get(i), giocatore, mossa);
-					
 					String esito = partite.get(i).getRisultato();
-					if(esito.equalsIgnoreCase(Simbolo.simboloG1))
-
-					partite.get(i).setUltimoGiocatore(giocatore);
-					
+					//if(esito.equalsIgnoreCase(Simbolo.simboloG1))
+						partite.get(i).setUltimoGiocatore(giocatore);
 					return partite.get(i).toString();
 			}
-
 		}
 		}catch(NumberFormatException ex){
 			try {

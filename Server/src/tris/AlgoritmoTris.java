@@ -1,7 +1,9 @@
 package tris;
 
+import gioco.Algoritmo;
 import gioco.Casella;
 import gioco.Partita;
+import gioco.Simbolo;
 
 import java.util.ArrayList;
 
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Questa interfaccia astrae sul concetto di algoritmo, presente in un gioco
  */
-public class AlgoritmoTris {
+public class AlgoritmoTris implements Algoritmo {
 	private ArrayList<Integer> giocatore1;
 	private ArrayList<Integer> giocatore2;
 	private ArrayList<Terna> vincitePossibili;
@@ -84,7 +86,7 @@ public class AlgoritmoTris {
 	}
 
 	/**
-	 * Determina se all'interno di una lista di mosse vi è una combinazione
+	 * Determina se all'interno di una lista di mosse vi �� una combinazione
 	 * vincente
 	 * 
 	 * @param mosse

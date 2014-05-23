@@ -1,15 +1,15 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import gioco.Partita;
+import gioco.Simbolo;
 
 import org.junit.Test;
 
 import tris.AlgoritmoTris;
-import tris.Simbolo;
 /**
  * 
- * Test sulle funzionalità della classe {@link AlgoritmoTris}
+ * Test sulle funzionalit�� della classe {@link AlgoritmoTris}
  * @author Dario
  *
  */

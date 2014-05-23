@@ -1,30 +1,35 @@
 package gioco;
 
-import tris.TabellaTris;
 /**
- * Responsabilità: astrae sul concetto di una partita Tris
+ * Responsabilit��: astrae sul concetto di una partita Tris
  */
 public class Partita {
 	
 	private String giocatore1;												// Il primo giocatore, avvia la partita
 	private String giocatore2;												// Il secondo giocatore, si aggiunge alla partita
 	private Tabella tabella;							// Celle disponibili
-	boolean conclusa = false;												// Se la partita si � gi� conclusa
+	boolean conclusa = false;												// Se la partita si ��� gi��� conclusa
 	String risultato = "inCorso";
 	private int id;
 	private String ultimoGiocatore = "G2";
+	private String gioco;
 	
 	public Partita(int id, String giocatore1, String giocatore2, String gioco){
 		this.giocatore1 = giocatore1;
 		this.giocatore2 = giocatore2;
-		if(gioco.equalsIgnoreCase("tris")){
-			tabella = new Tabella(3, 3);
-		}
-		if(gioco.equalsIgnoreCase("forza4")){
-			tabella = new Tabella(6, 7);
-		}
+		this.gioco = gioco;
+		creaTabellaPartita(gioco);
 		this.id = id;
 		
+	}
+	
+	private void creaTabellaPartita(String gioco){
+		if(gioco.equalsIgnoreCase(GiochiPresenti.tris)){
+			tabella = new Tabella(3, 3);
+		}
+		if(gioco.equalsIgnoreCase(GiochiPresenti.forza4)){
+			tabella = new Tabella(6, 7);
+		}
 	}
 
 	public String getGiocatore1() {
@@ -82,7 +87,7 @@ public class Partita {
 
 	@Override
 	public String toString(){
-		return "Partita	"+id+"	"+getRisultato()+"	"+getUltimoGiocatore()+"	"+getTabella().toString();
+		return gioco+"	"+id+"	"+getRisultato()+"	"+getUltimoGiocatore()+"	"+getTabella().toString();
 	}
 
 	public String getUltimoGiocatore() {
