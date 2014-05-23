@@ -1,12 +1,11 @@
 package tris;
 
-import java.util.Observable;
 /**
  * Questa classe astrae sul concetto di casella, che rappresenta il luogo che 
  * contiene un simbolo x oppure o
  * @author Giacomo
  */
-public class Casella extends Observable{
+public class Casella {
 	
 	private String simbolo;
 	private int IDcasella;
@@ -21,7 +20,6 @@ public class Casella extends Observable{
 
 	public void setSimbolo(String simbolo) {
 		this.simbolo = simbolo;
-		update();
 	}
 
 	public int getIDcasella() {
@@ -54,11 +52,6 @@ public class Casella extends Observable{
 	public boolean occupataDaG2(){
 		boolean occupata = !isVuota()&&getSimbolo().equalsIgnoreCase(Simbolo.simboloG2);
 		return occupata;
-	}
-
-	public void update(){
-		setChanged();
-		notifyObservers();
 	}
 	
 	@Override
