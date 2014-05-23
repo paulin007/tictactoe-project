@@ -1,8 +1,10 @@
+
 package forza4;
 
+import gioco.Algoritmo;
 import gioco.Partita;
 
-public class AlgoritmoForza4 {
+public class AlgoritmoForza4 implements Algoritmo {
 	
 	private static int nRighe = 6;
 	private static int nColonne = 7;

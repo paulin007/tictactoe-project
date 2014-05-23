@@ -1,5 +1,6 @@
 package servizi;
 
+import gioco.GiochiPresenti;
 import gioco.Partita;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.StringTokenizer;
 
 import server.EccezioniServer;
 /**
- * Questa classe ha la responsabilità di effettuare il servizio per avviare una nuova partita
+ * Questa classe ha la responsabilit�� di effettuare il servizio per avviare una nuova partita
  */
 public class ServizioNuovaPartita implements IServizio {
 
@@ -22,7 +23,8 @@ public class ServizioNuovaPartita implements IServizio {
 		String giocatore2 = s.nextToken();
 
 		Partita partitaCreata = new Partita(partitaIndex, giocatore1,
-				giocatore2, "tris");
+				giocatore2, GiochiPresenti.tris
+				);
 		partite.add(partitaCreata);
 
 		System.out.println("SERVER> "+partite.get(partitaIndex).toString());
