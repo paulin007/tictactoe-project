@@ -1,0 +1,46 @@
+package forza4;
+
+public class AlgoritmoForza4 {
+	
+	private static int nRighe = 6;
+	private static int nColonne = 7;
+	private static int mossaNonvalida = -1;
+	
+	public String execute (Partita partita,String giocatore, String mossa){
+		int casella = casellaSuccessivaLibera(partita, Integer.valueOf(mossa));
+		if(mossaValida(partita, casella)){
+			partita.getCelle().getCaselle().get(casella).setSimbolo(giocatore);
+			if(QuaterneVincenti.isPresenteVittoria(partita, giocatore)){
+				partita.setRisultato(giocatore);
+			}
+		}
+		return partita.toString();
+	}
+	/*
+	 * Questo metodo permette di stabilire se una mossa è valida
+	 */
+	private boolean mossaValida(Partita partita, int casella){
+		if(casella!=mossaNonvalida&&!partita.isConclusa()){
+		return true;
+		}else{
+			return false;
+		}
+	}
+	/*
+	 * Questo metodo serve per capire qual'è la casella libera successiva, presente
+	 * nella colonna
+	 */
+	private int casellaSuccessivaLibera(Partita partita,int colonna){
+		int posizione = 0; 
+		for (int i = 0; i < nRighe; i++) {
+			posizione = colonna+nColonne*(5-i);
+			if(partita.getCelle().getCaselle().get(posizione).isVuota()){
+				return posizione;
+			}
+			else{
+				posizione = mossaNonvalida;
+			}
+		}
+		return posizione;
+	}
+}
