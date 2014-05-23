@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.5" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="server.ServizioNuovaPartita" project="Server" 
-    file="/Server/src/server/ServizioNuovaPartita.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="servizi.ServizioNuovaPartita" project="Server" 
+    file="/Server/src/servizi/ServizioNuovaPartita.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="101" y="86"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="server.ServizioInviaMossa" project="Server" 
-    file="/Server/src/server/ServizioInviaMossa.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="servizi.ServizioInviaMossa" project="Server" 
+    file="/Server/src/servizi/ServizioInviaMossa.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="310" y="86"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -19,7 +19,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="server.IServizio" project="Server" file="/Server/src/server/IServizio.java" 
+  <interface id="3" language="java" name="servizi.IServizio" project="Server" file="/Server/src/servizi/IServizio.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="492" y="186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -28,8 +28,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </interface>  
-  <class id="4" language="java" name="server.ServizioAggiornamento" project="Server" 
-    file="/Server/src/server/ServizioAggiornamento.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="servizi.ServizioAggiornamento" project="Server" 
+    file="/Server/src/servizi/ServizioAggiornamento.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="527" y="86"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -55,8 +55,8 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="server.ServizioCollegamento" project="Server" 
-    file="/Server/src/server/ServizioCollegamento.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="servizi.ServizioCollegamento" project="Server" 
+    file="/Server/src/servizi/ServizioCollegamento.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="913" y="86"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -91,36 +91,36 @@
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="13">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="14" name="handler"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="16">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <realization id="17">    
+  <realization id="13">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <realization id="18">    
-    <end type="SOURCE" refId="7"/>    
+  <association id="14">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="15" name="mappa"/>      
+      <multiplicity id="16" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="17">    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <realization id="19">    
+  <realization id="18">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
+  <realization id="19">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
   <association id="20">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="21" name="mappa"/>      
-      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="21" name="handler"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="23">    

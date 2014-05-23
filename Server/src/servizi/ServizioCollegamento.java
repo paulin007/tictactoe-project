@@ -1,7 +1,10 @@
-package server;
+package servizi;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+
+import server.EccezioniServer;
+import server.Partita;
 /**
  *Questa classe ha la responsabilità di effettuare il servizio per collegare un giocatore ad un altro
  */

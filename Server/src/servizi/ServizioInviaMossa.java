@@ -1,9 +1,12 @@
-package server;
+package servizi;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import server.EccezioniServer;
+import server.Partita;
 import tris.Algoritmo;
+import tris.Simbolo;
 /**
  *Questa classe ha la responsabilità di effettuare il servizio per inviare la mossa effettuata
  */
@@ -24,6 +27,9 @@ public class ServizioInviaMossa implements IServizio {
 
 					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
 						algoritmo.execute(partite.get(i), giocatore, mossa);
+					
+					String esito = partite.get(i).getRisultato();
+					if(esito.equalsIgnoreCase(Simbolo.simboloG1))
 
 					partite.get(i).setUltimoGiocatore(giocatore);
 					
