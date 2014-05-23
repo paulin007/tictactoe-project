@@ -3,7 +3,7 @@
  * le {@link Casella}, dove l'utente inserira le proprie mosse
  * @author Giacomo
  */
-package forza4;
+package gioco;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,6 @@ public class Tabella  {
 	private ArrayList<Casella> caselle;
 	private int nRighe = 3;
 	private int nColonne = 3;
-	
 	
 	
 	public Tabella(int nRighe, int nColonne) {
@@ -26,7 +25,7 @@ public class Tabella  {
 	 * Questo metodo permette di creare una tabella per il tris,
 	 * formata da un certo numero di {@link Casella}
 	 */
-	public void creaTabella(){
+	private void creaTabella(){
 		caselle = new ArrayList<>();
 		int k=0;
 		for (int i = 1; i <= nRighe; i++) {

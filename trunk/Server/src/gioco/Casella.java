@@ -1,12 +1,11 @@
-package forza4;
+package gioco;
 
-import java.util.Observable;
 /**
  * Questa classe astrae sul concetto di casella, che rappresenta il luogo che 
  * contiene un simbolo x oppure o
  * @author Giacomo
  */
-public class Casella extends Observable{
+public class Casella{
 	
 	private String simbolo;
 	private int IDcasella;
@@ -21,7 +20,6 @@ public class Casella extends Observable{
 
 	public void setSimbolo(String simbolo) {
 		this.simbolo = simbolo;
-		update();
 	}
 
 	public int getIDcasella() {
@@ -63,29 +61,10 @@ public class Casella extends Observable{
 			return false;
 		}
 	}
-
-	public void update(){
-		setChanged();
-		notifyObservers();
-	}
 	
 	@Override
 	public String toString(){
 		return "Simbolo: "+getSimbolo()+" IDcasella: "+getIDcasella();
 	}
-	/**
-	 * Questo metodo stablisce se 4 caselle sono occupate dallo stesso simbolo
-	 * @param casella2
-	 * @param casella3
-	 * @param casella4
-	 * @param simbolo
-	 * @return
-	 */
-	public boolean quattroOccupateDaSimbolo(Casella casella2,Casella casella3,Casella casella4,String simbolo){
-		if(occupataDaSimbolo(simbolo)&&casella2.occupataDaSimbolo(simbolo)&&casella3.occupataDaSimbolo(simbolo)&&casella4.occupataDaSimbolo(simbolo)){
-			return true;
-		}else{
-		return false;
-		}
-	}
+
 }

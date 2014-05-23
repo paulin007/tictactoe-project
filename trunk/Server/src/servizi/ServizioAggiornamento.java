@@ -1,10 +1,11 @@
 package servizi;
 
+import gioco.Partita;
+
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import server.EccezioniServer;
-import server.Partita;
 
 /**
  * Questa classe, quando viene chiamato ha la responsabilità di fornire lo stato

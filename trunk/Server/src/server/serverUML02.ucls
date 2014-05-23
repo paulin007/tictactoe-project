@@ -37,7 +37,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="server.Partita" project="Server" file="/Server/src/server/Partita.java" 
+  <class id="5" language="java" name="gioco.Partita" project="Server" file="/Server/src/gioco/Partita.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="613" y="495"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

@@ -39,7 +39,12 @@ public class Partita {
 	}
 
 	public boolean isConclusa() {
-		return conclusa;
+		if(getRisultato().equalsIgnoreCase("inCorso")){
+			return false;
+		}else{
+			return true;
+		}
+		//return conclusa;
 	}
 
 	public void setConclusa(boolean conclusa) {

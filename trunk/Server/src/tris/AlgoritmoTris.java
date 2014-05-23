@@ -1,19 +1,21 @@
 package tris;
 
+import gioco.Casella;
+import gioco.Partita;
+
 import java.util.ArrayList;
 
-import server.Partita;
 
 /**
  * Questa interfaccia astrae sul concetto di algoritmo, presente in un gioco
  */
-public class Algoritmo {
+public class AlgoritmoTris {
 	private ArrayList<Integer> giocatore1;
 	private ArrayList<Integer> giocatore2;
 	private ArrayList<Terna> vincitePossibili;
 	private String situazione = "inCorso";
 
-	public Algoritmo() {
+	public AlgoritmoTris() {
 		super();
 		TerneVincite terneVincite = new TerneVincite();
 		vincitePossibili = terneVincite.getTerneVincenti();
@@ -29,14 +31,14 @@ public class Algoritmo {
 	 * @param mossa
 	 */
 	public String execute(Partita partita, String giocatore, String mossa) {
-		if (partita.getCelle().getCaselle().get(Integer.valueOf(mossa))
+		if (partita.getTabella().getCaselle().get(Integer.valueOf(mossa))
 				.isVuota()) {
-			partita.getCelle().getCaselle().get(Integer.valueOf(mossa))
+			partita.getTabella().getCaselle().get(Integer.valueOf(mossa))
 					.setSimbolo(giocatore);
 		} else {
 			return "MossaNonValida";
 		}
-		stabilisciSituazione(partita.getCelle().getCaselle());
+		stabilisciSituazione(partita.getTabella().getCaselle());
 		partita.setRisultato(situazione);
 		return partita.toString();
 	}

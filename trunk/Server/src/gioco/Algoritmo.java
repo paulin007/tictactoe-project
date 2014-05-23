@@ -1,8 +1,7 @@
-package tris;
+package gioco;
 
-import server.Partita;
 
-public interface IAlgoritmo {
+public interface Algoritmo {
 
 	public String execute(Partita partita, String giocatori,String mossa);
 }
