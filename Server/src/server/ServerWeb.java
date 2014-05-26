@@ -1,5 +1,6 @@
 package server;
 
+import gioco.GiochiPresenti;
 import gioco.Partita;
 
 import java.io.IOException;
@@ -34,7 +35,8 @@ public class ServerWeb {
 
 	public static void main(String[] args) throws Exception {
 
-		MappaServizi.caricaServizi();
+		MappaServizi.caricaServizi();		//Carica i possibili servizi che il server puo effettuare
+		GiochiPresenti.caricaAlgoritmi();	//Carica i possibili algoritmi che il server può eseguire
 		
 		Server server = new Server(45454);
 		WebSocketHandler wsHandler = new WebSocketHandler() {
