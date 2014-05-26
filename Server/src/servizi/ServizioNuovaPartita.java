@@ -1,6 +1,5 @@
 package servizi;
 
-import gioco.GiochiPresenti;
 import gioco.Partita;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.StringTokenizer;
 
 import server.EccezioniServer;
 /**
- * Questa classe ha la responsabilit�� di effettuare il servizio per avviare una nuova partita
+ * Questa classe ha la responsabilità di effettuare il servizio per avviare una nuova partita
  */
 public class ServizioNuovaPartita implements IServizio {
 
@@ -17,14 +16,14 @@ public class ServizioNuovaPartita implements IServizio {
 	@Override
 	public String effettuaServizio(StringTokenizer s, ArrayList<Partita> partite) {
 		try {
-			if(s.countTokens()!=2) throw new EccezioniServer("Formato Errato",s);
+			if(s.countTokens()!=3) throw new EccezioniServer("Formato Errato",s);
 			
 		String giocatore1 = s.nextToken();
 		String giocatore2 = s.nextToken();
 
-		Partita partitaCreata = new Partita(partitaIndex, giocatore1,
-				giocatore2, GiochiPresenti.tris
-				);
+		String gioco = s.nextToken();
+		
+		Partita partitaCreata = new Partita(partitaIndex, giocatore1,giocatore2, gioco);
 		partite.add(partitaCreata);
 
 		System.out.println("SERVER> "+partite.get(partitaIndex).toString());

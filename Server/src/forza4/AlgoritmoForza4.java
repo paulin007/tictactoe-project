@@ -22,7 +22,7 @@ public class AlgoritmoForza4 implements Algoritmo {
 	}
 	
 	/*
-	 * Questo metodo permette di stabilire se una mossa è valida
+	 * Questo metodo permette di stabilire se una mossa Ã¨ valida
 	 */
 	private boolean mossaValida(Partita partita, int casella){
 		if(casella!=mossaNonvalida && !partita.isConclusa()){
@@ -33,7 +33,7 @@ public class AlgoritmoForza4 implements Algoritmo {
 	}
 	
 	/*
-	 * Questo metodo serve per capire qual'è la casella libera successiva, presente
+	 * Questo metodo serve per capire qual'Ã¨ la casella libera successiva, presente
 	 * nella colonna
 	 */
 	private int casellaSuccessivaLibera(Partita partita,int colonna){
