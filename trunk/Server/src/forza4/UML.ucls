@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="forza4.QuaterneVincenti" project="Server" 
     file="/Server/src/forza4/QuaterneVincenti.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="315" y="98"/>    
+    <position height="-1" width="-1" x="377" y="401"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -19,22 +19,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="forza4.Partita" project="Server" file="/Server/src/forza4/Partita.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1158" y="492"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <dependency id="4">    
+  <dependency id="3">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <dependency id="5">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
