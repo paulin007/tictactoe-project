@@ -14,22 +14,24 @@ public class AlgoritmoForza4 implements Algoritmo {
 		int casella = casellaSuccessivaLibera(partita, Integer.valueOf(mossa));
 		if(mossaValida(partita, casella)){
 			partita.getTabella().getCaselle().get(casella).setSimbolo(giocatore);
-			if(QuaterneVincenti.isPresenteVittoria(partita, giocatore)){
+			if(QuaterneVincenti.quaterneVincenti(partita, giocatore)){
 				partita.setRisultato(giocatore);
 			}
 		}
 		return partita.toString();
 	}
+	
 	/*
 	 * Questo metodo permette di stabilire se una mossa è valida
 	 */
 	private boolean mossaValida(Partita partita, int casella){
-		if(casella!=mossaNonvalida&&!partita.isConclusa()){
+		if(casella!=mossaNonvalida && !partita.isConclusa()){
 		return true;
 		}else{
 			return false;
 		}
 	}
+	
 	/*
 	 * Questo metodo serve per capire qual'è la casella libera successiva, presente
 	 * nella colonna

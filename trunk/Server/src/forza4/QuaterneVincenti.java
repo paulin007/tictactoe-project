@@ -1,7 +1,11 @@
 package forza4;
 
 import gioco.Partita;
-
+/**
+ * Questa classe ha la responsabilità di contenere delle quaterne vincenti
+ * per il gioco forza4
+ *
+ */
 public class QuaterneVincenti {
 	
 	private static int nRighe = 6;
@@ -13,7 +17,7 @@ public class QuaterneVincenti {
 	 * @param giocatore
 	 * @return
 	 */
-	public static boolean isPresenteVittoria(Partita partita,String giocatore){
+	public static boolean quaterneVincenti(Partita partita,String giocatore){
 		if(vittoriaOrizzontale(partita,giocatore)||vittoriaVerticale(partita, giocatore)||
 				vittoriaDiagonale1(partita, giocatore)||vittoriaDiagonale2(partita, giocatore)){
 			return true;

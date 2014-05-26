@@ -9,7 +9,7 @@ public class Partita {
 	private String giocatore2;												// Il secondo giocatore, si aggiunge alla partita
 	private Tabella tabella;							// Celle disponibili
 	boolean conclusa = false;												// Se la partita si ��� gi��� conclusa
-	String risultato = "inCorso";
+	private String risultato = "inCorso";
 	private int id;
 	private String ultimoGiocatore = "G2";
 	private String gioco;
@@ -36,16 +36,8 @@ public class Partita {
 		return giocatore1;
 	}
 
-	public void setGiocatore1(String giocatore1) {
-		this.giocatore1 = giocatore1;
-	}
-
 	public String getGiocatore2() {
 		return giocatore2;
-	}
-
-	public void setGiocatore2(String giocatore2) {
-		this.giocatore2 = giocatore2;
 	}
 
 	public boolean isConclusa() {
@@ -54,23 +46,10 @@ public class Partita {
 		}else{
 			return true;
 		}
-		//return conclusa;
-	}
-
-	public void setConclusa(boolean conclusa) {
-		this.conclusa = conclusa;
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setTabella(Tabella tabella) {
-		this.tabella = tabella;
 	}
 	
 	public Tabella getTabella() {
@@ -85,16 +64,33 @@ public class Partita {
 		this.risultato = risultato;
 	}
 
-	@Override
-	public String toString(){
-		return gioco+"	"+id+"	"+getRisultato()+"	"+getUltimoGiocatore()+"	"+getTabella().toString();
-	}
-
 	public String getUltimoGiocatore() {
 		return ultimoGiocatore;
 	}
 
 	public void setUltimoGiocatore(String ultimoGiocatore) {
 		this.ultimoGiocatore = ultimoGiocatore;
+	}
+	
+	public void setGioco(String gioco) {
+		this.gioco = gioco;
+	}
+	
+	public String getGioco() {
+		return gioco;
+	}
+	
+	@Override
+	public String toString(){
+		return gioco+"	"+id+"	"+getRisultato()+"	"+getUltimoGiocatore()+"	"+getTabella().toString();
+	}
+	
+	public boolean inCorsoG1G2(String giocatore1, String giocatore2){
+		if(getGiocatore1().equalsIgnoreCase(giocatore1)
+				&& getGiocatore2().equalsIgnoreCase(giocatore2)
+				&& risultato.equalsIgnoreCase("InCorso")){
+			return true;
+		}
+		return false;
 	}
 }

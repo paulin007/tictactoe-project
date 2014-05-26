@@ -19,9 +19,7 @@ public class ServizioCollegamento implements IServizio {
 		String giocatore1 = s.nextToken();
 		String giocatore2 = s.nextToken();
 		for (int i = 0; i < partite.size(); i++) {
-			if (partite.get(i).getGiocatore1().equalsIgnoreCase(giocatore1)
-					&& partite.get(i).getGiocatore2().equalsIgnoreCase(giocatore2)
-						&& partite.get(i).getRisultato().equalsIgnoreCase("inCorso")) {
+			if (partite.get(i).inCorsoG1G2(giocatore1, giocatore2)) {
 
 				System.out.println("SERVER> "+partite.get(i).toString());
 				return partite.get(i).toString();
