@@ -5,8 +5,8 @@ import java.util.StringTokenizer;
 
 import server.EccezioniServer;
 import gioco.Partita;
-import statistiche.IXMLManager;
-import statistiche.XMLDEMO;
+import statistiche.IStatisticManager;
+import statistiche.StatisticManager;
 
 public class ServizioStatistiche implements IServizio {
 
@@ -17,8 +17,8 @@ public class ServizioStatistiche implements IServizio {
 		try {
 			if (s.countTokens() != 1) throw new EccezioniServer("Formato Errato", s);
 		
-		IXMLManager xmlmgr = new XMLDEMO();
-		statistiche = xmlmgr.richiediStatistica(s.nextToken());
+		IStatisticManager xmlmgr = new StatisticManager();
+		statistiche = xmlmgr.getStatistica(s.nextToken());
 
 		}catch (EccezioniServer e) {
 		}

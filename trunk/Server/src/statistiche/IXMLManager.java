@@ -1,9 +1,10 @@
 package statistiche;
 
-public interface IXMLManager {
-	
-	public String richiediStatistica(String giocatore);
-	
-	public void nuovaStatistica(String giocatore, String esito);
+import java.io.IOException;
 
+public interface IXMLManager {
+
+	public void writeData(StringWriter writer, Repository repo) throws IOException;
+	
+	public void loadFile(Repository repo);
 }

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import server.EccezioniServer;
-import statistiche.IXMLManager;
-import statistiche.XMLDEMO;
+import statistiche.IStatisticManager;
+import statistiche.StatisticManager;
 /**
  *Questa classe ha la responsabilit�� di effettuare il servizio per inviare la mossa effettuata
  */
@@ -21,7 +21,7 @@ public class ServizioInviaMossa implements IServizio {
 		try{
 			if(s.countTokens()!=3) throw new EccezioniServer("Formato Errato",s);
 			
-			IXMLManager xmlmgr = new XMLDEMO();
+			IStatisticManager xmlmgr = new StatisticManager();
 			
 		int idPartita = Integer.parseInt(s.nextToken());
 		String giocatore = s.nextToken();
