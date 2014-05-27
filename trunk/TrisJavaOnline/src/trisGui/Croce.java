@@ -11,7 +11,7 @@ public class Croce implements Icona {
 	@Override
 	public ImageIcon disegna(){
 		
-		java.net.URL imgUrl = getClass().getResource("X.png");
+		java.net.URL imgUrl = getClass().getResource("/trisGui/immagini/X.png");
 
 		ImageIcon icon = new ImageIcon( imgUrl );
 		return icon;

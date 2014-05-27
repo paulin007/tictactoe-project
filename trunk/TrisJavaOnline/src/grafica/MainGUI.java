@@ -16,7 +16,7 @@ public class MainGUI {
 		ControllerGioco controllerTris = new ControllerGioco(pannelloTris);
 		MenuGui menuTris = new MenuGui(controllerTris);
 		JFrame frame = new JFrame("Tic Tac Toe");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("tris.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/trisGui/Immagini/tris.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,550);
 		frame.add(pannelloTris);
