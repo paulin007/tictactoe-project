@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class PannelloDiBenvenuto extends JPanel implements PannelloTris {
+public class PannelloDiBenvenuto extends JPanel implements PannelloGioco {
 
 	@Override
 	public JPanel creaPannello() {
