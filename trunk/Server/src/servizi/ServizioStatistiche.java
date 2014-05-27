@@ -1,12 +1,13 @@
 package servizi;
 
+import gioco.Partita;
+
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import server.EccezioniServer;
-import gioco.Partita;
-import statistiche.IStatisticManager;
-import statistiche.StatisticManager;
+import statistiche.IXMLManager;
+import statistiche.XMLManager;
 
 public class ServizioStatistiche implements IServizio {
 
@@ -15,10 +16,11 @@ public class ServizioStatistiche implements IServizio {
 	public String effettuaServizio(StringTokenizer s, ArrayList<Partita> partite) {
 
 		try {
-			if (s.countTokens() != 1) throw new EccezioniServer("Formato Errato", s);
+			if (s.countTokens() != 2) throw new EccezioniServer("Formato Errato", s);
 		
-		IStatisticManager xmlmgr = new StatisticManager();
-		statistiche = xmlmgr.getStatistica(s.nextToken());
+		IXMLManager xmlmgr = new XMLManager();
+		statistiche = xmlmgr.richiediStatistica(s.nextToken(),s.nextToken());
+		System.err.println(statistiche);
 
 		}catch (EccezioniServer e) {
 		}
