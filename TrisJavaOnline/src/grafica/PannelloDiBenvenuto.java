@@ -21,7 +21,7 @@ public class PannelloDiBenvenuto extends JPanel implements PannelloGioco {
 		
 		setBackground(Color.white);
 		
-		java.net.URL imgUrl = getClass().getResource("tris.png");
+		java.net.URL imgUrl = getClass().getResource("/trisGui/immagini/tris.png");
 		ImageIcon image = new ImageIcon(imgUrl);
 		Font font = new Font("Verdana", Font.BOLD, 16);
 		JLabel label = new JLabel(image);
