@@ -23,14 +23,14 @@ import rete.InterpreteMessaggio;
 
 @SuppressWarnings("rawtypes")	
 
-public class PannelloGiocatori extends JPanel implements PannelloTris{
+public class PannelloGiocatori extends JPanel implements PannelloGioco{
 
 	private static final long serialVersionUID = 0;
 	private String G1;
 	private String G2;
 	private String[] simboli = {"Cerchio","Croce"};
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Kokou","Paulin","Andrea" };
-	private ControllerTris controllerTris;
+	private ControllerGioco controllerTris;
 	private String iconaScelta;
 	@SuppressWarnings("unchecked")
 	final JComboBox comboBox1 = new JComboBox(nomiGiocatori);
@@ -40,7 +40,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 	final JComboBox comboBox3 = new JComboBox(simboli);
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	
-	public PannelloGiocatori(ControllerTris controllerTris) {
+	public PannelloGiocatori(ControllerGioco controllerTris) {
 		super();
 		this.controllerTris = controllerTris;
 	}
@@ -89,7 +89,7 @@ public class PannelloGiocatori extends JPanel implements PannelloTris{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				selezioneGiocatori();
-				interpreteMessaggio.interpreta(controllerTris.getClient().send("nuova partita	"+G1+"	"+G2));
+				interpreteMessaggio.interpreta(controllerTris.getClient().send("nuova partita	"+G1+"	"+G2+"	"+controllerTris.getNomeGioco()));
 				impostaPartitaOnline(Simbolo.simboloG1);
 			}
 
