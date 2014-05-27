@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import server.EccezioniServer;
-import statistiche.IStatisticManager;
-import statistiche.StatisticManager;
+import statistiche.IXMLManager;
+import statistiche.XMLManager;
 /**
  *Questa classe ha la responsabilit�� di effettuare il servizio per inviare la mossa effettuata
  */
@@ -21,7 +21,7 @@ public class ServizioInviaMossa implements IServizio {
 		try{
 			if(s.countTokens()!=3) throw new EccezioniServer("Formato Errato",s);
 			
-			IStatisticManager xmlmgr = new StatisticManager();
+			IXMLManager xmlmgr = new XMLManager();
 			
 		int idPartita = Integer.parseInt(s.nextToken());
 		String giocatore = s.nextToken();
@@ -34,17 +34,17 @@ public class ServizioInviaMossa implements IServizio {
 						GiochiPresenti.mappaAlgoritmi.get(partite.get(i).getGioco()).execute(partite.get(i), giocatore, mossa);
 					String esito = partite.get(i).getRisultato();
 					if(esito.equalsIgnoreCase(Simbolo.simboloG1)){
-						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "V");
-						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore2(), "S");
+						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "V", partite.get(i).getGioco());
+						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore2(), "S", partite.get(i).getGioco());
 					}
 						
 					if(esito.equalsIgnoreCase(Simbolo.simboloG2)){
-						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "S");
-						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore2(), "V");
+						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "S", partite.get(i).getGioco());
+						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore2(), "V", partite.get(i).getGioco());
 					}
 					if(esito.equalsIgnoreCase("Pareggio")){
-						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "X");
-						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore2(), "X");
+						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "P", partite.get(i).getGioco());
+						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore2(), "P", partite.get(i).getGioco());
 					}
 						
 					
