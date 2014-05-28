@@ -2,7 +2,7 @@ package forza4;
 
 import gioco.Partita;
 /**
- * Questa classe ha la responsabilità di contenere delle quaterne vincenti
+ * Questa classe ha la responsabilit�� di contenere delle quaterne vincenti
  * per il gioco forza4
  *
  */
@@ -37,7 +37,7 @@ public class QuaterneVincenti {
 	}
 	private static boolean vittoriaVerticale(Partita partita,String giocatore){
 		for (int j = 0; j < nRighe ; j++) {
-			for (int i = 0; i <= nColonne-forza4; i++) {
+			for (int i = 0; i < nColonne-forza4; i++) {
 				if(partita.getTabella().occupata(giocatore,i*nColonne+j, nColonne*(i+1)+j, nColonne*(i+2)+j, nColonne*(i+3)+j)){
 					return true;
 				}
@@ -47,7 +47,7 @@ public class QuaterneVincenti {
 	}
 	
 	private static boolean vittoriaDiagonale1(Partita partita,String giocatore){
-		for (int j = 0; j < nRighe ; j++) {
+		for (int j = 0; j < nColonne-forza4 ; j++) {
 			for (int i = 0; i <= nColonne-forza4; i++) {
 				if(partita.getTabella().occupata(giocatore,i+nColonne*j, i+8+nColonne*j, i+2*8+nColonne*j, i+3*8+nColonne*j)){
 					return true;
@@ -58,7 +58,7 @@ public class QuaterneVincenti {
 	}
 	
 	private static boolean vittoriaDiagonale2(Partita partita,String giocatore){
-		for (int j = 0; j < nRighe ; j++) {
+		for (int j = 0; j < nColonne-forza4 ; j++) {
 			for (int i = 0; i <= nColonne-forza4; i++) {
 				if(partita.getTabella().occupata(giocatore,i+3+nColonne*j, i+3+6+nColonne*j, i+3+2*6+nColonne*j, i+3+3*6+nColonne*j)){
 					return true;
