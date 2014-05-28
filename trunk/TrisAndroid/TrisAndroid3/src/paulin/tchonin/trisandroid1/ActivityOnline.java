@@ -1,6 +1,7 @@
 package paulin.tchonin.trisandroid1;
 
 import java.util.Timer;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,7 +24,7 @@ import android.widget.ToggleButton;
 public class ActivityOnline extends Activity {
 
 	private String message;
-	private static Button boardButtons[];
+	private static Button boardButtons[];	//TODO creare metodo per evitare le righe in oncreate di troppo
 	private String service;
 	private Timer timer = new Timer();
 	private static boolean connected = false;

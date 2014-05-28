@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.TimerTask;
+
 import rete.InterpreteMessaggio;
 import android.os.AsyncTask;
 
@@ -70,7 +71,7 @@ public class ClientAndroid extends AsyncTask<Void, Void, String> {
 
 	@Override
 	protected void onPostExecute(String result) {
-
+		
 		try{
 		InterpreteMessaggio interprete = new InterpreteMessaggio();
 		interprete.interpreta(response);

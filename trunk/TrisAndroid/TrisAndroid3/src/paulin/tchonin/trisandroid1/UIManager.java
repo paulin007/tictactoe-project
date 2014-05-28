@@ -81,6 +81,7 @@ public class UIManager {
 		checkForWinner();
 	}
 
+	//TODO estrarre controllo
 	public void checkForWinner() {
 		if (ClientAndroid.getMatchStatus().equalsIgnoreCase(
 				UIManager.getSimboloGiocatore1())) {
@@ -106,6 +107,7 @@ public class UIManager {
 		}
 	}
 	
+	//TODO estrarre controllo
 	private void setMove(char player, int location) {
 
 		boardButtons[location].setEnabled(false);
@@ -117,22 +119,27 @@ public class UIManager {
 			boardButtons[location].setTextColor(Color.RED);
 	}
 
+	//TODO estrarre controllo
 	public static void setMyTurn(boolean myTurn) {
 		UIManager.myTurn = myTurn;
 	}
 
+	//TODO estrarre controllo
 	public static boolean isMyTurn() {
 		return myTurn;
 	}
 
+	//TODO estrarre controllo
 	public Timer getTimer() {
 		return timer;
 	}
 
+	//TODO estrarre controllo
 	public static void setLaunchTimer(boolean launchTimer) {
 		UIManager.launchTimer = launchTimer;
 	}
 
+	//TODO estrarre controllo
 	public static boolean isLaunchTimer() {
 		return launchTimer;
 	}
