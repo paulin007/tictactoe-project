@@ -18,7 +18,7 @@ public class InterpreteMessaggio {
 		IDpartita = stringTokenizer.nextToken();
 		statoPartita = stringTokenizer.nextToken();
 		ultimoGiocatore = stringTokenizer.nextToken();
-		caselle = new ArrayList();
+		caselle = new ArrayList<String>();
 		while(stringTokenizer.hasMoreTokens()){
 			caselle.add(stringTokenizer.nextToken());
 		}

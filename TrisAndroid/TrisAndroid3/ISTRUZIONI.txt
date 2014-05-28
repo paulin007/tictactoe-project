@@ -1,0 +1,5 @@
+Click tasto dx sul progetto android:
+-Properties
+-Android
+-Library
+-add:...app_compat_v7_3
