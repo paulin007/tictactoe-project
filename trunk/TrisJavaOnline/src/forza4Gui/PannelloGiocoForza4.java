@@ -25,8 +25,7 @@ import rete.TimerPannello;
 
 public class PannelloGiocoForza4 extends JPanel implements PannelloGioco, Observer {
 	
-//	private String mioNome = "Dario";
-//	private String nomeAvversario = "Simone";
+
 	private ArrayList<Pulsante> pulsanti = new ArrayList<>();
 	private LabelGiocatori player1;
 	private LabelGiocatori player2;
@@ -35,10 +34,9 @@ public class PannelloGiocoForza4 extends JPanel implements PannelloGioco, Observ
 	private String IDpartita;
 	private String mioSimbolo;
 	private String simboloAvversario;
-//	private boolean mioTurno = false;
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	private VisualizzatoreRisultato visualizzatore = new VisualizzatoreRisultato();
-//	private int mossa = 0;
+
 
 	public PannelloGiocoForza4(ControllerGioco controllerTris,String mioSimbolo, String IDpartita) {
 		this.controllerTris = controllerTris;
@@ -78,7 +76,7 @@ public class PannelloGiocoForza4 extends JPanel implements PannelloGioco, Observ
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		try {
-			java.net.URL imgUrl = getClass().getResource("Immagini/Sfondo2.png");
+			java.net.URL imgUrl = getClass().getResource("Immagini/metal.png");
 			BufferedImage image = ImageIO.read(imgUrl);
 			g.drawImage(image,0,0,null);
 		} catch (IOException e) {

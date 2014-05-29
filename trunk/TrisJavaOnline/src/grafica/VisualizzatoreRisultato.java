@@ -1,6 +1,6 @@
 package grafica;
 
-import javax.swing.JOptionPane;
+import javax.swing.JDialog;
 
 import rete.InterpreteMessaggio;
 /**
@@ -20,21 +20,33 @@ public class VisualizzatoreRisultato {
 	 */
 	public void mostraRisultato(InterpreteMessaggio interpreteMessaggio, String mioSimbolo){
 		String risultato = interpreteMessaggio.getStatoPartita();
+		System.out.println("Debug: "+interpreteMessaggio.getStatoPartita());
+		
 		if(hoVinto(risultato, mioSimbolo)&&mostrato==false){
 			risultato = "Hai vinto !";
-			JOptionPane.showMessageDialog(null, risultato);
+		
+			FinestraRisultato vittoria = new FinestraRisultato(risultato);
+			vittoria.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			vittoria.setVisible(true);
 			mostrato = true;
 			aggiorna = false;
 		}
 		if(hoPerso(risultato, mioSimbolo)&&mostrato==false){
 			risultato = "Hai perso !";
-			JOptionPane.showMessageDialog(null, risultato);
+			
+			FinestraRisultato sconfitta = new FinestraRisultato(risultato);
+			sconfitta.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			sconfitta.setVisible(true);
 			mostrato = true;
 			aggiorna = false;
 		}
 		if(pareggio(risultato)&&mostrato==false){
-			risultato = "La partita è finita in pareggio";
-			JOptionPane.showMessageDialog(null, risultato);
+			
+			risultato = "Pareggio";
+			FinestraRisultato pareggio = new FinestraRisultato(risultato);
+			pareggio.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			pareggio.setVisible(true);
+			
 			mostrato = true;
 			aggiorna = false;
 			
