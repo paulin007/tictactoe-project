@@ -6,13 +6,11 @@ import android.widget.TextView;
 
 public class ButtonClickListener implements View.OnClickListener {
 	int location;
-	private boolean gameOver;
+	private boolean gameOver=false;
 	private Button boardButtons[];
 	private boolean connected;
-	private String message;
-	private String service;
 	private TextView infoTextView;
-	private  MatchManager matchManager;
+	private MatchManager matchManager;
 	
 	public ButtonClickListener(Button boardButtons[], int location, TextView infoTextView, MatchManager matchManager) {
 		this.boardButtons = boardButtons;
@@ -27,31 +25,14 @@ public class ButtonClickListener implements View.OnClickListener {
 			if (boardButtons[location].isEnabled()) {
 
 				if (UIManager.isMyTurn() && !connected) {
-
-//					message = "mossa	" + client.getIDmatch() + "	G1" + "	"
-//							+ location;
-//					service = "mossa";
-//					client = new ClientAndroid();
-//					client.serviceRequest(message, service);
 					
 					matchManager.sendMove(location);
-					
+					matchManager.requestUpdate();
 					
 					infoTextView.setText(R.string.turn_player2);
 					UIManager.setMyTurn(false);
 				}
 
-//				if (UIManager.isMyTurn() && connected) {
-//				
-//					message = "mossa	" + client.getIDmatch() + "	G2" + "	"
-//							+ location;
-//
-//					service = "mossa";
-//					client = new ClientAndroid();
-//					client.serviceRequest(message, service);
-//					infoTextView.setText(R.string.turn_player1);
-//					UIManager.setMyTurn(false);
-//				}
 			}
 		}
 	}

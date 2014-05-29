@@ -10,8 +10,10 @@ public interface IMatchManager {
 	
 	public void createNewMatch(String player1, String player2);
 	
-	public String connectToMatch(String player1, String player2);
+	public void connectToMatch(String player1, String player2);
 	
-	public String requestUpdate(int matchId);
+	public void sendMove(int location);
+	
+	public void requestUpdate();
 	
 }
