@@ -3,7 +3,9 @@ package forza4Gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
 import java.io.FileInputStream;
+import java.net.URL;
 
 import javax.swing.JLabel;
 
@@ -17,6 +19,7 @@ public class LabelGiocatori extends JLabel{
 		super();
 		this.color = color;
 		this.string = string;
+	
 	}
 	
 	@Override
@@ -25,8 +28,8 @@ public class LabelGiocatori extends JLabel{
 		Font font = new Font("Font", Font.ITALIC, 20);
 		try {
 			
-			
-			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream("/Users/Giacomo/Desktop/Tris/TrisJava/src/forza4Gui/Akhenaton.ttf"));
+			URL url = getClass().getResource("Akhenaton.ttf");
+			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream(new File(url.toURI())));
 		
 			float size = 100.0f;
 			font = font.deriveFont(size);

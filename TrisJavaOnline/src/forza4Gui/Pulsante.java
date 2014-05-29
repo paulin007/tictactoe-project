@@ -5,9 +5,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 
 public class Pulsante extends JButton{
@@ -29,6 +36,22 @@ public class Pulsante extends JButton{
 				
 				timer.schedule(sali(returnPulsante()), 0);
 				timer.schedule(scendi(returnPulsante()), 0);
+				try {
+				      
+			         URL url = getClass().getResource("/suoni/pop1.wav");
+			        
+			         AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);		       
+			         Clip clip = AudioSystem.getClip();		        
+			         clip.open(audioIn);
+			         clip.start();
+			         
+			      } catch (UnsupportedAudioFileException e1) {
+			         e1.printStackTrace();
+			      } catch (IOException e1) {
+			         e1.printStackTrace();
+			      } catch (LineUnavailableException e1) {
+			         e1.printStackTrace();
+			      }
 				
 			}
 		});
