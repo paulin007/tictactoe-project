@@ -313,8 +313,8 @@ int id tableRow5 0x7f05004c
 int id tableRow6 0x7f050050
 int id three 0x7f050041
 int id title 0x7f05002b
-int id togglebutton 0x7f050051
-int id togglebutton2 0x7f050052
+int id toggleButtonConnect 0x7f050052
+int id toggleButtonStart 0x7f050051
 int id top_action_bar 0x7f050020
 int id two 0x7f050040
 int id up 0x7f050021

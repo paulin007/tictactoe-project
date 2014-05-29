@@ -20,38 +20,19 @@ import android.widget.ToggleButton;
 
 public class ActivityOnline extends Activity {
 
-	private static Button boardButtons[]; 
 	private static boolean connected = false;
-	private static TextView infoTextView;
-	private EditText editText1 = null;
-	private EditText editText2 = null;
 	private String namePlayer1;
 	private String namePlayer2;
-	private UIManager manager;
 	private MatchManager matchManager = new MatchManager();
-
+	private GraphicManager graphicManager = new GraphicManager(this);
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_online);
-
-		boardButtons = new Button[UIManager.BOARD_SIZE];
-		boardButtons[0] = (Button) findViewById(R.id.one);
-		boardButtons[1] = (Button) findViewById(R.id.two);
-		boardButtons[2] = (Button) findViewById(R.id.three);
-		boardButtons[3] = (Button) findViewById(R.id.four);
-		boardButtons[4] = (Button) findViewById(R.id.five);
-		boardButtons[5] = (Button) findViewById(R.id.six);
-		boardButtons[6] = (Button) findViewById(R.id.seven);
-		boardButtons[7] = (Button) findViewById(R.id.eight);
-		boardButtons[8] = (Button) findViewById(R.id.nine);
-
-		infoTextView = (TextView) findViewById(R.id.information);
-		editText1 = (EditText) findViewById(R.id.name_player1);
-		editText2 = (EditText) findViewById(R.id.name_player2);
-
-		manager = new UIManager();
+		
+		graphicManager.createGraphics();
 
 		toggleButtonStart();
 		toggleButtonConnect();
@@ -59,7 +40,9 @@ public class ActivityOnline extends Activity {
 	}
 
 	public void startNewGame() {
-		manager.clearBoard();
+		Button[] boardButtons = graphicManager.getBoardButtons();
+		TextView infoTextView = graphicManager.getInfoTextView();
+		graphicManager.clear();
 		for (int i = 0; i < boardButtons.length; i++) {
 			boardButtons[i].setText("");
 			boardButtons[i].setEnabled(true);
@@ -93,11 +76,15 @@ public class ActivityOnline extends Activity {
 	 */
 	private void toggleButtonStart() {
 
-		final ToggleButton button = (ToggleButton) findViewById(R.id.togglebutton);
-		button.setOnClickListener(new OnClickListener() {
+		final ToggleButton startButton = graphicManager.getStartButton();
+		final EditText editText1 = graphicManager.getEditText1();
+		final EditText editText2 = graphicManager.getEditText2();
+		final TextView infoTextView = graphicManager.getInfoTextView();
+		
+		startButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (button.isChecked()) {
+				if (startButton.isChecked()) {
 
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();
@@ -125,11 +112,14 @@ public class ActivityOnline extends Activity {
 	 * si occupa di reiprendere un partita esistente
 	 */
 	private void toggleButtonConnect() {
-		final ToggleButton button = (ToggleButton) findViewById(R.id.togglebutton2);
-		button.setOnClickListener(new OnClickListener() {
+		final ToggleButton connectButton = graphicManager.getConnectButton();
+		final EditText editText1 = graphicManager.getEditText1();
+		final EditText editText2 = graphicManager.getEditText2();
+		final TextView infoTextView = graphicManager.getInfoTextView();
+		connectButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (button.isChecked()) {
+				if (connectButton.isChecked()) {
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();
 					matchManager.connectToMatch(namePlayer1, namePlayer2);
@@ -158,18 +148,6 @@ public class ActivityOnline extends Activity {
 		}
 	}
 
-	public static Button[] getBoardButtons() {
-		return boardButtons;
-	}
-
-	public static void setInfoTextView(TextView infoTextView) {
-		ActivityOnline.infoTextView = infoTextView;
-	}
-
-	public static TextView getInfoTextView() {
-		return infoTextView;
-	}
-
 	public static boolean isConnected() {
 		return connected;
 	}
@@ -178,11 +156,4 @@ public class ActivityOnline extends Activity {
 		ActivityOnline.connected = connected;
 	}
 
-	public EditText getEditText1() {
-		return editText1;
-	}
-
-	public EditText getEditText2() {
-		return editText2;
-	}
 }
