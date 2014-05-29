@@ -1,7 +1,5 @@
 package paulin.tchonin.trisandroid1;
 
-import java.util.Timer;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,24 +9,19 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 /**
  * Questa classe ha la responsabilità di inizializzare una nuova partita
  * 
  * @author Paulin
- *
+ * 
  */
 
 public class ActivityOnline extends Activity {
 
-	private String message;
-	private static Button boardButtons[];	//TODO creare metodo per evitare le righe in oncreate di troppo
-	private String service;
-	private Timer timer = new Timer();
+	private static Button boardButtons[]; 
 	private static boolean connected = false;
-	private boolean gameOver = false;
 	private static TextView infoTextView;
 	private EditText editText1 = null;
 	private EditText editText2 = null;
@@ -36,8 +29,7 @@ public class ActivityOnline extends Activity {
 	private String namePlayer2;
 	private UIManager manager;
 	private MatchManager matchManager = new MatchManager();
-	
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,10 +63,9 @@ public class ActivityOnline extends Activity {
 		for (int i = 0; i < boardButtons.length; i++) {
 			boardButtons[i].setText("");
 			boardButtons[i].setEnabled(true);
-			boardButtons[i].setOnClickListener(new ButtonClickListener(boardButtons, i, infoTextView, matchManager));
+			boardButtons[i].setOnClickListener(new ButtonClickListener(
+					boardButtons, i, infoTextView, matchManager));
 		}
-
-		gameOver = false;
 
 	}
 
@@ -109,7 +100,7 @@ public class ActivityOnline extends Activity {
 				if (button.isChecked()) {
 
 					namePlayer1 = editText1.getText().toString();
-					namePlayer2 = editText2.getText().toString();	
+					namePlayer2 = editText2.getText().toString();
 
 					matchManager.createNewMatch(namePlayer1, namePlayer2);
 
@@ -120,7 +111,7 @@ public class ActivityOnline extends Activity {
 				} else {
 					// ha premuto il buttone stop
 					UIManager.setMyTurn(false);
-					timer.cancel();
+					matchManager.getTimer().cancel();
 					connected = false;
 					UIManager.setLaunchTimer(true);
 
@@ -131,7 +122,7 @@ public class ActivityOnline extends Activity {
 	}
 
 	/**
-	 * si occupa di reiprendere un partita esistente 
+	 * si occupa di reiprendere un partita esistente
 	 */
 	private void toggleButtonConnect() {
 		final ToggleButton button = (ToggleButton) findViewById(R.id.togglebutton2);
@@ -139,26 +130,18 @@ public class ActivityOnline extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (button.isChecked()) {
-//					client = new ClientAndroid();
-
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();
-					
-					if(checkPlayersName()){
-					message = "collegati a	" + namePlayer2 + "	" + namePlayer1;
-					
-					service = "mossa";
-//					client.serviceRequest(message, service);
+					matchManager.connectToMatch(namePlayer1, namePlayer2);
+					matchManager.requestUpdate();
+					UIManager.setMyTurn(true);
+					infoTextView.setText(R.string.player1);
 					startNewGame();
 					connected = true;
-					}else{
-						Toast.makeText(ActivityOnline.this, R.string.verify,
-								Toast.LENGTH_SHORT).show();	
-					}
 				} else {
 					// disconnect
 					UIManager.setMyTurn(false);
-					timer.cancel();
+					matchManager.getTimer().cancel();
 					connected = false;
 					UIManager.setLaunchTimer(true);
 				}
@@ -167,14 +150,14 @@ public class ActivityOnline extends Activity {
 
 	}
 
-	private boolean checkPlayersName(){
-		if (namePlayer1.equals("") || namePlayer2.equals("")){
+	private boolean checkPlayersName() {
+		if (namePlayer1.equals("") || namePlayer2.equals("")) {
 			return false;
-		}else{
+		} else {
 			return true;
 		}
 	}
-	
+
 	public static Button[] getBoardButtons() {
 		return boardButtons;
 	}
@@ -195,51 +178,10 @@ public class ActivityOnline extends Activity {
 		ActivityOnline.connected = connected;
 	}
 
-//	private class ButtonClickListener implements View.OnClickListener {
-//		int location;
-//
-//		public ButtonClickListener(int location) {
-//			this.location = location;
-//
-//		}
-//
-//		public void onClick(View view) {
-//			if (!gameOver) {
-//
-//				if (boardButtons[location].isEnabled()) {
-//
-//					if (UIManager.isMyTurn() && !connected) {
-//
-//						message = "mossa	" + client.getIDmatch() + "	G1" + "	"
-//								+ location;
-//						service = "mossa";
-//						client = new ClientAndroid();
-//						client.serviceRequest(message, service);
-//
-//						infoTextView.setText(R.string.turn_player2);
-//						UIManager.setMyTurn(false);
-//					}
-//
-//					if (UIManager.isMyTurn() && connected) {
-//					
-//						message = "mossa	" + client.getIDmatch() + "	G2" + "	"
-//								+ location;
-//
-//						service = "mossa";
-//						client = new ClientAndroid();
-//						client.serviceRequest(message, service);
-//						infoTextView.setText(R.string.turn_player1);
-//						UIManager.setMyTurn(false);
-//					}
-//				}
-//			}
-//		}
-//	}
-	
 	public EditText getEditText1() {
 		return editText1;
 	}
-	
+
 	public EditText getEditText2() {
 		return editText2;
 	}
