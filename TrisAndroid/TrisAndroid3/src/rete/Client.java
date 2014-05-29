@@ -1,10 +1,12 @@
-package paulin.tchonin.trisandroid1;
+package rete;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
+
+import paulin.tchonin.trisandroid1.IClient;
 
 /**
  * Questa classe crea un socket che comunica col server 

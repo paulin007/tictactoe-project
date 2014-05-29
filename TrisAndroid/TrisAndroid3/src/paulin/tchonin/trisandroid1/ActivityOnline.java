@@ -34,9 +34,10 @@ public class ActivityOnline extends Activity {
 	private EditText editText2 = null;
 	private String namePlayer1;
 	private String namePlayer2;
-	private ClientAndroid client;
 	private UIManager manager;
-
+	private MatchManager matchManager = new MatchManager();
+	
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -65,12 +66,12 @@ public class ActivityOnline extends Activity {
 
 	}
 
-	private void startNewGame() {
+	public void startNewGame() {
 		manager.clearBoard();
 		for (int i = 0; i < boardButtons.length; i++) {
 			boardButtons[i].setText("");
 			boardButtons[i].setEnabled(true);
-			boardButtons[i].setOnClickListener(new ButtonClickListener(i));
+			boardButtons[i].setOnClickListener(new ButtonClickListener(boardButtons, i, infoTextView, matchManager));
 		}
 
 		gameOver = false;
@@ -106,24 +107,15 @@ public class ActivityOnline extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (button.isChecked()) {
-					
+
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();	
-						
-						if(checkPlayersName()){
-						client = new ClientAndroid();
-						message = "nuova partita	" + namePlayer1 + "	"
-								+ namePlayer2;
-						service = "nuova";
-						client.serviceRequest(message, service);
-						infoTextView.setText(R.string.player1);
-						UIManager.setMyTurn(true);
-						startNewGame();
-						}else {
-							Toast.makeText(ActivityOnline.this, R.string.verify,
-									Toast.LENGTH_SHORT).show();
-						}
-					
+
+					matchManager.createNewMatch(namePlayer1, namePlayer2);
+
+					UIManager.setMyTurn(true);
+					infoTextView.setText(R.string.player1);
+					startNewGame();
 
 				} else {
 					// ha premuto il buttone stop
@@ -147,7 +139,7 @@ public class ActivityOnline extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (button.isChecked()) {
-					client = new ClientAndroid();
+//					client = new ClientAndroid();
 
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();
@@ -156,7 +148,7 @@ public class ActivityOnline extends Activity {
 					message = "collegati a	" + namePlayer2 + "	" + namePlayer1;
 					
 					service = "mossa";
-					client.serviceRequest(message, service);
+//					client.serviceRequest(message, service);
 					startNewGame();
 					connected = true;
 					}else{
@@ -203,44 +195,52 @@ public class ActivityOnline extends Activity {
 		ActivityOnline.connected = connected;
 	}
 
-	private class ButtonClickListener implements View.OnClickListener {
-		int location;
-
-		public ButtonClickListener(int location) {
-			this.location = location;
-
-		}
-
-		public void onClick(View view) {
-			if (!gameOver) {
-
-				if (boardButtons[location].isEnabled()) {
-
-					if (UIManager.isMyTurn() && !connected) {
-
-						message = "mossa	" + client.getIDmatch() + "	G1" + "	"
-								+ location;
-						service = "mossa";
-						client = new ClientAndroid();
-						client.serviceRequest(message, service);
-
-						infoTextView.setText(R.string.turn_player2);
-						UIManager.setMyTurn(false);
-					}
-
-					if (UIManager.isMyTurn() && connected) {
-					
-						message = "mossa	" + client.getIDmatch() + "	G2" + "	"
-								+ location;
-
-						service = "mossa";
-						client = new ClientAndroid();
-						client.serviceRequest(message, service);
-						infoTextView.setText(R.string.turn_player1);
-						UIManager.setMyTurn(false);
-					}
-				}
-			}
-		}
+//	private class ButtonClickListener implements View.OnClickListener {
+//		int location;
+//
+//		public ButtonClickListener(int location) {
+//			this.location = location;
+//
+//		}
+//
+//		public void onClick(View view) {
+//			if (!gameOver) {
+//
+//				if (boardButtons[location].isEnabled()) {
+//
+//					if (UIManager.isMyTurn() && !connected) {
+//
+//						message = "mossa	" + client.getIDmatch() + "	G1" + "	"
+//								+ location;
+//						service = "mossa";
+//						client = new ClientAndroid();
+//						client.serviceRequest(message, service);
+//
+//						infoTextView.setText(R.string.turn_player2);
+//						UIManager.setMyTurn(false);
+//					}
+//
+//					if (UIManager.isMyTurn() && connected) {
+//					
+//						message = "mossa	" + client.getIDmatch() + "	G2" + "	"
+//								+ location;
+//
+//						service = "mossa";
+//						client = new ClientAndroid();
+//						client.serviceRequest(message, service);
+//						infoTextView.setText(R.string.turn_player1);
+//						UIManager.setMyTurn(false);
+//					}
+//				}
+//			}
+//		}
+//	}
+	
+	public EditText getEditText1() {
+		return editText1;
+	}
+	
+	public EditText getEditText2() {
+		return editText2;
 	}
 }
