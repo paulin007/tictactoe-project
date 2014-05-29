@@ -1,11 +1,8 @@
 package grafica;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,12 +14,6 @@ import javax.swing.JPanel;
 
 import rete.InterpreteMessaggio;
 
-/**
- * Questa classe ha la responsabilità di gestire il pannello contente la lista di gicatori, con cui giocare a Tris
- */
-
-@SuppressWarnings("rawtypes")	
-
 public class PannelloGiocatori extends JPanel implements PannelloGioco{
 
 	private static final long serialVersionUID = 0;
@@ -32,56 +23,53 @@ public class PannelloGiocatori extends JPanel implements PannelloGioco{
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Kokou","Paulin","Andrea" };
 	private ControllerGioco controllerTris;
 	private String iconaScelta;
-	@SuppressWarnings("unchecked")
-	final JComboBox comboBox1 = new JComboBox(nomiGiocatori);
-	@SuppressWarnings("unchecked")
-	final JComboBox comboBox2 = new JComboBox(nomiGiocatori);
-	@SuppressWarnings("unchecked")
-	final JComboBox comboBox3 = new JComboBox(simboli);
+	private final JComboBox comboBox1 = new JComboBox(nomiGiocatori);
+	private final JComboBox comboBox2 = new JComboBox(nomiGiocatori);
+	private final JComboBox comboBox3 = new JComboBox(simboli);
+	
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	
-	public PannelloGiocatori(ControllerGioco controllerTris) {
+	public PannelloGiocatori(final ControllerGioco controllerTris) {
 		super();
 		this.controllerTris = controllerTris;
+		
+		setLayout(null);
+		
+		
 	}
-
+	
+	
 	@Override
 	public JPanel creaPannello() {
+	
+		setLayout(null);
+		
+		setBackground(new Color(153,203,255));
 		
 		Font font = new Font("Verdana", Font.BOLD, 16);
 		
 		JLabel labelSfidante = new JLabel("Selezionare Il Proprio Nickname");
+		labelSfidante.setBounds(166, 32, 280, 24);
 		labelSfidante.setFont(font);
+		add(labelSfidante);
+		
+		
+		comboBox1.setBounds(76, 127, 93, 24);
+		add(comboBox1);
+		
+		comboBox2.setBounds(267, 298, 93, 24);
+		add(comboBox2);
+		
+		comboBox3.setBounds(424, 127, 109, 24);
+		add(comboBox3);
 		
 		JLabel labelAvversario = new JLabel("Selezionare Il Giocatore Da Sfidare");
 		labelAvversario.setFont(font);
+		labelAvversario.setBounds(148, 218, 314, 24);
+		add(labelAvversario);
 		
-		JPanel panel1 = new JPanel();
-		setPanel(panel1, labelSfidante);
-	
-		JPanel panel2 = new JPanel();
-		setPanel(panel2, labelAvversario);
-		
-		comboBox1.setSelectedIndex(6);
-		
-        comboBox2.setSelectedIndex(6);
-
-		comboBox2.setSelectedIndex(1);
-
-		JPanel pannelloGiocatore = new JPanel();
-		pannelloGiocatore.setLayout(new GridLayout(1, 2));
-		JPanel panelA = new JPanel();
-		JPanel panelB = new JPanel();
-		
-		setPanel(panelA, comboBox1);
-		setPanel(panelB, comboBox3);
-		pannelloGiocatore.add(panelA);
-		pannelloGiocatore.add(panelB);
-		
-		JPanel panel4 = new JPanel();
-		setPanel(panel4, comboBox2);
-	
 		JButton nuovaPartita = new JButton("Inizia");
+		nuovaPartita.setBounds(76, 368, 93, 24);
 		nuovaPartita.setBackground(Color.white);
 		nuovaPartita.setFont(font);
 		nuovaPartita.setPreferredSize(new Dimension(130, 50));
@@ -94,8 +82,10 @@ public class PannelloGiocatori extends JPanel implements PannelloGioco{
 			}
 
 		});
+		add(nuovaPartita);
 		
 		JButton riprendiPartita = new JButton("Riprendi");
+		riprendiPartita.setBounds(424, 368, 109, 24);
 		riprendiPartita.setBackground(Color.white);
 		riprendiPartita.setFont(font);
 		riprendiPartita.setPreferredSize(new Dimension(130, 50));
@@ -108,31 +98,11 @@ public class PannelloGiocatori extends JPanel implements PannelloGioco{
 				impostaPartitaOnline(Simbolo.simboloG2);
 			}
 		});
-		
-		JPanel buttons = new JPanel();
-		buttons.setLayout(new GridLayout(1,2));
-
-		JPanel jPanel5 = new JPanel();
-		setPanel(jPanel5, nuovaPartita);
-		JPanel jPanel6 = new JPanel();
-		setPanel(jPanel6, riprendiPartita);
-		buttons.add(jPanel5);
-		buttons.add(jPanel6);
-		
-		setLayout(new GridLayout(5,1));
-		add(panel1);
-		add(pannelloGiocatore);
-		add(panel2);
-		add(panel4);
-		add(buttons);
-		
-		
+		add(riprendiPartita);
+	
+	
 		return this;
 	}
-	/**
-	 * Questo metodo serve per impostare il tipo di partita Online
-	 * @param simbolo
-	 */
 	private void impostaPartitaOnline(String simbolo) {
 		if(((String)comboBox1.getSelectedItem()).contentEquals(((String) comboBox2.getSelectedItem()))){
 			JOptionPane.showMessageDialog(null, "Selezionare Nomi Diversi !!");
@@ -144,21 +114,11 @@ public class PannelloGiocatori extends JPanel implements PannelloGioco{
 			
 		}
 	}
-	
 	private void selezioneGiocatori() {
 		G1 = (String) comboBox1.getSelectedItem();
 		G2 = (String) comboBox2.getSelectedItem();
 	}
-
-	private void setPanel(JPanel panel, Component component){
-		
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER,0,15));
-		panel.setBackground(new Color(153,203,255));
-		panel.add(component);
-	}
-		
 	public void setIconaScelta(String iconaScelta) {
 		this.iconaScelta = iconaScelta;
 	}
-
 }
