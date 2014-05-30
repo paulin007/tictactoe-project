@@ -12,7 +12,7 @@ import tris.AlgoritmoTris;
  */
 public class GiochiPresenti {
 	
-	public static String tris = "Tris";
+	public static String tris = "tris";
 	public static String forza4 = "Forza4";
 	public static HashMap<String,  Algoritmo> mappaAlgoritmi;
 	
