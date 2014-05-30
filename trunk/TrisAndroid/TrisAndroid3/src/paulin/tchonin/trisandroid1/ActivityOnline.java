@@ -39,6 +39,7 @@ public class ActivityOnline extends Activity {
 		toggleButtonStart();
 		toggleButtonConnect();
 
+		
 	}
 
 	public void startNewGame() {

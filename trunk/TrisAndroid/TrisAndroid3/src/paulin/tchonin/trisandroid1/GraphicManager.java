@@ -28,12 +28,14 @@ public class GraphicManager implements IGraphicManager, Observer {
 	private InterpreteMessaggio interprete;
 	private Controller controller;
 
+
 	public GraphicManager(ActivityOnline activityOnline,
 			InterpreteMessaggio interprete, Controller controller) {
 		this.activityOnline = activityOnline;
 		this.interprete = interprete;
 		this.controller = controller;
 		controller.getMatchManager().addObserver(this);
+		
 	}
 
 	@Override
@@ -43,17 +45,28 @@ public class GraphicManager implements IGraphicManager, Observer {
 		}
 	}
 
+	/**
+	 * Aggiorna la UI attiva su un altro thread
+	 */
 	@Override
-	public void paint(ArrayList<String> caselle) {
-		controller.getMatchManager().getTimer().cancel();
-		for (int i = 0; i < caselle.size(); i++) {
-			if (caselle.get(i).equals(simboloGiocatore1)) {
-				setMove('X', i);
-			} else if (caselle.get(i).equals(simboloGiocatore2)) {
-				setMove('0', i);
+	public void paint(final ArrayList<String> caselle) {
+		getActivityOnline().runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				for (int i = 0; i < caselle.size(); i++) {
+					if (caselle.get(i).equals(simboloGiocatore1)) {
+						setMove('X', i);
+					} else if (caselle.get(i).equals(simboloGiocatore2)) {
+						setMove('0', i);
+					}
+				}
 			}
-		}
+		});
+		
 	}
+	
+	
 	
 	@Override
 	public void createGraphics() {
@@ -77,7 +90,7 @@ public class GraphicManager implements IGraphicManager, Observer {
 	}
 
 	private void setMove(char player, int location) {
-		Log.e("info", "sei dentro move");
+		Log.e("info", "sei dentro setMove");
 		
 		boardButtons[location].setText(String.valueOf(player));
 		Log.e("info", "hai messo il simbolo");
@@ -89,6 +102,7 @@ public class GraphicManager implements IGraphicManager, Observer {
 			Log.e("info", "rosso");
 		}
 		boardButtons[location].setEnabled(false);
+		
 	}
 
 	public ActivityOnline getActivityOnline() {
@@ -123,6 +137,13 @@ public class GraphicManager implements IGraphicManager, Observer {
 	public void update(Observable arg0, Object arg1) {
 //		controller.getMatchManager().getTimer().cancel();
 		Log.e("info", "update");
+//		getActivityOnline().runOnUiThread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				getBoardButtons()[0].setText("X");
+//			}
+//		});
 		if (interprete.getUltimoGiocatore().equalsIgnoreCase(simboloGiocatore2)) {
 			Log.e("info",interprete.getCaselle()+" "+interprete.getUltimoGiocatore());
 			paint(interprete.getCaselle());
@@ -130,6 +151,7 @@ public class GraphicManager implements IGraphicManager, Observer {
 			Log.e("info",interprete.getCaselle()+" "+interprete.getUltimoGiocatore());
 			paint(interprete.getCaselle());
 		}
+		
 	}
 
 }
