@@ -1,5 +1,6 @@
 package paulin.tchonin.trisandroid1;
 
+import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,33 +13,34 @@ public class MatchManager implements IMatchManager {
 	private String response;
 	private Client client;
 	private static final String PLAYER_1 = "G1"; // TODO METTERE IN XML
-	private InterpreteMessaggio interprete = new InterpreteMessaggio();
+	private InterpreteMessaggio interprete;
 	private Timer timer;
 
-	public MatchManager() {
+	public MatchManager(InterpreteMessaggio interprete) {
+		this.interprete = interprete;
 	}
 
 	@Override
 	public void connectToMatch(String player1, String player2) {
 		client = new Client();
-		setMessage("collegati a	" + player2 + "	" + player1);
-		setResponse(client.send(message));
+		message = "collegati a	" + player2 + "	" + player1;
+		response = client.send(message);
 		interprete.interpreta(response);
 	}
 
 	@Override
 	public void createNewMatch(String player1, String player2) {
 		client = new Client();
-		setMessage("nuova partita	" + player1 + "	" + player2 + "\tTris");
-		setResponse(client.send(message));
+		message = "nuova partita	" + player1 + "	" + player2 + "\tTris";
+		response = client.send(message);
 		interprete.interpreta(response);
 	}
 
 	public void sendMove(int location) {
 		client = new Client();
-		setMessage("Mossa\t" + interprete.getIDpartita() + "\t" + PLAYER_1
-				+ "\t" + location);
-		setResponse(client.send(message));
+		message = "Mossa\t" + interprete.getIDpartita() + "\t" + PLAYER_1
+				+ "\t" + location;
+		response = client.send(message);
 
 	}
 
@@ -49,25 +51,19 @@ public class MatchManager implements IMatchManager {
 
 			@Override
 			public void run() {
-				setMessage("update	" + interprete.getIDpartita());
-				setResponse(client.send(message));
+				message = "update	" + interprete.getIDpartita();
+				response = client.send(message);
+				
 			}
 		};
 		timer = new Timer();
 		timer.schedule(timerTask, 3000, 2000);
+		StringTokenizer stringTokenizer = new StringTokenizer(response, "	");
+		stringTokenizer.nextToken(); stringTokenizer.nextToken();
+		if(!(stringTokenizer.nextToken().equalsIgnoreCase("inCorso")))
+			timer.cancel();
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public void setResponse(String response) {
-		this.response = response;
-	}
-
-	public String getResponse() {
-		return response;
-	}
 
 	public Timer getTimer() {
 		return timer;
