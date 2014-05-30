@@ -27,11 +27,10 @@ public class ServizioInviaMossa implements IServizio {
 		String giocatore = s.nextToken();
 		String mossa = s.nextToken();
 		for (int i = 0; i < partite.size(); i++) {
-			if (partite.get(i).getId() == idPartita) {
-					
+			if (partite.get(i).getId() == idPartita) {					
 				
 					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
-						GiochiPresenti.mappaAlgoritmi.get(partite.get(i).getGioco()).execute(partite.get(i), giocatore, mossa);
+						GiochiPresenti.mappaAlgoritmi.get(partite.get(i).getGioco().toLowerCase()).execute(partite.get(i), giocatore, mossa);
 					String esito = partite.get(i).getRisultato();
 					if(esito.equalsIgnoreCase(Simbolo.simboloG1)){
 						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "V", partite.get(i).getGioco());
@@ -48,10 +47,9 @@ public class ServizioInviaMossa implements IServizio {
 					}
 						
 					
-
+					partite.get(i).setUltimoGiocatore(giocatore);
 					partite.get(i).setUltimoGiocatore(giocatore);
 					
-						partite.get(i).setUltimoGiocatore(giocatore);
 					return partite.get(i).toString();
 			}
 		}
