@@ -1,4 +1,4 @@
-package paulin.tchonin.trisandroid1;
+package rete;
 
 public interface IClient {
 

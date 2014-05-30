@@ -1,39 +1,44 @@
 package paulin.tchonin.trisandroid1;
 
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
 
-public class ButtonClickListener implements View.OnClickListener {
-	int location;
-	private boolean gameOver=false;
-	private Button boardButtons[];
-	private boolean connected;
-	private TextView infoTextView;
+public class ButtonClickListener implements OnClickListener{
+
+	private int location;
 	private MatchManager matchManager;
+	private GraphicManager graphicManager;
+//	private InterpreteMessaggio interpreteMessaggio;
+	private boolean gameOver=false;
+	private boolean connected=false;
 	
-	public ButtonClickListener(Button boardButtons[], int location, TextView infoTextView, MatchManager matchManager) {
-		this.boardButtons = boardButtons;
+	public ButtonClickListener(int location,
+			MatchManager matchManager, GraphicManager graphicManager /*,InterpreteMessaggio interpreteMessaggio*/) {
+		super();
 		this.location = location;
-		this.infoTextView = infoTextView;
 		this.matchManager = matchManager;
+		this.graphicManager = graphicManager;
+//		this.interpreteMessaggio = interpreteMessaggio;
 	}
-
+	
 	public void onClick(View view) {
 		if (!gameOver) {
 
-			if (boardButtons[location].isEnabled()) {
+			if (graphicManager.getBoardButtons()[location].isEnabled()) {
 
 				if (UIManager.isMyTurn() && !connected) {
 					
 					matchManager.sendMove(location);
 					matchManager.requestUpdate();
-					
-					infoTextView.setText(R.string.turn_player2);
+//					graphicManager.paint(interpreteMessaggio.getCaselle());
+					graphicManager.getInfoTextView().setText(R.string.turn_player2);
 					UIManager.setMyTurn(false);
 				}
 
 			}
 		}
 	}
+	
+	
+	
 }

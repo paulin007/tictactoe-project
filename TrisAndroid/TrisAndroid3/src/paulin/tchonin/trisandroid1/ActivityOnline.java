@@ -1,9 +1,8 @@
 package paulin.tchonin.trisandroid1;
 
+import rete.InterpreteMessaggio;
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,8 +22,11 @@ public class ActivityOnline extends Activity {
 	private static boolean connected = false;
 	private String namePlayer1;
 	private String namePlayer2;
-	private MatchManager matchManager = new MatchManager();
-	private GraphicManager graphicManager = new GraphicManager(this);
+	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
+	private MatchManager matchManager = new MatchManager(interpreteMessaggio);
+	private Controller controller = new Controller(matchManager);
+	private GraphicManager graphicManager = new GraphicManager(this,interpreteMessaggio, controller);
+	
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -41,35 +43,34 @@ public class ActivityOnline extends Activity {
 
 	public void startNewGame() {
 		Button[] boardButtons = graphicManager.getBoardButtons();
-		TextView infoTextView = graphicManager.getInfoTextView();
+//		TextView infoTextView = graphicManager.getInfoTextView();
 		graphicManager.clear();
 		for (int i = 0; i < boardButtons.length; i++) {
 			boardButtons[i].setText("");
 			boardButtons[i].setEnabled(true);
-			boardButtons[i].setOnClickListener(new ButtonClickListener(
-					boardButtons, i, infoTextView, matchManager));
+			boardButtons[i].setOnClickListener(new ButtonClickListener(i, matchManager, graphicManager/*, interpreteMessaggio*/));
 		}
 
 	}
 
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		getMenuInflater().inflate(R.menu.gam_menu_online, menu);
-		return true;
-	}
-
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.newGame:
-			onCreate(null);
-			break;
-		case R.id.exitGame:
-			ActivityOnline.this.finish();
-			break;
-		}
-
-		return true;
-	}
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//
+//		getMenuInflater().inflate(R.menu.gam_menu_online, menu);
+//		return true;
+//	}
+//
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//		case R.id.newGame:
+//			onCreate(null);
+//			break;
+//		case R.id.exitGame:
+//			ActivityOnline.this.finish();
+//			break;
+//		}
+//
+//		return true;
+//	}
 
 	/**
 	 * si occupa di fare iniziare una nuova partita
@@ -90,7 +91,7 @@ public class ActivityOnline extends Activity {
 					namePlayer2 = editText2.getText().toString();
 
 					matchManager.createNewMatch(namePlayer1, namePlayer2);
-
+					
 					UIManager.setMyTurn(true);
 					infoTextView.setText(R.string.player1);
 					startNewGame();
@@ -123,7 +124,6 @@ public class ActivityOnline extends Activity {
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();
 					matchManager.connectToMatch(namePlayer1, namePlayer2);
-					matchManager.requestUpdate();
 					UIManager.setMyTurn(true);
 					infoTextView.setText(R.string.player1);
 					startNewGame();

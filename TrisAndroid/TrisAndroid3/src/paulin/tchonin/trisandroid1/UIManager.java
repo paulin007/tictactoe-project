@@ -25,7 +25,7 @@ public class UIManager {
 	}
 	
 //	public void updateTable() {
-////		this.caselle = ClientAndroid.getCaselle();
+//		this.caselle = ClientAndroid.getCaselle();
 //		for (int i = 0; i < caselle.size(); i++) {
 //			if (caselle.get(i).equals("G1")) {
 //				setMove(PLAYER1, i);
@@ -33,9 +33,9 @@ public class UIManager {
 //				setMove(PLAYER2, i);
 //			}
 //		}
-
+//
 //		lastPlayer = ClientAndroid.getLastPlayer();
-
+//
 //		handleTurn();
 //
 //	}
@@ -96,17 +96,6 @@ public class UIManager {
 //		}
 //	}
 //	
-	//TODO estrarre controllo
-//	private void setMove(char player, int location) {
-//
-//		boardButtons[location].setEnabled(false);
-//		boardButtons[location].setText(String.valueOf(player));
-//
-//		if (player == PLAYER1)
-//			boardButtons[location].setTextColor(Color.GREEN);
-//		else
-//			boardButtons[location].setTextColor(Color.RED);
-//	}
 
 	//TODO estrarre controllo
 	public static void setMyTurn(boolean myTurn) {
