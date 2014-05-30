@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Client implements IClient{
 
 	private String response = "";
-	private String host = "192.168.0.100";
+	private String host = "192.168.0.78";
 	private static final int PORT = 45444;
 
 

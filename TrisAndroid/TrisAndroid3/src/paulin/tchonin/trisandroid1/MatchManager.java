@@ -18,6 +18,7 @@ public class MatchManager extends Observable implements IMatchManager {
 	private InterpreteMessaggio interprete;
 	private Timer timer;
 
+
 	public MatchManager(InterpreteMessaggio interprete) {
 		this.interprete = interprete;
 	}
@@ -58,12 +59,11 @@ public class MatchManager extends Observable implements IMatchManager {
 				message = "update	" + interprete.getIDpartita();
 				response = client.send(message);
 				interprete.interpreta(response);
-				Log.e("info", "Fuori if update");
 				if (interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER_1)) {
-					Log.e("info", "Dentro if update");
 					updateModel();
 				}
 			}
+			
 		};
 		timer.schedule(timerTask, 2000, 5000);
 		StringTokenizer stringTokenizer = new StringTokenizer(response, "	");
@@ -86,8 +86,12 @@ public class MatchManager extends Observable implements IMatchManager {
 	}
 
 	public void updateModel() {
+		Log.e("info", "updateModel");
 		setChanged();
 		notifyObservers();
+
 	}
+	
+	
 
 }
