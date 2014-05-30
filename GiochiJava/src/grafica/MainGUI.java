@@ -1,7 +1,5 @@
 package grafica;
 
-import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 /**
  * Questo main permette di eseguire la parte grafica del gioco del tris
@@ -16,9 +14,8 @@ public class MainGUI {
 		ControllerGioco controllerGioco = new ControllerGioco(pannelloGioco);
 		MenuGui menuTris = new MenuGui(controllerGioco);
 		JFrame frame = new JFrame("Tic Tac Toe");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/trisGui/Immagini/tris.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600,550);
+		frame.setSize(600,600);
 		frame.add(pannelloGioco);
 		frame.setJMenuBar(menuTris);
 		frame.setLocationRelativeTo(null);
