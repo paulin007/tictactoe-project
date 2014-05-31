@@ -3,9 +3,7 @@ package forza4Gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,9 +24,8 @@ public class LabelSfida extends JLabel{
 		try {
 			
 			
-			URL url = getClass().getResource("/forza4Gui/Akhenaton.ttf");
-			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream(new File(url.toURI())));		
-			
+			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream("/Users/Giacomo/Desktop/Tris/GiochiJava/src/forza4Gui/Akhenaton.ttf"));
+		
 			float size = 100.0f;
 			font = font.deriveFont(size);
 			
