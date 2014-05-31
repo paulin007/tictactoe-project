@@ -18,28 +18,27 @@ public class Test01 {
 	@Test
 	public void test01() {
 		
-		assertTrue(client.send("Nuova partita	Santo	Dario	tris").contentEquals("tris	0	inCorso	G2	 null null null null null null null null null"));
-		
+		assertTrue(client.send("Nuova partita	Santo	Dario").contentEquals("Partita	0	inCorso	G2	 null null null null null null null null null"));
+
 	}
 	
 	@Test
 	public void test02(){
-		
-		
-		assertTrue(client.send("Mossa	0	G1	8").contentEquals("tris	0	inCorso	G1	 null null null null null null null null G1"));
+	
+		assertTrue(client.send("Mossa	0	Dario	8").contentEquals("Partita	0	inCorso	Dario	 null null null null null null null null Dario"));
 	}
 	
 	@Test
 	public void test03(){
 		
-		assertTrue(client.send("update	0").contentEquals("tris	0	inCorso	G1	 null null null null null null null null G1"));
+		assertTrue(client.send("update	0").contentEquals("Partita	0	inCorso	Dario	 null null null null null null null null Dario"));
 	
 	}
 	
 	@Test
 	public void test04(){
 
-		assertTrue(client.send("collegati a	Santo	Dario").contentEquals("tris	0	inCorso	G1	 null null null null null null null null G1"));
+		assertTrue(client.send("collegati a	Santo	Dario").contentEquals("Partita	0	inCorso	Dario	 null null null null null null null null Dario"));
 	
 	}
 
