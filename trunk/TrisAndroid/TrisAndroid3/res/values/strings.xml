@@ -3,7 +3,6 @@
 
     <string name="app_name">TicTacToeGame</string>
     <string name="action_settings">Settings</string>
-    <string name="result_tie"> Pareggio!</string>  
     <string name="one">1</string>  
     <string name="two">2</string>  
     <string name="three">3</string>  
@@ -23,30 +22,27 @@
     </string>  
     <string name="about_heading">About</string>
     <string name="about_info">Questa applicazione ti permette di giocare
-        al gioco TicTacToe contro il computer e di giocare anche online 
-        con altri giocatori.  
+        al gioco TicTacToe online 
+        contro altri giocatori.  
     </string> 
     
     <!-- adesso per il menu-->
-    <string name="newGame_label">Nuova Partita</string>  
+	<string name="newGame_label">Nuova Partita</string>  
     <string name="exitGame_label">Esci</string> 
     
     
-     <string name="player1">Inizia Tu</string>
-     <string name="turn_player2">Tocca al player2.</string>  
-     <string name="turn_player1">Tocca a te.</string> 
-     <string name="result_player1_wins">Hai Vinto questo turno!</string>  
-     <string name="result_player2_wins">Hai perso!</string>
-     <string name="human1"> Player1: </string>  
-     <string name="player2"> Player2: </string> 
-     <string name="name_player1"> name player1 </string> 
-     <string name="name_player2"> name player2 </string> 
+	 <string name="turn_player1">Tocca a te</string> 
+     <string name="turn_player2">Tocca al player2</string>  
+     <string name="result_player1_wins">Hai Vinto!!</string>  
+     <string name="result_player2_wins">Hai perso..</string>
+     <string name="result_tie"> Pareggio!</string>  
+     <string name="player1">G1</string>  
+     <string name="player2">G2</string> 
+     <string name="name_player1"> Name Player1 </string> 
+     <string name="name_player2"> Name Player2 </string> 
      <string name="vs"> VS </string>
      <string name="insert_name"> Inserisci i nomi dei giocatori </string>
-     <string name="verify"> incorrect name </string>
-     <string name="server"> il server è irragiungibile </string>
-     
-     
-    
+     <string name="verify"> Nomi errati! </string>
+     <string name="server"> Il Server è irragiungibile </string>
 
 </resources>

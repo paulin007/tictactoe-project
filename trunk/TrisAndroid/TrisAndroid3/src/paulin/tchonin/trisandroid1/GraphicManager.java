@@ -6,7 +6,6 @@ import java.util.Observer;
 
 import rete.InterpreteMessaggio;
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,8 +13,8 @@ import android.widget.ToggleButton;
 
 public class GraphicManager implements IGraphicManager, Observer {
 
-	private static String simboloGiocatore1 = "G1";
-	private static String simboloGiocatore2 = "G2";
+	private static String PLAYER1_SYMBOL = "G1";	//TODO METTERE IN XML
+	private static String PLAYER2_SYMBOL = "G2";	//TODO METTERE IN XML
 	private final static int BOARD_SIZE = 9;
 	private final static char EMPTY_SPACE = ' ';
 	private ActivityOnline activityOnline;
@@ -29,44 +28,20 @@ public class GraphicManager implements IGraphicManager, Observer {
 	private Controller controller;
 
 
-	public GraphicManager(ActivityOnline activityOnline,
-			InterpreteMessaggio interprete, Controller controller) {
+	public GraphicManager(ActivityOnline activityOnline, InterpreteMessaggio interprete, Controller controller) {
 		this.activityOnline = activityOnline;
 		this.interprete = interprete;
 		this.controller = controller;
 		controller.getMatchManager().addObserver(this);
 		
 	}
-
+	
 	@Override
 	public void clear() {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			boardButtons[i].setText(String.valueOf(EMPTY_SPACE));
 		}
 	}
-
-	/**
-	 * Aggiorna la UI attiva su un altro thread
-	 */
-	@Override
-	public void paint(final ArrayList<String> caselle) {
-		getActivityOnline().runOnUiThread(new Runnable() {
-			
-			@Override
-			public void run() {
-				for (int i = 0; i < caselle.size(); i++) {
-					if (caselle.get(i).equals(simboloGiocatore1)) {
-						setMove('X', i);
-					} else if (caselle.get(i).equals(simboloGiocatore2)) {
-						setMove('0', i);
-					}
-				}
-			}
-		});
-		
-	}
-	
-	
 	
 	@Override
 	public void createGraphics() {
@@ -89,20 +64,100 @@ public class GraphicManager implements IGraphicManager, Observer {
 				.findViewById(R.id.toggleButtonStart);
 	}
 
-	private void setMove(char player, int location) {
-		Log.e("info", "sei dentro setMove");
+	/**
+	 * Aggiorna la UI attiva su un altro thread
+	 */
+	@Override
+	public void paint(final ArrayList<String> caselle) {
+		getActivityOnline().runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+
+				for (int i = 0; i < caselle.size(); i++) {
+					if (caselle.get(i).equals(PLAYER1_SYMBOL)) {
+						setMove('X', i);
+					} else if (caselle.get(i).equals(PLAYER2_SYMBOL)) {
+						setMove('0', i);
+					}
+				}
+				handleTurn();
+				
+				if(gameOver()){
+					controller.getMatchManager().endMatch();		//TODO provare
+				}
+				
+			}
+		});
 		
+	}
+	
+	//Si occupa di decidere in base alla situazione, di quale giocatore è il turno
+	private void setPlayersTurn() {
+		if(interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER2_SYMBOL)){
+			if(activityOnline.isConnected()){
+				TurnManager.setMyTurn(false);
+			}else{
+				TurnManager.setMyTurn(true);
+			}
+		}else if(interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER1_SYMBOL)){
+			if(activityOnline.isConnected()){
+				TurnManager.setMyTurn(true);	
+			}else{
+				TurnManager.setMyTurn(false);
+			}
+		}
+	}
+	
+	//Gestisce la visualizzazione dei turni su UI
+	private void handleTurn() {
+		if(TurnManager.isMyTurn()){
+			infoTextView.setText(R.string.turn_player1);
+		}else if(!TurnManager.isMyTurn()){
+			infoTextView.setText(R.string.turn_player2);
+		}
+	}
+
+	private void setMove(char player, int location) {
+
 		boardButtons[location].setText(String.valueOf(player));
-		Log.e("info", "hai messo il simbolo");
 		if (player == 'X') {
 			boardButtons[location].setTextColor(Color.GREEN);
-			Log.e("info", "verde");
 		} else if (player == '0') {
 			boardButtons[location].setTextColor(Color.RED);
-			Log.e("info", "rosso");
 		}
 		boardButtons[location].setEnabled(false);
 		
+	}
+	
+	//Decide se la partita è finita, e comunica chi è il vincitore
+	private boolean gameOver(){
+		if(!activityOnline.isConnected()){
+			if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER1_SYMBOL)){
+				infoTextView.setText("Hai vinto!");
+				return true;
+			}else if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER2_SYMBOL)){
+				infoTextView.setText("Hai perso!");
+				return true;
+			}
+		}else{
+			if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER2_SYMBOL)){
+				infoTextView.setText("Hai vinto!");
+				return true;
+			}else if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER1_SYMBOL)){
+				infoTextView.setText("Hai perso!");
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+	
+			setPlayersTurn();
+			paint(interprete.getCaselle());
+
 	}
 
 	public ActivityOnline getActivityOnline() {
@@ -132,26 +187,4 @@ public class GraphicManager implements IGraphicManager, Observer {
 	public ToggleButton getStartButton() {
 		return startButton;
 	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-//		controller.getMatchManager().getTimer().cancel();
-		Log.e("info", "update");
-//		getActivityOnline().runOnUiThread(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				getBoardButtons()[0].setText("X");
-//			}
-//		});
-		if (interprete.getUltimoGiocatore().equalsIgnoreCase(simboloGiocatore2)) {
-			Log.e("info",interprete.getCaselle()+" "+interprete.getUltimoGiocatore());
-			paint(interprete.getCaselle());
-		}else if (interprete.getUltimoGiocatore().equalsIgnoreCase(simboloGiocatore1)){
-			Log.e("info",interprete.getCaselle()+" "+interprete.getUltimoGiocatore());
-			paint(interprete.getCaselle());
-		}
-		
-	}
-
 }
