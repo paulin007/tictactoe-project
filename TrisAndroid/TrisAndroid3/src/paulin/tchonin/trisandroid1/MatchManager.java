@@ -5,17 +5,17 @@ import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.util.Log;
 import rete.Client;
 import rete.InterpreteMessaggio;
 
 public class MatchManager extends Observable implements IMatchManager {
 
+	private static final String PLAYER1_SYMBOL = "G1"; // TODO METTERE IN XML
+	private static final String PLAYER2_SYMBOL = "G2"; // TODO METTERE IN XML
+	private InterpreteMessaggio interprete;
 	private String message;
 	private String response;
 	private Client client;
-	private static final String PLAYER_1 = "G1"; // TODO METTERE IN XML
-	private InterpreteMessaggio interprete;
 	private Timer timer;
 
 
@@ -24,6 +24,14 @@ public class MatchManager extends Observable implements IMatchManager {
 	}
 
 	@Override
+	public void createNewMatch(String player1, String player2) {
+		client = new Client();
+		message = "nuova partita	" + player1 + "	" + player2 + "\ttris";
+		response = client.send(message);
+		interprete.interpreta(response);
+	}
+	
+	@Override
 	public void connectToMatch(String player1, String player2) {
 		client = new Client();
 		message = "collegati a	" + player2 + "	" + player1;
@@ -31,18 +39,15 @@ public class MatchManager extends Observable implements IMatchManager {
 		interprete.interpreta(response);
 	}
 
-	@Override
-	public void createNewMatch(String player1, String player2) {
-		client = new Client();
-		message = "nuova partita	" + player1 + "	" + player2 + "\tTris";
-		response = client.send(message);
-		interprete.interpreta(response);
-	}
-
 	public void sendMove(int location) {
 		client = new Client();
-		message = "Mossa\t" + interprete.getIDpartita() + "\t" + PLAYER_1
-				+ "\t" + location;
+		if(interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER1_SYMBOL)){
+			message = "Mossa\t" + interprete.getIDpartita() + "\t" + PLAYER2_SYMBOL
+					+ "\t" + location;
+		}else if(interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER2_SYMBOL)){
+			message = "Mossa\t" + interprete.getIDpartita() + "\t" + PLAYER1_SYMBOL
+					+ "\t" + location;
+		}
 		response = client.send(message);
 		interprete.interpreta(response);
 	}
@@ -59,9 +64,7 @@ public class MatchManager extends Observable implements IMatchManager {
 				message = "update	" + interprete.getIDpartita();
 				response = client.send(message);
 				interprete.interpreta(response);
-				if (interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER_1)) {
-					updateModel();
-				}
+				updateModel();
 			}
 			
 		};
@@ -72,26 +75,16 @@ public class MatchManager extends Observable implements IMatchManager {
 		if (!(stringTokenizer.nextToken().equalsIgnoreCase("inCorso")))
 			timer.cancel();
 	}
-
-	public boolean lastPlayer() {
-		if (interprete.getUltimoGiocatore().equalsIgnoreCase("G1")) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	public Timer getTimer() {
-		return timer;
+	
+	@Override
+	public void endMatch(){
+		timer.cancel();
 	}
 
 	public void updateModel() {
-		Log.e("info", "updateModel");
 		setChanged();
 		notifyObservers();
 
 	}
-	
-	
 
 }
