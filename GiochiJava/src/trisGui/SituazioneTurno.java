@@ -17,11 +17,15 @@ public class SituazioneTurno {
 	private boolean isMioTurno = false;
 	private Icona[] icone = new Icona[2];
 	
+	public SituazioneTurno() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public SituazioneTurno(String mioSimbolo, String miaIcona, String iDpartita) {
 		super();
 		this.mioSimbolo = mioSimbolo;
 		this.miaIcona = miaIcona;
+		System.out.println(mioSimbolo);
 		IDpartita = iDpartita;
 		setSimboloAvversario();
 		setIcona(miaIcona);
@@ -71,7 +75,7 @@ public class SituazioneTurno {
 	 * Questo metodo permette di impostare il tipo di icona che viene mostrata a video
 	 * @param iconaMia
 	 */
-	private void setIcona(String iconaMia){
+	public void setIcona(String iconaMia){
 		if(iconaMia.equalsIgnoreCase("Croce")){
 			this.icone[0] = new Croce();
 			this.icone[1] = new Cerchio();
@@ -97,5 +101,18 @@ public class SituazioneTurno {
 			isMioTurno = false;
 			return false;
 		}
+	}
+
+	public void setMioSimbolo(String mioSimbolo) {
+		this.mioSimbolo = mioSimbolo;
+		setSimboloAvversario();
+	}
+
+	public void setMiaIcona(String miaIcona) {
+		this.miaIcona = miaIcona;
+	}
+
+	public void setIDpartita(String iDpartita) {
+		IDpartita = iDpartita;
 	}
 }

@@ -12,8 +12,7 @@ import rete.InterpreteMessaggio;
 public class Test02 {
 
 	InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
-	
-	String partita = "tris	0	inCorso	G2	null null null null null null null null null";
+	String partita = "0, Dario, Santo";
 
 	public Test02() {
 		
@@ -22,7 +21,7 @@ public class Test02 {
 	
 	@Test
 	public void test01() {
-		assertTrue(interpreteMessaggio.getTipoMessaggio().contentEquals("tris"));
+		assertTrue(interpreteMessaggio.getTipoMessaggio().contentEquals("Partita"));
 	}
 	
 	@Test
