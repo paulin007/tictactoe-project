@@ -44,19 +44,9 @@ public class LabelGiocatori extends JLabel{
 		super.paintComponent(g);
 	}
 
-	public String getString() {
-		return string;
-	}
-
-	public void setString(String string) {
-		this.string = string;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
+	
 	public void setColor(Color color) {
 		this.color = color;
+		updateUI();
 	}
 }
