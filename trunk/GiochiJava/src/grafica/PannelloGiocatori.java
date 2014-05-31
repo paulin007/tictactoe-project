@@ -14,33 +14,31 @@ import javax.swing.JPanel;
 
 import rete.Client;
 import rete.InterpreteMessaggio;
+import trisGui.SituazioneTurno;
 
-public class PannelloGiocatori extends JPanel implements PannelloGioco{
+public class PannelloGiocatori extends JPanel{
 
 	private static final long serialVersionUID = 0;
 	private String G1;
 	private String G2;
 	private String[] simboli = {"Cerchio","Croce"};
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Kokou","Paulin","Andrea" };
-	private ControllerGioco controllerTris;
+	private PannelloPrincipale principale;
 	private String iconaScelta;
 	private final JComboBox<String> comboBox1 = new JComboBox<String>(nomiGiocatori);
 	private final JComboBox<String> comboBox2 = new JComboBox<String>(nomiGiocatori);
 	private final JComboBox<String> comboBox3 = new JComboBox<String>(simboli);
+	private SituazioneTurno turno = new SituazioneTurno();
 	
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
 	
-	public PannelloGiocatori(final ControllerGioco controllerTris) {
+	public PannelloGiocatori(final PannelloPrincipale principale) {
 		super();
-		this.controllerTris = controllerTris;
-		
-		setLayout(null);
+		this.principale = principale;
+		impostaGrafica();
 	}
 	
-	
-	@Override
-	public JPanel creaPannello() {
-	
+private void impostaGrafica() {
 		setLayout(null);
 		
 		setBackground(new Color(153,203,255));
@@ -76,7 +74,7 @@ public class PannelloGiocatori extends JPanel implements PannelloGioco{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				selezioneGiocatori();
-				interpreteMessaggio.interpreta(Client.send("nuova partita	"+G1+"	"+G2+"	"+controllerTris.getNomeGioco()));
+				interpreteMessaggio.interpreta(Client.send("nuova partita	"+G1+"	"+G2+"	"+principale.getGioco()));
 				impostaPartitaOnline(Simbolo.simboloG1);
 			}
 
@@ -98,9 +96,6 @@ public class PannelloGiocatori extends JPanel implements PannelloGioco{
 			}
 		});
 		add(riprendiPartita);
-	
-	
-		return this;
 	}
 	private void impostaPartitaOnline(String simbolo) {
 		if(((String)comboBox1.getSelectedItem()).contentEquals(((String) comboBox2.getSelectedItem()))){
@@ -109,9 +104,12 @@ public class PannelloGiocatori extends JPanel implements PannelloGioco{
 		else {
 			selezioneGiocatori();
 			setIconaScelta(comboBox3.getSelectedItem().toString());
-			controllerTris.setPannelloGiocoOnline(simbolo, iconaScelta,interpreteMessaggio.getIDpartita());
-			
-		}
+			turno.setMioSimbolo(simbolo);
+			turno.setIDpartita(interpreteMessaggio.getIDpartita());
+			turno.setMiaIcona(iconaScelta);
+			turno.setIcona(iconaScelta);
+			principale.setPannelloGioco(turno);
+			}
 	}
 	private void selezioneGiocatori() {
 		G1 = (String) comboBox1.getSelectedItem();

@@ -21,7 +21,7 @@ import rete.Client;
 import rete.InterPreteStatistiche;
 
 @SuppressWarnings("serial")
-public class PannelloStatistica extends JPanel implements PannelloGioco {
+public class PannelloStatistica extends JPanel{
 	
 	private InterPreteStatistiche statistiche = new InterPreteStatistiche();
 	private String[] giochi = {"Tris","Forza4"};
@@ -34,13 +34,11 @@ public class PannelloStatistica extends JPanel implements PannelloGioco {
 	private JPanel pannelloStatistiche = new JPanel();
 	private Font font = new Font("Verdana", Font.BOLD, 16);
 	
-	@Override
-	public JPanel creaPannello() {
+	public PannelloStatistica(){
 		impostaPannelloRichieste();
 		impostaPannelloStatistiche();
 		inviaRichiesta();
 		impostaPannelloPrincipale();
-		return this;
 	}
 
 	private void impostaPannelloPrincipale() {
