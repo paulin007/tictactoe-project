@@ -23,33 +23,33 @@ public class MenuGui extends JMenuBar {
 	private JMenu record = new JMenu("Statistiche");
 	private JMenuItem statistiche = new JMenuItem("Statistiche");
 	
-	public MenuGui(final ControllerGioco controllerGioco) {
-		impostaMenuGiochi(controllerGioco);
+	public MenuGui(final PannelloPrincipale principale) {
+		impostaMenuGiochi(principale);
 		menuOnline.add(startGiocatori);
-		azioneGiocatori(controllerGioco);
+		azioneGiocatori(principale);
 		record.add(statistiche);
-		azioneStatistiche(controllerGioco);
+		azioneStatistiche(principale);
 		impostaMenuPrincipale();
 		impostaScorciatoie();
 	}
 
-	private void azioneStatistiche(final ControllerGioco controllerGioco) {
+	private void azioneStatistiche(final PannelloPrincipale principale) {
 		statistiche.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controllerGioco.setPannelloStatistiche();
+				principale.setPannello(new PannelloStatistica());
 				
 			}
 		});
 	}
 
-	private void azioneGiocatori(final ControllerGioco controllerGioco) {
+	private void azioneGiocatori(final PannelloPrincipale principale) {
 		startGiocatori.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controllerGioco.setPannelloGiocatori();
-				}
+				principale.setPannello(new PannelloGiocatori(principale));
+			}
 		});
 	}
 
@@ -59,19 +59,19 @@ public class MenuGui extends JMenuBar {
 		add(record);
 	}
 
-	private void impostaMenuGiochi(final ControllerGioco controllerGioco) {
+	private void impostaMenuGiochi(final PannelloPrincipale principale) {
 		giochi.add(tris);
 		giochi.add(forza4);
-		impostaGioco(tris, controllerGioco, "Tris");
-		impostaGioco(forza4, controllerGioco, "Forza4");
+		impostaGioco(tris, principale, "Tris");
+		impostaGioco(forza4, principale, "Forza4");
 	}
 	
-	private void impostaGioco(JMenuItem gioco, final ControllerGioco controllerGioco, final String nomeGioco){
+	private void impostaGioco(JMenuItem gioco, final PannelloPrincipale principale, final String nomeGioco){
 		gioco.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controllerGioco.setNomeGioco(nomeGioco);
+				principale.setGioco(nomeGioco);
 			}
 		});
 	}
