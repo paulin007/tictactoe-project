@@ -38,7 +38,7 @@ function processError(message) {
 function sendNewMatch() {
 	myPlayer = "G1";
 	otherPlayer = "G2";
-	webSocket.send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName());
+	webSocket.send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/tris");
 }
 
 function connectToMatch() {
