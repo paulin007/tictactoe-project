@@ -35,7 +35,7 @@ public class Client {
 		Socket link = null; // Step 1.
 
 		try {
-			link = new Socket("127.0.0.1", PORT); // Step 1.
+			link = new Socket("192.168.1.73", PORT); // Step 1.
 
 			Scanner input = new Scanner(link.getInputStream());// Step 2.
 

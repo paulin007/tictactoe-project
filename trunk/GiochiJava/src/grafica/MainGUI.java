@@ -22,13 +22,14 @@ public class MainGUI {
 		pannelliGiochi.add(tris);
 		pannelliGiochi.add(forza4);
 		principale.setPannelliGiochi(pannelliGiochi);
-		MenuGui menuTris = new MenuGui(principale);
+		MenuGui menuGui = new MenuGui(principale);
+		
 		JFrame frame = new JFrame("Tic Tac Toe");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/trisGui/Immagini/tris.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/trisGui/Immagini/Logo.png")));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600,550);
-		frame.add(principale);
-		frame.setJMenuBar(menuTris);
+		frame.getContentPane().add(principale);
+		frame.setJMenuBar(menuGui);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	

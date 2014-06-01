@@ -17,7 +17,7 @@ public class PannelloPrincipale extends JPanel {
 	
 	public void setPannelliGiochi(ArrayList<PannelloGioco> pannelliGiochi) {
 		this.pannelliGiochi = pannelliGiochi;
-			pannelloTris = pannelliGiochi.get(0);
+			pannelloTris = pannelliGiochi.get(0);		//TODO eventuale problema di assegnazione! dovrebbe essere pannelliGiochi.get(0) = pannelloTris;
 			pannelloForza4 = pannelliGiochi.get(1);
 	}
 	
@@ -25,17 +25,13 @@ public class PannelloPrincipale extends JPanel {
 	public PannelloPrincipale(JPanel panel) {
 		setPannello(panel);
 	}
+	
+	
 	public void setPannello(JPanel panel){
 		removeAll();
 		setLayout(new BorderLayout());
 		add(panel);
 		updateUI();
-	}
-	public String getGioco() {
-		return gioco;
-	}
-	public void setGioco(String gioco) {
-		this.gioco = gioco;
 	}
 	
 	public void setPannelloGioco(SituazioneTurno turno){
@@ -47,5 +43,12 @@ public class PannelloPrincipale extends JPanel {
 			pannelloForza4.setTurno(turno);
 			setPannello(pannelloForza4.creaPannello());
 		}
+	}
+	
+	public String getGioco() {
+		return gioco;
+	}
+	public void setGioco(String gioco) {
+		this.gioco = gioco;
 	}
 }
