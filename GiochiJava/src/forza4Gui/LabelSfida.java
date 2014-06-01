@@ -24,7 +24,7 @@ public class LabelSfida extends JLabel{
 		try {
 			
 			
-			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream("/Users/Giacomo/Desktop/Tris/GiochiJava/src/forza4Gui/Akhenaton.ttf"));
+			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream("src/forza4Gui/Akhenaton.ttf"));
 		
 			float size = 100.0f;
 			font = font.deriveFont(size);

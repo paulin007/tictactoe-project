@@ -12,9 +12,9 @@ public class Cerchio implements Icona{
 	public ImageIcon disegna() {
 		
 
-		java.net.URL imgUrl = getClass().getResource("/trisGui/immagini/O.png");
+		java.net.URL imgUrl = getClass().getResource("/trisGui/Immagini/O.png");
 		
-		ImageIcon icon = new ImageIcon( imgUrl );
+		ImageIcon icon = new ImageIcon(imgUrl);
 		return icon;
 	}
 	
