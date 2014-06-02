@@ -57,3 +57,9 @@ function requestUpdate() {
 		webSocket.send(string);
 	}
 }
+
+function requestAchievements() {
+	var string;
+	string = "statistiche/" + getPlayerName() + "/" + getGameName();
+	webSocket.send(string);
+}
