@@ -6,6 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import rete.Client;
+import rete.IClient;
 import rete.InterpreteMessaggio;
 
 public class MatchManager extends Observable implements IMatchManager {
@@ -15,7 +16,7 @@ public class MatchManager extends Observable implements IMatchManager {
 	private InterpreteMessaggio interprete;
 	private String message;
 	private String response;
-	private Client client;
+	private IClient client;		//TODO ha senso passare un IClient al costruttore di MatchManager anzichè averlo come attributo?
 	private Timer timer;
 
 
@@ -85,6 +86,10 @@ public class MatchManager extends Observable implements IMatchManager {
 		setChanged();
 		notifyObservers();
 
+	}
+	
+	public InterpreteMessaggio getInterprete() {
+		return interprete;
 	}
 
 }

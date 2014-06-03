@@ -16,13 +16,9 @@ import java.util.Scanner;
 public class Client implements IClient{
 
 	private String response = "";
-	private String host = "192.168.1.73";
+	private String host = "10.65.80.113";
 	private static final int PORT = 45444;
-
-
-	public Client() {
-	}
-
+	
 	/**
 	 *  Il metodo send prende in input una stringa Messaggio e restituisce la risposta del server
 	 *  
@@ -60,8 +56,6 @@ public class Client implements IClient{
 		}
 		return response;
 	}
-
-
 
 }
 

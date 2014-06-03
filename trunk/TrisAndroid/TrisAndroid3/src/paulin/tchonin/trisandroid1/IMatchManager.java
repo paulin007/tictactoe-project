@@ -1,6 +1,6 @@
 package paulin.tchonin.trisandroid1;
 
-
+import java.util.Observer;
 
 /**
  * Un'astrazione sulla gestione delle partite
@@ -18,5 +18,7 @@ public interface IMatchManager {
 	public void requestUpdate();
 	
 	public void endMatch();
+	
+	public void addObserver(Observer observer);		//TODO va veramente bene cosi?
 	
 }

@@ -1,8 +1,9 @@
 package paulin.tchonin.trisandroid1;
 
 import java.util.ArrayList;
+import java.util.Observer;
 
-public interface IGraphicManager {
+public interface IGraphicManager extends Observer {
 
 	public void createGraphics();
 	
