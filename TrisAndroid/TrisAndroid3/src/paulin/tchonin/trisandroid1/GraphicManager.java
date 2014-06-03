@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import rete.InterpreteMessaggio;
 import android.graphics.Color;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,15 +23,12 @@ public class GraphicManager implements IGraphicManager, Observer {
 	private EditText editText2 = null;
 	private ToggleButton connectButton;
 	private ToggleButton startButton;
-	private InterpreteMessaggio interprete;
 	private Controller controller;
 
-
-	public GraphicManager(ActivityOnline activityOnline, InterpreteMessaggio interprete, Controller controller) {
+	public GraphicManager(ActivityOnline activityOnline, Controller controller) {
 		this.activityOnline = activityOnline;
-		this.interprete = interprete;
 		this.controller = controller;
-		controller.getMatchManager().addObserver(this);
+		controller.addObserverToMatchManager(this);
 		
 	}
 	
@@ -84,23 +80,24 @@ public class GraphicManager implements IGraphicManager, Observer {
 				handleTurn();
 				
 				if(gameOver()){
-					controller.getMatchManager().endMatch();		//TODO provare
+					controller.getMatchManager().endMatch();
 				}
 				
 			}
-		});
-		
+		});		
 	}
 	
 	//Si occupa di decidere in base alla situazione, di quale giocatore è il turno
 	private void setPlayersTurn() {
-		if(interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER2_SYMBOL)){
+//		String ultimoGiocatore = controller.getMatchManager().getInterprete().getUltimoGiocatore();
+		String ultimoGiocatore = activityOnline.getInterpreteMessaggio().getUltimoGiocatore();
+		if(ultimoGiocatore.equalsIgnoreCase(PLAYER2_SYMBOL)){
 			if(activityOnline.isConnected()){
 				TurnManager.setMyTurn(false);
 			}else{
 				TurnManager.setMyTurn(true);
 			}
-		}else if(interprete.getUltimoGiocatore().equalsIgnoreCase(PLAYER1_SYMBOL)){
+		}else if(ultimoGiocatore.equalsIgnoreCase(PLAYER1_SYMBOL)){
 			if(activityOnline.isConnected()){
 				TurnManager.setMyTurn(true);	
 			}else{
@@ -132,19 +129,21 @@ public class GraphicManager implements IGraphicManager, Observer {
 	
 	//Decide se la partita è finita, e comunica chi è il vincitore
 	private boolean gameOver(){
+//		String statoPartita = controller.getMatchManager().getInterprete().getStatoPartita();
+		String statoPartita = activityOnline.getInterpreteMessaggio().getStatoPartita();
 		if(!activityOnline.isConnected()){
-			if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER1_SYMBOL)){
+			if(statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)){
 				infoTextView.setText("Hai vinto!");
 				return true;
-			}else if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER2_SYMBOL)){
+			}else if(statoPartita.equalsIgnoreCase(PLAYER2_SYMBOL)){
 				infoTextView.setText("Hai perso!");
 				return true;
 			}
 		}else{
-			if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER2_SYMBOL)){
+			if(statoPartita.equalsIgnoreCase(PLAYER2_SYMBOL)){
 				infoTextView.setText("Hai vinto!");
 				return true;
-			}else if(interprete.getStatoPartita().equalsIgnoreCase(PLAYER1_SYMBOL)){
+			}else if(statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)){
 				infoTextView.setText("Hai perso!");
 				return true;
 			}
@@ -154,9 +153,10 @@ public class GraphicManager implements IGraphicManager, Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-	
-			setPlayersTurn();
-			paint(interprete.getCaselle());
+
+		ArrayList<String> caselle = activityOnline.getInterpreteMessaggio().getCaselle();
+		setPlayersTurn();
+		paint(caselle);
 
 	}
 

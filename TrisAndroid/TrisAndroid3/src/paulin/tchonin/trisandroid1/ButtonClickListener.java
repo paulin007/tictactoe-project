@@ -6,10 +6,10 @@ import android.view.View.OnClickListener;
 public class ButtonClickListener implements OnClickListener{
 
 	private int location;
-	private MatchManager matchManager;
+	private IMatchManager matchManager;
 	private GraphicManager graphicManager;
 	
-	public ButtonClickListener(int location, MatchManager matchManager, GraphicManager graphicManager) {
+	public ButtonClickListener(int location, IMatchManager matchManager, GraphicManager graphicManager) {
 		super();
 		this.location = location;
 		this.matchManager = matchManager;

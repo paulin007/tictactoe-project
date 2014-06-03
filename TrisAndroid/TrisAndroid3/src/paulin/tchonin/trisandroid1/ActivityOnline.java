@@ -16,13 +16,12 @@ import android.widget.ToggleButton;
  * @author Paulin
  * 
  */
-
 public class ActivityOnline extends Activity {
 
 	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
-	private MatchManager matchManager = new MatchManager(interpreteMessaggio);
+	private IMatchManager matchManager = new MatchManager(interpreteMessaggio);
 	private Controller controller = new Controller(matchManager);
-	private GraphicManager graphicManager = new GraphicManager(this,interpreteMessaggio, controller);
+	private GraphicManager graphicManager = new GraphicManager(this, controller);
 	private String namePlayer1;
 	private String namePlayer2;
 	private boolean connected;
@@ -125,6 +124,10 @@ public class ActivityOnline extends Activity {
 	
 	public boolean isConnected() {
 		return connected;
+	}
+	
+	public InterpreteMessaggio getInterpreteMessaggio() {
+		return interpreteMessaggio;
 	}
 
 }
