@@ -1,0 +1,12 @@
+Dopo aver effettuato il CheckOut del progetto 'GiochiJava' o 'TrisAndroid', per far sì che il codice venga compilato è necessario:
+
+-Effettuare il CheckOut da https://tictactoe-project.googlecode.com/svn/trunk/ del progetto 'GamesLibraries',
+ il quale contiene tutto il codice comune tra i progetti Java e Android
+ 
+-Importare 'GamesLibraries' nel progetto desiderato andando in:
+	
+	Properties-->Java Build Path -->Projects --> Add-->'GamesLibraries'
+	
+-Se dopo le precedenti operazioni, la compilazione non è andata a buon fine tentare un:
+
+	Team --> Cleanup
