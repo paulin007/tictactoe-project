@@ -11,38 +11,25 @@
 		<script type="text/javascript" src="./js/client.js"></script>
 		<script type="text/javascript" src="./js/tictactoe.js"></script>
 		<script type="text/javascript" src="./js/partita.js"></script>
-
+		<script type="text/javascript" src="./js/analyzeMessage.js"></script>
+		<script type="text/javascript" src="./js/match.js"></script>
+		<script type="text/javascript" src="./js/paint.js"></script>
+		<script type="text/javascript" src="./js/info.js"></script>
+		<script type="text/javascript" src="./js/games.js"></script>
 		<!-- Date: 2014-04-29 -->
 	</head>
-	<body onload="createConnection()">
+	<body onload="createConnection(),setGameName('tris'),createGamePage()">
 		<br />
 		<div class="header">
-			<img class="logo" src="./img/tictactoe.png" alt="TicTacToe"/>
+		<img class="logo" src="./img/tictactoe.png" alt="TicTacToe"/>
 		</div>
 		<br />
 		<br />
 
 		<div class="center">
-			<!-- <textarea readonly id="logArea" rows="10" cols="40" style="resize: none;margin-left: auto;margin-right: auto"></textarea> -->
 			<br />
 			<br />
-			<table>
-				<tr>
-					<td><a href="#"><img class="box" onclick="myMove(0)" id="0" src="./img/blankpage.jpg" alt="m0"/></a></td>
-					<td><a href="#"><img class="box" onclick="myMove(1)" id="1" src="./img/blankpage.jpg" alt="m1"/></a></td>
-					<td><a href="#"><img class="box" onclick="myMove(2)" id="2" src="./img/blankpage.jpg" alt="m2"/></a></td>
-				</tr>
-				<tr>
-					<td><a href="#"><img class="box" onclick="myMove(3)" id="3" src="./img/blankpage.jpg" alt="m3"/></a></td>
-					<td><a href="#"><img class="box" onclick="myMove(4)" id="4" src="./img/blankpage.jpg" alt="m4"/></a></td>
-					<td><a href="#"><img class="box" onclick="myMove(5)" id="5" src="./img/blankpage.jpg" alt="m5"/></a></td>
-				</tr>
-				<tr>
-					<td><a href="#"><img class="box" onclick="myMove(6)" id="6" src="./img/blankpage.jpg" alt="m6"/></a></td>
-					<td><a href="#"><img class="box" onclick="myMove(7)" id="7" src="./img/blankpage.jpg" alt="m7"/></a></td>
-					<td><a href="#"><img class="box" onclick="myMove(8)" id="8" src="./img/blankpage.jpg" alt="m8"/></a></td>
-				</tr>
-			</table>
+			<div id="gameTable"> </div>
 			<br />
 			<br />
 			<div class="settings">
@@ -53,7 +40,10 @@
 					<a href="#" class="matchButton" onclick="sendNewMatch()">Nuova partita</a>
 					<a href="#" class="matchButton" onclick="connectToMatch()">Partita esistente</a>
 					<br />
-					<br />
+					<!-- <select name="sceltaGioco" id="gameName">
+						<option>Tris</option>
+						<option>Forza4</option>
+					</select> -->
 					<br />
 					Scegli giocatore 1:
 					<br />

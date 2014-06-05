@@ -5,6 +5,8 @@
  * @author Marco Vanzulli
  */
 
+var client_match;
+
 function createConnection() {
 
 	webSocket = new WebSocket("ws://localhost:45454");
@@ -30,29 +32,19 @@ function processOpen(message) {
 }
 
 function processMessage(message) {
-	tokenizer(message.data,getPartita());
+	analyzeMessage(message.data);	
 }
 
 function processError(message) {
 }
 
 function sendNewMatch() {
-	nuovaPartita = new Partita();
-	nuovaPartita.myPlayer = "G1";
-	nuovaPartita.otherPlayer = "G2";
-	getPartita = function(){
-		return nuovaPartita;
-	};
+	client_match = new Match(getGameName(),"nuova");
 	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/tris");
 }
 
 function connectToMatch() {
-	connettiPartita = new Partita();
-	connettiPartita.myPlayer = "G2";
-	connettiPartita.otherPlayer = "G1"; 
-	getPartita = function(){
-		return connettiPartita;
-	};
+	client_match = new Match("tris","esistente");
 	getWebSocket().send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName());
 	setInterval(function() {
 		requestUpdate();
@@ -61,8 +53,8 @@ function connectToMatch() {
 }
 
 function requestUpdate() {
-	if (getPartita()["matchStatus"] == "inCorso") {
-		string = "update/" + getPartita()["matchID"];
+	if (getMatch().matchStatus == "inCorso") {
+		string = "update/" + getMatch().matchID;
 		getWebSocket().send(string);
 	}
 }
@@ -71,4 +63,8 @@ function requestAchievements() {
 	var string;
 	string = "statistiche/" + getPlayerName() + "/" + getGameName();
 	getWebSocket().send(string);
+}
+
+function getMatch(){
+	return client_match;
 }
