@@ -1,6 +1,12 @@
 package paulin.tchonin.trisandroid1;
 
-import rete.InterpreteMessaggio;
+import managers.IMatchManager;
+import managers.MatchManager;
+import managers.TurnManager;
+import rete.Client;
+import rete.IClient;
+import rete.IMessageInterpreter;
+import rete.MessageInterpreter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,10 +24,11 @@ import android.widget.ToggleButton;
  */
 public class ActivityOnline extends Activity {
 
-	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
-	private IMatchManager matchManager = new MatchManager(interpreteMessaggio);
-	private Controller controller = new Controller(matchManager);
-	private GraphicManager graphicManager = new GraphicManager(this, controller);
+	private IClient client = new Client();
+	private TurnManager turnManager = new TurnManager();
+	private IMessageInterpreter messageInterpreter = new MessageInterpreter();
+	private IMatchManager matchManager = new MatchManager(client, messageInterpreter);
+	private GraphicManager graphicManager = new GraphicManager(this, matchManager,turnManager);
 	private String namePlayer1;
 	private String namePlayer2;
 	private boolean connected;
@@ -55,9 +62,9 @@ public class ActivityOnline extends Activity {
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();
 
-					matchManager.createNewMatch(namePlayer1, namePlayer2);
+					matchManager.createNewMatch(namePlayer1, namePlayer2, "tris");
 					
-					TurnManager.setMyTurn(true);
+					turnManager.setMyTurn(true);
 
 					infoTextView.setText(R.string.turn_player1);
 					startNewGame();
@@ -88,7 +95,7 @@ public class ActivityOnline extends Activity {
 					
 					startNewGame();
 					
-					TurnManager.setMyTurn(false);
+					turnManager.setMyTurn(false);
 					infoTextView.setText(R.string.turn_player2);
 					
 					namePlayer1 = editText1.getText().toString();
@@ -117,7 +124,7 @@ public class ActivityOnline extends Activity {
 		for (int i = 0; i < boardButtons.length; i++) {
 			boardButtons[i].setText("");
 			boardButtons[i].setEnabled(true);
-			boardButtons[i].setOnClickListener(new ButtonClickListener(i, matchManager, graphicManager));
+			boardButtons[i].setOnClickListener(new ButtonClickListener(i, matchManager, graphicManager,turnManager));
 		}
 
 	}
@@ -126,8 +133,8 @@ public class ActivityOnline extends Activity {
 		return connected;
 	}
 	
-	public InterpreteMessaggio getInterpreteMessaggio() {
-		return interpreteMessaggio;
+	public IMessageInterpreter getMessageInterpreter() {
+		return messageInterpreter;
 	}
 
 }
