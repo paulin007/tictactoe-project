@@ -4,43 +4,43 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import rete.InterpreteMessaggio;
+import rete.MessageInterpreter;
 /**
- *Testa sulle funzionalità della classe {@link InterpreteMessaggio} 
+ *Testa sulle funzionalità della classe {@link MessageInterpreter} 
  *
  */
 public class Test02 {
 
-	InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
+	MessageInterpreter interpreteMessaggio = new MessageInterpreter();
 	String partita = "0, Dario, Santo";
 
 	public Test02() {
 		
-		interpreteMessaggio.interpreta(partita);
+		interpreteMessaggio.interpret(partita);
 	}
 	
 	@Test
 	public void test01() {
-		assertTrue(interpreteMessaggio.getTipoMessaggio().contentEquals("Partita"));
+		assertTrue(interpreteMessaggio.getServiceRequest().contentEquals("Partita"));
 	}
 	
 	@Test
 	public void test02(){
-		assertTrue(interpreteMessaggio.getIDpartita().contentEquals("0"));
+		assertTrue(interpreteMessaggio.getMatchID().contentEquals("0"));
 	}
 	@Test
 	public void test03(){
-		assertTrue(interpreteMessaggio.getUltimoGiocatore().contentEquals("G2"));
+		assertTrue(interpreteMessaggio.getLastPlayer().contentEquals("G2"));
 	}
 
 	@Test
 	public void test04(){
-		assertTrue(interpreteMessaggio.getStatoPartita().contentEquals("inCorso"));
+		assertTrue(interpreteMessaggio.getMatchStatus().contentEquals("inCorso"));
 	}
 
 	@Test
 	public void test05(){
-		assertTrue(interpreteMessaggio.getCaselle().toString().contentEquals("[null, null, null, null, null, null, null, null, null]"));
+		assertTrue(interpreteMessaggio.getBoxes().toString().contentEquals("[null, null, null, null, null, null, null, null, null]"));
 	}
 
 

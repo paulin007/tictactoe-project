@@ -6,10 +6,10 @@ import javax.swing.ImageIcon;
  * 
  * @author Kokou Adjignon
  */
-public class Croce implements Icona {
+public class Cross implements Icon {
 
 	@Override
-	public ImageIcon disegna(){
+	public ImageIcon drawIcon(){
 		
 		java.net.URL imgUrl = getClass().getResource("/trisGui/Immagini/X.png");
 

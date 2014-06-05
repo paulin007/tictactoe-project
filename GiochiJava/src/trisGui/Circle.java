@@ -5,11 +5,10 @@ import javax.swing.ImageIcon;
  * Disegna una delle due icone usate durante un partita
  * 
  */
-public class Cerchio implements Icona{
-
+public class Circle implements Icon{
 
 	@Override
-	public ImageIcon disegna() {
+	public ImageIcon drawIcon() {
 		
 
 		java.net.URL imgUrl = getClass().getResource("/trisGui/Immagini/O.png");
@@ -17,6 +16,5 @@ public class Cerchio implements Icona{
 		ImageIcon icon = new ImageIcon(imgUrl);
 		return icon;
 	}
-	
 	
 }

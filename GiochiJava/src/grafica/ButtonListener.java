@@ -11,14 +11,14 @@ public class ButtonListener implements ActionListener {
 
 	private int location;
 	private IMatchManager matchManager;
-	private PannelloGioco pannelloGioco;
+	private GamePanel gamePanel;
 	private ITurnManager turnManager;
 	
-	public ButtonListener(int location, IMatchManager matchManager, PannelloGioco pannelloGioco, ITurnManager turnManager) {
+	public ButtonListener(int location, IMatchManager matchManager, GamePanel gamePanel, ITurnManager turnManager) {
 		super();
 		this.location = location;
 		this.matchManager = matchManager;
-		this.pannelloGioco = pannelloGioco;
+		this.gamePanel = gamePanel;
 		this.turnManager = turnManager;
 	}
 	
@@ -27,7 +27,7 @@ public class ButtonListener implements ActionListener {
 		
 		if(turnManager.isMyTurn()){
 			if(!turnManager.isConnected()){
-				if(pannelloGioco.getCaselle().get(location).isEnabled()){
+				if(gamePanel.getBoxes().get(location).isEnabled()){
 					matchManager.sendMove(location);
 					matchManager.requestUpdate();
 				}
@@ -37,5 +37,6 @@ public class ButtonListener implements ActionListener {
 		}
 	
 	}
+	
 	
 }

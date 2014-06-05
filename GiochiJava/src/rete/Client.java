@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Andrea Gallo
  */
-public class Client implements IClient{
+public class Client implements IClient {
 	private static InetAddress host;
 	private static final int PORT = 45444;
 

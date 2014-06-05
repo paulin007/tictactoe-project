@@ -7,13 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
-public class Pulsante extends JButton{
+@SuppressWarnings("serial")
+public class Forza4Button extends JButton{
 
-	
-	public Pulsante() {
+	public Forza4Button() {
 		super();
 		setContentAreaFilled(false);
 		setBorderPainted(false);
@@ -27,13 +28,13 @@ public class Pulsante extends JButton{
 				
 				Timer timer = new Timer();
 				
-				timer.schedule(sali(returnPulsante()), 0);
-				timer.schedule(scendi(returnPulsante()), 0);
+				timer.schedule(up(returnForza4Button()), 0);
+				timer.schedule(down(returnForza4Button()), 0);
 				
 			}
 		});
 	}
-	public Pulsante returnPulsante(){
+	public Forza4Button returnForza4Button(){
 		return this;
 	}
 
@@ -56,7 +57,6 @@ public class Pulsante extends JButton{
 			g.drawImage(image,-2,0,null);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
@@ -64,19 +64,18 @@ public class Pulsante extends JButton{
 	}
 	
 
-	public TimerTask sali(final Pulsante pulsante){
+	public TimerTask up(final Forza4Button forza4Button){
 		
 		final TimerTask task2 = new TimerTask() {
 			
 			@Override
 			public void run() {
 
-				while(pulsante.getLocation().y>60){
-					pulsante.setLocation(pulsante.getLocation().x, pulsante.getLocation().y-1);
+				while(forza4Button.getLocation().y>60){
+					forza4Button.setLocation(forza4Button.getLocation().x, forza4Button.getLocation().y-1);
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -85,14 +84,14 @@ public class Pulsante extends JButton{
 		return task2;
 		
 	}
-	public TimerTask scendi(final Pulsante pulsante){
+	public TimerTask down(final Forza4Button forza4Button){
 		final TimerTask task1 = new TimerTask() {
 			
 			@Override
 			public void run() {
 
-				while(pulsante.getLocation().y<95){
-					pulsante.setLocation(pulsante.getLocation().x, pulsante.getLocation().y+1);
+				while(forza4Button.getLocation().y<95){
+					forza4Button.setLocation(forza4Button.getLocation().x, forza4Button.getLocation().y+1);
 					try {
 						Thread.sleep(15);
 					} catch (InterruptedException e) {
@@ -103,5 +102,9 @@ public class Pulsante extends JButton{
 			}
 		};
 		return task1;
+	}
+	
+	public JButton convertToJButton(){
+		return this;
 	}
 }
