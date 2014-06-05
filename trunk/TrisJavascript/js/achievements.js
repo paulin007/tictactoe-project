@@ -1,31 +1,55 @@
 /**
  * Questo js si occupa di richiedere ed elaborare gli achievements inviati e ricevuti dal server
  *
- * @author Marco
+ * @author Marco Vanzulli
  */
 
-function getGameName() {
-	var gameName;
-	gameName = document.getElementById('gameName').options[document.getElementById('gameName').selectedIndex].text;
-	return gameName;
+function Achievements(){
+	var _victories, _ties, _defeats, _scores;
+	var _dimension = 5;
+	_scores = new Array(_dimension);
+	Object.defineProperty(this, "victories", {
+		get : function() {
+			return _victories;
+		},
+		set : function(value) {
+			_victories = value;
+		}
+	});
+	Object.defineProperty(this, "ties", {
+		get : function() {
+			return _ties;
+		},
+		set : function(value) {
+			_ties = value;
+		}
+	});
+	Object.defineProperty(this, "defeats", {
+		get : function() {
+			return _defeats;
+		},
+		set : function(value) {
+			_defeats = value;
+		}
+	});
+	Object.defineProperty(this, "scores", {
+		get : function() {
+			return _scores;
+		},
+		set : function(value) {
+			_scores = value;
+		}
+	});
 }
 
-function getPlayerName() {
-	var playerName;
-	playerName = document.getElementById('playerName').options[document.getElementById('playerName').selectedIndex].text;
-	return playerName;
-}
-
-function tokenizer(message) {
-	var victories, ties, defeats, string;
-	var achievements = new Array(5);
-	victories = message.split(" ",8)[0];
-	ties = message.split(" ",8)[1];
-	defeats = message.split("",8)[2];
-	for (var i = 0; i < achievements.length; i++) {
-		achievements[i] = message.split("@",8)[i + 1];
+function tokenizeAchievements(message){
+	achievements.victories = message.split(" ",8)[0];
+	achievements.ties = message.split(" ",8)[1];
+	achievements.defeats = message.split("",8)[2];
+	for (var i = 0; i < achievements.scores.length; i++) {
+		achievements.scores[i] = message.split("@",8)[i + 1];
 	};
-	string = getPlayerName() + "|Gioco: " + getGameName() + "|V: " + victories + "|P: " + ties + "|S: " + defeats + " - Achievements: " + achievements + "\n";
+	string = getPlayerName() + "|Gioco: " + getGameName() + "|V: " + achievements.victories + "|P: " + achievements.ties + "|S: " + achievements.defeats + " - Achievements: " + achievements.scores + "\n";
 	writeOnArea(string);
 }
 

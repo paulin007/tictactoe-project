@@ -4,21 +4,8 @@
  * @author: Marco Vanzulli
  */
 
-function myMove(id) {
-	if (getPartita().myPlayer != getPartita().lastPlayer && getPartita().ended == false) {
-		string = "mossa/" + getPartita().matchID + "/" + getPartita().myPlayer + "/" + id;
-		getWebSocket().send(string);
-		setInterval(function() {
-			requestUpdate();
-		}, 5000);
-	};
-}
-
-function opponentMove(id) {
-	setO(id);
-	setInterval(function() {
-		requestUpdate();
-	}, 5000);
+function TicTacToe(){
+	return 'tris';
 }
 
 function setX(id) {
@@ -29,12 +16,24 @@ function setO(id) {
 	document.getElementById(id).src = './img/O.png';
 }
 
-function paint(moves) {
-	for (var i = 0; i < moves.length; i++) {
-		if (moves[i] == "G1") {
-			setX(i);
-		} else if (moves[i] == "G2") {
-			setO(i);
-		}
-	}
+function createTrisTable(){
+	var div = document.getElementById('gameTable');
+ 
+	 div.innerHTML = ("<table>"+
+			"<tr>"+
+					"<td><a href='#'><img class='box' onclick='myMove(0)' id='0' src='./img/blankpage.jpg' alt='m0'/></a></td>"+
+					"<td><a href='#'><img class='box' onclick='myMove(1)' id='1' src='./img/blankpage.jpg' alt='m1'/></a></td>"+
+					"<td><a href='#'><img class='box' onclick='myMove(2)' id='2' src='./img/blankpage.jpg' alt='m2'/></a></td>"+
+				"</tr>"+
+				"<tr>"+
+					"<td><a href='#'><img class='box' onclick='myMove(3)' id='3' src='./img/blankpage.jpg' alt='m3'/></a></td>"+
+					"<td><a href='#'><img class='box' onclick='myMove(4)' id='4' src='./img/blankpage.jpg' alt='m4'/></a></td>"+
+					"<td><a href='#'><img class='box' onclick='myMove(5)' id='5' src='./img/blankpage.jpg' alt='m5'/></a></td>"+
+				"</tr>"+
+				"<tr>"+
+					"<td><a href='#'><img class='box' onclick='myMove(6)' id='6' src='./img/blankpage.jpg' alt='m6'/></a></td>"+
+					"<td><a href='#'><img class='box' onclick='myMove(7)' id='7' src='./img/blankpage.jpg' alt='m7'/></a></td>"+
+					"<td><a href='#'><img class='box' onclick='myMove(8)' id='8' src='./img/blankpage.jpg' alt='m8'/></a></td>"+
+				"</tr>"+
+			"</table>");
 }
