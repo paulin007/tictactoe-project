@@ -15,17 +15,16 @@ function paint(moves) {
 function setIconA(id) {
 	if (getGameName().toLowerCase() == TicTacToe().toLowerCase()) {
 		setX(id);
-		// }else if (getGameName == FourInARow()) {
-		// setIconA =
-		// };
+		}else if (getGameName().toLowerCase() == FourInARow().toLowerCase()) {
+		setYellowBall(id);
+		};
 	}
-}
+
 
 function setIconB(id) {
 	if (getGameName().toLowerCase() == TicTacToe().toLowerCase()) {
 		setO(id);
-		// }else if (getGameName == FourInARow()) {
-		// setIconA =
-		// };
+		}else if (getGameName().toLowerCase() == FourInARow().toLowerCase()) {
+		setRedBall(id);
+		};
 	}
-}

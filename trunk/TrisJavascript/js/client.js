@@ -40,11 +40,11 @@ function processError(message) {
 
 function sendNewMatch() {
 	client_match = new Match(getGameName(),"nuova");
-	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/tris");
+	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/"+getGameName());
 }
 
 function connectToMatch() {
-	client_match = new Match("tris","esistente");
+	client_match = new Match(getGameName(),"esistente");
 	getWebSocket().send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName());
 	setInterval(function() {
 		requestUpdate();
