@@ -78,7 +78,5 @@ public class MatchManager extends Observable implements IMatchManager {
 		setChanged();
 		notifyObservers();
 	}
-	
-	
 
 }
