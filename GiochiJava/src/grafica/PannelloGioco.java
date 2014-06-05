@@ -1,8 +1,9 @@
 package grafica;
 
-import javax.swing.JPanel;
+import java.util.ArrayList;
 
-import trisGui.SituazioneTurno;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 /**
  * Questa classe astrae sul concetto di Pannello che viene utilizzato nell'applicazione Tris
  */
@@ -14,8 +15,8 @@ public interface PannelloGioco {
 	 */
 	public JPanel creaPannello();
 	
-	public void setTurno(SituazioneTurno turno);
+	public ArrayList<JButton> getCaselle();
 	
-	
+	public void setMioSimbolo(String mioSimbolo);
 
 }

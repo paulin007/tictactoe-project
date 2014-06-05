@@ -10,45 +10,41 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import rete.TimerPannello;
-import trisGui.SituazioneTurno;
 
 public class PannelloGiocoForza4 extends JPanel implements Observer, PannelloGioco {
 	
-	private SituazioneTurno turno;
-	private DisegnaPannello disegnaPannello = new DisegnaPannello();
+//	private DisegnaPannello disegnaPannello = new DisegnaPannello();
 	private JPanel pannelloGriglia = new JPanel();
 	private TimerPannello timerPannello = new TimerPannello();
 	private ArrayList<Pulsante> pulsanti = new ArrayList<>();
 	
 	
-	
-	public void setTurno(SituazioneTurno turno) {
-		this.turno = turno;
-	}
+
 
 	
 	public void setupInziale(){
 		removeAll();
 		setLayout(null);
 		timerPannello.addObserver(this);
-		disegnaPannello.pannelloGiocatori(this, turno.getMioSimbolo(), turno.getSimboloAvversario());
-		disegnaPannello.creaPulsanti(pulsanti,7);
-		disegnaPannello.setPosizionePulsanti(pulsanti);
-		disegnaPannello.setupPulsanti(this, pulsanti);
-		disegnaPannello.setupGrigliaForza4(this);
+//		disegnaPannello.pannelloGiocatori(this, turno.getMioSimbolo(), turno.getSimboloAvversario());
+//		disegnaPannello.creaPulsanti(pulsanti,7);
+//		disegnaPannello.setPosizionePulsanti(pulsanti);
+//		disegnaPannello.setupPulsanti(this, pulsanti);
+//		disegnaPannello.setupGrigliaForza4(this);
 		add(pannelloGriglia);
-		disegnaPannello.setupAzioneMossa(pulsanti, turno.getIDpartita(), turno.getMioSimbolo());
+//		disegnaPannello.setupAzioneMossa(pulsanti, turno.getIDpartita(), turno.getMioSimbolo());
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		if(disegnaPannello.disegnaSimboli(this,null,turno)){
-		}else{
-			timerPannello.deleteObserver(this);
-		}
+//		if(disegnaPannello.disegnaSimboli(this,null,turno)){
+//		}else{
+//			timerPannello.deleteObserver(this);
+//		}
 		
 	}
 	@Override
@@ -67,5 +63,17 @@ public class PannelloGiocoForza4 extends JPanel implements Observer, PannelloGio
 			e.printStackTrace();
 		}
 	
+	}
+
+	@Override
+	public ArrayList<JButton> getCaselle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMioSimbolo(String mioSimbolo) {
+		// TODO Auto-generated method stub
+		
 	}
 }
