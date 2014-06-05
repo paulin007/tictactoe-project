@@ -1,7 +1,7 @@
 package forza4Gui;
 
-import grafica.PanelsDrawer;
 import grafica.GamePanel;
+import grafica.PanelsDrawer;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
