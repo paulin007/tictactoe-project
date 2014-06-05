@@ -14,8 +14,12 @@ function setGameName(name){
 
 function createGamePage(){
 	if (getGameName()=="tris") {
+		setTicTacToeLogo();
+		TicTacToe();
 		createTrisTable();
 	} else if(getGameName()=="forza4"){
-		
+		setFourInARowLogo();
+		FourInARow();
+		createFourInARowTable();
 	};
 }

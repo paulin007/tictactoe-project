@@ -1,79 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>TicTacToe</title>
-		<meta name="author" content="Marco Vanzulli" />
 		<link href="./css/main.css" rel="stylesheet" type="text/css">
 		<link href="./css/customFonts.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="./js/client.js"></script>
+		<link href="./css/result.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="./js/tictactoe.js"></script>
-		<script type="text/javascript" src="./js/partita.js"></script>
-		<script type="text/javascript" src="./js/analyzeMessage.js"></script>
-		<script type="text/javascript" src="./js/match.js"></script>
-		<script type="text/javascript" src="./js/paint.js"></script>
-		<script type="text/javascript" src="./js/info.js"></script>
+		<script type="text/javascript" src="./js/fourinarow.js"></script>
 		<script type="text/javascript" src="./js/games.js"></script>
-		<script type="text/javascript" src="./js/resultsWindow.js"></script>
-		<!-- Date: 2014-04-29 -->
+		<title>New Web Project</title>
 	</head>
-	<body onload="createConnection(),setGameName('tris'),createGamePage()">
-		<br />
-		<div class="header">
-		<img class="logo" src="./img/tictactoe.png" alt="TicTacToe"/>
-		</div>
-		<br />
-		<br />
+	<body>
 
-		<div class="center">
-			<br />
-			<br />
-			<div id="gameTable"> </div>
-			<br />
-			<br />
-			<div class="settings">
-				<div class="wrapper">
-					<!-- <a href="#" class="serverButton" onclick="createConnection()">Collegati</a>
-					<br />
-					<br /> -->
-					<a href="#" class="matchButton" onclick="sendNewMatch()">Nuova partita</a>
-					<a href="#" class="matchButton" onclick="connectToMatch()">Partita esistente</a>
-					<br />
-					<!-- <select name="sceltaGioco" id="gameName">
-						<option>Tris</option>
-						<option>Forza4</option>
-					</select> -->
-					<br />
-					Scegli giocatore 1:
-					<br />
-					<select name="scelta1" id="player1name">
-						<option>Marco</option>
-						<option>Giacomo</option>
-						<option>Dario</option>
-						<option>Santo</option>
-						<option>Andrea</option>
-						<option>Kokou</option>
-						<option>Paulin</option>
-					</select>
-					<br />
-					<br />
-					Scegli giocatore 2:
-					<br />
-					<select name="scelta2" id="player2name">
-						<option>Andrea</option>
-						<option>Dario</option>
-						<option>Giacomo</option>
-						<option>Marco</option>
-						<option>Santo</option>
-						<option>Paulin</option>
-						<option>Kokou</option>
-					</select>
-					<br />
-					<br />
-				</div>
-			</div>
+		<div id="UpperWrapper">
+
+			<h1 id="mainTitle">Benvenuto Dio Cantante</h1>
+
+			<form action="./games.html">
+				<input type="submit" onclick="setGameName(TicTacToe())" value="Tris">
+				<input type="submit" onclick="setGameName(FourInARow())" value="Forza4">
+			</form>
+
 		</div>
+
 	</body>
+
 </html>

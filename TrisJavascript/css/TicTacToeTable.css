@@ -1,0 +1,13 @@
+.TicTacToeTable {
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid black;
+	border-collapse: collapse;
+}
+
+.boxTTT {
+	width: 55px;
+	height: 55px;
+	text-align: center;
+	border: 1px solid black;
+}
