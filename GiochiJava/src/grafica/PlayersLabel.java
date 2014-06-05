@@ -9,6 +9,8 @@ import java.net.URL;
 
 import javax.swing.JLabel;
 
+import managers.DefaultSettings;
+
 
 @SuppressWarnings("serial")
 public class PlayersLabel extends JLabel{
@@ -28,7 +30,7 @@ public class PlayersLabel extends JLabel{
 		Font font = new Font("Font", Font.ITALIC, 20);
 		try {
 			
-			URL url = getClass().getResource("/forza4Gui/Akhenaton.ttf");
+			URL url = getClass().getResource(DefaultSettings.getSettings().getPath("akhenaton"));
 			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream(new File(url.toURI())));
 		
 			float size = 100.0f;
