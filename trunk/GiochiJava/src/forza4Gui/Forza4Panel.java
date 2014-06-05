@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import managers.IMatchManager;
 import managers.ITurnManager;
+import managers.DefaultSettings;
 import managers.PlayerSymbol;
 
 @SuppressWarnings("serial")
@@ -65,7 +66,7 @@ public class Forza4Panel extends JPanel implements Observer, GamePanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		try {
-			java.net.URL imgUrl = getClass().getResource("Immagini/Sfondo2.png");
+			java.net.URL imgUrl = getClass().getResource(DefaultSettings.getSettings().getPath("sfondo2"));
 			BufferedImage image = ImageIO.read(imgUrl);
 			g.drawImage(image,0,0,null);
 		} catch (IOException e) {

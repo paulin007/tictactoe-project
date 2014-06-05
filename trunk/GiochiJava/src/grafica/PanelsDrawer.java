@@ -12,7 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.text.DefaultStyledDocument;
 
+import managers.DefaultSettings;
 import managers.IMatchManager;
 import managers.ITurnManager;
 import trisGui.Circle;
@@ -35,6 +37,8 @@ public class PanelsDrawer {
 	private IMatchManager matchManager;
 	private ITurnManager turnManager;
 	private ResultViewer resultViewer = new ResultViewer();
+	private Circle circle = new Circle();
+	private Cross cross = new Cross();
 	
 	public PanelsDrawer(IMatchManager matchManager, ITurnManager turnManager) {
 		this.matchManager = matchManager;
@@ -87,8 +91,8 @@ public class PanelsDrawer {
 			boolean opponentDrawable = listaCaselle.get(i).equalsIgnoreCase(opponentSymbol);
 			
 			if(gameName.equalsIgnoreCase("tris")){
-				drawTrisIcon(boxes.get(i), new Circle(), myDrawable);
-				drawTrisIcon(boxes.get(i), new Cross(), opponentDrawable);
+				drawTrisIcon(boxes.get(i), circle.clone(), myDrawable);
+				drawTrisIcon(boxes.get(i), cross.clone(), opponentDrawable);
 			} else if(gameName.equalsIgnoreCase("forza4")){
 				drawForza4Icon(panel, i, gameName, "gialla", myDrawable);
 				drawForza4Icon(panel, i, gameName, "rossa", opponentDrawable);
@@ -101,7 +105,7 @@ public class PanelsDrawer {
 	
 	private void drawTrisIcon(JButton button, Icon icon, boolean drawable){
 		if(drawable){
-			button.setIcon(icon.drawIcon());
+			button.setIcon(icon.getDrawer().Draw());
 		}
 	}
 	
@@ -147,12 +151,12 @@ public class PanelsDrawer {
 	
 	public void setupForza4Grid(JPanel panel){
 		JLabel grid = new JLabel();
-		java.net.URL imgUrl2 = getClass().getResource("/forza4Gui/Immagini/griglia.png");
+		java.net.URL imgUrl2 = getClass().getResource(DefaultSettings.getSettings().getPath("griglia"));
 		ImageIcon icon = new ImageIcon(imgUrl2);
 		grid.setIcon(icon);
 		grid.setBounds(123, 144, 428, 366);
 		panel.add(grid);
-		java.net.URL imgUrl = getClass().getResource("/forza4Gui/Immagini/Forza4verticale.png");
+		java.net.URL imgUrl = getClass().getResource(DefaultSettings.getSettings().getPath("forza4verticale"));
 		ImageIcon icon2 = new ImageIcon(imgUrl);
 		JLabel verticalLogo = new JLabel(icon2);
 		verticalLogo.setBounds(10, 144, 103, 357);
@@ -165,10 +169,10 @@ public class PanelsDrawer {
 			try {
 				java.net.URL imgUrl1 = null;
 				if(color.equalsIgnoreCase("gialla")){
-				imgUrl1 = getClass().getResource("/forza4Gui/Immagini/palla_gialla11.png");
+				imgUrl1 = getClass().getResource(DefaultSettings.getSettings().getPath("pallaGialla"));
 				}
 				if(color.equalsIgnoreCase("rossa")){
-				imgUrl1 = getClass().getResource("/forza4Gui/Immagini/palla_rossa11.png");
+				imgUrl1 = getClass().getResource(DefaultSettings.getSettings().getPath("pallaRossa"));
 				}
 				BufferedImage image= ImageIO.read(imgUrl1);
 				panel.getGraphics().drawImage(image,SymbolPosition.boxToX(box),SymbolPosition.boxToY(box),null);

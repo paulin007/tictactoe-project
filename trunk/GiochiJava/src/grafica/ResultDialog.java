@@ -15,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import managers.DefaultSettings;
+
 @SuppressWarnings("serial")
 public class ResultDialog extends JDialog {
 
@@ -40,15 +42,18 @@ public class ResultDialog extends JDialog {
 		
 		Font font = new Font("Font", Font.ITALIC, 20);
 		try {
-			URL url = getClass().getResource("/grafica/Akhenaton.ttf");
+			URL url = getClass().getResource(DefaultSettings.getSettings().getPath("akhenaton"));
 			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream(new File(url.toURI())));
 			float size = 100.0f;
 			font = font.deriveFont(size);
 			label.setFont(font);
 			
 		    URL percorsoSuono;
-		    if(vincitore.equalsIgnoreCase("Hai vinto !"))percorsoSuono=getClass().getResource("/suoni/applausi.wav");
-		    else percorsoSuono= getClass().getResource("/suoni/nur.wav");
+		    if(vincitore.equalsIgnoreCase("Hai vinto !")) {
+		    	percorsoSuono=getClass().getResource(DefaultSettings.getSettings().getPath("applausi"));
+		    } else {
+		    	percorsoSuono= getClass().getResource(DefaultSettings.getSettings().getPath("nur"));
+		    }
 	        
 		    AudioInputStream audioIn = AudioSystem.getAudioInputStream(percorsoSuono);		       
 	        Clip clip = AudioSystem.getClip();		        

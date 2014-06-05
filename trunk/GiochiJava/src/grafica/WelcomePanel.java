@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import managers.DefaultSettings;
 /**
  * Questa classe rappresenta il pannello di benvenuto una volta lanciata
  * l'applicazione
@@ -17,7 +19,7 @@ public class WelcomePanel extends JPanel{
 		
 		setBackground(Color.white);
 		
-		java.net.URL imgUrl = getClass().getResource("/trisGui/Immagini/Logo.png");
+		java.net.URL imgUrl = getClass().getResource(DefaultSettings.getSettings().getPath("logo"));
 		ImageIcon image = new ImageIcon(imgUrl);
 		
 		JLabel label = new JLabel(image);	

@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 
 import javax.swing.JLabel;
 
+import managers.DefaultSettings;
+
 @SuppressWarnings("serial")
 public class ChallengeLabel extends JLabel{
 	private String string;
@@ -23,7 +25,8 @@ public class ChallengeLabel extends JLabel{
 		try {
 			
 			
-			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream("src/forza4Gui/Akhenaton.ttf"));
+			font = Font.createFont(Font.TRUETYPE_FONT , new FileInputStream("src"+
+					DefaultSettings.getSettings().getPath("akhenaton")));
 		
 			float size = 100.0f;
 			font = font.deriveFont(size);

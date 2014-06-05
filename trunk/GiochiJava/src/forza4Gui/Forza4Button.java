@@ -11,6 +11,8 @@ import java.util.TimerTask;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
+import managers.DefaultSettings;
+
 @SuppressWarnings("serial")
 public class Forza4Button extends JButton{
 
@@ -44,8 +46,8 @@ public class Forza4Button extends JButton{
 
 		
 		try {
-			java.net.URL imgUrl = getClass().getResource("Immagini/indicatore1.png");
-			java.net.URL imgUrl1 = getClass().getResource("Immagini/indicatore2.png");
+			java.net.URL imgUrl = getClass().getResource(DefaultSettings.getSettings().getPath("indicatore1"));
+			java.net.URL imgUrl1 = getClass().getResource(DefaultSettings.getSettings().getPath("indicatore2"));
 			
 			BufferedImage image = ImageIO.read(imgUrl);
 			
