@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Achievements</title>
+		<meta name="author" content="Marco" />
+		<link href="./css/main.css" rel="stylesheet" type="text/css">
+		<link href="./css/customFonts.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="./js/achievements.js"></script>
+		<script type="text/javascript" src="./js/client.js"></script>
+		<!-- Date: 2014-06-02 -->
+	</head>
+	<body onload="createConnection()">
+		<div class="header">
+			<h1 style="text-align: center">Achievements</h1>
+		</div>
+		<br />
+		<br />
+		<div class="center" style="text-align: center">
+			<select name="sceltaNome" id="playerName">
+				<option>Marco</option>
+				<option>Giacomo</option>
+				<option>Dario</option>
+				<option>Santo</option>
+				<option>Andrea</option>
+				<option>Kokou</option>
+				<option>Paulin</option>
+			</select>
+			<br />
+			<select name="sceltaGioco" id="gameName">
+				<option>Tris</option>
+				<option>Forza4</option>
+			</select>
+			<br />
+			<br />
+			<textarea readonly id="logArea" rows="20" cols="120" style="resize: none"></textarea>
+			<br />
+			<br />
+			<a href="#" class="matchButton" onclick="requestAchievements()">Invia</a>
+		</div>
+
+	</body>
+</html>
