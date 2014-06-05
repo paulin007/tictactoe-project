@@ -12,6 +12,15 @@
 }
 
 @font-face {
+	font-family: 'Lotr';
+    src: url('../fonts/anirb.ttf') format('truetype');
+    
+  
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
 	font-family: 'apple';
     src: url('../fonts/AppleGaramondLight.eot');
     src: url('../fonts/AppleGaramondLight.eot?#iefix') format('embedded-opentype'),
