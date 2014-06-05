@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import managers.IMatchManager;
+import managers.ITurnManager;
+
 import android.graphics.Color;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class GraphicManager implements IGraphicManager, Observer {
+public class GraphicManager implements Observer {
 
 	private static String PLAYER1_SYMBOL = "G1";	//TODO METTERE IN XML
 	private static String PLAYER2_SYMBOL = "G2";	//TODO METTERE IN XML
@@ -23,23 +26,25 @@ public class GraphicManager implements IGraphicManager, Observer {
 	private EditText editText2 = null;
 	private ToggleButton connectButton;
 	private ToggleButton startButton;
-	private Controller controller;
+	private IMatchManager matchManager;
+	private ITurnManager turnManager;
 
-	public GraphicManager(ActivityOnline activityOnline, Controller controller) {
+	
+	public GraphicManager(ActivityOnline activityOnline, IMatchManager matchManager, ITurnManager turnManager) {
 		this.activityOnline = activityOnline;
-		this.controller = controller;
-		controller.addObserverToMatchManager(this);
-		
+		this.matchManager = matchManager;
+		matchManager.addObserver(this);
+		this.turnManager = turnManager;
 	}
 	
-	@Override
+	
 	public void clear() {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			boardButtons[i].setText(String.valueOf(EMPTY_SPACE));
 		}
 	}
 	
-	@Override
+
 	public void createGraphics() {
 		boardButtons = new Button[BOARD_SIZE];
 		boardButtons[0] = (Button) activityOnline.findViewById(R.id.one);
@@ -63,7 +68,7 @@ public class GraphicManager implements IGraphicManager, Observer {
 	/**
 	 * Aggiorna la UI attiva su un altro thread
 	 */
-	@Override
+
 	public void paint(final ArrayList<String> caselle) {
 		getActivityOnline().runOnUiThread(new Runnable() {
 			
@@ -80,7 +85,7 @@ public class GraphicManager implements IGraphicManager, Observer {
 				handleTurn();
 				
 				if(gameOver()){
-					controller.getMatchManager().endMatch();
+				matchManager.endMatch();
 				}
 				
 			}
@@ -90,27 +95,27 @@ public class GraphicManager implements IGraphicManager, Observer {
 	//Si occupa di decidere in base alla situazione, di quale giocatore è il turno
 	private void setPlayersTurn() {
 //		String ultimoGiocatore = controller.getMatchManager().getInterprete().getUltimoGiocatore();
-		String ultimoGiocatore = activityOnline.getInterpreteMessaggio().getUltimoGiocatore();
+		String ultimoGiocatore = activityOnline.getMessageInterpreter().getLastPlayer();
 		if(ultimoGiocatore.equalsIgnoreCase(PLAYER2_SYMBOL)){
 			if(activityOnline.isConnected()){
-				TurnManager.setMyTurn(false);
+				turnManager.setMyTurn(false);
 			}else{
-				TurnManager.setMyTurn(true);
+				turnManager.setMyTurn(true);
 			}
 		}else if(ultimoGiocatore.equalsIgnoreCase(PLAYER1_SYMBOL)){
 			if(activityOnline.isConnected()){
-				TurnManager.setMyTurn(true);	
+				turnManager.setMyTurn(true);	
 			}else{
-				TurnManager.setMyTurn(false);
+				turnManager.setMyTurn(false);
 			}
 		}
 	}
 	
 	//Gestisce la visualizzazione dei turni su UI
 	private void handleTurn() {
-		if(TurnManager.isMyTurn()){
+		if(turnManager.isMyTurn()){
 			infoTextView.setText(R.string.turn_player1);
-		}else if(!TurnManager.isMyTurn()){
+		}else if(!turnManager.isMyTurn()){
 			infoTextView.setText(R.string.turn_player2);
 		}
 	}
@@ -130,7 +135,7 @@ public class GraphicManager implements IGraphicManager, Observer {
 	//Decide se la partita è finita, e comunica chi è il vincitore
 	private boolean gameOver(){
 //		String statoPartita = controller.getMatchManager().getInterprete().getStatoPartita();
-		String statoPartita = activityOnline.getInterpreteMessaggio().getStatoPartita();
+		String statoPartita = activityOnline.getMessageInterpreter().getMatchStatus();
 		if(!activityOnline.isConnected()){
 			if(statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)){
 				infoTextView.setText("Hai vinto!");
@@ -154,7 +159,7 @@ public class GraphicManager implements IGraphicManager, Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 
-		ArrayList<String> caselle = activityOnline.getInterpreteMessaggio().getCaselle();
+		ArrayList<String> caselle = activityOnline.getMessageInterpreter().getBoxes();
 		setPlayersTurn();
 		paint(caselle);
 

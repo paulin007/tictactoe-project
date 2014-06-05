@@ -1,5 +1,8 @@
 package paulin.tchonin.trisandroid1;
 
+import managers.IMatchManager;
+import managers.ITurnManager;
+import managers.TurnManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -8,12 +11,14 @@ public class ButtonClickListener implements OnClickListener{
 	private int location;
 	private IMatchManager matchManager;
 	private GraphicManager graphicManager;
+	private ITurnManager turnManager;
 	
-	public ButtonClickListener(int location, IMatchManager matchManager, GraphicManager graphicManager) {
+	public ButtonClickListener(int location, IMatchManager matchManager, GraphicManager graphicManager, ITurnManager turnManager) {
 		super();
 		this.location = location;
 		this.matchManager = matchManager;
 		this.graphicManager = graphicManager;
+		this.turnManager = turnManager;
 	}
 	
 	public void onClick(View view) {
@@ -22,12 +27,12 @@ public class ButtonClickListener implements OnClickListener{
 
 			if (graphicManager.getBoardButtons()[location].isEnabled()) {
 				
-				if (TurnManager.isMyTurn() && !connected) {
+				if (turnManager.isMyTurn() && !connected) {
 					
 					matchManager.sendMove(location);
 					matchManager.requestUpdate();
 
-				}else if(TurnManager.isMyTurn() && connected){
+				}else if(turnManager.isMyTurn() && connected){
 					
 					matchManager.sendMove(location);
 				
