@@ -1,18 +1,17 @@
-package forza4Gui;
+package grafica;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.FileInputStream;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
-public class LabelSfida extends JLabel{
+@SuppressWarnings("serial")
+public class ChallengeLabel extends JLabel{
 	private String string;
 	
-	public LabelSfida(String string) {
+	public ChallengeLabel(String string) {
 		super();
 		this.string = string;
 	}
@@ -32,8 +31,6 @@ public class LabelSfida extends JLabel{
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-		
-		
 		
 		char[] vector = string.toCharArray();
 	
@@ -58,18 +55,5 @@ public class LabelSfida extends JLabel{
 			}
 		}
 		super.paintComponent(g);
-	}
-	
-	public static void main(String[] args) {
-	
-
-		JFrame frame = new JFrame("Test");
-		LabelSfida font = new LabelSfida("Ciao");
-		frame.getContentPane().add(font);
-		frame.pack();
-		frame.setSize(550,550);
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

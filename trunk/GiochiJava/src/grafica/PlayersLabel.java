@@ -1,4 +1,4 @@
-package forza4Gui;
+package grafica;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,12 +10,13 @@ import java.net.URL;
 import javax.swing.JLabel;
 
 
-public class LabelGiocatori extends JLabel{
+@SuppressWarnings("serial")
+public class PlayersLabel extends JLabel{
 	
 	private String string;
 	private Color color;
 	
-	public LabelGiocatori(String string, Color color) {
+	public PlayersLabel(String string, Color color) {
 		super();
 		this.color = color;
 		this.string = string;

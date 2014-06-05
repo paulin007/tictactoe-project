@@ -2,7 +2,7 @@ package managers;
 
 import java.util.Observer;
 
-import rete.InterpreteMessaggio;
+import rete.IMessageInterpreter;
 
 /**
  * Un'astrazione sulla gestione delle partite
@@ -11,7 +11,7 @@ import rete.InterpreteMessaggio;
  */
 public interface IMatchManager {
 	
-	public void createNewMatch(String player1, String player2);
+	public void createNewMatch(String player1, String player2, String game);
 	
 	public void connectToMatch(String player1, String player2);
 	
@@ -21,8 +21,8 @@ public interface IMatchManager {
 	
 	public void endMatch();
 	
-	public void addObserver(Observer observer);		//TODO va veramente bene cosi?
+	public void addObserver(Observer observer);
 	
-	public InterpreteMessaggio getInterprete();
+	public IMessageInterpreter getInterprete();
 	
 }

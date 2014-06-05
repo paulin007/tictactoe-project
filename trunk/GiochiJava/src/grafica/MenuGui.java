@@ -12,70 +12,71 @@ import javax.swing.KeyStroke;
 
 import managers.IMatchManager;
 import managers.ITurnManager;
-
+import rete.IClient;
+import rete.IStatisticInterpreter;
 /**
- * Questa classe ha la reposanbilitÃ  di gestire il menu dell'applicazione Tris
+ * Questa classe ha la reposanbilità di gestire il menu dell'applicazione Tris
  */
 @SuppressWarnings("serial")
 public class MenuGui extends JMenuBar {
 	
-	private JMenu giochi = new JMenu("Giochi");
+	private JMenu games = new JMenu("Giochi");
 	private JMenuItem tris = new JMenuItem("Tris");
 	private JMenuItem forza4 = new JMenuItem("Forza4");
 	private JMenu record = new JMenu("Statistiche");
-	private JMenuItem statistiche = new JMenuItem("Statistiche");
+	private JMenuItem statisticItem = new JMenuItem("Statistiche");
 	private IMatchManager matchManager;
 	private ITurnManager turnManager;
 	
-	public MenuGui(final PannelloPrincipale principale, IMatchManager matchManager, ITurnManager turnManager) {
+	public MenuGui(final MainPanel mainPanel, IMatchManager matchManager, 
+			ITurnManager turnManager, IStatisticInterpreter interpreteStatistiche, IClient client) {
 		this.matchManager = matchManager;
 		this.turnManager = turnManager;
-		impostaMenuGiochi(principale);
-		record.add(statistiche);
-//		azioneStatistiche(principale);
-		impostaMenuPrincipale();
-		impostaScorciatoie();
+		setGameMenu(mainPanel);
+		record.add(statisticItem);
+		statisticItemListener(mainPanel, interpreteStatistiche, client);
+		setMainMenu();
+		setShortcut();
 	}
 
-	//TODO non fa praticamente nulla
-//	private void azioneStatistiche(final PannelloPrincipale principale) {
-//		statistiche.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-////				principale.setPannello(new PannelloStatistica());
-//				
-//			}
-//		});
-//	}
+	private void statisticItemListener(final MainPanel mainPanel, final IStatisticInterpreter interpreteStatistiche, final IClient client) {
+		statisticItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.setPanel(new StatisticPanel(interpreteStatistiche, client));
+				
+			}
+		});
+	}
 
-	private void impostaMenuPrincipale() {
-		add(giochi);
+	private void setMainMenu() {
+		add(games);
 		add(record);
 	}
 
-	private void impostaMenuGiochi(final PannelloPrincipale principale) {
-		giochi.add(tris);
-		giochi.add(forza4);
-		impostaGioco(tris, principale, "Tris");
-		impostaGioco(forza4, principale, "Forza4");
+	private void setGameMenu(final MainPanel mainPanel) {
+		games.add(tris);
+		games.add(forza4);
+		gameItemListener(tris, mainPanel, "Tris");
+		gameItemListener(forza4, mainPanel, "forza4");
 	}
 	
-	private void impostaGioco(JMenuItem gioco, final PannelloPrincipale principale, final String nomeGioco){
-		gioco.addActionListener(new ActionListener() {
+	private void gameItemListener(JMenuItem gameItem, final MainPanel mainPanel, final String gameName){
+		gameItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				principale.setGioco(nomeGioco);
-				principale.setPannello(new PannelloGiocatori(principale, matchManager, turnManager));
+				mainPanel.setGame(gameName);
+				mainPanel.setPanel(new PlayersPanel(mainPanel, matchManager, turnManager));
 			}
 		});
 	}
 	
-	private void impostaScorciatoie(){
+	private void setShortcut(){
 		tris.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T,InputEvent.CTRL_MASK ));
 		forza4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,InputEvent.CTRL_MASK ));
-		statistiche.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK ));
+		statisticItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK ));
 	}
 }
 
