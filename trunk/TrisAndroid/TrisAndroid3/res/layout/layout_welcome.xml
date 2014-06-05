@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/logo" >
+
+    <Button
+        android:id="@+id/open_forza4"
+        style="@style/MyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/open_tris"
+        android:layout_alignLeft="@+id/open_tris"
+        android:layout_marginBottom="134dp"
+        android:maxWidth="400dp"
+        android:minWidth="200dp"
+        android:text="@string/forza_4" />
+
+
+    <Button
+        android:id="@+id/open_tris"
+        style="@style/MyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:maxWidth="400dp"
+        android:minWidth="200dp"
+        android:text="@string/tris" />
+
+</RelativeLayout>
