@@ -12,60 +12,63 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import rete.Client;
-import rete.InterpreteMessaggio;
-import trisGui.SituazioneTurno;
+import managers.IMatchManager;
+import managers.ITurnManager;
 
+
+@SuppressWarnings("serial")
 public class PannelloGiocatori extends JPanel{
 
-	private static final long serialVersionUID = 0;
 	private String G1;
 	private String G2;
-	private String[] simboli = {"Cerchio","Croce"};
 	private String[] nomiGiocatori = {"Giacomo","Dario","Marco","Santo","Kokou","Paulin","Andrea" };
 	private PannelloPrincipale principale;
-	private String iconaScelta;
 	private final JComboBox<String> comboBox1 = new JComboBox<String>(nomiGiocatori);
 	private final JComboBox<String> comboBox2 = new JComboBox<String>(nomiGiocatori);
-	private final JComboBox<String> comboBox3 = new JComboBox<String>(simboli);
-	private SituazioneTurno turno = new SituazioneTurno();
-	
-	private InterpreteMessaggio interpreteMessaggio = new InterpreteMessaggio();
-	
-	public PannelloGiocatori(final PannelloPrincipale principale) {
+	private IMatchManager matchManager;
+	private ITurnManager turnManager;
+
+	public PannelloGiocatori(final PannelloPrincipale principale, IMatchManager matchManager, ITurnManager turnManager) {
 		super();
 		this.principale = principale;
+		this.matchManager = matchManager;
+		this.turnManager = turnManager;
 		impostaGrafica();
 	}
 	
-private void impostaGrafica() {
+	private void impostaGrafica() {
 		setLayout(null);
-		
+
 		setBackground(new Color(153,203,255));
-		
+
 		Font font = new Font("Verdana", Font.BOLD, 16);
-		
+
 		JLabel labelSfidante = new JLabel("Selezionare Il Proprio Nickname");
 		labelSfidante.setBounds(166, 32, 280, 24);
 		labelSfidante.setFont(font);
 		add(labelSfidante);
-		
-		
-		comboBox1.setBounds(76, 127, 93, 24);
+
+		comboBox1.setBounds(267, 127, 93, 24);
 		add(comboBox1);
-		
+
 		comboBox2.setBounds(267, 298, 93, 24);
 		add(comboBox2);
-		
-		comboBox3.setBounds(424, 127, 109, 24);
-		add(comboBox3);
-		
+
 		JLabel labelAvversario = new JLabel("Selezionare Il Giocatore Da Sfidare");
 		labelAvversario.setFont(font);
 		labelAvversario.setBounds(148, 218, 314, 24);
 		add(labelAvversario);
-		
+
 		JButton nuovaPartita = new JButton("Inizia");
+		pressStartButton(font, nuovaPartita);
+		add(nuovaPartita);
+
+		JButton riprendiPartita = new JButton("Collegati");
+		pressConnectButton(font, riprendiPartita);
+		add(riprendiPartita);
+	}
+	
+	private void pressStartButton(Font font, JButton nuovaPartita) {
 		nuovaPartita.setBounds(76, 368, 93, 24);
 		nuovaPartita.setBackground(Color.white);
 		nuovaPartita.setFont(font);
@@ -74,48 +77,47 @@ private void impostaGrafica() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				selezioneGiocatori();
-				interpreteMessaggio.interpreta(Client.send("nuova partita	"+G1+"	"+G2+"	"+principale.getGioco()));
-				impostaPartitaOnline(Simbolo.simboloG1);
+				matchManager.createNewMatch(G1, G2);
+				matchManager.requestUpdate();
+				turnManager.setMyTurn(true);
+				impostaPartitaOnline("G1");
 			}
 
 		});
-		add(nuovaPartita);
-		
-		JButton riprendiPartita = new JButton("Riprendi");
+	}
+
+	private void pressConnectButton(Font font, JButton riprendiPartita) {
 		riprendiPartita.setBounds(424, 368, 109, 24);
 		riprendiPartita.setBackground(Color.white);
 		riprendiPartita.setFont(font);
 		riprendiPartita.setPreferredSize(new Dimension(130, 50));
 		riprendiPartita.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				selezioneGiocatori();
-				interpreteMessaggio.interpreta(Client.send("collegati a	"+G2+"	"+G1));
-				impostaPartitaOnline(Simbolo.simboloG2);
+				turnManager.setConnected(true);
+				matchManager.connectToMatch(G1, G2);
+				matchManager.requestUpdate();
+				impostaPartitaOnline("G2");
 			}
 		});
-		add(riprendiPartita);
 	}
-	private void impostaPartitaOnline(String simbolo) {
+
+	private void impostaPartitaOnline(String mioSimbolo) {
 		if(((String)comboBox1.getSelectedItem()).contentEquals(((String) comboBox2.getSelectedItem()))){
 			JOptionPane.showMessageDialog(null, "Selezionare Nomi Diversi !!");
 		}
 		else {
 			selezioneGiocatori();
-			setIconaScelta(comboBox3.getSelectedItem().toString());
-			turno.setMioSimbolo(simbolo);
-			turno.setIDpartita(interpreteMessaggio.getIDpartita());
-			turno.setMiaIcona(iconaScelta);
-			turno.setIcona(iconaScelta);
-			principale.setPannelloGioco(turno);
-			}
+			principale.setPannelloGioco(mioSimbolo);
+		}
 	}
+
+	//Si occupa di assegnare dal comboBox ad un stringa il nome del giocatore
 	private void selezioneGiocatori() {
 		G1 = (String) comboBox1.getSelectedItem();
 		G2 = (String) comboBox2.getSelectedItem();
 	}
-	public void setIconaScelta(String iconaScelta) {
-		this.iconaScelta = iconaScelta;
-	}
+	
 }

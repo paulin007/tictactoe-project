@@ -5,27 +5,17 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import trisGui.SituazioneTurno;
-
 @SuppressWarnings("serial")
 public class PannelloPrincipale extends JPanel {
 	
 	private String gioco;
-	private ArrayList<PannelloGioco> pannelliGiochi;
+	private ArrayList<PannelloGioco> pannelliGiochi = new ArrayList<>();
 	private PannelloGioco pannelloTris;
 	private PannelloGioco pannelloForza4;
-	
-	public void setPannelliGiochi(ArrayList<PannelloGioco> pannelliGiochi) {
-		this.pannelliGiochi = pannelliGiochi;
-			pannelloTris = pannelliGiochi.get(0);		//TODO eventuale problema di assegnazione! dovrebbe essere pannelliGiochi.get(0) = pannelloTris;
-			pannelloForza4 = pannelliGiochi.get(1);
-	}
-	
 	
 	public PannelloPrincipale(JPanel panel) {
 		setPannello(panel);
 	}
-	
 	
 	public void setPannello(JPanel panel){
 		removeAll();
@@ -34,13 +24,22 @@ public class PannelloPrincipale extends JPanel {
 		updateUI();
 	}
 	
-	public void setPannelloGioco(SituazioneTurno turno){
+	public void addGames(PannelloGioco pannelloGioco){
+		pannelliGiochi.add(pannelloGioco);
+	}
+	
+	public void setGames(){
+		pannelloTris = pannelliGiochi.get(0);
+//		pannelloForza4 = pannelliGiochi.get(1);
+	}
+	
+	public void setPannelloGioco(String mioSimbolo){
 		if(gioco.equalsIgnoreCase("tris")){
-			pannelloTris.setTurno(turno);
+			pannelloTris.setMioSimbolo(mioSimbolo);
 			setPannello(pannelloTris.creaPannello());
 		}
 		if(gioco.equalsIgnoreCase("forza4")){
-			pannelloForza4.setTurno(turno);
+			pannelloForza4.setMioSimbolo(mioSimbolo);
 			setPannello(pannelloForza4.creaPannello());
 		}
 	}
@@ -48,6 +47,7 @@ public class PannelloPrincipale extends JPanel {
 	public String getGioco() {
 		return gioco;
 	}
+	
 	public void setGioco(String gioco) {
 		this.gioco = gioco;
 	}

@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author Andrea Gallo
  */
-public class Client {
+public class Client implements IClient{
 	private static InetAddress host;
 	private static final int PORT = 45444;
 
@@ -31,11 +31,11 @@ public class Client {
 	 * @param messaggio
 	 * @return response
 	 */
-	public static String send(String messaggio) {
+	public String send(String messaggio) {
 		Socket link = null; // Step 1.
 
 		try {
-			link = new Socket("192.168.1.73", PORT); // Step 1.
+			link = new Socket(host, PORT); // Step 1.
 
 			Scanner input = new Scanner(link.getInputStream());// Step 2.
 

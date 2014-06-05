@@ -78,7 +78,7 @@ public class PannelloStatistica extends JPanel{
 				String giocatore = (String) comboBox1.getSelectedItem();
 				String gioco = (String) comboBox2.getSelectedItem();
 				String messaggio = "statistiche	"+giocatore+"	"+gioco;
-				statistiche.intepreta(Client.send(messaggio));
+//				statistiche.intepreta(Client.send(messaggio));
 				aggiornaGrafica();
 				}
 		});
