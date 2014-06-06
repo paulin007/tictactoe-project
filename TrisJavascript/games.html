@@ -19,13 +19,13 @@
 		<script type="text/javascript" src="./js/info.js"></script>
 		<script type="text/javascript" src="./js/games.js"></script>
 		<script type="text/javascript" src="./js/resultsWindow.js"></script>
+
 		<!-- Date: 2014-04-29 -->
 	</head>
-	<!-- <body onload="alert('ciao');createConnection(),setGameName('tris'),createGamePage();"> -->
-		<body onload="setGameName('tris');createGamePage();createConnection()">
+	<body onload="setGameName(processGET());createGamePage(getGameName());createConnection();">
 		<br />
 		<div class="header">
-		<img class="logo" id="gameLogo" alt="Tris & Forza4"/>
+			<img class="logo" id="gameLogo" alt="Tris & Forza4"/>
 		</div>
 		<br />
 		<br />
@@ -33,21 +33,14 @@
 		<div class="center">
 			<br />
 			<br />
-			<div id="gameTable"> </div>
+			<div id="gameTable"></div>
 			<br />
 			<br />
 			<div class="settings">
 				<div class="wrapper">
-					<!-- <a href="#" class="serverButton" onclick="createConnection()">Collegati</a>
-					<br />
-					<br /> -->
 					<a href="#" class="matchButton" onclick="sendNewMatch()">Nuova partita</a>
 					<a href="#" class="matchButton" onclick="connectToMatch()">Partita esistente</a>
 					<br />
-					<!-- <select name="sceltaGioco" id="gameName">
-						<option>Tris</option>
-						<option>Forza4</option>
-					</select> -->
 					<br />
 					Scegli giocatore 1:
 					<br />
