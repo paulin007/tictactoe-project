@@ -26,7 +26,7 @@ public class TerneVincenti {
 	}
 	
 	
-	private static boolean vittoriaOrizzontale(Partita partita, String giocatore){
+	public static boolean vittoriaOrizzontale(Partita partita, String giocatore){
 		for (int i = 0; i < N_RIGHE; i++) {
 			if(partita.getTabella().occupata(giocatore,  N_RIGHE*i, N_RIGHE*i + 1, N_RIGHE*i + 2)){
 				return true;
@@ -35,7 +35,7 @@ public class TerneVincenti {
 		return false;
 	}
 	
-	private static boolean vittoriaVerticale(Partita partita, String giocatore){
+	public static boolean vittoriaVerticale(Partita partita, String giocatore){
 		for (int i = 0; i < N_COLONNE; i++) {
 			if(partita.getTabella().occupata(giocatore,  i, i+N_COLONNE, i+2*N_COLONNE)){
 				return true;
@@ -44,7 +44,7 @@ public class TerneVincenti {
 		return false;
 	}
 	
-	private static boolean vittoriaDiagonale(Partita partita, String giocatore){
+	public static boolean vittoriaDiagonale(Partita partita, String giocatore){
 		if(partita.getTabella().occupata(giocatore, 0, 4, 8)
 				|| partita.getTabella().occupata(giocatore, 2, 4, 6)){
 			return true;
