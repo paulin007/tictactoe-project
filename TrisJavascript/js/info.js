@@ -14,7 +14,7 @@ function getSecondPlayerName() {
 	return secondPlayerName;
 }
 
-function getGameName() {
+function getSelectedGameName() {
 	var gameName;
 	gameName = document.getElementById('gameName').options[document.getElementById('gameName').selectedIndex].text;
 	return gameName;

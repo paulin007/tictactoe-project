@@ -20,12 +20,6 @@ function setFourInARowLogo(){
 	document.getElementById("gameLogo").src = './img/Forza4logo.png';
 }
 
-function playAudio(){
-	var audioElement = document.createElement('audio');
-	audioElement.setAttribute('src', './sounds/pop1.wav');
-	audioElement.play();
-}
-
 function createFourInARowTable(){
 	var div = document.getElementById('gameTable');
 	div.innerHTML = ("<table class='buttonBar'>"+

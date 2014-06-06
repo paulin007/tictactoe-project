@@ -146,9 +146,3 @@ function myMove(id) {
 	};
 }
 
-function opponentMove(id) {
-	setO(id);
-	setInterval(function() {
-		requestUpdate();
-	}, 5000);
-}

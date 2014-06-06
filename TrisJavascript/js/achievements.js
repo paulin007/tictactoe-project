@@ -42,17 +42,17 @@ function Achievements(){
 	});
 }
 
-function tokenizeAchievements(message){
+function tokenizeAchievements(message, achievements){
 	achievements.victories = message.split(" ",8)[0];
 	achievements.ties = message.split(" ",8)[1];
 	achievements.defeats = message.split("",8)[2];
 	for (var i = 0; i < achievements.scores.length; i++) {
 		achievements.scores[i] = message.split("@",8)[i + 1];
 	};
-	string = getPlayerName() + "|Gioco: " + getGameName() + "|V: " + achievements.victories + "|P: " + achievements.ties + "|S: " + achievements.defeats + " - Achievements: " + achievements.scores + "\n";
-	writeOnArea(string);
+	string = " "+getFirstPlayerName() + "|Gioco: " + getSelectedGameName() + "|V: " + achievements.victories + "|P: " + achievements.ties + "|S: " + achievements.defeats + " - Achievements: " + achievements.scores + "\n";
+	writeAchievements(string);
 }
 
-function writeOnArea(string) {
+function writeAchievements(string) {
 	document.getElementById("logArea").value += string;
 }
