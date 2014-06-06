@@ -42,7 +42,7 @@ public class MainApp {
 		
 		JFrame frame = new JFrame("Giochi");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600,550);
+		frame.setSize(600,600);
 		frame.getContentPane().add(mainPanel);
 		frame.setJMenuBar(menuGui);
 		frame.setLocationRelativeTo(null);
