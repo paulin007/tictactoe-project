@@ -32,19 +32,19 @@ function processOpen(message) {
 }
 
 function processMessage(message) {
-	analyzeMessage(message.data);	
+	analyzeMessage(message.data);
 }
 
 function processError(message) {
 }
 
 function sendNewMatch() {
-	client_match = new Match(getGameName(),"nuova");
-	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/"+getGameName());
+	client_match = new Match(getGameName(), "nuova");
+	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/" + getGameName());
 }
 
 function connectToMatch() {
-	client_match = new Match(getGameName(),"esistente");
+	client_match = new Match(getGameName(), "esistente");
 	getWebSocket().send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName());
 	setInterval(function() {
 		requestUpdate();
@@ -60,11 +60,15 @@ function requestUpdate() {
 }
 
 function requestAchievements() {
-	var string;
-	string = "statistiche/" + getPlayerName() + "/" + getGameName();
+	var achievements = new Achievements();
+	var string = "statistiche/" + getFirstPlayerName() + "/" + getSelectedGameName();
 	getWebSocket().send(string);
+	
+	getAchievements = function() {
+		return achievements;
+	};
 }
 
-function getMatch(){
+function getMatch() {
 	return client_match;
 }
