@@ -17,11 +17,13 @@
 
 			<h1 id="mainTitle">Benvenuto</h1>
 
-			<form action="./games.html">
-				<input type="submit" onclick="setGameName(TicTacToe())" value="Tris">
-				<input type="submit" onclick="setGameName(FourInARow())" value="Forza4">
-			</form>
+			<form action="games.html" method="GET">
+				<input type="submit" name="game" value="Tris">
+				<input type="submit" name="game" value="Forza4">
 
+			</form>
+			<a href="games.html?name=Tris">Tris</a>
+			<a href="games.html?name=Forza4">Forza4</a>
 		</div>
 
 	</body>

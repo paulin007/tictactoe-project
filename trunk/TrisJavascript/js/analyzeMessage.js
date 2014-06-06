@@ -5,11 +5,18 @@
  */
 
 function analyzeMessage(message) {
-	if (message.startsWith("tris") || message.startsWith("forza4")) {
+	if (message.startsWith("Tris") || message.startsWith("Forza4") || message.startsWith("tris") || message.startsWith("forza4")) {
 		tokenizeMatch(message, getMatch());
 	} else if (message.startsWith(/^[0-9]/)) {
 		tokenizeAchievements(message);
 	}
+}
+
+function processGET() {
+	var parameters = location.search.substring(1).split("&");
+	var temp = parameters[0].split("=");
+	var name = unescape(temp[1]);
+	return name;
 }
 
 /**

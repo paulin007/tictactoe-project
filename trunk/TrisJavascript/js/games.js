@@ -4,22 +4,23 @@
 
 var gameName;
 
-function getGameName(){
-	return gameName;
+function getGameName() {
+	return gameName.toLowerCase();
 }
 
-function setGameName(name){
-	this.gameName=name;
+function setGameName(name) {
+	this.gameName = name;
 }
 
-function createGamePage(){
-	if (getGameName()=="tris") {
+function createGamePage(gameName) {
+	if (gameName.toLowerCase() == "tris") {
 		setTicTacToeLogo();
 		TicTacToe();
 		createTrisTable();
-	} else if(getGameName()=="forza4"){
+	} else if (gameName.toLowerCase() == "forza4") {
 		setFourInARowLogo();
 		FourInARow();
 		createFourInARowTable();
 	};
 }
+
