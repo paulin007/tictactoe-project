@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,15 +22,14 @@ public class Forza4Button extends JButton{
 		setContentAreaFilled(false);
 		setBorderPainted(false);
 		setMultiClickThreshhold(1000);
+	
 		
 		addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				
 				Timer timer = new Timer();
-				
 				timer.schedule(up(returnForza4Button()), 0);
 				timer.schedule(down(returnForza4Button()), 0);
 				
@@ -46,8 +46,9 @@ public class Forza4Button extends JButton{
 
 		
 		try {
-			java.net.URL imgUrl = getClass().getResource(DefaultSettings.getSettings().getPath("indicatore1"));
-			java.net.URL imgUrl1 = getClass().getResource(DefaultSettings.getSettings().getPath("indicatore2"));
+		
+			URL imgUrl = getClass().getResource(DefaultSettings.getSettings().getPath("indicatore1"));
+			URL imgUrl1 = getClass().getResource(DefaultSettings.getSettings().getPath("indicatore2"));
 			
 			BufferedImage image = ImageIO.read(imgUrl);
 			
@@ -60,9 +61,7 @@ public class Forza4Button extends JButton{
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	
-			
+		}	
 	}
 	
 

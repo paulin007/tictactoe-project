@@ -23,7 +23,7 @@ import managers.PlayerSymbol;
 public class Forza4Panel extends JPanel implements Observer, GamePanel {
 
 	private String mySymbol;
-	private String opponenetSymbol;
+	private String opponentSymbol;
 	private PanelsDrawer drawerPanel;
 	private JPanel gridPanel = new JPanel();
 	private ArrayList<Forza4Button> forza4Buttons = new ArrayList<>();
@@ -37,7 +37,7 @@ public class Forza4Panel extends JPanel implements Observer, GamePanel {
 	public void setupInziale(){
 		removeAll();
 		setLayout(null);
-		drawerPanel.drawPlayersPanel(this, mySymbol, opponenetSymbol);
+		drawerPanel.drawPlayersPanel(this, mySymbol, opponentSymbol);
 		drawerPanel.createForza4Button(forza4Buttons,7);
 		drawerPanel.setPositionForza4Button(forza4Buttons);
 		drawerPanel.setupForza4Button(this, forza4Buttons);
@@ -49,9 +49,9 @@ public class Forza4Panel extends JPanel implements Observer, GamePanel {
 	@Override
 	public void update(Observable o, Object arg) {
 		if(matchManager.getInterprete().getMatchStatus().equalsIgnoreCase("InCorso")){
-			drawerPanel.paint(this, new ArrayList<JButton>(),mySymbol, opponenetSymbol, "forza4");
+			drawerPanel.paint(this, new ArrayList<JButton>(),mySymbol, opponentSymbol, "forza4");
 		}else{
-			drawerPanel.paint(this, new ArrayList<JButton>(),mySymbol, opponenetSymbol, "forza4");
+			drawerPanel.paint(this, new ArrayList<JButton>(),mySymbol, opponentSymbol, "forza4");
 			matchManager.endMatch();
 		}
 	}
@@ -79,9 +79,9 @@ public class Forza4Panel extends JPanel implements Observer, GamePanel {
 	public void setMySymbol(String mySymbol) {
 		this.mySymbol = mySymbol;
 		if(mySymbol.equalsIgnoreCase(PlayerSymbol.PLAYER1_SYMBOL.getSymbol())){
-			opponenetSymbol = PlayerSymbol.PLAYER2_SYMBOL.getSymbol();
+			opponentSymbol = PlayerSymbol.PLAYER2_SYMBOL.getSymbol();
 		}else{
-			opponenetSymbol = PlayerSymbol.PLAYER1_SYMBOL.getSymbol();
+			opponentSymbol = PlayerSymbol.PLAYER1_SYMBOL.getSymbol();
 		}
 	}
 	
