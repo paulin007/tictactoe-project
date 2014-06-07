@@ -1,0 +1,41 @@
+<list>
+	<object name="griglia">
+		<path>/forza4Gui/Immagini/griglia.png</path>
+	</object>
+	<object name="forza4verticale">
+		<path>/forza4Gui/Immagini/Forza4verticale.png</path>
+	</object>
+	<object name="pallaGialla">
+		<path>/forza4Gui/Immagini/palla_gialla.png</path>
+	</object>
+	<object name="pallaRossa">
+		<path>/forza4Gui/Immagini/palla_rossa11.png</path>
+	</object>
+	<object name="croce">
+		<path>/trisGui/Immagini/X.png</path>
+	</object>
+	<object name="cerchio">
+		<path>/trisGui/Immagini/O.png</path>
+	</object>
+	<object name="logo">
+		<path>/trisGui/Immagini/Logo.png</path>
+	</object>
+	<object name="indicatore1">
+		<path>Immagini/indicatore1.png</path>
+	</object>
+	<object name="indicatore2">
+		<path>Immagini/indicatore2.png</path>
+	</object>
+	<object name="sfondo2">
+		<path>Immagini/Sfondo2.png</path>
+	</object>
+	<object name="akhenaton">
+		<path>/grafica/Akhenaton.ttf</path>
+	</object>
+	<object name="applausi">
+		<path>/suoni/applausi.wav</path>
+	</object>
+	<object name="nur">
+		<path>/suoni/nur.wav</path>
+	</object>
+</list>

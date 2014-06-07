@@ -23,7 +23,7 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		
-		DefaultSettings.getSettings().caricaMappa();
+		DefaultSettings.getSettings().loadMap();
 		
 		IClient client = new Client();
 		IMatchManager matchManager = new MatchManager(client, new MessageInterpreter());
