@@ -13,7 +13,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 
 import managers.DefaultSettings;
-
+/**
+ * 
+ * @author gruppo progetto TIC TAC TOE
+ */
 @SuppressWarnings("serial")
 public class Forza4Button extends JButton{
 
@@ -36,6 +39,7 @@ public class Forza4Button extends JButton{
 			}
 		});
 	}
+	
 	public Forza4Button returnForza4Button(){
 		return this;
 	}
