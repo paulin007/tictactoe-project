@@ -59,7 +59,14 @@ public class StatisticPanel extends JPanel{
 	}
 
 	private void setBackgroundPanel() {
-		backgroundPanel.setLayout(new GridLayout(2, 1));
+		setLayout(null);
+		
+		comboBox1.setBounds(142, 63, 110, 32);
+		comboBox2.setBounds(335, 63, 110, 32);
+		enter.setBounds(250, 143, 89, 23);
+	
+
+		backgroundPanel.setLayout(null);
 		backgroundPanel.add(comboBox1);
 		backgroundPanel.add(comboBox2);
 		backgroundPanel.add(enter);
