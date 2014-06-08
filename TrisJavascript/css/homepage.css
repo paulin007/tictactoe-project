@@ -1,0 +1,57 @@
+
+#UpperWrapper {
+
+	height: 15%;
+}
+
+#mainTitle {
+	margin: 1px;
+	padding: 0px;
+	text-align: center;
+	font-family: apple;
+	font-size: 70px;
+}
+
+.homepageBox {
+	width: 300px;
+	height: 300px;
+	border: 1px solid black;
+	border-radius: 10px;
+	
+}
+
+.homepageTable {
+	border: 0px;
+	cellspacing: 5;
+	cellpadding: 5;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.homepageAchievementsBox {
+	border: 1px solid blue;
+	border-radius: 200px;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	border-color: #9696B2;
+}
+
+.homepageAchievementsButton {
+	margin: 1px;
+	padding: 0px;
+	font-family: Lotr;
+	font-size: 30px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.homepageSelector {
+	margin-left: auto;
+	margin-right: auto;
+	width: 70%;
+}

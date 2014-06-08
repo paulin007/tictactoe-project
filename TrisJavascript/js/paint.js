@@ -15,7 +15,7 @@ function paint(moves) {
 function setIconA(id) {
 	if (getGameName().toLowerCase() == TicTacToe().toLowerCase()) {
 		setX(id);
-		}else if (getGameName().toLowerCase() == FourInARow().toLowerCase()) {
+	}else if (getGameName().toLowerCase() == FourInARow().toLowerCase()) { 
 		setYellowBall(id);
 		};
 	}

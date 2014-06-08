@@ -120,17 +120,15 @@ function checkResult(match) {
 			}, 3000);
 		} else if (match.matchStatus == match.myPlayer) {
 			setInterval(function() {
-				vittoria();
 				match.ended = true;
-				
+				vittoria(getFirstPlayerName());
 				// alert("Hai vinto!");
 				window.location.reload();
 			}, 3000);
 		} else if (match.matchStatus == match.otherPlayer) {
 			setInterval(function() {
-				sconfitta();
 				match.ended = true;
-				
+				sconfitta(getFirstsPlayerName());
 				// alert("Hai perso!");
 				window.location.reload();
 			}, 3000);

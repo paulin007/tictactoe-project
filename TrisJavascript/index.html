@@ -1,31 +1,53 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="./css/main.css" rel="stylesheet" type="text/css">
-		<link href="./css/customFonts.css" rel="stylesheet" type="text/css">
-		<link href="./css/result.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="./js/tictactoe.js"></script>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="./css/homepage.css" rel="stylesheet" type="text/css">
+        <link href="./css/customFonts.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="./js/tictactoe.js"></script>
 		<script type="text/javascript" src="./js/fourinarow.js"></script>
 		<script type="text/javascript" src="./js/games.js"></script>
-		<title>Index</title>
-	</head>
-	<body>
+        <title>Tris &#38 Forza 4</title>
+    </head>
+    <body style="height: 700px;padding: 0px; margin-top:  0px;background-color: #E6F3FA">
+   
+   <!-- ######## TITOLO ######## --> 	
+    	
+    	<div id="UpperWrapper" >
+    		<h1 id="mainTitle" style="padding: 20px">Benvenuto</h1>
+    	</div>
+   <!-- ######## SELEZIONE GIOCO ########-->  
+   		<br />
+   		<br />
+   		<br />
+   		<div class="homepageSelector">
+   			<table class="homepageTable">
+			 <tr>
+			   	<th>
+			   		<div class="homepageBox">
+			   			<a href="games.html?name=Tris"><img src="./img/tris1.png" width="300px" height="300px" style="border-radius: 10px" /></a>
+			   		</div>
+			   	</th>
+			   	
+			   	<th>
+			   		<div class="homepageBox">
+			   			<a href="games.html?name=Forza4"><img src="./img/Forza4logo1.png" width="300px" height="300px" style="border-radius: 10px" /></a>
+			   		</div>
+			   	</th>
+			 </tr>
+			  
+		   </table>
 
-		<div id="UpperWrapper">
-
-			<h1 id="mainTitle">Benvenuto</h1>
-
-			<form action="games.html" method="GET">
-				<input type="submit" name="game" value="Tris">
-				<input type="submit" name="game" value="Forza4">
-
-			</form>
-			<a href="games.html?name=Tris">Tris</a>
-			<a href="games.html?name=Forza4">Forza4</a>
-		</div>
-
-	</body>
-
+   		</div>
+   		<br />
+   		<br />
+   		<br />
+   		<br />
+   		<div href="./achievements.html" class="homepageAchievementsBox">
+   			<a class="homepageAchievementsButton" href="achievements.html">Achievements</a>
+   			
+   		</div>
+    </body>
+    
 </html>
