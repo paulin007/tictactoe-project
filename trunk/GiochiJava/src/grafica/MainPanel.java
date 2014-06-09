@@ -1,7 +1,7 @@
 package grafica;
 
 import java.awt.BorderLayout;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JPanel;
 
@@ -9,9 +9,7 @@ import javax.swing.JPanel;
 public class MainPanel extends JPanel {
 	
 	private String game;
-	private ArrayList<GamePanel> panelsGames = new ArrayList<>();
-	private GamePanel trisPanel;
-	private GamePanel forza4Panel;
+	private HashMap<String, GamePanel> gamesMap = new HashMap<>();
 	
 	public MainPanel(JPanel panel) {
 		setPanel(panel);
@@ -24,24 +22,9 @@ public class MainPanel extends JPanel {
 		updateUI();
 	}
 	
-	public void addGames(GamePanel gamePanel){
-		panelsGames.add(gamePanel);
-	}
-	
-	public void setGames(){
-		trisPanel = panelsGames.get(0);
-		forza4Panel = panelsGames.get(1);
-	}
-	
 	public void setGamePanel(String mySymbol){
-		if(game.equalsIgnoreCase("tris")){
-			trisPanel.setMySymbol(mySymbol);
-			setPanel(trisPanel.createPanel());
-		}
-		if(game.equalsIgnoreCase("forza4")){
-			forza4Panel.setMySymbol(mySymbol);
-			setPanel(forza4Panel.createPanel());
-		}
+		gamesMap.get(game).setMySymbol(mySymbol);
+		setPanel(gamesMap.get(game).createPanel());
 	}
 	
 	public String getGame() {
@@ -50,5 +33,9 @@ public class MainPanel extends JPanel {
 	
 	public void setGame(String game) {
 		this.game = game;
+	}
+	
+	public HashMap<String, GamePanel> getGamesMap() {
+		return gamesMap;
 	}
 }
