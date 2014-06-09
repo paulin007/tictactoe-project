@@ -45,7 +45,7 @@ function sendNewMatch() {
 
 function connectToMatch() {
 	client_match = new Match(getGameName(), "esistente");
-	getWebSocket().send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName());
+	getWebSocket().send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName()+"/"+getGameName());
 	setInterval(function() {
 		requestUpdate();
 	}, 5000);
