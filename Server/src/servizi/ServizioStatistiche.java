@@ -8,7 +8,9 @@ import java.util.StringTokenizer;
 import server.EccezioniServer;
 import statistiche.IXMLManager;
 import statistiche.XMLManager;
-
+/**
+ * Responsabilità: gestitisce il servizio delle stastiche
+ */
 public class ServizioStatistiche implements IServizio {
 
 	String statistiche = "";

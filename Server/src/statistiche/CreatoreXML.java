@@ -13,7 +13,9 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
+/**
+ * Responsabilità: crea un file Xml
+ */
 public class CreatoreXML {
 
 	public CreatoreXML(String file) {

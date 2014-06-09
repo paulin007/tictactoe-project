@@ -15,7 +15,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
+/**
+ * Responsabilità: scrive o modifica un file Xml a seconda se esiste o no
+ */
 public class ScriviXML {
 
 	boolean existed = false;
