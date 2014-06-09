@@ -1,5 +1,7 @@
 package managers;
-
+/**
+ * Un enumerazione contenente il simbolo dei giocatori
+ */
 public enum PlayerSymbol {
 
 	PLAYER1_SYMBOL("G1"),

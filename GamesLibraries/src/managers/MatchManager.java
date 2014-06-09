@@ -6,7 +6,9 @@ import java.util.TimerTask;
 
 import rete.IClient;
 import rete.IMessageInterpreter;
-
+/**
+ * Questa classe ha la responsabilità di gestire una partita di un gioco
+ */
 public class MatchManager extends Observable implements IMatchManager {
 
 	private IMessageInterpreter interprete;
