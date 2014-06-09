@@ -11,9 +11,9 @@ import rete.IMessageInterpreter;
  */
 public interface IMatchManager {
 	
-	public void createNewMatch(String player1, String player2, String game);
+	public void createNewMatch(String player1, String player2, String gameName);
 	
-	public void connectToMatch(String player1, String player2);
+	public void connectToMatch(String player1, String player2, String gameName);
 	
 	public void sendMove(int location);
 	
