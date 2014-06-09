@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import managers.MatchManager;
+import managers.PlayerSymbol;
 import managers.TurnManager;
 import rete.Client;
 import rete.MessageInterpreter;
