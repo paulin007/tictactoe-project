@@ -22,6 +22,7 @@ public class AlgoritmoTris implements Algoritmo {
 		if (partita.getTabella().getCaselle().get(Integer.valueOf(mossa))
 				.isVuota()) {
 			partita.getTabella().getCaselle().get(Integer.valueOf(mossa)).setSimbolo(giocatore);
+			partita.setUltimoGiocatore(giocatore);
 			if(TerneVincenti.terneVincenti(partita, giocatore)){
 				partita.setRisultato(giocatore);
 			}

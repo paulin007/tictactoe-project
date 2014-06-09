@@ -14,6 +14,7 @@ public class AlgoritmoForza4 implements Algoritmo {
 		int casella = casellaSuccessivaLibera(partita, Integer.valueOf(mossa));
 		if(mossaValida(partita, casella)){
 			partita.getTabella().getCaselle().get(casella).setSimbolo(giocatore);
+				partita.setUltimoGiocatore(giocatore);
 			if(QuaterneVincenti.quaterneVincenti(partita, giocatore)){
 				partita.setRisultato(giocatore);
 			}
