@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- * Questa classe ha la responsabilità di interpretare un messaggio, contenente
+ * Questa classe ha la responsabilit�� di interpretare un messaggio, contenente
  * le statistiche dei giochi
  * 
  */
@@ -68,15 +68,12 @@ public class StatisticInterpreter implements IStatisticInterpreter {
 	 * 
 	 * @see rete.IInterpreteStatistiche#getAchievements()
 	 */
-	@Override
-	public ArrayList<String> getAchievements() {
-		return achievements;
-	}
+	
 
-	public String achievements() {
+	public String achievementsToString() {
 		String achievements = "";
-		for (int i = 0; i < getAchievements().size(); i++) {
-			achievements += getAchievements().get(i) + " \n";
+		for (int i = 0; i < this.achievements.size(); i++) {
+			achievements += this.achievements.get(i) + " \n";
 
 		}
 		return achievements;

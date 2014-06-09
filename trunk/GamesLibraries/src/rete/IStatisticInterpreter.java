@@ -1,6 +1,5 @@
 package rete;
 
-import java.util.ArrayList;
 
 public interface IStatisticInterpreter {
 
@@ -17,6 +16,6 @@ public interface IStatisticInterpreter {
 
 	public abstract String getLose();
 
-	public abstract ArrayList<String> getAchievements();
+	public abstract String achievementsToString();
 
 }
