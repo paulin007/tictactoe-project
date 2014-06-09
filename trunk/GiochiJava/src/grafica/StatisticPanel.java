@@ -6,7 +6,6 @@ package grafica;
 
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import rete.IClient;
 import rete.IStatisticInterpreter;
@@ -33,6 +33,7 @@ public class StatisticPanel extends JPanel{
 	private JLabel statisticLabel = new JLabel();
 	private JPanel backgroundPanel = new JPanel();
 	private JPanel achiviementsPanel = new JPanel();
+	private JTextArea achievementsArea = new JTextArea();
 	private Font font = new Font("Verdana", Font.BOLD, 16);
 	
 	public StatisticPanel(IStatisticInterpreter interpreteStatistiche, IClient client){
@@ -52,20 +53,20 @@ public class StatisticPanel extends JPanel{
 	}
 
 	private void setStatisticPanel() {
+		achiviementsPanel.setBackground(new Color(153,203,255));
+		achiviementsPanel.setLayout(new GridLayout(2, 1));
+		achievementsArea.setFont(font);
+		achievementsArea.setBackground(new Color(153,203,255));
+		achiviementsPanel.add(achievementsArea);
 		statisticLabel.setFont(font);
 		achiviementsPanel.add(statisticLabel);
-		achiviementsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
-		achiviementsPanel.setBackground(new Color(153,203,255));
 	}
 
 	private void setBackgroundPanel() {
 		setLayout(null);
-		
 		comboBox1.setBounds(142, 63, 110, 32);
 		comboBox2.setBounds(335, 63, 110, 32);
 		enter.setBounds(250, 143, 89, 23);
-	
-
 		backgroundPanel.setLayout(null);
 		backgroundPanel.add(comboBox1);
 		backgroundPanel.add(comboBox2);
@@ -75,7 +76,6 @@ public class StatisticPanel extends JPanel{
 	
 	private void requestAchiviements() {
 		enter.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String giocatore = (String) comboBox1.getSelectedItem();
@@ -88,8 +88,6 @@ public class StatisticPanel extends JPanel{
 	}
 	
 	private void updateGraphic(){
-		achiviementsPanel.removeAll();
-		achiviementsPanel.setLayout(new GridLayout(interpreteStatistiche.getAchievements().size()+1, 1));
 		addRecord();
 		addAchiviement();
 		updateUI();
@@ -101,10 +99,6 @@ public class StatisticPanel extends JPanel{
 	}
 	
 	private void addAchiviement(){
-		for (int i = 0; i < interpreteStatistiche.getAchievements().size(); i++) {
-			JLabel achievement = new JLabel(interpreteStatistiche.getAchievements().get(i));
-			achievement.setFont(font);
-			achiviementsPanel.add(achievement);
-		}
+		achievementsArea.setText(interpreteStatistiche.achievementsToString());
 	}
 }
