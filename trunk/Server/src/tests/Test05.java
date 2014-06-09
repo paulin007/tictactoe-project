@@ -2,7 +2,7 @@ package tests;
 /**
  * Test sulla classe TerneVincenti
  */
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import gioco.GiochiPresenti;
 import gioco.Partita;
 import gioco.Simbolo;
@@ -14,7 +14,6 @@ import tris.TerneVincenti;
 public class Test05 {
 
 	Partita partita = new Partita(0, Simbolo.simboloG1, Simbolo.simboloG2, GiochiPresenti.tris);
-	TerneVincenti terneVincenti = new TerneVincenti();
 	int N_RIGHE = 3;
 	int N_COLONNE = 3;
 	
@@ -25,7 +24,7 @@ public class Test05 {
 			partita.getTabella().getCaselle().get(N_RIGHE*i).setSimbolo(Simbolo.simboloG1);
 			partita.getTabella().getCaselle().get( N_RIGHE*i + 1).setSimbolo(Simbolo.simboloG1);
 			partita.getTabella().getCaselle().get( N_RIGHE*i + 2).setSimbolo(Simbolo.simboloG1);
-			assertTrue(terneVincenti.vittoriaOrizzontale(partita, Simbolo.simboloG1));
+			assertTrue(TerneVincenti.vittoriaOrizzontale(partita, Simbolo.simboloG1));
 		}
 	}
 	@Test
@@ -35,7 +34,7 @@ public class Test05 {
 			partita.getTabella().getCaselle().get(i).setSimbolo(Simbolo.simboloG1);
 			partita.getTabella().getCaselle().get(i+N_COLONNE).setSimbolo(Simbolo.simboloG1);
 			partita.getTabella().getCaselle().get(i+2*N_COLONNE).setSimbolo(Simbolo.simboloG1);
-			assertTrue(terneVincenti.vittoriaVerticale(partita, Simbolo.simboloG1));
+			assertTrue(TerneVincenti.vittoriaVerticale(partita, Simbolo.simboloG1));
 		}
 		
 	}
@@ -44,7 +43,7 @@ public class Test05 {
 		partita.getTabella().getCaselle().get(0).setSimbolo(Simbolo.simboloG1);
 		partita.getTabella().getCaselle().get(4).setSimbolo(Simbolo.simboloG1);
 		partita.getTabella().getCaselle().get(8).setSimbolo(Simbolo.simboloG1);
-		assertTrue(terneVincenti.vittoriaDiagonale(partita, Simbolo.simboloG1));
+		assertTrue(TerneVincenti.vittoriaDiagonale(partita, Simbolo.simboloG1));
 				
 			
 	}
@@ -53,7 +52,7 @@ public class Test05 {
 		partita.getTabella().getCaselle().get(2).setSimbolo(Simbolo.simboloG1);
 		partita.getTabella().getCaselle().get(4).setSimbolo(Simbolo.simboloG1);
 		partita.getTabella().getCaselle().get(6).setSimbolo(Simbolo.simboloG1);
-		assertTrue(terneVincenti.vittoriaDiagonale(partita, Simbolo.simboloG1));
+		assertTrue(TerneVincenti.vittoriaDiagonale(partita, Simbolo.simboloG1));
 			
 	}	
 
