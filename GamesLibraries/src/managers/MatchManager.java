@@ -21,15 +21,15 @@ public class MatchManager extends Observable implements IMatchManager {
 	}
 
 	@Override
-	public void createNewMatch(String player1, String player2, String game) {
-		message = "nuova partita	" + player1 + "	" + player2 + "\t"+game;
+	public void createNewMatch(String player1, String player2, String gameName) {
+		message = "nuova partita	" + player1 + "	" + player2 + "\t"+gameName;
 		response = client.send(message);
 		interprete.interpret(response);
 	}
 	
 	@Override
-	public void connectToMatch(String player1, String player2) {
-		message = "collegati a	" + player2 + "	" + player1;
+	public void connectToMatch(String player1, String player2, String gameName) {
+		message = "collegati a	" + player2 + "	" + player1+"\t"+gameName;
 		response = client.send(message);
 		interprete.interpret(response);
 	}
