@@ -1,13 +1,15 @@
 package tests;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import forza4Gui.Forza4Panel;
 import grafica.MainPanel;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import managers.MatchManager;
-import managers.PlayerSymbol;
 import managers.TurnManager;
 import rete.Client;
 import rete.MessageInterpreter;
@@ -27,11 +29,10 @@ public class Test07 {
 		MatchManager manager = new MatchManager(new Client(), new MessageInterpreter());
 		TurnManager manager2 = new TurnManager();
 		
-		mainPanel.addGames(new TrisPanel(manager, manager2));
-		mainPanel.addGames(new Forza4Panel(manager, manager2));
 		mainPanel.setGame("forza4");
-		mainPanel.setGames();
-		mainPanel.setGamePanel(PlayerSymbol.PLAYER1_SYMBOL.getSymbol());
+		
+		mainPanel.getGamesMap().put("tris", new TrisPanel(manager, manager2));
+		mainPanel.getGamesMap().put("forza4", new Forza4Panel(manager, manager2));
 		
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {

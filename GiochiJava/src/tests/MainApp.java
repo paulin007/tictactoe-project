@@ -1,7 +1,6 @@
 package tests;
 
 import forza4Gui.Forza4Panel;
-import grafica.GamePanel;
 import grafica.MainPanel;
 import grafica.MenuGui;
 import grafica.WelcomePanel;
@@ -30,13 +29,9 @@ public class MainApp {
 		
 		ITurnManager turnManager = new TurnManager();
 		
-		TrisPanel tris = new TrisPanel(matchManager, turnManager);
-		GamePanel forza4 = new Forza4Panel(matchManager, turnManager);
-		
 		MainPanel mainPanel = new MainPanel(new WelcomePanel());
-		mainPanel.addGames(tris);
-		mainPanel.addGames(forza4);
-		mainPanel.setGames();
+		mainPanel.getGamesMap().put("tris", new TrisPanel(matchManager, turnManager));
+		mainPanel.getGamesMap().put("forza4", new Forza4Panel(matchManager, turnManager));
 		
 		MenuGui menuGui = new MenuGui(mainPanel, matchManager, turnManager, new StatisticInterpreter(), client);
 		

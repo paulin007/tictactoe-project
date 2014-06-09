@@ -58,7 +58,7 @@ public class MenuGui extends JMenuBar {
 	private void setGameMenu(final MainPanel mainPanel) {
 		games.add(tris);
 		games.add(forza4);
-		gameItemListener(tris, mainPanel, "Tris");
+		gameItemListener(tris, mainPanel, "tris");
 		gameItemListener(forza4, mainPanel, "forza4");
 	}
 	
