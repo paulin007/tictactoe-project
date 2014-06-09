@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="forza4.WelcomeActivity"
+            android:name="utils.WelcomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +28,8 @@
         
         <activity android:label="@string/app_name" android:name="forza4.Forza4Activity"/>
          <activity android:label="@string/app_name" android:name="forza4.Forza4Settings"/>
-         <activity android:label="@string/app_name" android:name="paulin.tchonin.trisandroid1.ActivityOnline"/>
-         <activity android:label="@string/app_name" android:name="statistiche.Statistiche"/>
+         <activity android:label="@string/app_name" android:name="tris.TrisActivity"/>
+         <activity android:label="@string/app_name" android:name="stats.Statistics"/>
     </application>
 
 </manifest>

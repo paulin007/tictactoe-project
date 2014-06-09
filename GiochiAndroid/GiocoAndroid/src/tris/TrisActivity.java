@@ -1,7 +1,8 @@
-package paulin.tchonin.trisandroid1;
+package tris;
 
 
 
+import paulin.tchonin.trisandroid1.R;
 import managers.IMatchManager;
 import managers.MatchManager;
 import managers.TurnManager;
@@ -9,7 +10,8 @@ import rete.Client;
 import rete.IClient;
 import rete.IMessageInterpreter;
 import rete.MessageInterpreter;
-import statistiche.Statistiche;
+import stats.Statistics;
+import utils.ButtonClickListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,13 +31,13 @@ import android.widget.ToggleButton;
  * @author Paulin
  * 
  */
-public class ActivityOnline extends Activity {
+public class TrisActivity extends Activity {
 
 	private IClient client = new Client();
 	private TurnManager turnManager = new TurnManager();
 	private IMessageInterpreter messageInterpreter = new MessageInterpreter();
 	private IMatchManager matchManager = new MatchManager(client, messageInterpreter);
-	private GraphicManager graphicManager = new GraphicManager(this, matchManager,turnManager);
+	private GraphicManagerTris graphicManager = new GraphicManagerTris(this, matchManager,turnManager);
 	private String namePlayer1;
 	private String namePlayer2;
 	private boolean connected;
@@ -66,12 +68,12 @@ public class ActivityOnline extends Activity {
 		switch(item.getItemId())
     	{
     	case R.id.statistiche:
-    		Intent intent = new Intent(this, Statistiche.class);
+    		Intent intent = new Intent(this, Statistics.class);
 	        startActivity(intent);
     		break;
     	case R.id.exitGame:
     		matchManager.endMatch();
-    		ActivityOnline.this.finish();
+    		TrisActivity.this.finish();
     		break;
     	
     	}

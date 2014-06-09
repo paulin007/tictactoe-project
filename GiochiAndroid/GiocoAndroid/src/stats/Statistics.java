@@ -1,4 +1,4 @@
-package statistiche;
+package stats;
 
 import paulin.tchonin.trisandroid1.R;
 import rete.Client;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Statistiche extends Activity {
+public class Statistics extends Activity {
 
 	private Button buttonSend;
 	private EditText editTextName = null;
@@ -37,9 +37,6 @@ public class Statistiche extends Activity {
 		achievment = (TextView) findViewById(R.id.achievment);
 		buttonSend = (Button)(this.findViewById(R.id.buttonSend));
     	
-		
-		
-		
 		buttonSend.setOnClickListener(new OnClickListener() {
        
 			@Override
@@ -58,9 +55,6 @@ public class Statistiche extends Activity {
 				
 			}
 		});
-    	
-    	
-    	
-		
+	
 	}
 }
