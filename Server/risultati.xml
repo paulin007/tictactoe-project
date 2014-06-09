@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<giocatori>
+  <giocatore nome="">
+    <sequenzaTris/>
+    <sequenzaForza4/>
+  </giocatore>
+<giocatore nome="Giacomo">
+    <sequenzaTris>V</sequenzaTris>
+    <sequenzaForza4>VV</sequenzaForza4>
+  </giocatore>
+<giocatore nome="Dario">
+    <sequenzaTris>S</sequenzaTris>
+    <sequenzaForza4>S</sequenzaForza4>
+  </giocatore>
+<giocatore nome="paulin">
+    <sequenzaTris/>
+    <sequenzaForza4>S</sequenzaForza4>
+  </giocatore>
+</giocatori>

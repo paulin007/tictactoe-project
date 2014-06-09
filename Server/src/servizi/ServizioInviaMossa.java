@@ -28,8 +28,7 @@ public class ServizioInviaMossa implements IServizio {
 		String mossa = s.nextToken();
 		for (int i = 0; i < partite.size(); i++) {
 			if (partite.get(i).getId() == idPartita) {					
-				
-					if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
+				if(!(partite.get(i).getUltimoGiocatore().equalsIgnoreCase(giocatore)))
 						GiochiPresenti.mappaAlgoritmi.get(partite.get(i).getGioco().toLowerCase()).execute(partite.get(i), giocatore, mossa);
 					String esito = partite.get(i).getRisultato();
 					if(esito.equalsIgnoreCase(Simbolo.simboloG1)){
@@ -45,12 +44,7 @@ public class ServizioInviaMossa implements IServizio {
 						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore1(), "P", partite.get(i).getGioco());
 						xmlmgr.nuovaStatistica(partite.get(i).getGiocatore2(), "P", partite.get(i).getGioco());
 					}
-						
-					
-					partite.get(i).setUltimoGiocatore(giocatore);
-					partite.get(i).setUltimoGiocatore(giocatore);
-					
-					return partite.get(i).toString();
+				return partite.get(i).toString();
 			}
 		}
 		}catch(NumberFormatException ex){
