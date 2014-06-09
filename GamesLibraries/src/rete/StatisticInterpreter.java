@@ -4,41 +4,48 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- * Questa classe ha la responsabilità di interpretare un messaggio, contenente le statistiche dei giochi
+ * Questa classe ha la responsabilità di interpretare un messaggio, contenente
+ * le statistiche dei giochi
  * 
  */
 
 public class StatisticInterpreter implements IStatisticInterpreter {
-	
+
 	private String wins;
 	private String tie;
 	private String lose;
 	private ArrayList<String> achievements = new ArrayList<>();
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see rete.IInterpreteStatistiche#intepreta(java.lang.String)
 	 */
 	@Override
-	public void intepret (String message){
+	public void intepret(String message) {
 		StringTokenizer stringTokenizer = new StringTokenizer(message);
 		wins = stringTokenizer.nextToken();
 		tie = stringTokenizer.nextToken();
 		lose = stringTokenizer.nextToken("@").replace(" ", "");
 		achievements.clear();
-		while(stringTokenizer.hasMoreTokens()){
+		while (stringTokenizer.hasMoreTokens()) {
 			achievements.add(stringTokenizer.nextToken("@"));
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see rete.IInterpreteStatistiche#getVittorie()
 	 */
 	@Override
 	public String getWins() {
 		return wins;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see rete.IInterpreteStatistiche#getPareggi()
 	 */
 	@Override
@@ -46,7 +53,9 @@ public class StatisticInterpreter implements IStatisticInterpreter {
 		return tie;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see rete.IInterpreteStatistiche#getSconfitte()
 	 */
 	@Override
@@ -54,11 +63,22 @@ public class StatisticInterpreter implements IStatisticInterpreter {
 		return lose;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see rete.IInterpreteStatistiche#getAchievements()
 	 */
 	@Override
 	public ArrayList<String> getAchievements() {
+		return achievements;
+	}
+
+	public String achievements() {
+		String achievements = "";
+		for (int i = 0; i < getAchievements().size(); i++) {
+			achievements += getAchievements().get(i) + " \n";
+
+		}
 		return achievements;
 	}
 }
