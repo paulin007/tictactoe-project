@@ -37,7 +37,7 @@
 }
 
 .button {
-	position: absolute      :
+	position: absolute       :
 	width: 60px;
 	top: 50%;
 }
@@ -48,6 +48,8 @@
 	text-align: center;
 	vertical-align: middle;
 	padding: 0px;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .serverButton {

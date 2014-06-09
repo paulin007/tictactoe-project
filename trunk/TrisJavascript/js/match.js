@@ -114,22 +114,19 @@ function checkResult(match) {
 		if (match.matchStatus == "Pareggio") {
 			setInterval(function() {
 				match.ended = true;
-				pareggio();
-				// alert("Pareggio!");
+				alert("Pareggio!");
 				window.location.reload();
 			}, 3000);
 		} else if (match.matchStatus == match.myPlayer) {
 			setInterval(function() {
 				match.ended = true;
-				vittoria(getFirstPlayerName());
-				// alert("Hai vinto!");
+				alert("Hai vinto!");
 				window.location.reload();
 			}, 3000);
 		} else if (match.matchStatus == match.otherPlayer) {
 			setInterval(function() {
 				match.ended = true;
-				sconfitta(getFirstsPlayerName());
-				// alert("Hai perso!");
+				alert("Hai perso!");
 				window.location.reload();
 			}, 3000);
 		}

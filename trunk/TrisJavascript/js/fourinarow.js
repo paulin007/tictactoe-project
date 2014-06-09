@@ -24,13 +24,13 @@ function createFourInARowTable(){
 	var div = document.getElementById('gameTable');
 	div.innerHTML = ("<table class='buttonBar'>"+
 				"<tr>"+
-					"<td class='indicator'><a href='#'><img onclick='myMove(0)' id='b0' src='./img/indicatore1.png' alt='b0'/></a></td>"+
-					"<td class='indicator'><a href='#'><img onclick='myMove(1)' id='b1' src='./img/indicatore1.png' alt='b1'/></a></td>"+
-					"<td class='indicator'><a href='#'><img onclick='myMove(2)' id='b2' src='./img/indicatore1.png' alt='b2'/></a></td>"+
-					"<td class='indicator'><a href='#'><img onclick='myMove(3)' id='b3' src='./img/indicatore1.png' alt='b3'/></a></td>"+
-					"<td class='indicator'><a href='#'><img onclick='myMove(4)' id='b4' src='./img/indicatore1.png' alt='b4'/></a></td>"+
-					"<td class='indicator'><a href='#'><img onclick='myMove(5)' id='b5' src='./img/indicatore1.png' alt='b5'/></a></td>"+
-					"<td class='indicator'><a href='#'><img onclick='myMove(6)' id='b6' src='./img/indicatore1.png' alt='b6'/></a></td>"+
+					"<td class='indicator'><img onclick='myMove(0)' id='b0' src='./img/indicatore1.png' alt='b0'/></td>"+
+					"<td class='indicator'><img onclick='myMove(1)' id='b1' src='./img/indicatore1.png' alt='b1'/></td>"+
+					"<td class='indicator'><img onclick='myMove(2)' id='b2' src='./img/indicatore1.png' alt='b2'/></td>"+
+					"<td class='indicator'><img onclick='myMove(3)' id='b3' src='./img/indicatore1.png' alt='b3'/></td>"+
+					"<td class='indicator'><img onclick='myMove(4)' id='b4' src='./img/indicatore1.png' alt='b4'/></td>"+
+					"<td class='indicator'><img onclick='myMove(5)' id='b5' src='./img/indicatore1.png' alt='b5'/></td>"+
+					"<td class='indicator'><img onclick='myMove(6)' id='b6' src='./img/indicatore1.png' alt='b6'/></td>"+
 				"</tr>"+
 			"</table>"+
 			"<div class='container'>"+
