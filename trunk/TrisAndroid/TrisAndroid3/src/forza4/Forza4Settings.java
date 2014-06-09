@@ -53,8 +53,7 @@ public class Forza4Settings extends Activity implements View.OnClickListener {
 	        startActivity(intent);
 		}
 		else if(v.getId()==R.id.buttonConnect){
-			//TODO
-
+	
 			namePlayer1 = editText1.getText().toString();
 			namePlayer2 = editText2.getText().toString();
 			

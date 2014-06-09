@@ -1,11 +1,10 @@
 package paulin.tchonin.trisandroid1;
 
-import forza4.GraphicManagerForza4;
 import managers.IMatchManager;
 import managers.ITurnManager;
-import managers.TurnManager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import forza4.GraphicManagerForza4;
 
 public class ButtonClickListener implements OnClickListener{
 

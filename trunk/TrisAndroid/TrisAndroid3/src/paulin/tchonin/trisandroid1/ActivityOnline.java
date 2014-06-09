@@ -1,5 +1,7 @@
 package paulin.tchonin.trisandroid1;
 
+
+
 import managers.IMatchManager;
 import managers.MatchManager;
 import managers.TurnManager;
@@ -7,8 +9,13 @@ import rete.Client;
 import rete.IClient;
 import rete.IMessageInterpreter;
 import rete.MessageInterpreter;
+import statistiche.Statistiche;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -37,15 +44,39 @@ public class ActivityOnline extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.screen_online);
+		setContentView(R.layout.screen_online);	
 		
 		graphicManager.createGraphics();
-		
 		toggleButtonStart();
 		toggleButtonConnect();
 	
 	}
 
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.game_menu, menu);
+ 
+    	return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId())
+    	{
+    	case R.id.statistiche:
+    		Intent intent = new Intent(this, Statistiche.class);
+	        startActivity(intent);
+    		break;
+    	case R.id.exitGame:
+    		ActivityOnline.this.finish();
+    		break;
+    	
+    	}
+ 
+    	return true;
+	}
 	// Si occupa di fare iniziare una nuova partita dopo aver premuto il pulsante 'Start'
 	private void toggleButtonStart() {
 
@@ -101,7 +132,7 @@ public class ActivityOnline extends Activity {
 					namePlayer1 = editText1.getText().toString();
 					namePlayer2 = editText2.getText().toString();
 					
-					matchManager.connectToMatch(namePlayer1, namePlayer2);
+					matchManager.connectToMatch(namePlayer1, namePlayer2,"tris");
 					matchManager.requestUpdate();
 					
 					connected = true;

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wood"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@+id/tableRow5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="22dp" >
+
+        <EditText
+            android:id="@+id/name_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/name_player"
+            android:inputType="textPersonName" >
+
+            <requestFocus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </EditText>
+
+        <EditText
+            android:id="@+id/name_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/game"
+            android:inputType="textPersonName" />
+    </TableRow>
+
+     <Button
+         android:id="@+id/buttonSend"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/tableRow5"
+         android:layout_marginLeft="81dp"
+        
+         android:text="Send" />
+
+        <TextView
+            android:id="@+id/result_stat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/buttonSend"
+            android:gravity="center_horizontal"
+            android:textSize="25sp" />
+        
+        <TextView
+            android:id="@+id/achievment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/result_stat"
+            android:gravity="center_horizontal"
+            android:textSize="25sp" />
+    
+</RelativeLayout>

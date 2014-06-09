@@ -28,5 +28,17 @@
         android:maxWidth="400dp"
         android:minWidth="200dp"
         android:text="@string/tris" />
+    
+    <Button
+        android:id="@+id/open_statistiche"
+        style="@style/MyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+         android:layout_below="@+id/open_tris"
+        android:maxWidth="400dp"
+        android:minWidth="200dp"
+        android:text="@string/statistiche" />
 
 </RelativeLayout>
