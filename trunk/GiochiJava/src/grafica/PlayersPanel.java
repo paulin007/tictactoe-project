@@ -97,7 +97,7 @@ public class PlayersPanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				selectPlayers();
 				turnManager.setConnected(true);
-				matchManager.connectToMatch(G1, G2);
+				matchManager.connectToMatch(G1, G2, mainPanel.getGame());
 				matchManager.requestUpdate();
 				setMatch("G2");
 			}
