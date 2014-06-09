@@ -19,7 +19,7 @@
 		<script type="text/javascript" src="./js/info.js"></script>
 		<script type="text/javascript" src="./js/games.js"></script>
 		<script type="text/javascript" src="./js/resultsWindow.js"></script>
-
+		<script type="text/javascript" src="./js/tokenizer.js"></script>
 		<!-- Date: 2014-04-29 -->
 	</head>
 	<body onload="setGameName(processGET());createGamePage(getGameName());createConnection();">
@@ -40,7 +40,7 @@
 			<br />
 			<div class="settings">
 				<div class="wrapper">
-					<a href="#" class="matchButton" onclick="sendNewMatch();return false;">Nuova partita</a>
+					<a href="#" class="matchButton" onclick="createNewMatch();return false;">Nuova partita</a>
 					<a href="#" class="matchButton" onclick="connectToMatch();return false;">Partita esistente</a>
 					<br />
 					<br />

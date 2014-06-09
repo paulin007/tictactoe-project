@@ -13,13 +13,11 @@ function setGameName(name) {
 }
 
 function createGamePage(gameName) {
-	if (gameName.toLowerCase() == "tris") {
+	if (getGameName().toLowerCase() == "tris") {
 		setTicTacToeLogo();
-		TicTacToe();
 		createTrisTable();
-	} else if (gameName.toLowerCase() == "forza4") {
+	} else if (getGameName().toLowerCase() == "forza4") {
 		setFourInARowLogo();
-		FourInARow();
 		createFourInARowTable();
 	};
 }

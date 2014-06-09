@@ -38,7 +38,7 @@ function processMessage(message) {
 function processError(message) {
 }
 
-function sendNewMatch() {
+function createNewMatch() {
 	client_match = new Match(getGameName(), "nuova");
 	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/" + getGameName());
 }

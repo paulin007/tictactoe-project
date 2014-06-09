@@ -1,11 +1,10 @@
 /**
  * Questo js si occupa di gestire interamente lo svolgimento della match
- * 
+ *
  * @author Marco Vanzulli
  */
 
-
-function Match(_gameName,_connection) {
+function Match(_gameName, _connection) {
 	var _gameName, _matchID, _matchStatus, _lastPlayer, _myPlayer, _otherPlayer, _movesDimension, _moves, _connection;
 	var _matchEnded = false;
 	this._connection = _connection;
@@ -15,14 +14,16 @@ function Match(_gameName,_connection) {
 		_movesDimension = 9;
 	} else if (_gameName == "forza4") {
 		_movesDimension = 42;
-	};
-	if (_connection=="nuova") {
-		_myPlayer="G1";
-		_otherPlayer="G2";
-	} else if(_connection=="esistente"){
-		_myPlayer="G2";
-		_otherPlayer="G1";
-	};
+	}
+	;
+	if (_connection == "nuova") {
+		_myPlayer = "G1";
+		_otherPlayer = "G2";
+	} else if (_connection == "esistente") {
+		_myPlayer = "G2";
+		_otherPlayer = "G1";
+	}
+	;
 	_moves = new Array(_movesDimension);
 	Object.defineProperty(this, "gameName", {
 		get : function() {
@@ -98,13 +99,8 @@ function Match(_gameName,_connection) {
 	});
 }
 
-function tokenizeMatch(message, match) {
-	match.matchID = message.split("\t")[1];
-	match.matchStatus = message.split("\t")[2];
-	match.lastPlayer = message.split("\t")[3];
-	for (var i = 0; i < match.moves.length; i++) {
-		match.moves[i] = message.split(" ")[i + 1];
-	};
+function handleMatch(message, match) {
+	tokenizeMatch(message, match);
 	checkResult(match);
 	paint(match.moves);
 }
@@ -112,19 +108,19 @@ function tokenizeMatch(message, match) {
 function checkResult(match) {
 	if (match.matchStatus != "inCorso") {
 		if (match.matchStatus == "Pareggio") {
-			setInterval(function() {
+			setTimeout(function() {
 				match.ended = true;
 				alert("Pareggio!");
 				window.location.reload();
 			}, 3000);
 		} else if (match.matchStatus == match.myPlayer) {
-			setInterval(function() {
+			setTimeout(function() {
 				match.ended = true;
 				alert("Hai vinto!");
 				window.location.reload();
 			}, 3000);
 		} else if (match.matchStatus == match.otherPlayer) {
-			setInterval(function() {
+			setTimeout(function() {
 				match.ended = true;
 				alert("Hai perso!");
 				window.location.reload();

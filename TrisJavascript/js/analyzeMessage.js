@@ -6,12 +6,11 @@
 
 function analyzeMessage(message) {
 	if (message.startsWith("Tris") || message.startsWith("Forza4") || message.startsWith("tris") || message.startsWith("forza4")) {
-		tokenizeMatch(message, getMatch());
+		handleMatch(message, getMatch());
 	}
 		else{
 		tokenizeAchievements(message,getAchievements());
 	}
-	//if(message.startsWith("0"||"1"||"2"||"3"||"4"||"5"||"6"||"7"||"8"||"9"))
 }
 
 function processGET() {
