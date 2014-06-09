@@ -24,6 +24,11 @@ public class Cross implements Icon {
 		return drawer;
 	}
 	
+	/*
+	 * questo metodo assicura che una sola istanza drawer viene usata ovunque
+	 * (non-Javadoc)
+	 * @see java.lang.Object#clone()
+	 */
 	@Override
 	public Cross clone() {		
 		return new Cross(drawer);

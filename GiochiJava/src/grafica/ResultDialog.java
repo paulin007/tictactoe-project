@@ -16,7 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import managers.DefaultSettings;
-
+/**
+ *Questa classe ha la responsabilità di creare un pannello di dialogo per communicare l'esito della partita
+ */
 @SuppressWarnings("serial")
 public class ResultDialog extends JDialog {
 

@@ -1,7 +1,12 @@
 package forza4Gui;
-
+/**
+ * 
+ * Definisce le dimensioni di una casella di Forza4 e permette di ottenere 
+ * la posizione di una qualunque casella in uso
+ */
 public class SymbolPosition {
-public static int VERTICAL_SPACE = 55;
+	
+	public static int VERTICAL_SPACE = 55;
 	
 	public static int INITIAL_SPACE = 156;
 	public static int COLUMNS_NUMBER = 7;

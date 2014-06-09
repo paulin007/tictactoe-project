@@ -14,7 +14,7 @@ import javax.swing.JButton;
 
 import managers.DefaultSettings;
 /**
- * 
+ * questa classe ha la responsabilità di elaborare il comportamento di un bottone durante una partita di Forza4
  * @author gruppo progetto TIC TAC TOE
  */
 @SuppressWarnings("serial")
@@ -44,6 +44,9 @@ public class Forza4Button extends JButton{
 		return this;
 	}
 
+	/**
+	 * Disegna un indicatore secondo l'azione da compiere
+	 */
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
@@ -68,7 +71,11 @@ public class Forza4Button extends JButton{
 		}	
 	}
 	
-
+	/**
+	 * Dato un bottone, modifica la sua locazione per un tempo determinato, mandandolo in alto
+	 * @param forza4Button
+	 * @return task2
+	 */
 	public TimerTask up(final Forza4Button forza4Button){
 		
 		final TimerTask task2 = new TimerTask() {
@@ -89,6 +96,12 @@ public class Forza4Button extends JButton{
 		return task2;
 		
 	}
+	
+	/**
+	 * Dato un bottone, modifica la sua locazione per un tempo determinato, mandandolo in basso
+	 * @param forza4Button
+	 * @return task1
+	 */
 	public TimerTask down(final Forza4Button forza4Button){
 		final TimerTask task1 = new TimerTask() {
 			
@@ -109,6 +122,10 @@ public class Forza4Button extends JButton{
 		return task1;
 	}
 	
+	/**
+	 * Restituisce la classe
+	 * @return Forza4Button
+	 */
 	public JButton convertToJButton(){
 		return this;
 	}

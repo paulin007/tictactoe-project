@@ -14,8 +14,9 @@ import javax.swing.JPanel;
 
 import managers.IMatchManager;
 import managers.ITurnManager;
-
-
+/**
+ * Crea il pannello dove si può scegliere i nomi dei giocatore con la quale si gioca e avviare una partita
+ */
 @SuppressWarnings("serial")
 public class PlayersPanel extends JPanel{
 

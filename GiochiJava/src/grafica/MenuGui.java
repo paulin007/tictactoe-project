@@ -15,7 +15,7 @@ import managers.ITurnManager;
 import rete.IClient;
 import rete.IStatisticInterpreter;
 /**
- * Questa classe ha la reposanbilità di gestire il menu dell'applicazione Tris
+ * Questa classe ha la reposanbilità di gestire il menu dell'applicazione
  */
 @SuppressWarnings("serial")
 public class MenuGui extends JMenuBar {

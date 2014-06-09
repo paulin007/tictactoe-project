@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 import managers.IMatchManager;
 import managers.ITurnManager;
 
-
+/**
+ * Questa classe manda la mossa di un giocatore,
+ */
 public class ButtonListener implements ActionListener {
 
 	private int location;
