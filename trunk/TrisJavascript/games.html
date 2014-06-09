@@ -20,10 +20,11 @@
 		<script type="text/javascript" src="./js/games.js"></script>
 		<script type="text/javascript" src="./js/resultsWindow.js"></script>
 		<script type="text/javascript" src="./js/tokenizer.js"></script>
+		<script type="text/javascript" src="./js/turn.js"></script>
 		<!-- Date: 2014-04-29 -->
 	</head>
 	<body onload="setGameName(processGET());createGamePage(getGameName());createConnection();">
-		<div style="margin-left: 98%;font-family: dosis;">
+		<div style="margin-left: 97%;font-family: dosis;">
 			<a href="./index.html" style="text-decoration: none">Home<img src="./img/home.png" width="35px" height="35px" style="display: block"/></a>
 		</div>
 		<div class="header">
@@ -40,6 +41,10 @@
 			<br />
 			<div class="settings">
 				<div class="wrapper">
+					<div id="turn">
+						<br />
+					</div>
+					<br />
 					<a href="#" class="matchButton" onclick="createNewMatch();return false;">Nuova partita</a>
 					<a href="#" class="matchButton" onclick="connectToMatch();return false;">Partita esistente</a>
 					<br />

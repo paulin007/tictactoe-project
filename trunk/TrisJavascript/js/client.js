@@ -40,11 +40,13 @@ function processError(message) {
 
 function createNewMatch() {
 	client_match = new Match(getGameName(), "nuova");
+	myTurn();
 	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/" + getGameName());
 }
 
 function connectToMatch() {
 	client_match = new Match(getGameName(), "esistente");
+	opponentTurn();
 	getWebSocket().send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName()+"/"+getGameName());
 	setInterval(function() {
 		requestUpdate();
