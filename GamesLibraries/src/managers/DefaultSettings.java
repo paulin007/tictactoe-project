@@ -24,7 +24,7 @@ public class DefaultSettings {
 	private HashMap<String, String> paths = new HashMap<String, String>();
 		
 	private DefaultSettings() {
-	
+		loadMap();
 	}
 	
 	/**
