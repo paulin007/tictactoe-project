@@ -4,10 +4,6 @@
  * @author: Marco Vanzulli
  */
 
-function FourInARow(){
-	return 'forza4';
-}
-
 function setYellowBall(id) {
 	document.getElementById(id).src = './img/palla_gialla.png';
 }

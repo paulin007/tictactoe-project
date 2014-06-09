@@ -13,18 +13,18 @@ function paint(moves) {
 }
 
 function setIconA(id) {
-	if (getGameName().toLowerCase() == TicTacToe().toLowerCase()) {
+	if (getGameName().toLowerCase() == "tris") {
 		setX(id);
-	}else if (getGameName().toLowerCase() == FourInARow().toLowerCase()) { 
+	}else if (getGameName().toLowerCase() == "forza4") { 
 		setYellowBall(id);
 		};
 	}
 
 
 function setIconB(id) {
-	if (getGameName().toLowerCase() == TicTacToe().toLowerCase()) {
+	if (getGameName().toLowerCase() == "tris") {
 		setO(id);
-		}else if (getGameName().toLowerCase() == FourInARow().toLowerCase()) {
+		}else if (getGameName().toLowerCase() == "forza4") {
 		setRedBall(id);
 		};
 	}

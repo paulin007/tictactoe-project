@@ -1,12 +1,18 @@
+.homePageBody {
+	height: 700px;
+	padding: 0px;
+	margin-top: 0px;
+	background-color: #E6F3FA;
+}
 
 #UpperWrapper {
 
 	height: 15%;
 }
 
-#mainTitle {
+.mainTitle {
 	margin: 1px;
-	padding: 0px;
+	padding: 20px;
 	text-align: center;
 	font-family: apple;
 	font-size: 70px;
@@ -17,7 +23,6 @@
 	height: 300px;
 	border: 1px solid black;
 	border-radius: 10px;
-	
 }
 
 .homepageTable {

@@ -4,10 +4,6 @@
  * @author: Marco Vanzulli
  */
 
-function TicTacToe(){
-	return 'tris';
-}
-
 function setX(id) {
 	document.getElementById(id).src = './img/X.png';
 }
