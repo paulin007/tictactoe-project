@@ -23,6 +23,9 @@ public class MappaServizi {
 	private static final String MOSSA = "mossa";
 	private static final String STATISTICHE = "statistiche";
 
+	/**
+	 * Carica la mappa dai servizi gestiti dal server
+	 */
 	public static void caricaServizi() {
 		caricaHashMap(NUOVA_PARTITA.toLowerCase(), new ServizioNuovaPartita());
 		caricaHashMap(COLLEGATI.toLowerCase(), new ServizioCollegamento());

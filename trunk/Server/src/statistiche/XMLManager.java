@@ -1,7 +1,9 @@
 package statistiche;
 
 import java.io.File;
-
+/**
+ * Responsabilità: Gestione di un file Xml
+ */
 public class XMLManager implements IXMLManager {
 
 	File file;

@@ -1,6 +1,8 @@
 
 package forza4;
-
+/**
+ *Responsabiltà: implementa l'algoritmo del gioco Forza4
+ */
 import gioco.Algoritmo;
 import gioco.Partita;
 

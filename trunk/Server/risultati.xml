@@ -5,15 +5,27 @@
     <sequenzaForza4/>
   </giocatore>
 <giocatore nome="Giacomo">
-    <sequenzaTris>V</sequenzaTris>
+    <sequenzaTris>VV</sequenzaTris>
     <sequenzaForza4>VV</sequenzaForza4>
   </giocatore>
 <giocatore nome="Dario">
-    <sequenzaTris>S</sequenzaTris>
+    <sequenzaTris>SV</sequenzaTris>
     <sequenzaForza4>S</sequenzaForza4>
   </giocatore>
 <giocatore nome="paulin">
     <sequenzaTris/>
     <sequenzaForza4>S</sequenzaForza4>
+  </giocatore>
+<giocatore nome="Kokou">
+    <sequenzaTris>SS</sequenzaTris>
+    <sequenzaForza4/>
+  </giocatore>
+<giocatore nome="Marco">
+    <sequenzaTris>V</sequenzaTris>
+    <sequenzaForza4/>
+  </giocatore>
+<giocatore nome="Santo">
+    <sequenzaTris>S</sequenzaTris>
+    <sequenzaForza4/>
   </giocatore>
 </giocatori>

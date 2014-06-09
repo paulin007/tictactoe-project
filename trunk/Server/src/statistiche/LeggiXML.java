@@ -8,7 +8,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
+/**
+ * Questa classe ha la responsabilità di leggere un file Xml e fornire gli achievements 
+ * di un giocatore in un particolare gioco
+ */
 public class LeggiXML {
 
 	public String leggi(File file, String giocatore, String gioco) {
