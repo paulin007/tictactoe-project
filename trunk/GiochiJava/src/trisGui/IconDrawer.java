@@ -9,14 +9,23 @@ import javax.swing.ImageIcon;
 public class IconDrawer {
 	
 	private URL imgUrl;
+	private ImageIcon imgIcon;
 	
 	public IconDrawer(String imgUrl) {
 		this.imgUrl = getClass().getResource(imgUrl);
+		Draw();
 	}
 	
-	public ImageIcon Draw() {
-		
-		return new ImageIcon(imgUrl);
+	/**
+	 * Data un immagine disegna la sua icona
+	 * @return ImageIcon
+	 */
+	public void Draw() {
+		imgIcon = new ImageIcon(imgUrl);
+	}
+	
+	public ImageIcon getIcon() {
+		return imgIcon;
 	}
 
 }

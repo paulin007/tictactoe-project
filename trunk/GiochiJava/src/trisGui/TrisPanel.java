@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import managers.IMatchManager;
 import managers.ITurnManager;
 import managers.PlayerSymbol;
-
+/**
+ * Responsabilità: crea il pannello del gioco Tris usato nell'applicazione
+ */
 @SuppressWarnings("serial")
 public class TrisPanel extends JPanel implements Observer, GamePanel {
 	
@@ -45,6 +47,9 @@ public class TrisPanel extends JPanel implements Observer, GamePanel {
 		return this;
 	}
 	
+	/**
+	 * Installa i componenti iniziali del pannello di gioco Tris
+	 */
 	public void initialSetup() {
 		removeAll();
 		setLayout(null);

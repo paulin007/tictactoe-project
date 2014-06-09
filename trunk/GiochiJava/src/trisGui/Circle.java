@@ -5,6 +5,8 @@ import managers.DefaultSettings;
 
 /**
  * Disegna una delle due icone usate durante un partita
+ * 
+ * @author K. ADJIGNON
  */
 public class Circle implements Icon{
 
@@ -22,9 +24,9 @@ public class Circle implements Icon{
 	private Circle(IconDrawer drawer) {
 		this.drawer=drawer;
 	}
-	
-	/**
-	 * 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#clone()
 	 */
 	@Override
 	public Circle clone() {

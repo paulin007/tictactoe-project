@@ -11,7 +11,10 @@ import javax.swing.JLabel;
 
 import managers.DefaultSettings;
 
-
+/**
+ * Elabora l'aspetto(che cambia secondo il turno, ovvero se è il suo turno di giocare o l'inverso)
+ * del labello con cui stampare i giocatori('G1' o 'G2')
+ */
 @SuppressWarnings("serial")
 public class PlayersLabel extends JLabel{
 	

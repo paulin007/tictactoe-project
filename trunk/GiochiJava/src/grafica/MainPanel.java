@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
-
+/**
+ * Questa classe è basato sul Design Pattern Strategy
+ * Responsabilità: Decide sulla base di un gioco quale pannello utilizzare e impostarlo
+ */
 @SuppressWarnings("serial")
 public class MainPanel extends JPanel {
 	
@@ -15,6 +18,10 @@ public class MainPanel extends JPanel {
 		setPanel(panel);
 	}
 	
+	/**
+	 * Imposta un pannello
+	 * @param panel
+	 */
 	public void setPanel(JPanel panel){
 		removeAll();
 		setLayout(new BorderLayout());
@@ -22,6 +29,10 @@ public class MainPanel extends JPanel {
 		updateUI();
 	}
 	
+	/**
+	 * Imposta il pannello del gioco richiesto
+	 * @param mySymbol
+	 */
 	public void setGamePanel(String mySymbol){
 		gamesMap.get(game).setMySymbol(mySymbol);
 		setPanel(gamesMap.get(game).createPanel());

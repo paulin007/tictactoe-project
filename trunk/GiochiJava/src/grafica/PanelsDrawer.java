@@ -64,15 +64,22 @@ public class PanelsDrawer {
 			forza4Button.add(new Forza4Button());
 		}
 	}
-	
-	//Questo metodo imposta i pulsanti all'interno del Pannello
+	/**
+	 * Questo metodo imposta i pulsanti all'interno del Pannello di gioco Forza4
+	 * 
+	 * @param forza4Button
+	 */
 	public void setPositionForza4Button(ArrayList<Forza4Button> forza4Button){
 		for (int i = 0; i < forza4Button.size(); i++) {
 			forza4Button.get(i).setBounds((SymbolPosition.FIRST_COLUMN+SymbolPosition.VERTICAL_SPACE*i),95,42,38);
 		}
 	}
-	
-	//Aggiungi i pulsanti al pannello
+	/**
+	 * Aggiungi i pulsanti al pannello
+	 * 
+	 * @param panel
+	 * @param forza4Button
+	 */
 	public void setupForza4Button(JPanel panel, ArrayList<Forza4Button> forza4Button){
 		for (int i = 0; i < forza4Button.size(); i++) {
 			panel.add(forza4Button.get(i));
@@ -81,6 +88,15 @@ public class PanelsDrawer {
 		}
 	}
 	
+	/**
+	 * Questo metodo imposta i pulsanti all'interno del Pannello di gioco Tris
+	 * 
+	 * @param panel
+	 * @param boxes
+	 * @param mySymbol
+	 * @param opponentSymbol
+	 * @param gameName
+	 */
 	public void paint(JPanel panel, ArrayList<JButton> boxes, String mySymbol, String opponentSymbol, String gameName){
 
 		ArrayList<String> listaCaselle = matchManager.getInterprete().getBoxes();
@@ -104,7 +120,7 @@ public class PanelsDrawer {
 	
 	private void drawTrisIcon(JButton button, Icon icon, boolean drawable){
 		if(drawable){
-			button.setIcon(icon.getDrawer().Draw());
+			button.setIcon(icon.getDrawer().getIcon());
 		}
 	}
 	
@@ -122,6 +138,13 @@ public class PanelsDrawer {
 		}
 	}
 
+	/**
+	 * Aggiunge i vari labelli di intestazione del gioco al pannello
+	 * 
+	 * @param panel
+	 * @param mySymbol
+	 * @param opponentSymbol
+	 */
 	public void drawPlayersPanel(JPanel panel, String mySymbol, String opponentSymbol){
 		player1 = new PlayersLabel(mySymbol, new Color(196,44,0));
 		player2 = new PlayersLabel(opponentSymbol, new Color(220,213,11));
@@ -147,7 +170,10 @@ public class PanelsDrawer {
 			player2.setColor(Color.GREEN);
 		}
 	}
-	
+	/**
+	 * Imposta il pannello di gioco di Forza4
+	 * @param panel
+	 */
 	public void setupForza4Grid(JPanel panel){
 		JLabel grid = new JLabel();
 		java.net.URL imgUrl2 = getClass().getResource(DefaultSettings.getSettings().getPath("griglia"));

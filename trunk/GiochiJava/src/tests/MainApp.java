@@ -7,7 +7,6 @@ import grafica.WelcomePanel;
 
 import javax.swing.JFrame;
 
-import managers.DefaultSettings;
 import managers.IMatchManager;
 import managers.ITurnManager;
 import managers.MatchManager;
@@ -21,8 +20,6 @@ import trisGui.TrisPanel;
 public class MainApp {
 
 	public static void main(String[] args) {
-		
-		DefaultSettings.getSettings().loadMap();
 		
 		IClient client = new Client();
 		IMatchManager matchManager = new MatchManager(client, new MessageInterpreter());

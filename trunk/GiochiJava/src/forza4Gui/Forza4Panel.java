@@ -18,7 +18,9 @@ import managers.IMatchManager;
 import managers.ITurnManager;
 import managers.DefaultSettings;
 import managers.PlayerSymbol;
-
+/**
+ * Responsabilità: crea il pannello del gioco Forza4 usato nell'applicazione
+ */
 @SuppressWarnings("serial")
 public class Forza4Panel extends JPanel implements Observer, GamePanel {
 
@@ -35,6 +37,9 @@ public class Forza4Panel extends JPanel implements Observer, GamePanel {
 		drawerPanel.createForza4Button(forza4Buttons,7);
 	}
 
+	/**
+	 * Installa i componenti iniziali del pannello di gioco Forza4
+	 */
 	public void setupInziale(){
 		removeAll();
 		setLayout(null);

@@ -8,7 +8,9 @@ import java.io.FileInputStream;
 import javax.swing.JLabel;
 
 import managers.DefaultSettings;
-
+/**
+ * Elabora l'aspetto del labello che mostra la frase di challenge 'VS'
+ */
 @SuppressWarnings("serial")
 public class ChallengeLabel extends JLabel{
 	private String string;

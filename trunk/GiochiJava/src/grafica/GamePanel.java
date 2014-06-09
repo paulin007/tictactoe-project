@@ -6,13 +6,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * Questa classe astrae sul concetto di Pannello che viene utilizzato nell'applicazione Tris
+ * Questa classe descrive un' astrazione sul Pannello usato durante una partita di un gioco,
  */
 public interface GamePanel {
 
 	/**
 	 * Questo metodo permette di creare un pannello e recuperarlo
-	 * @return
+	 * @return panel
 	 */
 	public JPanel createPanel();
 
