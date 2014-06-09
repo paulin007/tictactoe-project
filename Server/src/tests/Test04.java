@@ -4,7 +4,6 @@ package tests;
  * @author Dario
  */
 import static org.junit.Assert.*;
-import forza4.AlgoritmoForza4;
 import forza4.QuaterneVincenti;
 import gioco.GiochiPresenti;
 import gioco.Partita;
@@ -15,7 +14,6 @@ import org.junit.Test;
 public class Test04 {
 
 	Partita partita = new Partita(0, Simbolo.simboloG1, Simbolo.simboloG2, GiochiPresenti.forza4);
-	QuaterneVincenti quaterneVincenti = new QuaterneVincenti();
 	int nRighe = 6;
 	int nColonne = 7;
 	int forza4 = 4;
@@ -29,7 +27,7 @@ public class Test04 {
 				partita.getTabella().getCaselle().get(i+1+j*nColonne).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(i+2+j*nColonne).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(i+3+j*nColonne).setSimbolo(Simbolo.simboloG1);
-				assertTrue(quaterneVincenti.vittoriaOrizzontale(partita, Simbolo.simboloG1));
+				assertTrue(QuaterneVincenti.vittoriaOrizzontale(partita, Simbolo.simboloG1));
 			}
 			
 		}	
@@ -46,7 +44,7 @@ public class Test04 {
 				partita.getTabella().getCaselle().get(nColonne*(i+1)+j).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(nColonne*(i+2)+j).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(nColonne*(i+3)+j).setSimbolo(Simbolo.simboloG1);
-				assertTrue(quaterneVincenti.vittoriaVerticale(partita, Simbolo.simboloG1));
+				assertTrue(QuaterneVincenti.vittoriaVerticale(partita, Simbolo.simboloG1));
 			}
 			
 		}
@@ -62,7 +60,7 @@ public class Test04 {
 				partita.getTabella().getCaselle().get(i+8+nColonne*j).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(i+2*8+nColonne*j).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(i+3*8+nColonne*j).setSimbolo(Simbolo.simboloG1);
-				assertTrue(quaterneVincenti.vittoriaDiagonale1(partita, Simbolo.simboloG1));
+				assertTrue(QuaterneVincenti.vittoriaDiagonale1(partita, Simbolo.simboloG1));
 			}
 			
 		}
@@ -77,7 +75,7 @@ public class Test04 {
 				partita.getTabella().getCaselle().get(i+3+6+nColonne*j).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(i+3+2*6+nColonne*j).setSimbolo(Simbolo.simboloG1);
 				partita.getTabella().getCaselle().get(i+3+3*6+nColonne*j).setSimbolo(Simbolo.simboloG1);
-				assertTrue(quaterneVincenti.vittoriaDiagonale2(partita, Simbolo.simboloG1));
+				assertTrue(QuaterneVincenti.vittoriaDiagonale2(partita, Simbolo.simboloG1));
 			}
 			
 		}
