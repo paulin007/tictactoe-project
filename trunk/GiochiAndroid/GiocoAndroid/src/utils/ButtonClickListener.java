@@ -1,5 +1,6 @@
-package paulin.tchonin.trisandroid1;
+package utils;
 
+import tris.GraphicManagerTris;
 import managers.IMatchManager;
 import managers.ITurnManager;
 import android.view.View;
@@ -10,12 +11,12 @@ public class ButtonClickListener implements OnClickListener{
 
 	private int location;
 	private IMatchManager matchManager;
-	private GraphicManager graphicManager;
+	private GraphicManagerTris graphicManager;
 	private ITurnManager turnManager;
 	private GraphicManagerForza4 graphicManagerForza4;
 	private String gameName;
 	
-	public ButtonClickListener(int location, IMatchManager matchManager, GraphicManager graphicManager, ITurnManager turnManager) {
+	public ButtonClickListener(int location, IMatchManager matchManager, GraphicManagerTris graphicManager, ITurnManager turnManager) {
 		super();
 		this.location = location;
 		this.matchManager = matchManager;
@@ -36,7 +37,7 @@ public class ButtonClickListener implements OnClickListener{
 	public void onClick(View view) {
 		boolean connected;
 		if(gameName.equalsIgnoreCase("tris")){
-		 connected = graphicManager.getActivityOnline().isConnected();
+		 connected = graphicManager.getTrisActivity().isConnected();
 	          
 			if (graphicManager.getBoardButtons()[location].isEnabled()) {
 				

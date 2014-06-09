@@ -1,8 +1,10 @@
-package paulin.tchonin.trisandroid1;
+package tris;
 
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+
+import paulin.tchonin.trisandroid1.R;
 
 import managers.IMatchManager;
 import managers.ITurnManager;
@@ -13,13 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class GraphicManager implements Observer {
+public class GraphicManagerTris implements Observer {
 
 	private static String PLAYER1_SYMBOL = "G1";	//TODO METTERE IN XML
 	private static String PLAYER2_SYMBOL = "G2";	//TODO METTERE IN XML
 	private final static int BOARD_SIZE = 9;
 	private final static char EMPTY_SPACE = ' ';
-	private ActivityOnline activityOnline;
+	private TrisActivity trisActivity;
 	private Button boardButtons[];
 	private TextView infoTextView;
 	private EditText editText1 = null;
@@ -30,8 +32,8 @@ public class GraphicManager implements Observer {
 	private ITurnManager turnManager;
 
 	
-	public GraphicManager(ActivityOnline activityOnline, IMatchManager matchManager, ITurnManager turnManager) {
-		this.activityOnline = activityOnline;
+	public GraphicManagerTris(TrisActivity trisActivity, IMatchManager matchManager, ITurnManager turnManager) {
+		this.trisActivity = trisActivity;
 		this.matchManager = matchManager;
 		matchManager.addObserver(this);
 		this.turnManager = turnManager;
@@ -47,21 +49,21 @@ public class GraphicManager implements Observer {
 
 	public void createGraphics() {
 		boardButtons = new Button[BOARD_SIZE];
-		boardButtons[0] = (Button) activityOnline.findViewById(R.id.one);
-		boardButtons[1] = (Button) activityOnline.findViewById(R.id.two);
-		boardButtons[2] = (Button) activityOnline.findViewById(R.id.three);
-		boardButtons[3] = (Button) activityOnline.findViewById(R.id.four);
-		boardButtons[4] = (Button) activityOnline.findViewById(R.id.five);
-		boardButtons[5] = (Button) activityOnline.findViewById(R.id.six);
-		boardButtons[6] = (Button) activityOnline.findViewById(R.id.seven);
-		boardButtons[7] = (Button) activityOnline.findViewById(R.id.eight);
-		boardButtons[8] = (Button) activityOnline.findViewById(R.id.nine);
-		infoTextView = (TextView) activityOnline.findViewById(R.id.information);
-		editText1 = (EditText) activityOnline.findViewById(R.id.name_player1);
-		editText2 = (EditText) activityOnline.findViewById(R.id.name_player2);
-		connectButton = (ToggleButton) activityOnline
+		boardButtons[0] = (Button) trisActivity.findViewById(R.id.one);
+		boardButtons[1] = (Button) trisActivity.findViewById(R.id.two);
+		boardButtons[2] = (Button) trisActivity.findViewById(R.id.three);
+		boardButtons[3] = (Button) trisActivity.findViewById(R.id.four);
+		boardButtons[4] = (Button) trisActivity.findViewById(R.id.five);
+		boardButtons[5] = (Button) trisActivity.findViewById(R.id.six);
+		boardButtons[6] = (Button) trisActivity.findViewById(R.id.seven);
+		boardButtons[7] = (Button) trisActivity.findViewById(R.id.eight);
+		boardButtons[8] = (Button) trisActivity.findViewById(R.id.nine);
+		infoTextView = (TextView) trisActivity.findViewById(R.id.information);
+		editText1 = (EditText) trisActivity.findViewById(R.id.name_player1);
+		editText2 = (EditText) trisActivity.findViewById(R.id.name_player2);
+		connectButton = (ToggleButton) trisActivity
 				.findViewById(R.id.toggleButtonConnect);
-		startButton = (ToggleButton) activityOnline
+		startButton = (ToggleButton) trisActivity
 				.findViewById(R.id.toggleButtonStart);
 	}
 
@@ -70,7 +72,7 @@ public class GraphicManager implements Observer {
 	 */
 
 	public void paint(final ArrayList<String> caselle) {
-		getActivityOnline().runOnUiThread(new Runnable() {
+		getTrisActivity().runOnUiThread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -95,15 +97,15 @@ public class GraphicManager implements Observer {
 	//Si occupa di decidere in base alla situazione, di quale giocatore è il turno
 	private void setPlayersTurn() {
 //		String ultimoGiocatore = controller.getMatchManager().getInterprete().getUltimoGiocatore();
-		String ultimoGiocatore = activityOnline.getMessageInterpreter().getLastPlayer();
+		String ultimoGiocatore = trisActivity.getMessageInterpreter().getLastPlayer();
 		if(ultimoGiocatore.equalsIgnoreCase(PLAYER2_SYMBOL)){
-			if(activityOnline.isConnected()){
+			if(trisActivity.isConnected()){
 				turnManager.setMyTurn(false);
 			}else{
 				turnManager.setMyTurn(true);
 			}
 		}else if(ultimoGiocatore.equalsIgnoreCase(PLAYER1_SYMBOL)){
-			if(activityOnline.isConnected()){
+			if(trisActivity.isConnected()){
 				turnManager.setMyTurn(true);	
 			}else{
 				turnManager.setMyTurn(false);
@@ -134,8 +136,8 @@ public class GraphicManager implements Observer {
 	
 	//Decide se la partita è finita, e comunica chi è il vincitore
 	private boolean gameOver(){
-		String statoPartita = activityOnline.getMessageInterpreter().getMatchStatus();
-		if(!activityOnline.isConnected()){
+		String statoPartita = trisActivity.getMessageInterpreter().getMatchStatus();
+		if(!trisActivity.isConnected()){
 			if(statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)){
 				infoTextView.setText("Hai vinto!");
 				return true;
@@ -158,14 +160,14 @@ public class GraphicManager implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 
-		ArrayList<String> caselle = activityOnline.getMessageInterpreter().getBoxes();
+		ArrayList<String> caselle = trisActivity.getMessageInterpreter().getBoxes();
 		setPlayersTurn();
 		paint(caselle);
 
 	}
 
-	public ActivityOnline getActivityOnline() {
-		return activityOnline;
+	public TrisActivity getTrisActivity() {
+		return trisActivity;
 	}
 
 	public Button[] getBoardButtons() {

@@ -1,9 +1,10 @@
-package forza4;
+package utils;
 
 
-import paulin.tchonin.trisandroid1.ActivityOnline;
+import forza4.Forza4Settings;
 import paulin.tchonin.trisandroid1.R;
-import statistiche.Statistiche;
+import stats.Statistics;
+import tris.TrisActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 	public void onClick(View v) {
 		if(v.getId()==R.id.open_tris){
         
-		Intent intent = new Intent(this, ActivityOnline.class);
+		Intent intent = new Intent(this, TrisActivity.class);
 	        startActivity(intent);
 		}
 		else if(v.getId()==R.id.open_forza4){
@@ -44,7 +45,7 @@ public class WelcomeActivity extends Activity implements View.OnClickListener{
 			Intent intent = new Intent(this, Forza4Settings.class);
 	        this.startActivity(intent);
 		}else if (v.getId()==R.id.open_statistiche){
-			Intent intent = new Intent(this, Statistiche.class);
+			Intent intent = new Intent(this, Statistics.class);
 	        startActivity(intent);
 		}
 		

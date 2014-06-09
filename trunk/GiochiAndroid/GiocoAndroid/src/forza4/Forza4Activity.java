@@ -4,13 +4,13 @@ package forza4;
 import managers.ITurnManager;
 import managers.MatchManager;
 import managers.TurnManager;
-import paulin.tchonin.trisandroid1.ButtonClickListener;
 import paulin.tchonin.trisandroid1.R;
 import rete.Client;
 import rete.IClient;
 import rete.IMessageInterpreter;
 import rete.MessageInterpreter;
-import statistiche.Statistiche;
+import stats.Statistics;
+import utils.ButtonClickListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -83,7 +83,7 @@ public class Forza4Activity extends Activity{
 		switch(item.getItemId())
     	{	
     	case R.id.statistiche:
-    		Intent intent = new Intent(this, Statistiche.class);
+    		Intent intent = new Intent(this, Statistics.class);
 	        startActivity(intent);
     		break;
     	
