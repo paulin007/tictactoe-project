@@ -54,7 +54,7 @@ public class Statistiche extends Activity {
 		     
 		     infoTextViewSta.append("Vittorie: "+wins+" Pareggi: "+tie+" Sconfitte: "+lose);
 		   
-		     achievment.append(statisticInterpreter.achievements()); 
+		     achievment.append(statisticInterpreter.achievementsToString()); 
 				
 			}
 		});

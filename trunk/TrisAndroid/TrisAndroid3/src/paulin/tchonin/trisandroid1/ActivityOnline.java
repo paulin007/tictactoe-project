@@ -70,6 +70,7 @@ public class ActivityOnline extends Activity {
 	        startActivity(intent);
     		break;
     	case R.id.exitGame:
+    		matchManager.endMatch();
     		ActivityOnline.this.finish();
     		break;
     	
