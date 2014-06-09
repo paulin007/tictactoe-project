@@ -1,6 +1,6 @@
 package forza4;
 
-//import paulin.tchonin.trisandroid1.ClientAndroid;
+
 import managers.ITurnManager;
 import managers.MatchManager;
 import managers.TurnManager;
@@ -10,11 +10,16 @@ import rete.Client;
 import rete.IClient;
 import rete.IMessageInterpreter;
 import rete.MessageInterpreter;
+import statistiche.Statistiche;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
-//import paulin.tchonin.trisandroid1.UIManager;
+
 
 
 
@@ -46,7 +51,7 @@ public class Forza4Activity extends Activity{
         graphicManagerForza4.createGraphics();
         
         final TextView infoTextView = graphicManagerForza4.getInfoTextView();
-        //addListener();
+        
         
         if(message.equals("start")){
         	matchManager.createNewMatch(namePlayer1, namePlayer2,"forza4");
@@ -55,7 +60,7 @@ public class Forza4Activity extends Activity{
         	connected=false;
 			startNewGame();
         	
-        	//TODO implementare dentro il menu stop 
+        	
         	
         }else if(message.equals("connect")){
         	infoTextView.setText(R.string.turn_player2);
@@ -64,6 +69,31 @@ public class Forza4Activity extends Activity{
         }
        
     }
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.game_menu, menu);
+    	
+    	return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId())
+    	{	
+    	case R.id.statistiche:
+    		Intent intent = new Intent(this, Statistiche.class);
+	        startActivity(intent);
+    		break;
+    	
+    	case R.id.exitGame:
+    		Forza4Activity.this.finish();
+    		break;
+    	}
+ 
+    	return true;
+	}
 	
 	
 	private void startNewGame(){
@@ -76,12 +106,11 @@ public class Forza4Activity extends Activity{
 			
 	}
 	
-	
 	private void connectToAGame(){
 		
 		turnManager.setMyTurn(false);
        startNewGame();
-		matchManager.connectToMatch(namePlayer1, namePlayer2);
+		matchManager.connectToMatch(namePlayer1, namePlayer2,"forza4");
 		matchManager.requestUpdate();
 		connected = true;
 	}

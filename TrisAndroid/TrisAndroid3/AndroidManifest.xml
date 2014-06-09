@@ -29,7 +29,7 @@
         <activity android:label="@string/app_name" android:name="forza4.Forza4Activity"/>
          <activity android:label="@string/app_name" android:name="forza4.Forza4Settings"/>
          <activity android:label="@string/app_name" android:name="paulin.tchonin.trisandroid1.ActivityOnline"/>
-       
+         <activity android:label="@string/app_name" android:name="statistiche.Statistiche"/>
     </application>
 
 </manifest>

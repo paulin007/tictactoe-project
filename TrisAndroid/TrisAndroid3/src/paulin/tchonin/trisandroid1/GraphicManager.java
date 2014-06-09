@@ -134,7 +134,6 @@ public class GraphicManager implements Observer {
 	
 	//Decide se la partita è finita, e comunica chi è il vincitore
 	private boolean gameOver(){
-//		String statoPartita = controller.getMatchManager().getInterprete().getStatoPartita();
 		String statoPartita = activityOnline.getMessageInterpreter().getMatchStatus();
 		if(!activityOnline.isConnected()){
 			if(statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)){

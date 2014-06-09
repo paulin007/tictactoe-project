@@ -6,10 +6,8 @@ import java.util.Observer;
 
 import managers.IMatchManager;
 import managers.ITurnManager;
-import paulin.tchonin.trisandroid1.ActivityOnline;
 import paulin.tchonin.trisandroid1.R;
-import android.graphics.Color;
-import android.util.Log;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +19,6 @@ public class GraphicManagerForza4 implements Observer {
 	private static String PLAYER2_SYMBOL = "G2";	//TODO METTERE IN XML
 	private final static int BOARD_SIZE = 42;
 	private final static int BOARD_SIZE_LISTENER = 7;
-	private final static char EMPTY_SPACE = ' ';
 	private Forza4Activity forza4Activity;
 	private TextView infoTextView;
 	private EditText editText1 = null;
@@ -51,7 +48,7 @@ public class GraphicManagerForza4 implements Observer {
 	
 
 	public void createGraphics() {
-		Log.e("create graphic", "forza4 button");
+		
 		  infoTextView = (TextView) forza4Activity.findViewById(R.id.informationforza4);
 
 			

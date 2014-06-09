@@ -29,7 +29,9 @@
     
     <!-- adesso per il menu-->
     <string name="newGame_label">Nuova Partita</string>  
-    <string name="exitGame_label">Esci</string> 
+    <string name="exitGame_label">Esci</string>
+    <string name="statistiche_label">statistiche </string>
+    
     
     
      <string name="player1">Inizia Tu</string>
@@ -51,6 +53,10 @@
      
      <string name="tris"> Play Tris </string>
      <string name="forza_4"> Play Forza 4 </string>
+     <string name="name_player"> name player</string>
+      <string name="game"> game</string>
+      <string name="send">Send</string>
+       <string name="statistiche">Statistiche</string>
      
     
 
