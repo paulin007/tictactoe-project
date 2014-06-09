@@ -67,7 +67,7 @@
         android:layout_below="@+id/tableRow5"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="30dp"
-        android:text="Start" />
+        android:text="@string/start" />
 
     <Button
         android:id="@+id/buttonConnect"
@@ -76,6 +76,6 @@
         android:layout_alignBottom="@+id/buttonStart"
         android:layout_alignParentRight="true"
         android:layout_marginRight="58dp"
-        android:text="Connect" />
+        android:text="@string/connect" />
 
 </RelativeLayout>

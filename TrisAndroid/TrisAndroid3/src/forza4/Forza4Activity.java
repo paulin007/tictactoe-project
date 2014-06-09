@@ -88,6 +88,7 @@ public class Forza4Activity extends Activity{
     		break;
     	
     	case R.id.exitGame:
+    		matchManager.endMatch();
     		Forza4Activity.this.finish();
     		break;
     	}

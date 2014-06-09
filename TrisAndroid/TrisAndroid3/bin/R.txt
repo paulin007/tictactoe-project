@@ -441,6 +441,7 @@ int string about_heading 0x7f0a001c
 int string about_info 0x7f0a001d
 int string action_settings 0x7f0a000e
 int string app_name 0x7f0a000d
+int string connect 0x7f0a0035
 int string contact_heading 0x7f0a001a
 int string contact_info 0x7f0a001b
 int string eight 0x7f0a0017
@@ -467,6 +468,7 @@ int string send 0x7f0a0032
 int string server 0x7f0a002d
 int string seven 0x7f0a0016
 int string six 0x7f0a0015
+int string start 0x7f0a0034
 int string statistiche 0x7f0a0033
 int string statistiche_label 0x7f0a0020
 int string three 0x7f0a0012

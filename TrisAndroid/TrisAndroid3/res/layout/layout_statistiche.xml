@@ -40,7 +40,7 @@
          android:layout_below="@+id/tableRow5"
          android:layout_marginLeft="81dp"
         
-         android:text="Send" />
+         android:text="@string/send" />
 
         <TextView
             android:id="@+id/result_stat"
