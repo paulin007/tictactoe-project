@@ -102,6 +102,7 @@ function Match(_gameName, _connection) {
 function handleMatch(message, match) {
 	tokenizeMatch(message, match);
 	checkResult(match);
+	setTurn(match);
 	paint(match.moves);
 }
 
@@ -136,6 +137,5 @@ function myMove(id) {
 		setInterval(function() {
 			requestUpdate();
 		}, 5000);
-	};
+	}
 }
-
