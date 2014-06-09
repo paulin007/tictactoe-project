@@ -13,7 +13,7 @@ public class MatchManager extends Observable implements IMatchManager {
 	private String message;
 	private String response;
 	private IClient client;
-	private Timer timer = new Timer();
+	private Timer timer;
 
 	public MatchManager(IClient client, IMessageInterpreter interprete) {
 		this.client = client;
@@ -25,6 +25,7 @@ public class MatchManager extends Observable implements IMatchManager {
 		message = "nuova partita	" + player1 + "	" + player2 + "\t"+gameName;
 		response = client.send(message);
 		interprete.interpret(response);
+		timer = new Timer();
 	}
 	
 	@Override
@@ -32,6 +33,7 @@ public class MatchManager extends Observable implements IMatchManager {
 		message = "collegati a	" + player2 + "	" + player1+"\t"+gameName;
 		response = client.send(message);
 		interprete.interpret(response);
+		timer = new Timer();
 	}
 
 	public void sendMove(int location) {
