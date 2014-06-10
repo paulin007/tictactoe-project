@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
+/**
+ * Responsabilità: Recupera gli elementi grafici dal Layout
+ */
 public class GraphicManagerForza4 implements Observer {
 
 	private static String PLAYER1_SYMBOL = "G1";	//TODO METTERE IN XML
@@ -39,14 +41,18 @@ public class GraphicManagerForza4 implements Observer {
 		
 	}
 	
-	
+	/**
+	 * Reinizializza la griglia del gioco
+	 */
 	public void clear() {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			boardButtons[i].setBackgroundResource(R.drawable.decor_0);
 		}	
 	}
 	
-
+	/**
+	 * Crea la grafica di forza4Activity
+	 */
 	public void createGraphics() {
 		
 		  infoTextView = (TextView) forza4Activity.findViewById(R.id.informationforza4);

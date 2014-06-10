@@ -15,10 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+/**
+ * Responsabilità: Recupera gli elementi grafici dal Layout
+ */
 public class GraphicManagerTris implements Observer {
 
-	private static String PLAYER1_SYMBOL = "G1";	//TODO METTERE IN XML
-	private static String PLAYER2_SYMBOL = "G2";	//TODO METTERE IN XML
+	private static String PLAYER1_SYMBOL = "G1"; // TODO METTERE IN XML
+	private static String PLAYER2_SYMBOL = "G2"; // TODO METTERE IN XML
 	private final static int BOARD_SIZE = 9;
 	private final static char EMPTY_SPACE = ' ';
 	private TrisActivity trisActivity;
@@ -31,21 +34,19 @@ public class GraphicManagerTris implements Observer {
 	private IMatchManager matchManager;
 	private ITurnManager turnManager;
 
-	
-	public GraphicManagerTris(TrisActivity trisActivity, IMatchManager matchManager, ITurnManager turnManager) {
+	public GraphicManagerTris(TrisActivity trisActivity,
+			IMatchManager matchManager, ITurnManager turnManager) {
 		this.trisActivity = trisActivity;
 		this.matchManager = matchManager;
 		matchManager.addObserver(this);
 		this.turnManager = turnManager;
 	}
-	
-	
+
 	public void clear() {
 		for (int i = 0; i < BOARD_SIZE; i++) {
 			boardButtons[i].setText(String.valueOf(EMPTY_SPACE));
 		}
 	}
-	
 
 	public void createGraphics() {
 		boardButtons = new Button[BOARD_SIZE];
@@ -73,7 +74,7 @@ public class GraphicManagerTris implements Observer {
 
 	public void paint(final ArrayList<String> caselle) {
 		getTrisActivity().runOnUiThread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 
@@ -85,39 +86,42 @@ public class GraphicManagerTris implements Observer {
 					}
 				}
 				handleTurn();
-				
-				if(gameOver()){
-				matchManager.endMatch();
+
+				if (gameOver()) {
+					matchManager.endMatch();
 				}
-				
+
 			}
-		});		
+		});
 	}
-	
-	//Si occupa di decidere in base alla situazione, di quale giocatore è il turno
+
+	// Si occupa di decidere in base alla situazione, di quale giocatore è il
+	// turno
 	private void setPlayersTurn() {
-//		String ultimoGiocatore = controller.getMatchManager().getInterprete().getUltimoGiocatore();
-		String ultimoGiocatore = trisActivity.getMessageInterpreter().getLastPlayer();
-		if(ultimoGiocatore.equalsIgnoreCase(PLAYER2_SYMBOL)){
-			if(trisActivity.isConnected()){
+		// String ultimoGiocatore =
+		// controller.getMatchManager().getInterprete().getUltimoGiocatore();
+		String ultimoGiocatore = trisActivity.getMessageInterpreter()
+				.getLastPlayer();
+		if (ultimoGiocatore.equalsIgnoreCase(PLAYER2_SYMBOL)) {
+			if (trisActivity.isConnected()) {
 				turnManager.setMyTurn(false);
-			}else{
+			} else {
 				turnManager.setMyTurn(true);
 			}
-		}else if(ultimoGiocatore.equalsIgnoreCase(PLAYER1_SYMBOL)){
-			if(trisActivity.isConnected()){
-				turnManager.setMyTurn(true);	
-			}else{
+		} else if (ultimoGiocatore.equalsIgnoreCase(PLAYER1_SYMBOL)) {
+			if (trisActivity.isConnected()) {
+				turnManager.setMyTurn(true);
+			} else {
 				turnManager.setMyTurn(false);
 			}
 		}
 	}
-	
-	//Gestisce la visualizzazione dei turni su UI
+
+	// Gestisce la visualizzazione dei turni su UI
 	private void handleTurn() {
-		if(turnManager.isMyTurn()){
+		if (turnManager.isMyTurn()) {
 			infoTextView.setText(R.string.turn_player1);
-		}else if(!turnManager.isMyTurn()){
+		} else if (!turnManager.isMyTurn()) {
 			infoTextView.setText(R.string.turn_player2);
 		}
 	}
@@ -131,25 +135,26 @@ public class GraphicManagerTris implements Observer {
 			boardButtons[location].setTextColor(Color.RED);
 		}
 		boardButtons[location].setEnabled(false);
-		
+
 	}
-	
-	//Decide se la partita è finita, e comunica chi è il vincitore
-	private boolean gameOver(){
-		String statoPartita = trisActivity.getMessageInterpreter().getMatchStatus();
-		if(!trisActivity.isConnected()){
-			if(statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)){
+
+	// Decide se la partita è finita, e comunica chi è il vincitore
+	private boolean gameOver() {
+		String statoPartita = trisActivity.getMessageInterpreter()
+				.getMatchStatus();
+		if (!trisActivity.isConnected()) {
+			if (statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)) {
 				infoTextView.setText("Hai vinto!");
 				return true;
-			}else if(statoPartita.equalsIgnoreCase(PLAYER2_SYMBOL)){
+			} else if (statoPartita.equalsIgnoreCase(PLAYER2_SYMBOL)) {
 				infoTextView.setText("Hai perso!");
 				return true;
 			}
-		}else{
-			if(statoPartita.equalsIgnoreCase(PLAYER2_SYMBOL)){
+		} else {
+			if (statoPartita.equalsIgnoreCase(PLAYER2_SYMBOL)) {
 				infoTextView.setText("Hai vinto!");
 				return true;
-			}else if(statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)){
+			} else if (statoPartita.equalsIgnoreCase(PLAYER1_SYMBOL)) {
 				infoTextView.setText("Hai perso!");
 				return true;
 			}
@@ -160,7 +165,8 @@ public class GraphicManagerTris implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 
-		ArrayList<String> caselle = trisActivity.getMessageInterpreter().getBoxes();
+		ArrayList<String> caselle = trisActivity.getMessageInterpreter()
+				.getBoxes();
 		setPlayersTurn();
 		paint(caselle);
 

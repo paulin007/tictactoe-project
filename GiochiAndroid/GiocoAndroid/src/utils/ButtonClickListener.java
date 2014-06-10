@@ -6,7 +6,9 @@ import managers.ITurnManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import forza4.GraphicManagerForza4;
-
+/**
+ * Associa un listener ad ogni bottone o dice cosa deve fare quando un bottone viene schiacciato
+ */
 public class ButtonClickListener implements OnClickListener{
 
 	private int location;
@@ -16,6 +18,9 @@ public class ButtonClickListener implements OnClickListener{
 	private GraphicManagerForza4 graphicManagerForza4;
 	private String gameName;
 	
+	/*
+	 * Questo è il costruttore usato per Tris
+	 */
 	public ButtonClickListener(int location, IMatchManager matchManager, GraphicManagerTris graphicManager, ITurnManager turnManager) {
 		super();
 		this.location = location;
@@ -25,6 +30,9 @@ public class ButtonClickListener implements OnClickListener{
 		this.gameName = "tris";
 	}
 	
+	/*
+	 * Questo è il costruttore usato per Forza4
+	 */
 	public ButtonClickListener(int location, IMatchManager matchManager, GraphicManagerForza4 graphicManagerForza4, ITurnManager turnManager) {
 		super();
 		this.location = location;
