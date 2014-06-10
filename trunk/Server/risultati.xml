@@ -10,22 +10,26 @@
   </giocatore>
 <giocatore nome="Dario">
     <sequenzaTris>SV</sequenzaTris>
-    <sequenzaForza4>S</sequenzaForza4>
+    <sequenzaForza4>SV</sequenzaForza4>
   </giocatore>
 <giocatore nome="paulin">
     <sequenzaTris/>
     <sequenzaForza4>S</sequenzaForza4>
   </giocatore>
 <giocatore nome="Kokou">
-    <sequenzaTris>SS</sequenzaTris>
-    <sequenzaForza4/>
+    <sequenzaTris>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSUCA</sequenzaTris>
+    <sequenzaForza4>S</sequenzaForza4>
   </giocatore>
 <giocatore nome="Marco">
-    <sequenzaTris>V</sequenzaTris>
-    <sequenzaForza4/>
+    <sequenzaTris>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSV</sequenzaTris>
+    <sequenzaForza4>SSSS</sequenzaForza4>
   </giocatore>
 <giocatore nome="Santo">
     <sequenzaTris>S</sequenzaTris>
     <sequenzaForza4/>
+  </giocatore>
+<giocatore nome="Andrea">
+    <sequenzaTris>VVVVVVVVVVVVVVVVVVVVVVVVS</sequenzaTris>
+    <sequenzaForza4>VVVV</sequenzaForza4>
   </giocatore>
 </giocatori>

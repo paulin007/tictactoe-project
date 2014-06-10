@@ -19,8 +19,7 @@ public class AlgoritmoTris implements Algoritmo {
 	 * @param mossa
 	 */
 	public String execute(Partita partita, String giocatore, String mossa) {
-		if (partita.getTabella().getCaselle().get(Integer.valueOf(mossa))
-				.isVuota()) {
+		if (partita.getTabella().getCaselle().get(Integer.valueOf(mossa)).isVuota()) {
 			partita.getTabella().getCaselle().get(Integer.valueOf(mossa)).setSimbolo(giocatore);
 			partita.setUltimoGiocatore(giocatore);
 			if(TerneVincenti.terneVincenti(partita, giocatore)){
