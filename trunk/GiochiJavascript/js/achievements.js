@@ -45,3 +45,13 @@ function Achievements(){
 function writeAchievements(string) {
 	document.getElementById("logArea").value += string;
 }
+
+function requestAchievements() {
+	var achievements = new Achievements();
+	var string = "statistiche/" + getFirstPlayerName() + "/" + getSelectedGameName();
+	getWebSocket().send(string);
+	
+	getAchievements = function() {
+		return achievements;
+	};
+}

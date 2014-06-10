@@ -1,4 +1,6 @@
 /**
+ * Questo js si occupa di settare e restituire il nome del gioco selezionato e anche di crearne dinamicamente la pagina
+ * 
  * @author Marco Vanzulli
  */
 

@@ -5,8 +5,6 @@
  * @author Marco Vanzulli
  */
 
-var client_match;
-
 function createConnection() {
 
 	webSocket = new WebSocket("ws://localhost:45454");
@@ -38,39 +36,3 @@ function processMessage(message) {
 function processError(message) {
 }
 
-function createNewMatch() {
-	client_match = new Match(getGameName(), "nuova");
-	myTurn();
-	getWebSocket().send("nuova partita/" + getFirstPlayerName() + "/" + getSecondPlayerName() + "/" + getGameName());
-}
-
-function connectToMatch() {
-	client_match = new Match(getGameName(), "esistente");
-	opponentTurn();
-	getWebSocket().send("collegati a/" + getSecondPlayerName() + "/" + getFirstPlayerName()+"/"+getGameName());
-	setInterval(function() {
-		requestUpdate();
-	}, 5000);
-
-}
-
-function requestUpdate() {
-	if (getMatch().matchStatus == "inCorso") {
-		string = "update/" + getMatch().matchID;
-		getWebSocket().send(string);
-	}
-}
-
-function requestAchievements() {
-	var achievements = new Achievements();
-	var string = "statistiche/" + getFirstPlayerName() + "/" + getSelectedGameName();
-	getWebSocket().send(string);
-	
-	getAchievements = function() {
-		return achievements;
-	};
-}
-
-function getMatch() {
-	return client_match;
-}
