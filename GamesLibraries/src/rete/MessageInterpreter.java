@@ -3,7 +3,7 @@ package rete;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 /**
- * questa classe ha la responsabilit√† di interpretare il messaggio ricevuto dal server
+ * questa classe ha la responsabilita† di interpretare il messaggio ricevuto dal server
  */
 public class MessageInterpreter implements IMessageInterpreter {
 	
@@ -35,6 +35,13 @@ public class MessageInterpreter implements IMessageInterpreter {
 	@Override
 	public String getServiceRequest() {
 		return serviceRequest;
+	}
+	
+	public void setLastPlayer(String lastPlayer) {
+		this.lastPlayer = lastPlayer;
+	}
+	public void setMatchID(String matchID) {
+		this.matchID = matchID;
 	}
 
 	/* (non-Javadoc)

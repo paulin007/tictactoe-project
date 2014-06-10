@@ -1,7 +1,7 @@
 package managers;
 
 /**
- * Classe la cui responsabilità è quella di
+ * Classe la cui responsabilita� a quella di
  * gestire i turni di gioco
  * @author Santo Amedeo
  *

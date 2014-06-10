@@ -77,6 +77,10 @@ public class MatchManager extends Observable implements IMatchManager {
 	public IMessageInterpreter getInterprete() {
 		return interpreter;
 	}
+	public String getResponse() {
+		return response;
+	}
+	
 	
 	public void updateModel() {
 		setChanged();
