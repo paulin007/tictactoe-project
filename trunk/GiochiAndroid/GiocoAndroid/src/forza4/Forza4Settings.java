@@ -25,7 +25,6 @@ public class Forza4Settings extends Activity implements View.OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_name);
 		init();
-
 	}
 
 	private void init() {
@@ -33,10 +32,8 @@ public class Forza4Settings extends Activity implements View.OnClickListener {
 		startButton.setOnClickListener(this);
 		connectButton = (Button) (this.findViewById(R.id.buttonConnect));
 		connectButton.setOnClickListener(this);
-
 		editText1 = (EditText) findViewById(R.id.name_player1);
 		editText2 = (EditText) findViewById(R.id.name_player2);
-
 	}
 
 	@Override
@@ -54,7 +51,6 @@ public class Forza4Settings extends Activity implements View.OnClickListener {
 
 			namePlayer1 = editText1.getText().toString();
 			namePlayer2 = editText2.getText().toString();
-
 			Intent intent = new Intent(this, Forza4Activity.class);
 			intent.putExtra("namePlayer1", namePlayer1);
 			intent.putExtra("namePlayer2", namePlayer2);

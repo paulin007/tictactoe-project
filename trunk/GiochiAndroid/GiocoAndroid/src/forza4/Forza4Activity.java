@@ -42,14 +42,11 @@ public class Forza4Activity extends Activity {
 		setContentView(R.layout.layout_forza4);
 
 		// recuperiamo alcuni variabile dell'activiy precedente
-
 		Bundle intent = getIntent().getExtras();
 		namePlayer1 = intent.getString("namePlayer1");
 		namePlayer2 = intent.getString("namePlayer2");
 		message = intent.getString("message");
-
 		graphicManagerForza4.createGraphics();
-
 		final TextView infoTextView = graphicManagerForza4.getInfoTextView();
 
 		if (message.equals("start")) {
@@ -58,20 +55,16 @@ public class Forza4Activity extends Activity {
 			infoTextView.setText(R.string.turn_player1);
 			connected = false;
 			startNewGame();
-
 		} else if (message.equals("connect")) {
 			infoTextView.setText(R.string.turn_player2);
 			connectToAGame();
-
 		}
-
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.game_menu, menu);
-
 		return true;
 	}
 
@@ -82,36 +75,31 @@ public class Forza4Activity extends Activity {
 			Intent intent = new Intent(this, Statistics.class);
 			startActivity(intent);
 			break;
-
 		case R.id.exitGame:
 			matchManager.endMatch();
 			Forza4Activity.this.finish();
 			break;
 		}
-
 		return true;
 	}
 
 	private void startNewGame() {
-
 		Button[] listenerButtons = graphicManagerForza4.getListenerButtons();
 		graphicManagerForza4.clear();
 		for (int i = 0; i < listenerButtons.length; i++) {
 			listenerButtons[i].setOnClickListener(new ButtonClickListener(i,
 					matchManager, graphicManagerForza4, turnManager));
 		}
-
 	}
 
 	private void connectToAGame() {
-
 		turnManager.setMyTurn(false);
 		startNewGame();
 		matchManager.connectToMatch(namePlayer1, namePlayer2, "forza4");
 		matchManager.requestUpdate();
 		connected = true;
 	}
-
+	
 	public boolean isConnected() {
 		return connected;
 	}

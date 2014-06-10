@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 /**
  * Responsabilità: Gestisce gli achievements dei giocatori
  */
@@ -25,37 +26,35 @@ public class Statistics extends Activity {
 	private TextView achievment;
 	private IClient client = new Client();
 	private StatisticInterpreter statisticInterpreter = new StatisticInterpreter();
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.layout_statistiche);
-		
 		editTextName = (EditText) findViewById(R.id.name_player);
 		editTextGame = (EditText) findViewById(R.id.name_game);
-		infoTextViewSta= (TextView) findViewById(R.id.result_stat);
+		infoTextViewSta = (TextView) findViewById(R.id.result_stat);
 		achievment = (TextView) findViewById(R.id.achievment);
-		buttonSend = (Button)(this.findViewById(R.id.buttonSend));
-    	
+		buttonSend = (Button) (this.findViewById(R.id.buttonSend));
+		
 		buttonSend.setOnClickListener(new OnClickListener() {
-       
+
 			@Override
 			public void onClick(View v) {
 				namePlayer = editTextName.getText().toString();
 				nameGame = editTextGame.getText().toString();
-			 String response = client.send("statistiche	"+namePlayer+"	"+nameGame);
-		     statisticInterpreter.intepret(response);
-		     String wins = statisticInterpreter.getWins();
-		     String tie  = statisticInterpreter.getTie();
-		     String lose = statisticInterpreter.getLose();
-		     
-		     infoTextViewSta.append("Vittorie: "+wins+" Pareggi: "+tie+" Sconfitte: "+lose);
-		   
-		     achievment.append(statisticInterpreter.achievementsToString()); 
-				
+				String response = client.send("statistiche	" + namePlayer + "	"
+						+ nameGame);
+				statisticInterpreter.intepret(response);
+				String wins = statisticInterpreter.getWins();
+				String tie = statisticInterpreter.getTie();
+				String lose = statisticInterpreter.getLose();
+				infoTextViewSta.append("Vittorie: " + wins + " Pareggi: " + tie
+						+ " Sconfitte: " + lose);
+				achievment.append(statisticInterpreter.achievementsToString());
 			}
 		});
-	
+
 	}
 }

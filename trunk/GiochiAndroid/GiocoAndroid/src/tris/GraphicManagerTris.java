@@ -20,8 +20,8 @@ import android.widget.ToggleButton;
  */
 public class GraphicManagerTris implements Observer {
 
-	private static String PLAYER1_SYMBOL = "G1"; // TODO METTERE IN XML
-	private static String PLAYER2_SYMBOL = "G2"; // TODO METTERE IN XML
+	private static String PLAYER1_SYMBOL = "G1"; 
+	private static String PLAYER2_SYMBOL = "G2"; 
 	private final static int BOARD_SIZE = 9;
 	private final static char EMPTY_SPACE = ' ';
 	private TrisActivity trisActivity;
@@ -50,15 +50,15 @@ public class GraphicManagerTris implements Observer {
 
 	public void createGraphics() {
 		boardButtons = new Button[BOARD_SIZE];
-		boardButtons[0] = (Button) trisActivity.findViewById(R.id.one);
-		boardButtons[1] = (Button) trisActivity.findViewById(R.id.two);
-		boardButtons[2] = (Button) trisActivity.findViewById(R.id.three);
-		boardButtons[3] = (Button) trisActivity.findViewById(R.id.four);
-		boardButtons[4] = (Button) trisActivity.findViewById(R.id.five);
-		boardButtons[5] = (Button) trisActivity.findViewById(R.id.six);
-		boardButtons[6] = (Button) trisActivity.findViewById(R.id.seven);
-		boardButtons[7] = (Button) trisActivity.findViewById(R.id.eight);
-		boardButtons[8] = (Button) trisActivity.findViewById(R.id.nine);
+		
+		int[] board = {R.id.one,R.id.two,R.id.three,R.id.four,R.id.five,
+				R.id.six,R.id.seven,R.id.eight,R.id.nine};
+		
+		for (int i = 0; i < board.length; i++) {
+			boardButtons[i] = (Button) trisActivity.findViewById(board[i]);
+		}
+		
+		
 		infoTextView = (TextView) trisActivity.findViewById(R.id.information);
 		editText1 = (EditText) trisActivity.findViewById(R.id.name_player1);
 		editText2 = (EditText) trisActivity.findViewById(R.id.name_player2);
@@ -90,7 +90,6 @@ public class GraphicManagerTris implements Observer {
 				if (gameOver()) {
 					matchManager.endMatch();
 				}
-
 			}
 		});
 	}
@@ -98,8 +97,6 @@ public class GraphicManagerTris implements Observer {
 	// Si occupa di decidere in base alla situazione, di quale giocatore è il
 	// turno
 	private void setPlayersTurn() {
-		// String ultimoGiocatore =
-		// controller.getMatchManager().getInterprete().getUltimoGiocatore();
 		String ultimoGiocatore = trisActivity.getMessageInterpreter()
 				.getLastPlayer();
 		if (ultimoGiocatore.equalsIgnoreCase(PLAYER2_SYMBOL)) {
