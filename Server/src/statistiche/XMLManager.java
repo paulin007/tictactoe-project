@@ -2,34 +2,35 @@ package statistiche;
 
 import java.io.File;
 /**
- * Responsabilità: Gestione di un file Xml
+ * Manager di un XML. Si occupa della corretta creazione ed assegnazione di un XML e della 
+ * gestione della richiesta delle statistiche e dell'inserimento delle statistiche.
  */
 public class XMLManager implements IXMLManager {
 
 	File file;
-	CreatoreXML crea;
-	ScriviXML scrittore;
-	LeggiXML lettore;
+	XMLCreator creator;
+	XMLWriter writer;
+	XMLReader reader;
 
 	public XMLManager() {
 		file = new File("risultati.xml");
-		scrittore = new ScriviXML();
-		lettore = new LeggiXML();
+		writer = new XMLWriter();
+		reader = new XMLReader();
 		
 		if (!file.exists())
-			 crea = new CreatoreXML("risultati.xml");
+			 creator = new XMLCreator("risultati.xml");
 
 	}
 
 	@Override
-	public String richiediStatistica(String giocatore, String gioco) {
-		String lettura = lettore.leggi(file, giocatore, gioco);
-		return lettura;
+	public String getStatistic(String player, String game) {
+		String statistic = reader.read(file, player, game);
+		return statistic;
 	}
 
 	@Override
-	public void nuovaStatistica(String giocatore, String esito, String gioco) {
-		scrittore.scrivi(file, gioco, giocatore, esito);
+	public void newStatistic(String player, String score, String game) {
+		writer.write(file, game, player, score);
 	}
 
 }

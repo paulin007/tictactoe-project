@@ -28,13 +28,12 @@ public class ServerWeb {
 	private static ServerSocket servSock;
 	private static final int PORT = 45444;
 	private static Scanner input;
-	private static ArrayList<Partita> partite = new ArrayList<Partita>();
-	private static MyWebSocketHandler handler = new MyWebSocketHandler();
+	private static ArrayList<Partita> matches = new ArrayList<Partita>();
 
 	public static void main(String[] args) throws Exception {
 
-		MappaServizi.caricaServizi();		//Carica i possibili servizi che il server puo effettuare
-		GiochiPresenti.caricaAlgoritmi();	//Carica i possibili algoritmi che il server può eseguire
+		ServicesMap.loadServices();		//Carica i possibili servizi che il server puo effettuare
+		GiochiPresenti.loadAlgos();	//Carica i possibili algoritmi che il server può eseguire
 		
 		Server server = new Server(45454);
 		WebSocketHandler wsHandler = new WebSocketHandler() {
@@ -45,24 +44,23 @@ public class ServerWeb {
 		};
 
 		server.setHandler(wsHandler);
-		handler.setPartite(partite);
+		MyWebSocketHandler.setMatches(matches);
 		server.start();
 
 		System.out.println("Apertura porta: " + PORT + "\n");
 		try {
 			servSock = new ServerSocket(PORT);
 		} catch (IOException ioEx) {
-			System.out
-					.println("Impossibile aprire la porta. Controlla il firewall!");
+			System.out.println("Impossibile aprire la porta. Controlla il firewall!");
 			System.exit(1);
 		}
 		do {
-			gestoreClient();
+			handleClient();
 		} while (true);
 
 	}
 
-	private static void gestoreClient() {
+	private static void handleClient() {
 
 		Socket link = null;
 		try {
@@ -75,18 +73,17 @@ public class ServerWeb {
 
 			System.err.println("CLIENT< " + message);
 
-			// TODO Change StringTokenizer in XML format
 			StringTokenizer s = new StringTokenizer(message, "/	");
 
 			String operazione = s.nextToken();
 
-			if (!(MappaServizi.getMappa().containsKey(operazione.toLowerCase())))
-				throw new EccezioniServer("Operazione non esistente", s);
-			output.println(MappaServizi.getMappa().get(operazione.toLowerCase()).effettuaServizio(s, partite));
+			if (!(ServicesMap.getMappa().containsKey(operazione.toLowerCase())))
+				throw new ServerExceptions("Operazione non esistente", s);
+			output.println(ServicesMap.getMappa().get(operazione.toLowerCase()).handleService(s, matches));
 
 		} catch (IOException ioEx) {
 			ioEx.printStackTrace();
-		} catch (EccezioniServer e) {
+		} catch (ServerExceptions e) {
 			e.printStackTrace();
 		}
 

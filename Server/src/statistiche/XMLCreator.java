@@ -14,11 +14,11 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 /**
- * Responsabilità: crea un file Xml
+ * Creatore di file xml che viene istanziato solamente se l'xml non esiste.
  */
-public class CreatoreXML {
+public class XMLCreator {
 
-	public CreatoreXML(String file) {
+	public XMLCreator(String file) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -27,23 +27,23 @@ public class CreatoreXML {
 			Document doc = docBuilder.newDocument();
 			doc.setXmlStandalone(true);
 
-			Element radice = doc.createElement("giocatori");
-			doc.appendChild(radice);
+			Element root = doc.createElement("giocatori");
+			doc.appendChild(root);
 
-			Element giocatore = doc.createElement("giocatore");
-			radice.appendChild(giocatore);
+			Element player = doc.createElement("giocatore");
+			root.appendChild(player);
 
 			Attr attr = doc.createAttribute("nome");
 			attr.setValue("");
-			giocatore.setAttributeNode(attr);
+			player.setAttributeNode(attr);
 
-			Element sequenzaTris = doc.createElement("sequenzaTris");
-			sequenzaTris.appendChild(doc.createTextNode(""));
-			giocatore.appendChild(sequenzaTris);
+			Element trisSequence = doc.createElement("sequenzaTris");
+			trisSequence.appendChild(doc.createTextNode(""));
+			player.appendChild(trisSequence);
 
-			Element sequenzaForza4 = doc.createElement("sequenzaForza4");
-			sequenzaForza4.appendChild(doc.createTextNode(""));
-			giocatore.appendChild(sequenzaForza4);
+			Element forza4Sequence = doc.createElement("sequenzaForza4");
+			forza4Sequence.appendChild(doc.createTextNode(""));
+			player.appendChild(forza4Sequence);
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();

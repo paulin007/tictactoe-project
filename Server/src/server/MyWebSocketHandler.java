@@ -17,12 +17,13 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 /**
- * Basic Echo Client Socket
+ * Gestore WebSocket per connessioni tramite JavaScript </br>
+ * 
  */
 @WebSocket(maxTextMessageSize = 64 * 1024)
 public class MyWebSocketHandler {
 
-	private static ArrayList<Partita> partite;
+	private static ArrayList<Partita> matches;
 	private final CountDownLatch closeLatch;
 	private Session session;
 	private String risultato = "Operazione inesistente";
@@ -30,7 +31,7 @@ public class MyWebSocketHandler {
 
 	public MyWebSocketHandler() {
 		this.closeLatch = new CountDownLatch(1);
-		MappaServizi.caricaServizi();
+		ServicesMap.loadServices();
 	}
 
 	public boolean awaitClose(int duration, TimeUnit unit)
@@ -59,20 +60,19 @@ public class MyWebSocketHandler {
 		String message = msg;
 		System.err.println("CLIENT< "+msg);
 
-		// TODO Change StringTokenizer in XML format
 		StringTokenizer s = new StringTokenizer(message, "/");
 
 		String operazione = s.nextToken();
 		
-		if (!(MappaServizi.getMappa().containsKey(operazione.toLowerCase())))
+		if (!(ServicesMap.getMappa().containsKey(operazione.toLowerCase())))
 
-				throw new EccezioniServer("Operazione non esistente",s);
+				throw new ServerExceptions("Operazione non esistente",s);
 
-			risultato = MappaServizi.getMappa().get(operazione.toLowerCase()).effettuaServizio(s, partite);
+			risultato = ServicesMap.getMappa().get(operazione.toLowerCase()).handleService(s, matches);
 
 
 
-		} catch (EccezioniServer e) {
+		} catch (ServerExceptions e) {
 			
 		}
 		finally{
@@ -85,9 +85,8 @@ public class MyWebSocketHandler {
 		
 	}
 	
-	@SuppressWarnings("static-access")
-	public void setPartite(ArrayList<Partita> partite){
-		this.partite = partite;
+	public static void setMatches(ArrayList<Partita> partite) {
+		MyWebSocketHandler.matches = partite;
 	}
 	
 }

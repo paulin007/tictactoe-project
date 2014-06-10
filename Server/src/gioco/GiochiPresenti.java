@@ -16,7 +16,7 @@ public class GiochiPresenti {
 	public static String forza4 = "forza4";
 	public static HashMap<String,  Algoritmo> mappaAlgoritmi;
 	
-	public static void caricaAlgoritmi(){
+	public static void loadAlgos(){
 		mappaAlgoritmi = new HashMap<>();		
 		mappaAlgoritmi.put(tris, new AlgoritmoTris());
 		mappaAlgoritmi.put(forza4, new AlgoritmoForza4());
