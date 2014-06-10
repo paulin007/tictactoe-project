@@ -1,4 +1,6 @@
 /**
+ * Questo js setta graficamente le label per la gestione del turno e dello svolgimento della partita
+ *
  * @author Marco Vanzulli
  */
 
@@ -14,10 +16,16 @@ function opponentTurn() {
 	turn.innerHTML = newText;
 }
 
-function setTurn(match){
+function setEndedLabel() {
+	var turn = document.getElementById("turn");
+	var newText = "<span style='color:#CC3300'>" + "Partita terminata" + "</span>";
+	turn.innerHTML = newText;
+}
+
+function setTurn(match) {
 	if (match.lastPlayer == match.myPlayer) {
 		opponentTurn();
-	} else{
+	} else if (match.lastPlayer == match.otherPlayer) {
 		myTurn();
-	};
+	}
 }

@@ -8,10 +8,14 @@ function analyzeMessage(message) {
 	if (message.startsWith("Tris") || message.startsWith("Forza4") || message.startsWith("tris") || message.startsWith("forza4")) {
 		handleMatch(message, getMatch());
 	}
-		else{
+		else if (!isNaN(message.charAt(0))){
 		tokenizeAchievements(message,getAchievements());
 	}
 }
+
+/**
+ * Questa funzione elabora l'indirizzo passato con il metodo GET e mi restituisce il parametro
+ */
 
 function processGET() {
 	var parameters = location.search.substring(1).split("&");

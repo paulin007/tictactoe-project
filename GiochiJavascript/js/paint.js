@@ -1,4 +1,6 @@
 /**
+ * Questo js si occupa semplicemente di disegnare e settare le icone della partita
+ * 
  * @author Marco Vanzulli
  */
 

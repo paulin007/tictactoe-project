@@ -1,3 +1,9 @@
+/**
+ * Questo js si occupa di fare il tokenize dei messaggi ricevuti dal server per il Match e per gli Achievements
+ *
+ * @author: Marco Vanzulli
+ */
+
 function tokenizeMatch(message, match) {
 	match.matchID = message.split("\t")[1];
 	match.matchStatus = message.split("\t")[2];
@@ -10,10 +16,10 @@ function tokenizeMatch(message, match) {
 function tokenizeAchievements(message, achievements){
 	achievements.victories = message.split(" ",8)[0];
 	achievements.ties = message.split(" ",8)[1];
-	achievements.defeats = message.split("",8)[2];
+	achievements.defeats = message.split(" ",8)[2];
 	for (var i = 0; i < achievements.scores.length; i++) {
 		achievements.scores[i] = message.split("@",8)[i + 1];
 	};
-	string = " "+getFirstPlayerName() + "|Gioco: " + getSelectedGameName() + "|V: " + achievements.victories + "|P: " + achievements.ties + "|S: " + achievements.defeats + " - Achievements: " + achievements.scores + "\n";
+	string ="\n"+ " "+getFirstPlayerName() + "|Gioco: " + getSelectedGameName() + "|V: " + achievements.victories + "|P: " + achievements.ties + "|S: " + achievements.defeats + " - Achievements: " + achievements.scores + "\n";
 	writeAchievements(string);
 }

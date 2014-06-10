@@ -1,5 +1,5 @@
 /**
- * Questo js si occupa di gestire interamente lo svolgimento della match
+ * Questo js si occupa di definire le proprietà di un match, gestire la mossa e il risultato
  *
  * @author Marco Vanzulli
  */
@@ -99,30 +99,26 @@ function Match(_gameName, _connection) {
 	});
 }
 
-function handleMatch(message, match) {
-	tokenizeMatch(message, match);
-	checkResult(match);
-	setTurn(match);
-	paint(match.moves);
-}
-
 function checkResult(match) {
 	if (match.matchStatus != "inCorso") {
 		if (match.matchStatus == "Pareggio") {
+			match.ended = true;
+			setEndedLabel();
 			setTimeout(function() {
-				match.ended = true;
 				alert("Pareggio!");
 				window.location.reload();
 			}, 3000);
 		} else if (match.matchStatus == match.myPlayer) {
+			match.ended = true;
+			setEndedLabel();
 			setTimeout(function() {
-				match.ended = true;
 				alert("Hai vinto!");
 				window.location.reload();
 			}, 3000);
 		} else if (match.matchStatus == match.otherPlayer) {
+			match.ended = true;
+			setEndedLabel();
 			setTimeout(function() {
-				match.ended = true;
 				alert("Hai perso!");
 				window.location.reload();
 			}, 3000);
