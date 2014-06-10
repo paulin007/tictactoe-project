@@ -26,26 +26,26 @@ public class Client implements IClient {
 	}
 
 	/**
-	 * data una richiesta elabora la risposta.
+	 * Effettua un invio di un messaggio al server.
 	 * 
-	 * @param messaggio
-	 * @return response
+	 * @param messageToSend Messaggio da mandare al server
+	 * @return response risposta del server
 	 */
-	public String send(String messaggio) {
+	public String send(String messageToSend) {
 		Socket link = null; // Step 1.
 
 		try {
-			link = new Socket(host, PORT); // Step 1.
+			link = new Socket(host, PORT); 
 
-			Scanner input = new Scanner(link.getInputStream());// Step 2.
+			Scanner input = new Scanner(link.getInputStream());
 
-			PrintWriter output = new PrintWriter(link.getOutputStream(), true);// Step
+			PrintWriter output = new PrintWriter(link.getOutputStream(), true);
 
 			String message, response;
 
-			message = messaggio;
-			output.println(message); // Step 3.
-			response = input.nextLine(); // Step 3.
+			message = messageToSend;
+			output.println(message); 
+			response = input.nextLine(); 
 			input.close();
 			return response;
 
@@ -55,7 +55,7 @@ public class Client implements IClient {
 
 		finally {
 			try {
-				link.close(); // Step 4.
+				link.close(); 
 			} catch (IOException ioEx) {
 				System.out.println("Unable to disconnect!");
 				System.exit(1);

@@ -7,26 +7,26 @@ import java.util.TimerTask;
 import rete.IClient;
 import rete.IMessageInterpreter;
 /**
- * Questa classe ha la responsabilit√† di gestire una partita di un gioco
+ * Questa classe ha la responsabilit‡† di gestire una partita di un gioco
  */
 public class MatchManager extends Observable implements IMatchManager {
 
-	private IMessageInterpreter interprete;
+	private IMessageInterpreter interpreter;
 	private String message;
 	private String response;
 	private IClient client;
 	private Timer timer;
 
-	public MatchManager(IClient client, IMessageInterpreter interprete) {
+	public MatchManager(IClient client, IMessageInterpreter interpreter) {
 		this.client = client;
-		this.interprete = interprete;
+		this.interpreter = interpreter;
 	}
 
 	@Override
 	public void createNewMatch(String player1, String player2, String gameName) {
 		message = "nuova partita	" + player1 + "	" + player2 + "\t"+gameName;
 		response = client.send(message);
-		interprete.interpret(response);
+		interpreter.interpret(response);
 		timer = new Timer();
 	}
 	
@@ -34,20 +34,20 @@ public class MatchManager extends Observable implements IMatchManager {
 	public void connectToMatch(String player1, String player2, String gameName) {
 		message = "collegati a	" + player2 + "	" + player1+"\t"+gameName;
 		response = client.send(message);
-		interprete.interpret(response);
+		interpreter.interpret(response);
 		timer = new Timer();
 	}
 
 	public void sendMove(int location) {
-		if(interprete.getLastPlayer().equalsIgnoreCase(PlayerSymbol.PLAYER1_SYMBOL.getSymbol())){
-			message = "Mossa\t" + interprete.getMatchID() + "\t" + PlayerSymbol.PLAYER2_SYMBOL.getSymbol()
+		if(interpreter.getLastPlayer().equalsIgnoreCase(PlayerSymbol.PLAYER1_SYMBOL.getSymbol())){
+			message = "Mossa\t" + interpreter.getMatchID() + "\t" + PlayerSymbol.PLAYER2_SYMBOL.getSymbol()
 					+ "\t" + location;
-		}else if(interprete.getLastPlayer().equalsIgnoreCase(PlayerSymbol.PLAYER2_SYMBOL.getSymbol())){
-			message = "Mossa\t" + interprete.getMatchID() + "\t" + PlayerSymbol.PLAYER1_SYMBOL.getSymbol()
+		}else if(interpreter.getLastPlayer().equalsIgnoreCase(PlayerSymbol.PLAYER2_SYMBOL.getSymbol())){
+			message = "Mossa\t" + interpreter.getMatchID() + "\t" + PlayerSymbol.PLAYER1_SYMBOL.getSymbol()
 					+ "\t" + location;
 		}
 		response = client.send(message);
-		interprete.interpret(response);
+		interpreter.interpret(response);
 	}
 
 	@Override
@@ -57,9 +57,9 @@ public class MatchManager extends Observable implements IMatchManager {
 			@Override
 			public void run() {
 
-				message = "update	" + interprete.getMatchID();
+				message = "update	" + interpreter.getMatchID();
 				response = client.send(message);
-				interprete.interpret(response);
+				interpreter.interpret(response);
 				updateModel();
 			}
 			
@@ -75,7 +75,7 @@ public class MatchManager extends Observable implements IMatchManager {
 	
 	@Override
 	public IMessageInterpreter getInterprete() {
-		return interprete;
+		return interpreter;
 	}
 	
 	public void updateModel() {

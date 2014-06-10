@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 /**
  * Singleton
- * contiene i cammini di default di tutti gli immagini, i font e i suoni usati nel progetto
+ * contiene i cammini di default di tutte le immagini, i font e i suoni usati nel progetto
  * @author K. ADJIGNON
  */
 
@@ -37,7 +37,7 @@ public class DefaultSettings {
 	
 	
 	/**
-	 * Carica la mappa mettendo tutti i percorsi degli immagini, font e suoni
+	 * Carica la mappa mettendo tutti i percorsi delle immagini, dei font e dei suoni
 	 */
 	public void loadMap() {
 		
@@ -69,9 +69,9 @@ public class DefaultSettings {
 	}
 	
 	/**
-	 * inserisce il percorso di un immagine, font e suono nella mappa
-	 * @param name
-	 * @param path
+	 * inserisce il percorso di un'immagine, font o suono nella mappa
+	 * @param name Nome del file da inserire
+	 * @param path del file associato
 	 */
 	public void put(String name, String path) {
 		paths.put(name, path);
@@ -79,8 +79,8 @@ public class DefaultSettings {
 	
 	/**
 	 * dato il nome di un immagine o suono o font, ritorna il suo percorso
-	 * @param key
-	 * @return path
+	 * @param key Nome del file da ricercare
+	 * @return path del file
 	 */
 	public String getPath(String key){
 		return paths.get(key);
