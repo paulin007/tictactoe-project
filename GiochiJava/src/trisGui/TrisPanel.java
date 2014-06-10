@@ -20,7 +20,7 @@ import managers.PlayerSymbol;
 @SuppressWarnings("serial")
 public class TrisPanel extends JPanel implements Observer, GamePanel {
 	
-	private ArrayList<JButton> boxes = new ArrayList<>();
+	private ArrayList<JButton> boxes;
 	private PanelsDrawer drawerPanel;
 	private String mySymbol;
 	private String opponentSymbol;
@@ -55,6 +55,7 @@ public class TrisPanel extends JPanel implements Observer, GamePanel {
 		setLayout(null);
 		setBackground(new Color(153,203,255));
 		drawerPanel.drawPlayersPanel(this, mySymbol, opponentSymbol);
+		boxes = new ArrayList<>();
 		drawerPanel.drawTrisUI(boxes, 9, this);
 		matchManager.addObserver(this);
 	}
