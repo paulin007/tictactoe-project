@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 /**
- * Questa classe ha la responsabilità di inizializzare e Gestire una nuova partita
+ * Questa classe ha la responsabilità di inizializzare e Gestire una nuova
+ * partita
  * 
  * @author Paulin
  * 
@@ -46,8 +47,7 @@ public class TrisActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.screen_online);
-
+		setContentView(R.layout.layout_tris);
 		graphicManager.createGraphics();
 		toggleButtonStart();
 		toggleButtonConnect();
