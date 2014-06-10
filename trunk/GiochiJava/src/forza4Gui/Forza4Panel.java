@@ -35,18 +35,18 @@ public class Forza4Panel extends JPanel implements Observer, GamePanel {
 		this.matchManager = matchManager;
 		drawerPanel = new PanelsDrawer(matchManager, turnManager);
 		drawerPanel.createForza4Button(forza4Buttons,7);
+		drawerPanel.setPositionForza4Button(forza4Buttons);
+		drawerPanel.setupForza4Button(this, forza4Buttons);
+		drawerPanel.setupForza4Grid(this);
 	}
 
 	/**
 	 * Installa i componenti iniziali del pannello di gioco Forza4
 	 */
 	public void setupInziale(){
-		removeAll();
+//		removeAll();
 		setLayout(null);
 		drawerPanel.drawPlayersPanel(this, mySymbol, opponentSymbol);
-		drawerPanel.setPositionForza4Button(forza4Buttons);
-		drawerPanel.setupForza4Button(this, forza4Buttons);
-		drawerPanel.setupForza4Grid(this);
 		add(gridPanel);
 		matchManager.addObserver(this);
 	}
